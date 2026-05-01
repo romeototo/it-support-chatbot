@@ -14,7 +14,7 @@
 
 **👉 [เปิด Demo ได้เลย](https://romeototo.github.io/it-support-chatbot/)**
 
-![IT Support Chatbot Screenshot](https://via.placeholder.com/800x450/1e293b/3b82f6?text=IT+Support+AI+Chatbot)
+![IT Support Chatbot Screenshot](screenshot.png)
 
 ---
 
@@ -23,13 +23,15 @@
 | Feature | รายละเอียด |
 |---|---|
 | 💬 Chat Interface | UI สวย Dark Theme พร้อม Typing Animation |
-| 🔍 Keyword AI | ค้นหาคำตอบจาก FAQ ด้วย Keyword Matching |
+| 🤖 Gemini AI | เชื่อมต่อ Google Gemini API ตอบอัจฉริยะ |
+| 🔍 Keyword Fallback | Keyword Matching เมื่อไม่มี API Key |
 | 📋 86 FAQ | ครอบคลุม 17 หมวดหมู่ปัญหา IT ทั่วไป |
 | ⚡ Quick Actions | ปุ่มลัด 16 หัวข้อ กดได้เลย |
-| 🎫 Ticket System | ออก Ticket Number ทุกการสนทนา |
+| 🎫 Ticket System | ออก Ticket Number + History Panel |
+| 👍👎 Feedback | ปุ่มให้คะแนนทุก Ticket |
+| 📊 Stats Bar | สถิติ Ticket / Helpful / Mode แบบ Real-time |
+| 📱 Responsive | รองรับ Desktop + Mobile |
 | 🌐 Standalone | ทำงานได้ใน Browser ไม่ต้อง Server |
-| 🐍 Python Backend | Flask API พร้อมใช้งาน |
-| 🔌 LLM Ready | รองรับ API ต่อยอดได้ทันที |
 
 ---
 
@@ -128,11 +130,14 @@ it-support-chatbot/
 - [x] 86 FAQ / 17 หมวดหมู่
 - [x] Standalone HTML Demo
 - [x] GitHub Pages Deploy
-- [ ] Gemini / OpenAI API Integration
+- [x] Gemini AI Integration
+- [x] Ticket History Panel
+- [x] Feedback System (👍👎)
+- [x] Mobile Responsive
+- [x] Stats Dashboard
 - [ ] LINE OA Bot
 - [ ] Telegram Bot
 - [ ] Admin Dashboard
-- [ ] Analytics & Reporting
 - [ ] RAG + Vector Database
 
 ---
