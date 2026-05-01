@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Support Chatbot - คู่มือใช้งาน</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Prompt', sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            background: white;
+            padding: 40px 50px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 4px solid #667eea;
+            margin-bottom: 30px;
+        }
+        
+        .header-icon {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        /* Section */
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        /* Steps */
+        .steps {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 25px;
+            color: white;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .step:last-child {
+            margin-bottom: 0;
+        }
+        
+        .step-number {
+            background: rgba(255,255,255,0.3);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            font-size: 15px;
+            padding-top: 5px;
+        }
+        
+        .step-content code {
+            background: rgba(0,0,0,0.2);
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        
+        /* Demo Chat */
+        .chat-demo {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .chat-message {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 12px;
+        }
+        
+        .chat-avatar {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .chat-avatar.user {
+            background: #e3f2fd;
+        }
+        
+        .chat-avatar.bot {
+            background: #f3e5f5;
+        }
+        
+        .chat-bubble {
+            background: white;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            max-width: 80%;
+        }
+        
+        .chat-bubble.user {
+            background: #667eea;
+            color: white;
+        }
+        
+        /* Commands Table */
+        .commands-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        
+        .commands-table th {
+            background: #667eea;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 500;
+        }
+        
+        .commands-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+        
+        .commands-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        .commands-table code {
+            background: #f0f0f0;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 13px;
+        }
+        
+        /* Categories Grid */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+        
+        .category-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        
+        .category-card:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+        
+        .category-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        
+        .category-name {
+            font-size: 12px;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        /* Footer */
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+            text-align: center;
+        }
+        
+        .footer-contact {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 15px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        
+        .contact-icon {
+            font-size: 20px;
+        }
+        
+        /* Badge */
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+        
+        /* Tips */
+        .tips-box {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-top: 15px;
+        }
+        
+        .tips-box h4 {
+            color: #856404;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .tips-box ul {
+            font-size: 13px;
+            color: #856404;
+            padding-left: 20px;
+        }
+        
+        .tips-box li {
+            margin-bottom: 5px;
+        }
+        
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+            }
+            .page {
+                box-shadow: none;
+                padding: 20px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-icon">🖥️</div>
+            <h1>IT Support Chatbot</h1>
+            <p>คู่มือการใช้งาน - ถามปัญหา IT ได้ทันที!</p>
+            <div class="badge">Prototype v1.0</div>
+        </div>
+        
+        <!-- How to Start -->
+        <div class="section">
+            <div class="section-title">🚀 วิธีเปิดใช้งาน</div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">เปิด <strong>Terminal</strong> บนเครื่องคอมพิวเตอร์</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">พิมพ์คำสั่ง: <code>cd ~/it-support-chatbot</code></div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">รัน Chatbot: <code>python3 chatbot.py</code></div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">เสร็จ! เริ่มพิมพ์คำถาม IT ได้เลย 🎉</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Demo -->
+        <div class="section">
+            <div class="section-title">💬 ตัวอย่างการใช้งาน</div>
+            <div class="chat-demo">
+                <div class="chat-message">
+                    <div class="chat-avatar user">🧑</div>
+                    <div class="chat-bubble user">WiFi เชื่อมต่อไม่ได้</div>
+                </div>
+                <div class="chat-message">
+                    <div class="chat-avatar bot">🤖</div>
+                    <div class="chat-bubble">
+                        <strong>เชื่อมต่อ WiFi ไม่ได้ ทำยังไง?</strong><br><br>
+                        1. ตรวจว่าเปิด WiFi แล้ว<br>
+                        2. Forget network แล้วเชื่อมต่อใหม่<br>
+                        3. Restart เครื่อง<br>
+                        4. ติดต่อ IT Support ext. 1234
+                    </div>
+                </div>
+                
+                <div class="chat-message">
+                    <div class="chat-avatar user">🧑</div>
+                    <div class="chat-bubble user">ลืมรหัสผ่าน</div>
+                </div>
+                <div class="chat-message">
+                    <div class="chat-avatar bot">🤖</div>
+                    <div class="chat-bubble">
+                        <strong>ลืมรหัสผ่าน ทำยังไง?</strong><br><br>
+                        1. กด Forgot Password<br>
+                        2. ติดต่อ IT Support ext. 1234<br>
+                        3. รหัสต้องมี 8 ตัว+ตัวใหญ่+ตัวเล็ก+ตัวเลข
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Commands -->
+        <div class="section">
+            <div class="section-title">⌨️ คำสั่งใน Chatbot</div>
+            <table class="commands-table">
+                <thead>
+                    <tr>
+                        <th>พิมพ์</th>
+                        <th>ทำอะไร</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>คำถาม IT</td>
+                        <td>ถามได้เลย เช่น "คอมช้ามาก"</td>
+                    </tr>
+                    <tr>
+                        <td><code>help</code></td>
+                        <td>ดูหมวดหมู่ทั้งหมด</td>
+                    </tr>
+                    <tr>
+                        <td><code>quit</code> หรือ <code>exit</code></td>
+                        <td>ออกจากโปรแกรม</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Categories -->
+        <div class="section">
+            <div class="section-title">📂 หมวดหมู่ที่มี (59 FAQ)</div>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">🖨️</div>
+                    <div class="category-name">เครื่องพิมพ์</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">📶</div>
+                    <div class="category-name">Network/WiFi</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">📧</div>
+                    <div class="category-name">อีเมล</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">💻</div>
+                    <div class="category-name">คอมพิวเตอร์</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🔑</div>
+                    <div class="category-name">Password</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">📦</div>
+                    <div class="category-name">Software</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🔐</div>
+                    <div class="category-name">VPN</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">📹</div>
+                    <div class="category-name">Video Call</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">📱</div>
+                    <div class="category-name">Mobile</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">💾</div>
+                    <div class="category-name">Backup</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">👤</div>
+                    <div class="category-name">Account</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tips -->
+        <div class="section">
+            <div class="tips-box">
+                <h4>💡 เคล็ดลับการใช้งาน</h4>
+                <ul>
+                    <li>พิมพ์คำถามสั้นๆ ได้ เช่น "WiFi", "printer", "ลืมรหัส"</li>
+                    <li>Chatbot จะแสดงคำตอบ + คำถามที่เกี่ยวข้อง</li>
+                    <li>ถ้าไม่พบคำตอบ จะแนะนำช่องทางติดต่อ IT Support</li>
+                    <li>FAQ แก้ไขได้ในไฟล์ <code>knowledge_base.json</code></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div class="section-title">📞 ติดต่อ IT Support</div>
+            <div class="footer-contact">
+                <div class="contact-item">
+                    <span class="contact-icon">📞</span>
+                    <span>ext. 1234</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📧</span>
+                    <span>it-support@company.com</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">💬</span>
+                    <span>Line: @company-it</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">🕐</span>
+                    <span>จ.-ศ. 8:30-17:30</span>
+                </div>
+            </div>
+            <p style="margin-top: 20px; font-size: 12px; color: #999;">
+                IT Support Chatbot v1.0 | Prototype | สร้างด้วย Python
+            </p>
+        </div>
+    </div>
+</body>
+</html>
