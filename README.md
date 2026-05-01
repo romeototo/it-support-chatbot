@@ -25,7 +25,7 @@
 | 💬 Chat Interface | UI สวย Dark Theme พร้อม Typing Animation |
 | 🤖 Gemini AI | เชื่อมต่อ Google Gemini API ตอบอัจฉริยะ |
 | 🔍 Keyword Fallback | Keyword Matching เมื่อไม่มี API Key |
-| 📋 86 FAQ | ครอบคลุม 17 หมวดหมู่ปัญหา IT ทั่วไป |
+| 📋 202 FAQ | ครอบคลุม 45 หมวดหมู่ปัญหา IT ทั่วไป |
 | ⚡ Quick Actions | ปุ่มลัด 16 หัวข้อ กดได้เลย |
 | 🎫 Ticket System | ออก Ticket Number + History Panel |
 | 👍👎 Feedback | ปุ่มให้คะแนนทุก Ticket |
@@ -35,7 +35,7 @@
 
 ---
 
-## 📂 หมวดหมู่ FAQ (17 หมวด / 86 ข้อ)
+## 📂 หมวดหมู่ FAQ (45 หมวด / 86 ข้อ)
 
 ```
 🖨️ เครื่องพิมพ์          📶 WiFi / Network       📧 อีเมล / Outlook
@@ -96,7 +96,7 @@ it-support-chatbot/
 ├── 🌟 index.html              # Standalone Demo (GitHub Pages)
 ├── 🐍 chatbot.py              # Terminal Chatbot
 ├── 🌐 web_app.py              # Flask Web Application
-├── 📚 knowledge_base.json     # FAQ Database (86 ข้อ / 17 หมวด)
+├── 📚 knowledge_base.json     # FAQ Database (86 ข้อ / 45 หมวด)
 ├── 📄 README.md               # คู่มือนี้
 ├── 📄 HANDOFF.md              # รายละเอียดโปรเจกต์
 └── 📄 GUIDE.md                # คู่มือการใช้งาน
@@ -127,7 +127,7 @@ it-support-chatbot/
 
 - [x] Keyword Matching Engine
 - [x] Flask Web UI
-- [x] 86 FAQ / 17 หมวดหมู่
+- [x] 202 FAQ / 45 หมวดหมู่
 - [x] Standalone HTML Demo
 - [x] GitHub Pages Deploy
 - [x] Gemini AI Integration
