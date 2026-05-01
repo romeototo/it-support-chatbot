@@ -105,7 +105,7 @@ header{background:#0d1117;border-bottom:1px solid #1e293b;padding:12px 20px;disp
   </div>
   <div class="chat-wrap">
     <div class="messages" id="messages">
-      <div class="msg bot"><div class="av">🤖</div><div class="bub">สวัสดีครับ! 👋 ผม <strong>IT Support AI</strong> พร้อมช่วยแก้ปัญหาไอทีให้คุณ\n\n💡 พิมพ์ปัญหา หรือกดปุ่มด้านซ้ายได้เลยครับ\n🤖 ใส่ Gemini API Key ด้านบนเพื่อให้ AI ตอบอัจฉริยะยิ่งขึ้น</div></div>
+      <div class="msg bot" id="welcomeMsg"><div class="av">🤖</div><div class="bub" id="welcomeBub"></div></div>
     </div>
     <div class="input-area">
       <input id="inp" placeholder="พิมพ์ปัญหา IT เช่น WiFi เชื่อมไม่ได้, ลืมรหัสผ่าน..." onkeydown="if(event.key==='Enter')send()">
@@ -259,6 +259,14 @@ document.getElementById('inp').addEventListener('keydown',e=>{if(e.key==='Enter'
   const totalFaq = KB.categories.reduce((sum, cat) => sum + cat.faqs.length, 0);
   const totalCat = KB.categories.length;
   document.getElementById('faqCount').textContent = totalFaq + ' FAQ | ' + totalCat + ' หมวด';
+  // Dynamic welcome message
+  const topCats = KB.categories.slice(0, 5).map(c => c.name).join(', ');
+  const wb = document.getElementById('welcomeBub');
+  wb.innerHTML = 'สวัสดีครับ! 👋 ผม <strong>IT Support AI</strong> พร้อมช่วยแก้ปัญหาไอทีให้คุณ<br><br>'
+    + '📊 รู้คำตอบ <strong>' + totalFaq + ' คำถาม</strong> ใน <strong>' + totalCat + ' หมวด</strong><br>'
+    + '📂 เช่น: ' + topCats + '<br><br>'
+    + '💡 พิมพ์ปัญหา หรือกดปุ่มด้านซ้ายได้เลยครับ<br>'
+    + '🤖 ใส่ Gemini API Key ด้านบนเพื่อให้ AI ตอบอัจฉริยะยิ่งขึ้น';
 })();
 </script>
 </body>
