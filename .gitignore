@@ -16,3 +16,8 @@ Thumbs.db
 
 add_faqs.py
 build_index.py
+
+create_guide.py
+pin_repo.py
+*.png
+!screenshot.png
