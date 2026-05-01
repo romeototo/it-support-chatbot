@@ -10,6 +10,49 @@
 
 ---
 
+## 📋 Case Study — ทำไมถึงสร้างโปรเจกต์นี้?
+
+### ❓ ปัญหา (Problem)
+
+ทีม IT Support ในองค์กรทั่วไปใช้เวลา **30-40%** ไปกับการตอบคำถามซ้ำๆ เช่น:
+- "WiFi เชื่อมไม่ได้"
+- "ลืมรหัสผ่าน"
+- "เครื่องพิมพ์ใช้ไม่ได้"
+
+สิ่งเหล่านี้เป็นปัญหาที่มี **ขั้นตอนการแก้ไขตายตัว** แต่ต้องรอ IT มาช่วยทุกครั้ง ทำให้:
+- พนักงานรอนาน → ผลิตภาพลดลง
+- IT Team เหนื่อยกับงานซ้ำซาก → ไม่มีเวลาทำงาน Infrastructure
+- Ticket สะสม → SLA ไม่ผ่าน
+
+### 💡 แนวทางแก้ไข (Solution)
+
+สร้าง **AI Chatbot** ที่พนักงานเปิดใช้งานได้ทันทีผ่าน Browser โดย:
+
+| องค์ประกอบ | รายละเอียด |
+|---|---|
+| 📚 Knowledge Base | รวบรวม **202 FAQ** จากปัญหาจริงใน **45 หมวดหมู่** |
+| 🤖 AI Engine | ใช้ **Google Gemini API** วิเคราะห์คำถามและตอบอัจฉริยะ |
+| ⚡ Keyword Fallback | ทำงานได้แม้ไม่มี Internet (Offline Mode) |
+| 🎫 Ticket Tracking | ออกหมายเลข Ticket + ประวัติสนทนา |
+| 📊 Feedback Loop | ระบบ 👍👎 เพื่อปรับปรุง FAQ ต่อเนื่อง |
+
+### 📈 ผลลัพธ์ที่คาดหวัง (Expected Impact)
+
+```
+🎯 ลด Ticket ซ้ำซาก        → ประมาณ 40%
+⏱️ ลดเวลารอ IT            → จาก 30 นาที เหลือ 30 วินาที
+📊 เพิ่มเวลา IT Team       → ไปทำ Infrastructure + Security
+🌐 เข้าถึงได้ 24/7         → ไม่ต้องรอเวลาทำการ
+```
+
+### 🔮 ขั้นตอนถัดไป (Next Phase)
+
+1. เชื่อมต่อ **LINE OA / Telegram** เพื่อเข้าถึงพนักงานในช่องทางที่ใช้อยู่แล้ว
+2. ใช้ **RAG + Vector Database** เพื่อค้นหาจากเอกสาร IT จริง (PDF, Wiki)
+3. สร้าง **Admin Dashboard** เพื่อวิเคราะห์ปัญหาที่เกิดบ่อย และปรับปรุงเชิงรุก
+
+---
+
 ## 🚀 Live Demo
 
 **👉 [เปิด Demo ได้เลย](https://romeototo.github.io/it-support-chatbot/)**
@@ -35,15 +78,18 @@
 
 ---
 
-## 📂 หมวดหมู่ FAQ (45 หมวด / 86 ข้อ)
+## 📂 หมวดหมู่ FAQ (45 หมวด / 202 ข้อ)
 
 ```
 🖨️ เครื่องพิมพ์          📶 WiFi / Network       📧 อีเมล / Outlook
 💻 คอมพิวเตอร์            🔑 Password / Security  📦 Software
-🔐 VPN / Remote Work     📹 Video Conference     📱 Mobile Device
-💾 Backup / กู้ไฟล์      👤 Account / Permission  💬 Microsoft Teams
+🔐 VPN / Remote Work     📹 Video Conference     📱 Mobile / BYOD
+💾 Backup / Recovery      👤 Account / AD          💬 Microsoft Teams
 🔌 Hardware / USB         🗂️ Network Drive        📊 Office 365
-🪟 Windows System         💡 และอื่นๆ อีกมาก
+🪟 Windows System         🛡️ Antivirus / PDPA     🌐 Browser / Chrome
+🖥️ Remote Desktop        💥 Blue Screen / BSOD    📞 IP Phone
+📽️ Projector             ☁️ Cloud Storage         🔐 MFA / 2FA
+📊 Excel / Word / PPT    🔊 Audio / ลำโพง        ⚡ Power / UPS
 ```
 
 ---
@@ -96,10 +142,10 @@ it-support-chatbot/
 ├── 🌟 index.html              # Standalone Demo (GitHub Pages)
 ├── 🐍 chatbot.py              # Terminal Chatbot
 ├── 🌐 web_app.py              # Flask Web Application
-├── 📚 knowledge_base.json     # FAQ Database (86 ข้อ / 45 หมวด)
+├── 📚 knowledge_base.json     # FAQ Database (202 ข้อ / 45 หมวด)
 ├── 📄 README.md               # คู่มือนี้
-├── 📄 HANDOFF.md              # รายละเอียดโปรเจกต์
-└── 📄 GUIDE.md                # คู่มือการใช้งาน
+├── 📄 GUIDE.md                # คู่มือการใช้งาน
+└── 📄 requirements.txt        # Python Dependencies
 ```
 
 ---
