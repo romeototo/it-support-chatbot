@@ -1,0 +1,41 @@
+name: Validate Knowledge Base
+
+on:
+  push:
+    paths:
+      - 'knowledge_base.json'
+  pull_request:
+    paths:
+      - 'knowledge_base.json'
+
+jobs:
+  validate-json:
+    name: Check JSON Syntax & Structure
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          
+      - name: Validate JSON Format
+        run: |
+          python -c "
+          import json
+          import sys
+          try:
+              with open('knowledge_base.json', 'r', encoding='utf-8') as f:
+                  data = json.load(f)
+              
+              if 'categories' not in data:
+                  print('Error: Missing categories array')
+                  sys.exit(1)
+              
+              print(f'✅ Successfully parsed {len(data[\"categories\"])} categories.')
+          except Exception as e:
+              print(f'❌ JSON Invalid: {e}')
+              sys.exit(1)
+          "
