@@ -21,3 +21,6 @@ create_guide.py
 pin_repo.py
 *.png
 !screenshot.png
+
+HANDOFF.md
+QUICK_HANDOFF.md
