@@ -1,0 +1,15 @@
+# ไฟล์ชั่วคราว
+add_faqs.py
+*.pyc
+__pycache__/
+
+# ไฟล์ภาษาไทย (encoding issue)
+คู่มือ*
+
+# Python env
+venv/
+.env
+
+# OS
+.DS_Store
+Thumbs.db
