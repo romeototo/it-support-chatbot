@@ -7,218 +7,252 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:#0f1117;color:#e2e8f0;height:100vh;display:flex;flex-direction:column}
-header{background:linear-gradient(135deg,#1e293b,#0f172a);border-bottom:1px solid #1e40af33;padding:14px 24px;display:flex;align-items:center;gap:14px}
-.logo{width:40px;height:40px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px}
-.header-info h1{font-size:1.1rem;font-weight:700;color:#f1f5f9}
-.header-info p{font-size:.75rem;color:#64748b}
-.status-dot{width:8px;height:8px;background:#22c55e;border-radius:50%;animation:pulse 2s infinite;margin-left:auto}
+body{font-family:'Inter',sans-serif;background:#0f1117;color:#e2e8f0;height:100vh;display:flex;flex-direction:column;overflow:hidden}
+header{background:#0d1117;border-bottom:1px solid #1e293b;padding:12px 20px;display:flex;align-items:center;gap:12px;z-index:100}
+.logo{width:38px;height:38px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.hinfo{flex:1}.hinfo h1{font-size:1rem;font-weight:700}.hinfo p{font-size:.72rem;color:#64748b}
+.hbadge{background:#1e40af22;border:1px solid #1e40af55;color:#60a5fa;padding:3px 10px;border-radius:20px;font-size:.7rem}
+.dot{width:8px;height:8px;background:#22c55e;border-radius:50%;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-
+.gemini-bar{background:#0d1117;border-bottom:1px solid #1e293b;padding:8px 20px;display:flex;gap:8px;align-items:center}
+.gemini-bar label{font-size:.75rem;color:#64748b;white-space:nowrap}
+.gemini-bar input{flex:1;background:#1e293b;border:1px solid #334155;color:#f1f5f9;padding:7px 12px;border-radius:8px;font-size:.78rem;outline:none;font-family:monospace}
+.gemini-bar input:focus{border-color:#3b82f6}
+.gemini-bar button{background:#1d4ed8;border:none;color:#fff;padding:7px 14px;border-radius:8px;cursor:pointer;font-size:.78rem;white-space:nowrap}
 .main{display:flex;flex:1;overflow:hidden}
-.sidebar{width:220px;background:#0d1117;border-right:1px solid #1e293b;padding:16px;display:flex;flex-direction:column;gap:8px}
-.sidebar-title{font-size:.7rem;color:#475569;font-weight:600;text-transform:uppercase;margin-bottom:4px}
-.quick-btn{background:#1e293b;border:none;color:#94a3b8;padding:10px 14px;border-radius:10px;cursor:pointer;font-size:.82rem;text-align:left;display:flex;align-items:center;gap:8px;transition:.2s;width:100%}
-.quick-btn:hover{background:#1e40af;color:#fff}
-
-.chat-area{flex:1;display:flex;flex-direction:column}
-.messages{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:14px}
-.messages::-webkit-scrollbar{width:4px}
-.messages::-webkit-scrollbar-thumb{background:#334155;border-radius:4px}
-
-.msg{display:flex;gap:10px;max-width:80%}
+.sidebar{width:200px;background:#0d1117;border-right:1px solid #1e293b;padding:12px;display:flex;flex-direction:column;gap:6px;overflow-y:auto;flex-shrink:0}
+.sidebar::-webkit-scrollbar{width:3px}.sidebar::-webkit-scrollbar-thumb{background:#334155;border-radius:3px}
+.stitle{font-size:.65rem;color:#475569;font-weight:600;text-transform:uppercase;margin:4px 0 2px}
+.qbtn{background:#1e293b;border:none;color:#94a3b8;padding:8px 10px;border-radius:8px;cursor:pointer;font-size:.78rem;text-align:left;display:flex;align-items:center;gap:6px;transition:.2s;width:100%}
+.qbtn:hover{background:#1e40af;color:#fff}
+.chat-wrap{flex:1;display:flex;flex-direction:column;min-width:0}
+.messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
+.messages::-webkit-scrollbar{width:4px}.messages::-webkit-scrollbar-thumb{background:#334155;border-radius:4px}
+.msg{display:flex;gap:8px;max-width:85%}
 .msg.user{align-self:flex-end;flex-direction:row-reverse}
-.avatar{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
-.bot .avatar{background:linear-gradient(135deg,#3b82f6,#8b5cf6)}
-.user .avatar{background:linear-gradient(135deg,#10b981,#3b82f6)}
-.bubble{padding:12px 16px;border-radius:14px;font-size:.88rem;line-height:1.6;white-space:pre-wrap}
-.bot .bubble{background:#1e293b;border:1px solid #334155;border-top-left-radius:4px}
-.user .bubble{background:linear-gradient(135deg,#1d4ed8,#7c3aed);border-top-right-radius:4px}
+.av{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.bot .av{background:linear-gradient(135deg,#3b82f6,#8b5cf6)}
+.user .av{background:linear-gradient(135deg,#10b981,#3b82f6)}
+.bub{padding:10px 14px;border-radius:12px;font-size:.85rem;line-height:1.6;white-space:pre-wrap}
+.bot .bub{background:#1e293b;border:1px solid #334155;border-top-left-radius:3px}
+.user .bub{background:linear-gradient(135deg,#1d4ed8,#7c3aed);border-top-right-radius:3px}
+.msg-footer{display:flex;gap:6px;margin-top:4px;padding-left:38px}
+.fb-btn{background:none;border:1px solid #334155;color:#64748b;padding:3px 10px;border-radius:20px;cursor:pointer;font-size:.72rem;transition:.2s}
+.fb-btn:hover{background:#1e293b;color:#fff}
+.fb-btn.active-good{background:#16a34a22;border-color:#16a34a;color:#4ade80}
+.fb-btn.active-bad{background:#dc262622;border-color:#dc2626;color:#f87171}
+.ticket-tag{font-size:.68rem;color:#475569}
 .typing-dots span{display:inline-block;width:6px;height:6px;background:#64748b;border-radius:50%;margin:0 2px;animation:dot .8s infinite}
 .typing-dots span:nth-child(2){animation-delay:.2s}
 .typing-dots span:nth-child(3){animation-delay:.4s}
 @keyframes dot{0%,80%,100%{transform:scale(1)}40%{transform:scale(1.4)}}
-
-.input-area{background:#0d1117;border-top:1px solid #1e293b;padding:14px 20px;display:flex;gap:10px}
-.input-area input{flex:1;background:#1e293b;border:1px solid #334155;color:#f1f5f9;padding:12px 16px;border-radius:12px;font-size:.9rem;outline:none;font-family:'Inter',sans-serif;transition:.2s}
+.input-area{background:#0d1117;border-top:1px solid #1e293b;padding:12px 16px;display:flex;gap:8px}
+.input-area input{flex:1;background:#1e293b;border:1px solid #334155;color:#f1f5f9;padding:10px 14px;border-radius:10px;font-size:.88rem;outline:none;font-family:'Inter',sans-serif;transition:.2s}
 .input-area input:focus{border-color:#3b82f6}
 .input-area input::placeholder{color:#475569}
-.send-btn{background:linear-gradient(135deg,#3b82f6,#7c3aed);border:none;color:#fff;padding:12px 20px;border-radius:12px;cursor:pointer;font-size:.9rem;font-weight:600;transition:.2s}
+.send-btn{background:linear-gradient(135deg,#3b82f6,#7c3aed);border:none;color:#fff;padding:10px 18px;border-radius:10px;cursor:pointer;font-size:.88rem;font-weight:600;transition:.2s}
 .send-btn:hover{transform:scale(1.04)}
-.ticket-badge{background:#1e40af22;border:1px solid #1e40af55;color:#60a5fa;padding:3px 10px;border-radius:20px;font-size:.72rem;margin-left:auto}
+.stats-bar{background:#0d1117;border-top:1px solid #1e293b;padding:8px 16px;display:flex;gap:16px;font-size:.72rem;color:#475569}
+.stat{display:flex;align-items:center;gap:4px}.stat span{color:#60a5fa;font-weight:600}
+.history-panel{width:260px;background:#0d1117;border-left:1px solid #1e293b;display:flex;flex-direction:column;flex-shrink:0}
+.hp-title{padding:12px 14px;font-size:.78rem;font-weight:600;border-bottom:1px solid #1e293b;color:#94a3b8}
+.hp-list{flex:1;overflow-y:auto;padding:8px}
+.hp-item{background:#1e293b;border-radius:8px;padding:8px 10px;margin-bottom:6px;cursor:pointer;transition:.2s}
+.hp-item:hover{background:#1e3a5f}
+.hp-item .hn{font-size:.72rem;color:#94a3b8;margin-bottom:3px}
+.hp-item .hq{font-size:.78rem;color:#e2e8f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hp-item .hr{font-size:.68rem;color:#475569;margin-top:3px}
+.gemini-badge{background:#7c3aed22;border:1px solid #7c3aed55;color:#a78bfa;padding:2px 8px;border-radius:20px;font-size:.65rem;margin-left:auto}
+@media(max-width:768px){
+  .sidebar{display:none}
+  .history-panel{display:none}
+  .gemini-bar label{display:none}
+}
 </style>
 </head>
 <body>
 <header>
   <div class="logo">🖥️</div>
-  <div class="header-info">
-    <h1>IT Support AI</h1>
-    <p>ระบบช่วยเหลือไอทีอัจฉริยะ</p>
-  </div>
-  <span class="ticket-badge">86 FAQ | 17 หมวด</span>
-  <div class="status-dot"></div>
+  <div class="hinfo"><h1>IT Support AI</h1><p>ระบบช่วยเหลือไอทีอัจฉริยะ</p></div>
+  <span class="hbadge" id="faqCount">86 FAQ | 17 หมวด</span>
+  <div class="gemini-badge" id="aiLabel">Keyword AI</div>
+  <div class="dot"></div>
 </header>
+<div class="gemini-bar">
+  <label>🤖 Gemini API Key:</label>
+  <input type="password" id="geminiKey" placeholder="AIza... (ใส่เพื่อใช้ AI จริง)">
+  <button onclick="saveKey()">เปิดใช้ AI</button>
+</div>
 <div class="main">
   <div class="sidebar">
-    <div class="sidebar-title">หัวข้อด่วน</div>
-    <button class="quick-btn" onclick="ask('เครื่องพิมพ์พิมพ์ไม่ออก')">🖨️ เครื่องพิมพ์</button>
-    <button class="quick-btn" onclick="ask('เชื่อมต่อ WiFi ไม่ได้')">📶 WiFi/เน็ต</button>
-    <button class="quick-btn" onclick="ask('ลืมรหัสผ่าน')">🔑 ลืมรหัสผ่าน</button>
-    <button class="quick-btn" onclick="ask('คอมช้ามาก')">💻 คอมช้า</button>
-    <button class="quick-btn" onclick="ask('ส่งอีเมลไม่ได้')">📧 ปัญหาอีเมล</button>
-    <button class="quick-btn" onclick="ask('VPN เชื่อมต่อไม่ได้')">🔐 VPN</button>
-    <button class="quick-btn" onclick="ask('Zoom กล้องไม่ทำงาน')">📹 Video Call</button>
-    <button class="quick-btn" onclick="ask('ไฟล์ถูกลบกู้คืนยังไง')">💾 กู้ไฟล์</button>
-    <button class="quick-btn" onclick="ask('ติดตั้งโปรแกรมใหม่')">📦 ลงโปรแกรม</button>
-    <button class="quick-btn" onclick="ask('พนักงานใหม่ต้องทำอะไร')">👤 New Employee</button>
-    <button class="quick-btn" onclick="ask('Teams เปิดไม่ขึ้น')">💬 Microsoft Teams</button>
-    <button class="quick-btn" onclick="ask('เสียบ USB แล้วไม่ขึ้น')">🔌 USB/Hardware</button>
-    <button class="quick-btn" onclick="ask('Map Network Drive ทำยังไง')">🗂️ Network Drive</button>
-    <button class="quick-btn" onclick="ask('Office 365 activation failed')">📊 Office 365</button>
-    <button class="quick-btn" onclick="ask('C Drive เต็ม')">🪟 Windows</button>
-    <button class="quick-btn" onclick="ask('ต่อ 2 จอ Dual Monitor')">🖥️ Dual Monitor</button>
+    <div class="stitle">หัวข้อด่วน</div>
+    <button class="qbtn" onclick="ask('เครื่องพิมพ์พิมพ์ไม่ออก')">🖨️ เครื่องพิมพ์</button>
+    <button class="qbtn" onclick="ask('เชื่อมต่อ WiFi ไม่ได้')">📶 WiFi/เน็ต</button>
+    <button class="qbtn" onclick="ask('ลืมรหัสผ่าน')">🔑 ลืมรหัสผ่าน</button>
+    <button class="qbtn" onclick="ask('คอมช้ามาก')">💻 คอมช้า</button>
+    <button class="qbtn" onclick="ask('ส่งอีเมลไม่ได้')">📧 อีเมล</button>
+    <button class="qbtn" onclick="ask('VPN เชื่อมต่อไม่ได้')">🔐 VPN</button>
+    <button class="qbtn" onclick="ask('Zoom กล้องไม่ทำงาน')">📹 Video Call</button>
+    <button class="qbtn" onclick="ask('ไฟล์ถูกลบกู้คืนยังไง')">💾 กู้ไฟล์</button>
+    <button class="qbtn" onclick="ask('Teams เปิดไม่ขึ้น')">💬 Teams</button>
+    <button class="qbtn" onclick="ask('เสียบ USB แล้วไม่ขึ้น')">🔌 USB/Hardware</button>
+    <button class="qbtn" onclick="ask('Map Network Drive ทำยังไง')">🗂️ Network Drive</button>
+    <button class="qbtn" onclick="ask('Office 365 activation failed')">📊 Office 365</button>
+    <button class="qbtn" onclick="ask('C Drive เต็ม')">🪟 Windows</button>
+    <button class="qbtn" onclick="ask('ต่อ 2 จอ Dual Monitor')">🖥️ Dual Monitor</button>
+    <button class="qbtn" onclick="ask('พนักงานใหม่ต้องทำอะไร')">👤 New Employee</button>
+    <button class="qbtn" onclick="ask('ติดตั้งโปรแกรมใหม่')">📦 ลงโปรแกรม</button>
   </div>
-  <div class="chat-area">
+  <div class="chat-wrap">
     <div class="messages" id="messages">
-      <div class="msg bot">
-        <div class="avatar">🤖</div>
-        <div class="bubble">สวัสดีครับ! 👋 ผม <strong>IT Support AI</strong> พร้อมช่วยแก้ปัญหาไอทีให้คุณ
-
-💡 พิมพ์ปัญหาที่พบ หรือกดปุ่มหัวข้อด้านซ้ายได้เลยครับ</div>
-      </div>
+      <div class="msg bot"><div class="av">🤖</div><div class="bub">สวัสดีครับ! 👋 ผม <strong>IT Support AI</strong> พร้อมช่วยแก้ปัญหาไอทีให้คุณ\n\n💡 พิมพ์ปัญหา หรือกดปุ่มด้านซ้ายได้เลยครับ\n🤖 ใส่ Gemini API Key ด้านบนเพื่อให้ AI ตอบอัจฉริยะยิ่งขึ้น</div></div>
     </div>
     <div class="input-area">
-      <input id="inp" placeholder="พิมพ์ปัญหา IT เช่น 'WiFi เชื่อมไม่ได้' หรือ 'ลืมรหัสผ่าน'..." onkeydown="if(event.key==='Enter')send()">
+      <input id="inp" placeholder="พิมพ์ปัญหา IT เช่น WiFi เชื่อมไม่ได้, ลืมรหัสผ่าน..." onkeydown="if(event.key==='Enter')send()">
       <button class="send-btn" onclick="send()">ส่ง ➤</button>
     </div>
+    <div class="stats-bar">
+      <div class="stat">🎫 Tickets: <span id="sTicket">0</span></div>
+      <div class="stat">👍 Helpful: <span id="sGood">0</span></div>
+      <div class="stat">👎 Not helpful: <span id="sBad">0</span></div>
+      <div class="stat" style="margin-left:auto">⚡ <span id="sMode">Keyword Mode</span></div>
+    </div>
+  </div>
+  <div class="history-panel">
+    <div class="hp-title">📋 Ticket History</div>
+    <div class="hp-list" id="histList"><div style="padding:20px;text-align:center;color:#475569;font-size:.78rem">ยังไม่มี Ticket</div></div>
   </div>
 </div>
 <script>
-const KB = {
-  categories:[
-    {name:"เครื่องพิมพ์",keywords:["printer","พิมพ์","ปริ้น","print","กระดาษติด","หมึก","toner","scan","สแกน"],faqs:[
-      {q:"เครื่องพิมพ์พิมพ์ไม่ออก ทำยังไง?",a:"1. ตรวจสาย USB หรือ Network ว่าเชื่อมต่อหรือยัง\n2. ตรวจว่าเครื่องพิมพ์เปิดอยู่\n3. Restart Print Spooler: เปิด Services > Print Spooler > Restart\n4. ลองพิมพ์ Test Page จาก Printer Properties\n5. ถ้ายังไม่ได้ ติดต่อ IT Support ที่ ext. 1234"},
-      {q:"กระดาษติดในเครื่องพิมพ์ แก้ยังไง?",a:"1. ปิดเครื่องพิมพ์ก่อน\n2. เปิดฝาเครื่องพิมพ์ ค่อยๆ ดึงกระดาษออกช้าๆ\n3. ตรวจว่าไม่มีเศษกระดาษค้าง\n4. ตรวจถาดกระดาษว่าใส่ถูกต้อง\n5. เปิดเครื่องลองพิมพ์ใหม่"},
-    ]},
-    {name:"อินเทอร์เน็ต/Network",keywords:["internet","เน็ต","wifi","ไวไฟ","network","เชื่อมต่อ","หลุด","ช้า","disconnect","lan","dns"],faqs:[
-      {q:"เชื่อมต่อ WiFi ไม่ได้ ทำยังไง?",a:"1. ตรวจว่าเปิด WiFi แล้ว\n2. Forget network แล้วเชื่อมต่อใหม่\n3. รหัส WiFi: ชื่อบริษัท+ปี เช่น Company2024\n4. Restart เครื่อง\n5. ติดต่อ IT Support ext. 1234"},
-      {q:"อินเทอร์เน็ตช้ามาก ทำยังไง?",a:"1. ปิด VPN แล้วลองใหม่\n2. ปิดแท็บที่ไม่ใช้\n3. ทดสอบที่ speedtest.net\n4. Restart Router\n5. ติดต่อ IT Support ext. 1234"},
-    ]},
-    {name:"อีเมล",keywords:["email","อีเมล","เมล","outlook","ส่งเมล","รับเมล","spam","calendar","meeting","attachment"],faqs:[
-      {q:"ส่งอีเมลไม่ได้ ทำยังไง?",a:"1. ตรวจ Internet ว่าใช้ได้\n2. ตรวจขนาดไฟล์แนบ (ไม่เกิน 25MB)\n3. ตรวจที่อยู่ผู้รับถูกต้อง\n4. ลองส่งจาก Webmail แทน\n5. ติดต่อ IT Support ext. 1234"},
-      {q:"Outlook เปิดไม่ขึ้น / ค้าง",a:"1. ปิดจาก Task Manager (Ctrl+Shift+Esc)\n2. เปิดใน Safe Mode: outlook.exe /safe\n3. Repair Office จาก Control Panel\n4. Restart เครื่อง\n5. ติดต่อ IT Support ext. 1234"},
-    ]},
-    {name:"คอมพิวเตอร์",keywords:["คอม","computer","pc","notebook","laptop","ช้า","ค้าง","blue screen","เปิดไม่ติด","จอ","แบต","battery","เสียง","speaker"],faqs:[
-      {q:"คอมช้ามาก ทำยังไง?",a:"1. Restart เครื่อง\n2. ปิด Program ที่ไม่ใช้ (Task Manager > Startup)\n3. ลบไฟล์ Temp: Win+R พิมพ์ %temp%\n4. ตรวจ Disk Space ว่าเหลือพอ\n5. Scan Virus ด้วย Windows Defender\n6. ถ้ายังช้า แจ้ง IT เพื่อเพิ่ม RAM"},
-      {q:"Blue Screen (จอฟ้า) ทำยังไง?",a:"1. จด Error Code ที่หน้าจอ\n2. Restart เครื่อง\n3. ถ้าเกิดซ้ำ อาจเป็น Driver หรือ Hardware\n4. ติดต่อ IT Support ext. 1234 พร้อมแจ้ง Error Code"},
-      {q:"คอมเปิดไม่ติด ทำยังไง?",a:"1. ตรวจสายไฟว่าเสียบแน่น\n2. กดปุ่ม Power ค้าง 10 วินาที แล้วลองใหม่\n3. ติดต่อ IT Support ext. 1234"},
-    ]},
-    {name:"Password/Security",keywords:["password","รหัส","ลืมรหัส","เปลี่ยนรหัส","reset","lock","ล็อค","virus","2fa","mfa","otp"],faqs:[
-      {q:"ลืมรหัสผ่าน ทำยังไง?",a:"1. กด Forgot Password ที่หน้า Login\n2. ตรวจสอบอีเมลสำรองหรือเบอร์โทร\n3. ติดต่อ IT Support ext. 1234 เพื่อ Reset\n4. รหัสต้องมี: ตัวใหญ่+ตัวเล็ก+ตัวเลข+อักขระพิเศษ 8+ตัว"},
-      {q:"บัญชีถูกล็อค ทำยังไง?",a:"1. รอ 30 นาที แล้วลองใหม่ (Auto Unlock)\n2. ตรวจสอบ Caps Lock\n3. ติดต่อ IT Support ext. 1234"},
-    ]},
-    {name:"Software",keywords:["program","โปรแกร","install","ติดตั้ง","update","license","excel","word","teams","zoom","chrome","pdf"],faqs:[
-      {q:"ติดตั้งโปรแกรมใหม่ ทำยังไง?",a:"1. ส่งคำขอผ่าน IT Service Portal\n2. ระบุชื่อโปรแกรม + เหตุผล\n3. IT จะตรวจสอบ License และติดตั้งให้\n4. อย่า Download เองจาก Internet (เสี่ยง Malware)"},
-      {q:"Zoom / Teams ประชุมไม่ได้?",a:"1. ตรวจ Internet Connection\n2. ตรวจ Camera + Microphone Permissions\n3. Restart App / Update เป็น Version ล่าสุด\n4. ลองใช้ Web Version ชั่วคราว\n5. ติดต่อ IT Support ext. 1234"},
-    ]},
-    {name:"VPN / Remote Work",keywords:["vpn","remote","wfh","work from home","globalprotect","rdp","remote desktop"],faqs:[
-      {q:"VPN เชื่อมต่อไม่ได้ ทำยังไง?",a:"1. ตรวจ Internet ก่อน\n2. Restart VPN Client\n3. ตรวจ Username/Password\n4. เปลี่ยน Server Location\n5. ติดต่อ IT Support ext. 1234"},
-    ]},
-    {name:"Video Conference",keywords:["zoom","teams","google meet","ประชุม","กล้อง","ไมค์","microphone","webcam","แชร์จอ"],faqs:[
-      {q:"กล้อง/ไมค์ ใช้ไม่ได้ใน Meeting",a:"1. ตรวจ Camera/Microphone Permissions\n   - Settings > Privacy > Camera/Microphone\n2. ตรวจว่า App อื่นไม่ได้ใช้กล้องอยู่\n3. Restart App\n4. ลองใช้ External Webcam\n5. ติดต่อ IT Support ext. 1234"},
-    ]},
-    {name:"ข้อมูลสูญหาย/Backup",keywords:["backup","ข้อมูลหาย","delete","ลบ","กู้ข้อมูล","กู้คืน","onedrive","ไฟล์หาย","restore"],faqs:[
-      {q:"ไฟล์ถูกลบ / ข้อมูลหาย กู้คืนยังไง?",a:"1. ตรวจ Recycle Bin ก่อน\n2. ตรวจ OneDrive > Trash\n3. Right-click folder > Restore previous versions\n4. ติดต่อ IT Support ext. 1234 (กู้จาก Backup)"},
-    ]},
-    {name:"Microsoft Teams",keywords:["teams","microsoft teams","แชท","channel","notification","แจ้งเตือน","status","สถานะ"],faqs:[
-      {q:"Teams เปิดไม่ขึ้น / ค้าง ทำยังไง?",a:"1. ปิดจาก Task Manager\n2. ลบ Cache: %AppData%\\Microsoft\\Teams\\Cache\n3. Restart Teams\n4. Update เป็น Version ล่าสุด\n5. ติดต่อ IT ext.1234"},
-      {q:"Teams แจ้งเตือนไม่ขึ้น ทำยังไง?",a:"1. Teams > Settings > Notifications\n2. ตรวจ Windows Focus Assist ว่าปิดอยู่\n3. Settings > Notifications > Teams > เปิด\n4. Restart Teams\n5. ติดต่อ IT ext.1234"},
-      {q:"ตั้งค่า Status Teams ยังไง?",a:"1. คลิกรูปโปรไฟล์มุมบนขวา\n2. เลือก Status: Available/Busy/DND/Away\n3. ตั้ง Status Message ได้เช่นกัน"},
-      {q:"Teams ไม่ยอม Login ทำยังไง?",a:"1. Sign out แล้ว Sign in ใหม่\n2. ล้าง Cache: %AppData%\\Microsoft\\Teams\n3. ลอง teams.microsoft.com\n4. ติดต่อ IT ext.1234"},
-    ]},
-    {name:"Hardware",keywords:["usb","port","จอ","monitor","hdmi","vga","dock","docking","webcam","headset","dual monitor","2 จอ"],faqs:[
-      {q:"เสียบ USB แล้วไม่ขึ้น ทำยังไง?",a:"1. ลองเสียบช่อง USB อื่น\n2. Restart เครื่อง\n3. Device Manager > Scan for hardware changes\n4. ลองเสียบเครื่องอื่น\n5. ติดต่อ IT ext.1234"},
-      {q:"ต่อ 2 จอ (Dual Monitor) ทำยังไง?",a:"1. เสียบสายจอที่ 2 เข้า HDMI/DP\n2. คลิกขวา Desktop > Display Settings\n3. เลือก Extend these displays\n4. ลาก Position จอให้ถูกต้อง\n5. ติดต่อ IT ext.1234"},
-      {q:"จอแสดงสีผิดเพี้ยน / แสงกะพริบ",a:"1. ตรวจสาย HDMI ว่าเสียบแน่น\n2. ลองเปลี่ยนสาย\n3. อัปเดต Graphics Driver\n4. ติดต่อ IT ext.1234"},
-      {q:"Webcam ภาพมืด / พร่ามัว ทำยังไง?",a:"1. ตรวจแสงในห้อง\n2. ล้างเลนส์ด้วยผ้านุ่ม\n3. เปิด Camera App ทดสอบ\n4. Update Webcam Driver\n5. ติดต่อ IT ext.1234"},
-    ]},
-    {name:"Network Drive",keywords:["network drive","map drive","shared drive","sharepoint","เชื่อมไดร์ฟ","folder share","เข้าโฟลเดอร์"],faqs:[
-      {q:"Map Network Drive ทำยังไง?",a:"1. File Explorer > This PC > Map network drive\n2. เลือก Drive Letter (เช่น Z:)\n3. กรอก Path: \\\\server\\foldername\n4. ติ๊ก Reconnect at sign-in\n5. ติดต่อ IT ext.1234 ถ้าไม่รู้ Path"},
-      {q:"เข้า Network Drive ไม่ได้ ทำยังไง?",a:"1. ตรวจว่าต่อ VPN แล้ว (ถ้า WFH)\n2. Disconnect แล้ว Map ใหม่\n3. Restart เครื่อง\n4. ติดต่อ IT ext.1234 เพื่อตรวจสิทธิ์"},
-      {q:"ไฟล์ถูกล็อค / เปิดพร้อมกันไม่ได้",a:"1. ตรวจว่าคนอื่นเปิดไฟล์อยู่\n2. รอให้คนนั้นปิดก่อน\n3. ถ้าล็อคค้าง ติดต่อ IT ext.1234\n4. ใช้ OneDrive แทนสำหรับ Co-edit"},
-    ]},
-    {name:"Office 365",keywords:["office 365","microsoft 365","word","excel","powerpoint","activation","activate","license office","onedrive sync"],faqs:[
-      {q:"Office 365 ขึ้น Product Activation Failed",a:"1. File > Account > Sign In ด้วยบัญชีบริษัท\n2. ตรวจ Internet Connection\n3. Repair Office: Settings > Apps > Microsoft 365\n4. ติดต่อ IT ext.1234 เพื่อ Renew License"},
-      {q:"Excel ไฟล์ใหญ่เปิดช้า ทำยังไง?",a:"1. ปิด Auto-Calculate: Formulas > Manual\n2. ลบ Conditional Formatting ที่ไม่ใช้\n3. แยกไฟล์เป็น Sheet ย่อย\n4. ติดต่อ IT ext.1234 เพื่อเพิ่ม RAM"},
-      {q:"OneDrive Sync Error ทำยังไง?",a:"1. คลิกขวา OneDrive > View sync errors\n2. ตรวจชื่อไฟล์ว่ามีอักขระพิเศษ\n3. ตรวจ Disk Space\n4. Pause แล้ว Resume Sync\n5. ติดต่อ IT ext.1234"},
-    ]},
-    {name:"Windows System",keywords:["windows","update","อัพเดท","driver","disk","c drive","เต็ม","boot","startup","task manager"],faqs:[
-      {q:"C Drive เต็ม ทำยังไง?",a:"1. Disk Cleanup: คลิกขวา C: > Properties > Disk Cleanup\n2. ลบไฟล์ Temp: Win+R > %temp%\n3. Uninstall Program ที่ไม่ใช้\n4. ย้ายไฟล์ไป D: หรือ OneDrive\n5. ติดต่อ IT ext.1234"},
-      {q:"Windows Boot ช้ามาก ทำยังไง?",a:"1. Task Manager > Startup > Disable โปรแกรมไม่จำเป็น\n2. Settings > Power > Fast Startup ON\n3. Scan Malware\n4. ติดต่อ IT ext.1234"},
-      {q:"Windows Update ค้าง ทำยังไง?",a:"1. รอให้ครบ อย่าปิดเครื่อง\n2. ถ้าค้างนาน Restart แล้ว Update ใหม่\n3. Run Windows Update Troubleshooter\n4. ติดต่อ IT ext.1234"},
-    ]},
-    {name:"Account/Permission",keywords:["account","บัญชี","permission","สิทธิ์","access","denied","blocked","พนักงานใหม่","onboarding"],faqs:[
-      {q:"พนักงานใหม่ ต้องทำอะไรบ้าง?",a:"1. แจ้ง IT ล่วงหน้า 3 วันก่อนเริ่มงาน\n2. IT จะเตรียม: เครื่อง, Email, VPN, สิทธิ์ต่างๆ\n3. วันแรก: รับเครื่อง + ตั้งรหัสผ่าน\n4. ติดตั้ง VPN + ตั้งค่า Email\n5. ติดต่อ IT Support ext. 1234"},
-    ]},
-  ],
-  escalation:"ไม่พบคำตอบ กรุณาติดต่อ IT Support:\n📞 โทร: ext. 1234\n📧 อีเมล: it-support@company.com\n💬 Line: @company-it\n🕐 จ-ศ 8:30-17:30"
-};
+const KB = {"categories": [{"name": "เครื่องพิมพ์", "keywords": ["printer", "พิมพ์", "ปริ้น", "print", "ปริ้นเตอร์", "กระดาษติด", "หมึก", "toner", "scan", "สแกน", "scanner", "paper jam"], "faqs": [{"question": "เครื่องพิมพ์พิมพ์ไม่ออก ทำยังไง?", "answer": "1. ตรวจสอบสาย USB หรือ Network ว่าเชื่อมต่อหรือยัง\n2. ตรวจว่าเครื่องพิมพ์เปิดอยู่\n3. Restart Print Spooler: เปิด Services > Print Spooler > Restart\n4. ลองพิมพ์ Test Page จาก Printer Properties\n5. ถ้ายังไม่ได้ ติดต่อ IT Support ที่ ext. 1234"}, {"question": "กระดาษติดในเครื่องพิมพ์ แก้ยังไง?", "answer": "1. ปิดเครื่องพิมพ์ก่อน\n2. เปิดฝาเครื่องพิมพ์ ค่อยๆ ดึงกระดาษออกช้าๆ\n3. ตรวจว่าไม่มีเศษกระดาษค้าง\n4. ตรวจถาดกระดาษว่าใส่ถูกต้อง\n5. เปิดเครื่องลองพิมพ์ใหม่"}, {"question": "เครื่องพิมพ์ขึ้น Low Toner ทำยังไง?", "answer": "1. ถ้าพิมพ์ยังชัดอยู่ กด OK เพื่อพิมพ์ต่อได้\n2. สั่งซื้อ Toner ใหม่ผ่านระบบจัดซื้อ\n3. แจ้ง IT Support เพื่อขอเปลี่ยน Toner\n4. อย่าเปิด Toner ใหม่ทิ้งไว้โดนแสง"}, {"question": "สั่งพิมพ์จากเครื่องอื่น ทำยังไง?", "answer": "1. เพิ่ม Network Printer: Settings > Printers > Add Printer\n2. พิมพ์ IP ของเครื่องพิมพ์ (ถาม IT หรือดูที่หน้าจอเครื่องพิมพ์)\n3. Install Driver ถ้าจำเป็น\n4. ทดสอบพิมพ์ Test Page\n5. ถ้าเชื่อมไม่ได้ ตรวจ Firewall หรือติดต่อ IT"}, {"question": "สแกนเอกสารไม่ได้ ทำยังไง?", "answer": "1. ตรวจว่าติดตั้ง Scanner Driver แล้ว\n2. ลองใช้ Windows Scan App (Microsoft Store)\n3. ตรวจ USB Connection\n4. ถ้าเป็น Network Scanner ตรวจ IP Address\n5. บันทึกไฟล์เป็น PDF หรือ JPEG\n6. ติดต่อ IT Support ext. 1234"}, {"question": "เครื่องพิมพ์พิมพ์สีเพี้ยน / สีไม่ออก", "answer": "1. Run Head Cleaning จาก Printer Utility\n2. ตรวจระดับหมึก/toner\n3. ทดสอบพิมพ์ Test Page (Color)\n4. ตรวจว่าตั้งค่าพิมพ์เป็น Color ไม่ใช่ Grayscale\n5. ถ้าหมึกหมด แจ้ง IT เพื่อเปลี่ยน"}]}, {"name": "อินเทอร์เน็ต/Network", "keywords": ["internet", "เน็ต", "wifi", "ไวไฟ", "network", "เชื่อมต่อ", "หลุด", "ช้า", "disconnect", "lan", "ethernet", "router", "modem", "dns", "ip address"], "faqs": [{"question": "เชื่อมต่อ WiFi ไม่ได้ ทำยังไง?", "answer": "1. ตรวจว่าเปิด WiFi แล้ว (Fn + F-key ที่มีสัญลักษณ์ WiFi)\n2. Forget network แล้วเชื่อมต่อใหม่\n3. ใช้รหัส WiFi: บริษัท/OfficeName + ปี เช่น Company2024\n4. Restart เครื่อง\n5. ถ้าใช้ LAN ได้ ให้ใช้สาย LAN แทน\n6. ติดต่อ IT Support ext. 1234"}, {"question": "อินเทอร์เน็ตช้ามาก ทำยังไง?", "answer": "1. ปิด VPN แล้วลองใหม่ (ถ้าไม่จำเป็น)\n2. ปิดแท็บ Browser ที่ไม่ใช้\n3. ทดสอบความเร็วที่ speedtest.net\n4. Restart Router/Modem\n5. ถ้าทั้งออฟฟิศช้า แจ้ง IT เพราะอาจเป็นปัญหา ISP\n6. ติดต่อ IT Support ext. 1234"}, {"question": "VPN เชื่อมต่อไม่ได้", "answer": "1. ตรวจ Internet ก่อนว่าใช้ได้\n2. Restart VPN Client\n3. ตรวจว่าใช้ Server ถูกต้อง (vpn.company.com)\n4. ตรวจ Username/Password\n5. ถ้าหมดอายุ ติดต่อ IT เพื่อ Reset\n6. ลองใช้ GlobalProtect แทน (ถ้ามี)"}, {"question": "WiFi หลุดบ่อย ทำยังไง?", "answer": "1. อยู่ใกล้ Router/WiFi Access Point\n2. Forget network แล้วเชื่อมต่อใหม่\n3. ปิด Bluetooth (อาจรบกวนสัญญาณ)\n4. Update WiFi Driver\n5. ถ้าใช้ 5GHz ลองสลับเป็น 2.4GHz\n6. แจ้ง IT เพื่อตรวจ Access Point"}, {"question": "เข้าเว็บไม่ได้ ขึ้น DNS Error", "answer": "1. Flush DNS: เปิด CMD พิมพ์ ipconfig /flushdns\n2. เปลี่ยน DNS เป็น 8.8.8.8 หรือ 1.1.1.1\n3. Restart Network Adapter\n4. ตรวจ Proxy Settings (Internet Options > LAN Settings)\n5. ถ้าใช้บริษัท อาจถูก Block โดย Firewall\n6. ติดต่อ IT Support ext. 1234"}, {"question": "ต่อ LAN แล้วไม่มีสัญญาณ", "answer": "1. ตรวจสาย LAN ว่าเสียบแน่นทั้ง 2 ฝั่ง\n2. ลองเปลี่ยนสาย LAN\n3. ตรวจไฟ LED ที่ช่องเสียบ (ต้องมีไฟ)\n4. Restart Network Adapter\n5. ตรวจ IP Address: ipconfig /all\n6. ติดต่อ IT Support ext. 1234"}]}, {"name": "อีเมล", "keywords": ["email", "อีเมล", "เมล", "outlook", "gmail", "ส่งเมล", "รับเมล", "inbox", "spam", "calendar", "ปฏิทิน", "meeting", "ประชุม", "attachment", "ไฟล์แนบ"], "faqs": [{"question": "ส่งอีเมลไม่ได้ ทำยังไง?", "answer": "1. ตรวจ Internet ว่าใช้ได้\n2. ตรวจขนาดไฟล์แนบ (ไม่เกิน 25MB)\n3. ตรวจว่าที่อยู่ผู้รับถูกต้อง\n4. ตรวจ Sent Items ว่าส่งจริงหรือไม่\n5. ลองส่งจาก Webmail แทน\n6. ติดต่อ IT Support ext. 1234"}, {"question": "อีเมลเข้า Spam เยอะมาก แก้ยังไง?", "answer": "1. ตรวจ Junk Email Settings ใน Outlook\n2. เพิ่มผู้ส่งใน Safe Senders List\n3. Right-click อีเมล > Not Junk\n4. อย่ากด unsubscribe จากอีเมลที่ไม่รู้จัก\n5. แจ้ง IT ถ้ามี phishing เข้ามาบ่อย"}, {"question": "Outlook เปิดไม่ขึ้น / ค้าง", "answer": "1. ปิด Outlook จาก Task Manager (Ctrl+Shift+Esc)\n2. เปิด Outlook ใน Safe Mode: กด Win+R พิมพ์ outlook.exe /safe\n3. ลบไฟล์ .ost เก่า (C:\\Users\\ชื่อ\\AppData\\Local\\Microsoft\\Outlook)\n4. Repair Office: Control Panel > Programs > Microsoft Office > Repair\n5. Restart เครื่อง\n6. ติดต่อ IT Support ext. 1234"}, {"question": "อีเมลไม่ sync / ไม่อัพเดท", "answer": "1. กด Send/Receive ที่ Outlook\n2. ตรวจ Internet Connection\n3. ตรวจ Account Settings: File > Account Settings\n4. ลบ Account แล้วเพิ่มใหม่\n5. ตรวจ Cache Mode (Cached Exchange Mode)\n6. ติดต่อ IT Support ext. 1234"}, {"question": "ส่งไฟล์แนบใหญ่ไม่ได้ ทำยังไง?", "answer": "1. บีบอัดไฟล์: Right-click > Send to > Compressed (zipped) folder\n2. ใช้ OneDrive/Google Drive แล้วแชร์ Link\n3. ใช้ WeTransfer หรือ Filemail\n4. แยกไฟล์เป็นหลาย Part\n5. จำกัดขนาดสูงสุด: Outlook 25MB, Gmail 25MB"}, {"question": "สร้าง Meeting / นัดประชุมใน Outlook ทำยังไง?", "answer": "1. เปิด Calendar ใน Outlook\n2. กด New Meeting หรือ Ctrl+Shift+Q\n3. เพิ่มผู้เข้าร่วมใน To:\n4. ตั้งวันเวลา + ห้องประชุม (Room Finder)\n5. กด Send\n6. ถ้าใช้ Teams กด Add Online Meeting"}, {"question": "อีเมล Phishing / อีเมลหลอกลวง ดูยังไง?", "answer": "1. ตรวจ Sender Address ให้ละเอียด (อย่าดูแค่ชื่อ)\n2. อย่าคลิกลิงก์แปลกๆ\n3. Hover ดู URL ก่อนคลิก\n4. อย่าเปิดไฟล์แนบจากคนไม่รู้จัก\n5. สงสัยให้ Forward แจ้ง IT Security\n6. อย่าตอบกลับหรือให้ข้อมูลส่วนตัว"}]}, {"name": "คอมพิวเตอร์", "keywords": ["คอม", "computer", "pc", "notebook", "laptop", "ช้า", "ค้าง", "restart", "shutdown", "blue screen", "เปิดไม่ติด", "boot", "จอ", "monitor", "keyboard", "คีย์บอร์ด", "เมาส์", "mouse", "แบต", "battery", "ชาร์จ", "charge", "เสียง", "speaker", "headphone", "หูฟัง"], "faqs": [{"question": "คอมช้ามาก ทำยังไง?", "answer": "1. Restart เครื่อง (วิธีง่ายสุดและมักได้ผล)\n2. ปิด Program ที่ไม่ใช้ (Task Manager > Startup > Disable)\n3. ลบไฟล์ Temp: Win+R พิมพ์ %temp% แล้วลบ\n4. ตรวจ Disk Space ว่าเหลือพอ (>10%)\n5. Scan Virus ด้วย Windows Defender\n6. ถ้ายังช้า แจ้ง IT เพื่อเพิ่ม RAM หรือ SSD"}, {"question": "คอมเปิดไม่ติด ทำยังไง?", "answer": "1. ตรวจสายไฟว่าเสียบแน่น\n2. กดปุ่ม Power ค้าง 10 วินาที แล้วลองใหม่\n3. ตรวจว่า Adapter ไฟเข้า (ไฟ LED)\n4. ถ้า Notebook ถอดแบตฯ ใส่ใหม่แล้วลอง\n5. ติดต่อ IT Support ext. 1234 (อาจเป็น Hardware)"}, {"question": "Blue Screen (จอฟ้า) ทำยังไง?", "answer": "1. จด Error Code ที่หน้าจอ (เช่น DRIVER_IRQL_NOT_LESS_OR_EQUAL)\n2. Restart เครื่อง\n3. ถ้าเกิดซ้ำ อาจเป็น Driver หรือ Hardware\n4. อย่า Install Program เองที่ไม่ใช่ลิขสิทธิ์\n5. ติดต่อ IT Support ext. 1234 พร้อมแจ้ง Error Code"}, {"question": " Notebook แบตหมดเร็ว ทำยังไง?", "answer": "1. ลดความสว่างหน้าจอ\n2. ปิด Bluetooth, WiFi ถ้าไม่ใช้\n3. ปิด Program ที่ทำงานเบื้องหลัง\n4. ใช้ Battery Saver Mode\n5. ตรวจ Battery Health: powercfg /batteryreport\n6. ถ้าแบตเสื่อม แจ้ง IT เพื่อเปลี่ยน"}, {"question": "Notebook ชาร์จไฟไม่เข้า", "answer": "1. ตรวจสายชาร์จว่าเสียบแน่น\n2. ลองใช้ปลั๊กอื่น\n3. ตรวจ Adapter ว่าไฟเข้า (ไฟ LED)\n4. ถอดแบตฯ ใส่ใหม่ (ถ้าถอดได้)\n5. ตรวจพอร์ตชาร์จว่ามีฝุ่น\n6. ติดต่อ IT Support ext. 1234"}, {"question": "จอคอมไม่ขึ้น / จอดำ", "answer": "1. ตรวจสายจอ (HDMI/VGA/DP) ว่าเสียบแน่น\n2. ตรวจว่าจอเปิดอยู่ (ไฟ LED)\n3. กด Windows + P สลับ Display Mode\n4. ลองเสียบจออื่น\n5. Restart เครื่อง\n6. ติดต่อ IT Support ext. 1234"}, {"question": "คีย์บอร์ด / เมาส์ ใช้ไม่ได้", "answer": "1. ตรวจสาย USB ว่าเสียบแน่น\n2. ลองเสียบช่อง USB อื่น\n3. ถ้า Wireless ตรวจ Battery + Receiver\n4. Restart เครื่อง\n5. Update Driver: Device Manager\n6. ขอยืมชั่วคราวจาก IT"}, {"question": "คอมไม่มีเสียง / เสียงไม่ออก", "answer": "1. ตรวจ Volume Mixer (คลิกขวาที่ Speaker Icon)\n2. ตรวจว่าไม่ได้ Mute\n3. ตรวจ Output Device ว่าถูกต้อง\n4. Restart Audio Service\n5. Update Audio Driver\n6. ลองใช้หูฟังอื่น"}, {"question": "คอม Restart เอง / ปิดเอง", "answer": "1. ตรวจว่าไม่ได้ตั้ง Windows Update ไว้\n2. ตรวจ Temperature (อาจร้อนเกินไป)\n3. ตรวจ Event Viewer > Windows Logs > System\n4. Scan Virus\n5. อาจเป็น PSU เสีย\n6. ติดต่อ IT Support ext. 1234"}]}, {"name": "Password/Security", "keywords": ["password", "รหัส", "ลืมรหัส", "เปลี่ยนรหัส", "reset password", "lock", "ล็อค", "hack", "ไวรัส", "virus", "phishing", "2fa", "mfa", "otp", "ยืนยันตัวตน", "authentication"], "faqs": [{"question": "ลืมรหัสผ่าน ทำยังไง?", "answer": "1. กด Forgot Password ที่หน้า Login\n2. ตรวจสอบอีเมลสำรองหรือเบอร์โทร\n3. ติดต่อ IT Support ext. 1234 เพื่อ Reset\n4. หลัง Reset ต้องเปลี่ยนรหัสใหม่ทันที\n5. รหัสต้องมี: ตัวใหญ่+ตัวเล็ก+ตัวเลข+อักขระพิเศษ 8 ตัวขึ้นไป"}, {"question": "บัญชีถูกล็อค ทำยังไง?", "answer": "1. รอ 30 นาที แล้วลองใหม่ (Auto Unlock)\n2. ถ้ายังล็อค ติดต่อ IT Support ext. 1234\n3. อาจเกิดจากกรอกรหัสผิดหลายครั้ง\n4. ตรวจสอบว่า Caps Lock ไม่ได้เปิดอยู่\n5. ระวัง Email หลอกลวง (Phishing) ที่ขโมยรหัสผ่าน"}, {"question": "สงสัยว่าติดไวรัส ทำยังไง?", "answer": "1. อย่า Panic! ถอดสาย LAN/WiFi ออกก่อน\n2. Scan ด้วย Windows Defender (Full Scan)\n3. อย่าเปิดไฟล์ที่สงสัย\n4. บันทึกสิ่งผิดปกติที่เห็น\n5. ติดต่อ IT Support ext. 1234 ทันที\n6. อย่าจ่ายเงินถ้าเจอ Ransomware ให้แจ้ง IT ก่อน"}, {"question": "ตั้งค่า 2FA / MFA ทำยังไง?", "answer": "1. ไปที่ Account Settings > Security\n2. เลือก Two-Factor Authentication\n3. Download Microsoft Authenticator หรือ Google Authenticator\n4. Scan QR Code\n5. กรอก OTP เพื่อยืนยัน\n6. เก็บ Backup Code ไว้ในที่ปลอดภัย"}, {"question": "OTP / 2FA ไม่ยอมรับ ทำยังไง?", "answer": "1. ตรวจว่าเวลาในมือถือตรงกับ Server (Sync Time)\n2. ลองกรอก OTP ใหม่ (หมดอายุทุก 30 วินาที)\n3. ปิด-เปิด Authenticator App ใหม่\n4. ใช้ Backup Code แทน\n5. ติดต่อ IT Support ext. 1234 เพื่อ Reset 2FA"}, {"question": "เปลี่ยนรหัสผ่าน ทำยังไง?", "answer": "1. Windows: Ctrl+Alt+Del > Change a Password\n2. Email: Settings > Security > Change Password\n3. รหัสใหม่ควรมี: ตัวใหญ่+ตัวเล็ก+ตัวเลข+อักขระพิเศษ 8+ ตัว\n4. อย่าใช้รหัสซ้ำกับที่อื่น\n5. เปลี่ยนทุก 90 วัน (ตามนโยบายบริษัท)"}]}, {"name": "Software/Application", "keywords": ["program", "โปรแกร", "install", "ติดตั้ง", "update", "อัพเดท", "license", "ลิขสิทธิ์", "crack", "excel", "word", "powerpoint", "teams", "zoom", "chrome", "browser", "adobe", "acrobat", "pdf"], "faqs": [{"question": "ติดตั้งโปรแกรมใหม่ ทำยังไง?", "answer": "1. ส่งคำขอผ่าน IT Service Portal\n2. ระบุชื่อโปรแกรม + เหตุผลที่ต้องใช้\n3. IT จะตรวจสอบ License และติดตั้งให้\n4. อย่า Download เองจาก Internet (เสี่ยง Malware)\n5. โปรแกรมที่ต้องซื้อ ต้องผ่านการอนุมัติจากหัวหน้า"}, {"question": "Microsoft Office หมดอายุ / เปิดไม่ได้", "answer": "1. ตรวจว่า Sign in ด้วยบัญชีบริษัท (@company.com)\n2. Repair Office: Settings > Apps > Microsoft Office > Modify > Repair\n3. ถ้าหมดอายุ แจ้ง IT เพื่อ Renew License\n4. ใช้ Office Online ชั่วคราว: office.com\n5. ติดต่อ IT Support ext. 1234"}, {"question": "Excel / Word ค้าง / เปิดช้า", "answer": "1. ปิดจาก Task Manager (Ctrl+Shift+Esc)\n2. เปิดใน Safe Mode: Win+R > excel.exe /safe\n3. ปิด Add-ins ที่ไม่ใช้\n4. Repair Office\n5. ถ้าไฟล์ใหญ่มาก ลองเปิดเครื่องอื่น\n6. ติดต่อ IT Support ext. 1234"}, {"question": "Zoom / Teams ประชุมไม่ได้ ทำยังไง?", "answer": "1. ตรวจ Internet Connection\n2. ตรวจ Camera + Microphone Permissions\n3. Restart App\n4. Update เป็น Version ล่าสุด\n5. ตรวจ Firewall อาจ Block\n6. ใช้ Web Version ชั่วคราว\n7. ติดต่อ IT Support ext. 1234"}, {"question": "Chrome / Browser ช้า / เปิดเยอะ", "answer": "1. ปิดแท็บที่ไม่ใช้\n2. Clear Cache: Ctrl+Shift+Del\n3. ปิด Extensions ที่ไม่ใช้\n4. Update Browser\n5. Reset Browser Settings\n6. ลองใช้ Browser อื่น"}, {"question": "เปิดไฟล์ PDF ไม่ได้ ทำยังไง?", "answer": "1. ติดตั้ง Adobe Acrobat Reader (ฟรี)\n2. ลองเปิดด้วย Browser (Chrome, Edge)\n3. ตรวจว่าไฟล์ไม่เสีย (ลองเปิดเครื่องอื่น)\n4. Repair Adobe Acrobat\n5. ติดต่อ IT Support ext. 1234"}, {"question": "Windows Update ทำยังไง? / Update ไม่ได้", "answer": "1. Settings > Windows Update > Check for updates\n2. Restart หลัง Update\n3. ถ้า Error: Run Troubleshooter\n4. ตรวจ Disk Space ว่าเหลือพอ\n5. อย่า Skip Update นานเกินไป (เสี่ยง Security)\n6. ติดต่อ IT Support ext. 1234"}]}, {"name": "VPN / Remote Work", "keywords": ["vpn", "remote", "work from home", "wfh", "เชื่อมต่อบริษัท", "เข้าระบบ", "เข้าไม่ได้", "globalprotect", "cisco", "anyconnect", "rdp", "remote desktop"], "faqs": [{"question": "VPN เชื่อมต่อไม่ได้ ทำยังไง?", "answer": "1. ตรวจ Internet ก่อน (เปิดเว็บอื่นได้ไหม)\n2. Restart VPN Client\n3. เปลี่ยน Server Location\n4. ตรวจ Username/Password\n5. ลองปิด Firewall/Antivirus ชั่วคราว\n6. ติดต่อ IT Support ext. 1234"}, {"question": "Work From Home เชื่อมต่อบริษัท ทำยังไง?", "answer": "1. ติดตั้ง VPN Client (GlobalProtect/Cisco AnyConnect)\n2. เชื่อม VPN ก่อนเข้าระบบ\n3. ใช้ Remote Desktop (ถ้ามี)\n4. เข้าระบบผ่าน Browser (Web Portal)\n5. ติดต่อ IT เพื่อขอสิทธิ์ WFH"}, {"question": "Remote Desktop เข้าเครื่องออฟฟิศ ทำยังไง?", "answer": "1. เชื่อม VPN ก่อน\n2. เปิด Remote Desktop Connection (Win+R > mstsc)\n3. กรอก IP เครื่องออฟฟิศ\n4. Login ด้วยบัญชีบริษัท\n5. ถ้าเข้าไม่ได้ ตรวจว่าเครื่องเปิดอยู่\n6. ติดต่อ IT Support ext. 1234"}, {"question": "VPN ช้า / หลุดบ่อย", "answer": "1. เปลี่ยน Server Location\n2. ปิด App ที่ใช้ Bandwidth เยอะ\n3. ใช้สาย LAN แทน WiFi\n4. ลอง Protocol อื่น (IKEv2, WireGuard)\n5. Restart Router\n6. ติดต่อ IT Support ext. 1234"}]}, {"name": "Video Conference", "keywords": ["zoom", "teams", "google meet", "ประชุม", "meeting", "video", "camera", "webcam", "กล้อง", "ไมค์", "microphone", "share screen", "แชร์จอ"], "faqs": [{"question": "เข้า Zoom Meeting ไม่ได้ ทำยังไง?", "answer": "1. ตรวจ Internet Connection\n2. ตรวจ Link ประชุมว่าถูกต้อง\n3. Update Zoom เป็น Version ล่าสุด\n4. ลอง Join จาก Browser แทน App\n5. ตรวจ Firewall อาจ Block\n6. ติดต่อ IT Support ext. 1234"}, {"question": "กล้อง/ไมค์ ใช้ไม่ได้ใน Meeting", "answer": "1. ตรวจ Camera/Microphone Permissions\n   - Settings > Privacy > Camera/Microphone\n2. ตรวจว่า App อื่นไม่ได้ใช้กล้องอยู่\n3. Restart App\n4. ตรวจ Device Manager ว่า Driver ปกติ\n5. ลองใช้ External Webcam/Mic\n6. ติดต่อ IT Support ext. 1234"}, {"question": "Share Screen ไม่ได้ / แชร์จอไม่ขึ้น", "answer": "1. ตรวจ Screen Sharing Permissions\n2. ปิด-เปิด Meeting ใหม่\n3. ลอง Share เฉพาะ Window แทน Entire Screen\n4. ตรวจว่าไม่มี Pop-up Blocker\n5. Update App\n6. ติดต่อ IT Support ext. 1234"}, {"question": "Meeting เสียง Echo / เสียงก้อง", "answer": "1. ใช้หูฟัง (แก้ปัญหาได้ 90%)\n2. Mute ตัวเองเมื่อไม่ได้พูด\n3. ตรวจ Speaker/Mic Settings\n4. ปิด Speaker ที่ซ้ำกัน\n5. อย่าใช้ Speakerphone\n6. ให้คนอื่น Mute ด้วย"}]}, {"name": "Mobile Device", "keywords": ["มือถือ", "mobile", "phone", "iphone", "android", "samsung", "app", "application", "sync", "ซิงค์", "email มือถือ", "outlook มือถือ", "teams มือถือ"], "faqs": [{"question": "ตั้งค่า Email บริษัทในมือถือ ทำยังไง?", "answer": "1. Download Outlook App (แนะนำ)\n2. Login ด้วยอีเมลบริษัท\n3. ถ้าใช้ 2FA ต้องยืนยัน OTP\n4. ถ้าใช้ Gmail App: เพิ่ม Account > Exchange\n5. Server: outlook.office365.com\n6. ติดต่อ IT Support ext. 1234"}, {"question": "App บริษัทเปิดไม่ได้ / Login ไม่ได้", "answer": "1. Update App เป็น Version ล่าสุด\n2. Clear App Data/Cache\n3. ตรวจ Internet Connection\n4. ลอง Uninstall แล้วลงใหม่\n5. ตรวจ VPN (ถ้าจำเป็น)\n6. ติดต่อ IT Support ext. 1234"}, {"question": "มือถือหาย / ถูกขโมย ทำยังไง?", "answer": "1. แจ้ง IT ทันที! (ext. 1234)\n2. Remote Lock/Wipe: Find My iPhone / Find My Device\n3. เปลี่ยนรหัสผ่านทั้งหมด\n4. แจ้งหัวหน้า\n5. ลงบันทึกประจำวัน (ถ้าถูกขโมย)\n6. ขออุปกรณ์ใหม่จาก IT"}]}, {"name": "ข้อมูลสูญหาย / Backup", "keywords": ["backup", "สำรอง", "ข้อมูลหาย", "delete", "ลบ", "recover", "กู้ข้อมูล", "กู้คืน", "onedrive", "google drive", "dropbox", "cloud", "sync", "ซิงค์", "ไฟล์หาย", "lost file", "file missing", "กู้ไฟล์", "restore"], "faqs": [{"question": "ไฟล์ถูกลบ / ข้อมูลหาย กู้คืนยังไง?", "answer": "1. ตรวจ Recycle Bin ก่อน\n2. ตรวจ OneDrive/Google Drive > Trash\n3. ใช้ Previous Version: Right-click folder > Restore previous versions\n4. อย่า Save อะไรทับ (จะกู้ยากขึ้น)\n5. ติดต่อ IT Support ext. 1234 (อาจกู้จาก Backup ได้)"}, {"question": "OneDrive / Google Drive ไม่ Sync", "answer": "1. ตรวจ Internet Connection\n2. Restart Sync App\n3. ตรวจ Disk Space ว่าเหลือพอ\n4. ตรวจไฟล์ที่ Sync ไม่ได้ (ชื่อยาว, อักขระพิเศษ)\n5. Pause แล้ว Resume Sync\n6. ติดต่อ IT Support ext. 1234"}, {"question": "Backup ข้อมูล ทำยังไง?", "answer": "1. ใช้ OneDrive (แนะนำ - บริษัทมีให้)\n2. Save ไฟล์ใน OneDrive Folder\n3. ตรวจว่า Sync ขึ้น Cloud แล้ว (ไอคอนเขียว)\n4. อย่าเก็บไฟล์สำคัญแค่ใน Desktop\n5. สำรองไฟล์สำคัญทุกสัปดาห์\n6. ติดต่อ IT Support ext. 1234"}]}, {"name": "Account / Permission", "keywords": ["account", "บัญชี", "permission", "สิทธิ์", "access", "เข้าไม่ได้", "denied", "blocked", "request", "ขอสิทธิ์", "new user", "พนักงานใหม่", "resign", "ลาออก"], "faqs": [{"question": "พนักงานใหม่ ต้องทำอะไรบ้าง? (IT Onboarding)", "answer": "1. แจ้ง IT ล่วงหน้า 3 วันก่อนเริ่มงาน\n2. IT จะเตรียม: เครื่อง, Email, VPN, สิทธิ์ต่างๆ\n3. วันแรก: รับเครื่อง + ตั้งรหัสผ่าน\n4. ติดตั้ง VPN + ตั้งค่า Email\n5. เข้า Training ระบบพื้นฐาน\n6. ติดต่อ IT Support ext. 1234"}, {"question": "พนักงานลาออก ต้องทำอะไรบ้าง? (IT Offboarding)", "answer": "1. แจ้ง IT ล่วงหน้า 1 วัน\n2. Backup ข้อมูลสำคัญ\n3. คืนอุปกรณ์: เครื่อง, Mouse, Keyboard, Charger\n4. IT จะ Disable Account\n5. ถ่ายโอนไฟล์สำคัญให้ทีม\n6. ติดต่อ IT Support ext. 1234"}, {"question": "ขอสิทธิ์เข้าถึงระบบ / Folder ทำยังไง?", "answer": "1. ส่งคำขอผ่าน IT Service Portal\n2. ระบุ: ระบบ/Folder + เหตุผล + CC หัวหน้า\n3. หัวหน้าอนุมัติ\n4. IT ดำเนินการ (1-2 วันทำการ)\n5. ทดสอบว่าเข้าได้\n6. ติดต่อ IT Support ext. 1234"}, {"question": "เข้าระบบไม่ได้ / Access Denied", "answer": "1. ตรวจ Username/Password ว่าถูกต้อง\n2. ตรวจว่า Account ไม่ถูกล็อค\n3. ตรวจ VPN (ถ้าเข้าจากข้างนอก)\n4. ตรวจว่ามีสิทธิ์เข้าระบบนั้นหรือไม่\n5. ลอง Browser อื่น / Clear Cache\n6. ติดต่อ IT Support ext. 1234"}]}, {"name": "Microsoft Teams", "keywords": ["teams", "microsoft teams", "แชท", "channel", "ช่อง", "notification", "แจ้งเตือน", "status", "สถานะ", "meeting teams"], "faqs": [{"question": "Teams เปิดไม่ขึ้น / ค้าง ทำยังไง?", "answer": "1. ปิดจาก Task Manager (Ctrl+Shift+Esc)\n2. ลบ Cache: %AppData%\\Microsoft\\Teams\\Cache\n3. Restart Teams\n4. Update เป็น Version ล่าสุด\n5. ถ้ายังไม่ได้ ติดต่อ IT ext.1234"}, {"question": "Teams แจ้งเตือนไม่ขึ้น ทำยังไง?", "answer": "1. Teams > Settings > Notifications\n2. ตรวจ Windows Focus Assist ว่าปิดอยู่\n3. Settings > System > Notifications > Teams ให้เปิด\n4. Restart Teams\n5. ติดต่อ IT ext.1234"}, {"question": "ตั้งค่า Status Teams ยังไง?", "answer": "1. คลิกรูปโปรไฟล์มุมบนขวา\n2. เลือก Status: Available / Busy / Do not disturb / Away\n3. ตั้ง Status Message ได้ที่ 'Set status message'\n4. Duration Message หมดอายุอัตโนมัติได้"}, {"question": "ส่งไฟล์ใน Teams ทำยังไง?", "answer": "1. คลิก Attach (📎) ใน Chat\n2. เลือก Upload from computer หรือ OneDrive\n3. ขนาดสูงสุด 250MB ต่อไฟล์\n4. ลาก Drop ไฟล์เข้า Chat ได้เลย\n5. ไฟล์จะเก็บใน SharePoint อัตโนมัติ"}, {"question": "Teams ไม่ยอม Login ทำยังไง?", "answer": "1. Sign out แล้ว Sign in ใหม่\n2. ล้าง Cache: %AppData%\\Microsoft\\Teams\n3. ลอง Teams Web: teams.microsoft.com\n4. ตรวจ Password ว่าไม่หมดอายุ\n5. ติดต่อ IT ext.1234"}]}, {"name": "Hardware / อุปกรณ์", "keywords": ["usb", "port", "จอ", "monitor", "display", "hdmi", "vga", "hub", "dock", "docking", "keyboard", "mouse", "เมาส์", "คีย์บอร์ด", "webcam", "กล้อง", "headset", "หูฟัง", "speaker", "ลำโพง", "charger", "adapter"], "faqs": [{"question": "เสียบ USB แล้วไม่ขึ้น ทำยังไง?", "answer": "1. ลองเสียบช่อง USB อื่น\n2. Restart เครื่อง\n3. Device Manager > Action > Scan for hardware changes\n4. ลองเสียบเครื่องอื่นว่าใช้ได้ไหม\n5. ถ้าพอร์ต USB เสีย ติดต่อ IT ext.1234"}, {"question": "จอแสดงสีผิดเพี้ยน / แสงกะพริบ", "answer": "1. ตรวจสาย HDMI/DP ว่าเสียบแน่น\n2. ลองเปลี่ยนสาย\n3. อัปเดต Graphics Driver\n4. ลด Refresh Rate: Display Settings > Advanced\n5. ถ้าจอเสีย ติดต่อ IT ext.1234"}, {"question": "ต่อ 2 จอ (Dual Monitor) ทำยังไง?", "answer": "1. เสียบสายจอที่ 2 เข้า HDMI/DP/VGA\n2. คลิกขวา Desktop > Display Settings\n3. เลือก Extend these displays\n4. ลาก Position จอให้ถูกต้อง\n5. ถ้าไม่พบ ตรวจ Driver หรือติดต่อ IT ext.1234"}, {"question": "Docking Station ใช้ไม่ได้ ทำยังไง?", "answer": "1. ตรวจสาย Power Dock ว่าเสียบแน่น\n2. ถอด-เสียบ USB-C/Thunderbolt ใหม่\n3. Restart เครื่องขณะเสียบ Dock อยู่\n4. อัปเดต Dock Firmware\n5. ติดต่อ IT ext.1234"}, {"question": "Webcam ภาพมืด / พร่ามัว ทำยังไง?", "answer": "1. ตรวจแสงในห้องว่าเพียงพอ\n2. ล้างเลนส์ด้วยผ้านุ่ม\n3. เปิด Camera App ทดสอบ\n4. Update Webcam Driver\n5. ตรวจ Privacy Settings > Camera\n6. ติดต่อ IT ext.1234"}]}, {"name": "File / Folder / Network Drive", "keywords": ["folder", "ไฟล์", "file", "share", "shared drive", "network drive", "map drive", "z:", "เชื่อมไดร์ฟ", "sharepoint", "onedrive", "permission", "สิทธิ์ไฟล์", "เข้าโฟลเดอร์ไม่ได้"], "faqs": [{"question": "Map Network Drive ทำยังไง?", "answer": "1. เปิด File Explorer\n2. คลิก This PC > Map network drive\n3. เลือก Drive Letter (เช่น Z:)\n4. กรอก Path: \\\\server\\foldername\n5. ติ๊ก Reconnect at sign-in\n6. ถ้าไม่รู้ Path ติดต่อ IT ext.1234"}, {"question": "เข้า Network Drive ไม่ได้ ทำยังไง?", "answer": "1. ตรวจว่าต่อ VPN แล้ว (ถ้า WFH)\n2. Disconnect แล้ว Map ใหม่\n3. ตรวจ Username/Password\n4. Restart เครื่อง\n5. ติดต่อ IT ext.1234 เพื่อตรวจสิทธิ์"}, {"question": "ไฟล์ใน SharePoint เปิดไม่ได้", "answer": "1. ตรวจ Internet Connection\n2. Login ด้วยบัญชีบริษัทใหม่\n3. Clear Browser Cache\n4. ลอง Browser อื่น\n5. ดาวน์โหลดมาเปิดแทน\n6. ติดต่อ IT ext.1234"}, {"question": "ไฟล์ถูกล็อค / เปิดพร้อมกันไม่ได้", "answer": "1. ตรวจว่าคนอื่นเปิดไฟล์อยู่หรือเปล่า\n2. รอให้คนนั้นปิดก่อน\n3. ถ้าล็อคค้าง ติดต่อ IT ext.1234\n4. ใช้ OneDrive จะ Co-edit พร้อมกันได้\n5. ลองเปิดแบบ Read-Only ชั่วคราว"}, {"question": "ขนาด Folder ดูยังไง?", "answer": "1. Right-click Folder > Properties\n2. ดูที่ Size on disk\n3. ถ้าช้า ใช้ WinDirStat (ขอจาก IT)\n4. ถ้า Quota เต็ม ลบไฟล์เก่าหรือย้ายไป Archive\n5. ติดต่อ IT ext.1234 เพื่อขอเพิ่ม Space"}]}, {"name": "Office 365 / Microsoft 365", "keywords": ["office 365", "microsoft 365", "m365", "word", "excel", "powerpoint", "onenote", "onedrive", "sharepoint", "activation", "activate", "ลงทะเบียน", "license office"], "faqs": [{"question": "Office 365 ขึ้น Product Activation Failed ทำยังไง?", "answer": "1. Sign out แล้ว Sign in ด้วยบัญชีบริษัท\n2. File > Account > Sign In\n3. ตรวจ Internet Connection\n4. Repair Office: Settings > Apps > Microsoft 365 > Modify\n5. ติดต่อ IT ext.1234 เพื่อ Renew License"}, {"question": "Excel ไฟล์ใหญ่เปิดช้า ทำยังไง?", "answer": "1. ปิด Auto-Calculate: Formulas > Calculation Options > Manual\n2. ลบ Conditional Formatting ที่ไม่ใช้\n3. ลด Pivot Cache\n4. แยกไฟล์เป็น Sheet ย่อย\n5. เพิ่ม RAM ติดต่อ IT ext.1234"}, {"question": "Word ไม่ยอม Save ทำยังไง?", "answer": "1. ลอง Save As ชื่อใหม่\n2. ตรวจ Disk Space ว่าเหลือพอ\n3. Save เป็น .docx ไม่ใช่ .doc\n4. ปิด OneDrive Sync ชั่วคราวแล้ว Save\n5. ติดต่อ IT ext.1234"}, {"question": "PowerPoint เล่น Presentation แบบเต็มจอยังไง?", "answer": "1. กด F5 เล่นตั้งแต่ Slide แรก\n2. กด Shift+F5 เล่นจาก Slide ปัจจุบัน\n3. ถ้าต่อโปรเจกเตอร์ กด Win+P เลือก Extend\n4. Presenter View: Slide Show > Use Presenter View\n5. กด Esc เพื่อออก"}, {"question": "OneDrive Sync ไฟล์ขึ้น Error ทำยังไง?", "answer": "1. คลิกขวา OneDrive Icon > View sync errors\n2. ตรวจชื่อไฟล์ว่ามีอักขระพิเศษ (: * ? < > | )\n3. ตรวจ Disk Space\n4. Pause แล้ว Resume Sync\n5. Unlink แล้ว Link บัญชีใหม่\n6. ติดต่อ IT ext.1234"}]}, {"name": "Windows / System", "keywords": ["windows", "windows 10", "windows 11", "update", "อัพเดท", "driver", "ไดร์เวอร์", "activation windows", "disk", "storage", "ดิสก์เต็ม", "c drive", "task manager", "registry", "startup", "บูต", "boot slow"], "faqs": [{"question": "Windows Update ค้าง ทำยังไง?", "answer": "1. รอให้ครบ อย่าปิดเครื่อง\n2. ถ้าค้างนาน Restart แล้วลอง Update ใหม่\n3. Run Windows Update Troubleshooter\n4. ตรวจ Disk Space C: ต้องเหลือ > 10GB\n5. ติดต่อ IT ext.1234"}, {"question": "C Drive เต็ม ทำยังไง?", "answer": "1. Disk Cleanup: คลิกขวา C: > Properties > Disk Cleanup\n2. ลบไฟล์ Temp: Win+R พิมพ์ %temp%\n3. Uninstall Program ที่ไม่ใช้\n4. ย้ายไฟล์ใหญ่ไป D: หรือ OneDrive\n5. ติดต่อ IT ext.1234 เพื่อขยาย Disk"}, {"question": "Windows Boot ช้ามาก ทำยังไง?", "answer": "1. Task Manager > Startup > Disable โปรแกรมที่ไม่จำเป็น\n2. Settings > System > Power & Sleep > Shutdown Settings > Fast Startup ON\n3. ตรวจ SSD/HDD ว่า Health ดี\n4. Scan Malware\n5. ติดต่อ IT ext.1234"}, {"question": "Windows ขึ้น 'Not Genuine' ทำยังไง?", "answer": "1. ตรวจว่า Sign in ด้วย Microsoft Account บริษัทหรือยัง\n2. Settings > Update & Security > Activation\n3. ติดต่อ IT ext.1234 เพื่อใส่ Product Key\n4. อย่าซื้อ Key นอกหรือ Crack (ผิด Policy)"}, {"question": "Task Manager เปิดไม่ได้ ทำยังไง?", "answer": "1. กด Ctrl+Shift+Esc\n2. คลิกขวา Taskbar > Task Manager\n3. Win+R พิมพ์ taskmgr\n4. ถ้าเปิดไม่ได้อาจมี Malware\n5. ติดต่อ IT ext.1234 ทันที"}]}, {"name": "Line / Communication App", "keywords": ["line", "ไลน์", "line oa", "แจ้งเตือน", "sticker", "สติ๊กเกอร์", "line pc", "facebook", "messenger", "whatsapp", "slack"], "faqs": [{"question": "Line PC แจ้งเตือนไม่ขึ้น ทำยังไง?", "answer": "1. Line > Settings > Notifications > เปิดทั้งหมด\n2. Windows Settings > Notifications > Line > เปิด\n3. ตรวจว่า Focus Assist ปิดอยู่\n4. Restart Line\n5. Update Line เป็น Version ล่าสุด"}, {"question": "Line Login บนเครื่องใหม่ ทำยังไง?", "answer": "1. Download Line PC จาก line.me\n2. เปิด Line บนมือถือ\n3. Setting > Devices > Scan QR Code\n4. ยืนยัน OTP\n5. ข้อความจะ Sync มา (แต่ไม่ย้อนหลัง)"}]}], "escalation": {"message": "ไม่พบคำตอบที่ตรงกับปัญหาของคุณ กรุณาติดต่อ IT Support:\n📞 โทร: ext. 1234\n📧 อีเมล: it-support@company.com\n💬 Line: @company-it\n🕐 เวลา: จันทร์-ศุกร์ 8:30-17:30", "hotline": "ext. 1234"}};
 
-function score(input,kb){
-  const u=input.toLowerCase();
-  let best=null,top=0;
-  for(const cat of kb.categories){
+let geminiKey = localStorage.getItem('geminiKey') || '';
+let ticketNum = 1000 + Math.floor(Math.random()*1000);
+let stats = {tickets:0, good:0, bad:0};
+let history = [];
+
+if(geminiKey){ document.getElementById('geminiKey').value=geminiKey; setAIMode(true); }
+
+function saveKey(){
+  geminiKey = document.getElementById('geminiKey').value.trim();
+  if(geminiKey){ localStorage.setItem('geminiKey',geminiKey); setAIMode(true); addSys('✅ เปิดใช้ Gemini AI แล้วครับ! ตอนนี้จะตอบด้วย AI จริง'); }
+  else{ localStorage.removeItem('geminiKey'); setAIMode(false); addSys('ℹ️ ปิด Gemini AI แล้ว กลับเป็น Keyword Mode'); }
+}
+function setAIMode(on){
+  document.getElementById('aiLabel').textContent = on ? 'Gemini AI' : 'Keyword AI';
+  document.getElementById('aiLabel').style.background = on ? '#7c3aed22' : '#1e40af22';
+  document.getElementById('aiLabel').style.borderColor = on ? '#7c3aed55' : '#1e40af55';
+  document.getElementById('aiLabel').style.color = on ? '#a78bfa' : '#60a5fa';
+  document.getElementById('sMode').textContent = on ? 'Gemini AI Mode' : 'Keyword Mode';
+}
+
+function scoreKB(input){
+  const u=input.toLowerCase(); let best=null,top=0;
+  for(const cat of KB.categories){
     for(const faq of cat.faqs){
       let s=0;
       for(const kw of cat.keywords) if(u.includes(kw.toLowerCase())) s+=3;
-      const qw=new Set(faq.q.toLowerCase().split(''));
-      for(const c of u) if(qw.has(c)) s+=0.5;
-      if(s>top){top=s;best=faq;}
+      for(const w of u.split(' ')) if(faq.question.toLowerCase().includes(w)&&w.length>1) s+=1;
+      if(s>top){top=s;best={faq,cat:cat.name};}
     }
   }
-  return top>1?best:null;
+  return top>=1?best:null;
 }
 
-let ticketNum=Math.floor(Math.random()*9000)+1000;
+async function callGemini(userInput){
+  const top3=[]; const u=userInput.toLowerCase();
+  for(const cat of KB.categories){
+    for(const faq of cat.faqs){
+      let s=0;
+      for(const kw of cat.keywords) if(u.includes(kw.toLowerCase())) s+=3;
+      if(s>0) top3.push(faq);
+      if(top3.length>=3) break;
+    }
+    if(top3.length>=3) break;
+  }
+  const ctx = top3.map(f=>`Q: ${f.question}\nA: ${f.answer}`).join('\n\n');
+  const prompt = `คุณเป็น IT Support AI ขององค์กร ตอบคำถามสั้น ชัดเจน เป็นภาษาไทย ใช้ขั้นตอนแบบ numbered list\nถ้าไม่มีข้อมูล ให้แจ้ง: ติดต่อ IT Support ext.1234\n\nFAQ Reference:\n${ctx}\n\nคำถาม: ${userInput}\n\nตอบ:`;
+  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiKey}`,{
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({contents:[{parts:[{text:prompt}]}]})
+  });
+  if(!res.ok) throw new Error('API Error '+res.status);
+  const d = await res.json();
+  return d.candidates[0].content.parts[0].text;
+}
 
+function addSys(text){
+  const w=document.getElementById('messages');
+  const d=document.createElement('div');
+  d.style.cssText='text-align:center;font-size:.72rem;color:#475569;padding:4px';
+  d.textContent=text; w.appendChild(d); w.scrollTop=w.scrollHeight;
+}
 function addMsg(text,role){
-  const wrap=document.getElementById('messages');
+  const w=document.getElementById('messages');
   const d=document.createElement('div');
   d.className='msg '+role;
-  d.innerHTML=`<div class="avatar">${role==='bot'?'🤖':'👤'}</div><div class="bubble">${text.replace(/</g,'&lt;').replace(/\n/g,'<br>')}</div>`;
-  wrap.appendChild(d);
-  wrap.scrollTop=wrap.scrollHeight;
-  return d;
+  d.innerHTML=`<div class="av">${role==='bot'?'🤖':'👤'}</div><div class="bub">${text.replace(/</g,'&lt;').replace(/\n/g,'<br>')}</div>`;
+  w.appendChild(d); w.scrollTop=w.scrollHeight; return d;
 }
-
-function addTyping(){
-  const wrap=document.getElementById('messages');
+function addFeedback(tNum){
+  const w=document.getElementById('messages');
   const d=document.createElement('div');
-  d.className='msg bot';d.id='typing';
-  d.innerHTML='<div class="avatar">🤖</div><div class="bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div>';
-  wrap.appendChild(d);wrap.scrollTop=wrap.scrollHeight;
+  d.className='msg-footer';
+  d.innerHTML=`<button class="fb-btn" id="g${tNum}" onclick="feedback('${tNum}',1)">👍 มีประโยชน์</button><button class="fb-btn" id="b${tNum}" onclick="feedback('${tNum}',-1)">👎 ไม่ตรง</button><span class="ticket-tag">#${tNum}</span>`;
+  w.appendChild(d); w.scrollTop=w.scrollHeight;
 }
-
+function feedback(tNum,val){
+  const g=document.getElementById('g'+tNum), b=document.getElementById('b'+tNum);
+  if(!g||!b) return;
+  g.className='fb-btn'+(val===1?' active-good':'');
+  b.className='fb-btn'+(val===-1?' active-bad':'');
+  if(val===1){stats.good++;document.getElementById('sGood').textContent=stats.good;}
+  else{stats.bad++;document.getElementById('sBad').textContent=stats.bad;}
+  const h=history.find(x=>x.ticket==tNum);
+  if(h) h.feedback=val>0?'👍':'👎';
+  renderHistory();
+}
+function addTyping(){
+  const w=document.getElementById('messages');
+  const d=document.createElement('div');
+  d.className='msg bot'; d.id='typing';
+  d.innerHTML='<div class="av">🤖</div><div class="bub"><div class="typing-dots"><span></span><span></span><span></span></div></div>';
+  w.appendChild(d); w.scrollTop=w.scrollHeight;
+}
+function renderHistory(){
+  const el=document.getElementById('histList');
+  if(!history.length){el.innerHTML='<div style="padding:20px;text-align:center;color:#475569;font-size:.78rem">ยังไม่มี Ticket</div>';return;}
+  el.innerHTML=[...history].reverse().map(h=>`<div class="hp-item"><div class="hn">#${h.ticket} • ${h.time} ${h.feedback||''}</div><div class="hq">${h.question}</div><div class="hr">${h.mode}</div></div>`).join('');
+}
 function ask(q){document.getElementById('inp').value=q;send();}
-
-function send(){
+async function send(){
   const inp=document.getElementById('inp');
-  const text=inp.value.trim();
-  if(!text)return;
-  inp.value='';
-  addMsg(text,'user');
+  const text=inp.value.trim(); if(!text) return;
+  inp.value=''; addMsg(text,'user');
+  const tNum=++ticketNum; stats.tickets++;
+  document.getElementById('sTicket').textContent=stats.tickets;
   addTyping();
-  setTimeout(()=>{
-    document.getElementById('typing')?.remove();
-    const faq=score(text,KB);
-    const t='#'+( ++ticketNum);
-    const reply=faq
-      ? `📋 **${faq.q}**\n\n${faq.a}\n\n🎫 Ticket: ${t}`
-      : KB.escalation+`\n\n🎫 Ticket: ${t}`;
-    addMsg(reply,'bot');
-  },900+Math.random()*600);
+  const now=new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
+  let reply='', mode='Keyword';
+  try{
+    if(geminiKey){
+      mode='Gemini AI';
+      reply=await callGemini(text);
+    } else {
+      await new Promise(r=>setTimeout(r,700+Math.random()*500));
+      const m=scoreKB(text);
+      reply=m?`📋 **${m.faq.question}**\n\n${m.faq.answer}`:KB.escalation.message;
+    }
+  } catch(e){
+    reply='⚠️ Gemini API Error: '+e.message+'\n\nใช้ Keyword Mode แทน:\n'+(scoreKB(text)?.faq.answer||KB.escalation.message);
+    mode='Fallback';
+  }
+  document.getElementById('typing')?.remove();
+  addMsg(reply,'bot');
+  addFeedback(tNum);
+  history.push({ticket:tNum,question:text,time:now,mode,feedback:''});
+  renderHistory();
 }
-
 document.getElementById('inp').addEventListener('keydown',e=>{if(e.key==='Enter')send();});
 </script>
 </body>
