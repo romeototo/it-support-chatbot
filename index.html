@@ -65,6 +65,7 @@
         body.light .chat-wrap {
             background: rgba(241,245,249,0.80);
             border-color: rgba(99,102,241,0.15);
+            box-shadow: 0 10px 40px rgba(99,102,241,0.15);
         }
         /* Bot bubble */
         body.light .bot .bub {
@@ -532,8 +533,20 @@
             font-size: 20px;
             transition: 0.3s;
             box-shadow: 0 5px 15px var(--primary-glow);
+            opacity: 0.5;
+            pointer-events: none;
         }
-        .send-btn:hover { transform: scale(1.05) rotate(-10deg); box-shadow: 0 8px 25px var(--primary-glow); }
+        .send-btn.active {
+            opacity: 1;
+            pointer-events: auto;
+            animation: pulse-glow 2s infinite;
+        }
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 5px 15px var(--primary-glow); }
+            50% { box-shadow: 0 5px 25px var(--primary); }
+            100% { box-shadow: 0 5px 15px var(--primary-glow); }
+        }
+        .send-btn:hover { transform: scale(1.05) rotate(-10deg); box-shadow: 0 8px 25px var(--primary-glow); animation: none; }
 
         .stats-bar {
             padding: 10px 25px;
@@ -652,11 +665,21 @@
             .history-panel { display: none; }
         }
         @media (max-width: 768px) {
-            .sidebar { display: none; }
-            .main { padding: 10px; }
+            .main { padding: 10px; flex-direction: column; gap: 10px; }
+            .sidebar { 
+                width: 100%; 
+                flex-direction: row; 
+                overflow-x: auto; 
+                overflow-y: hidden;
+                padding: 10px;
+                border-radius: 16px;
+            }
+            .sidebar::-webkit-scrollbar { height: 4px; }
+            .stitle, .sidebar-search { display: none; }
+            .qbtn { white-space: nowrap; width: auto; padding: 8px 12px; }
             header { padding: 12px 20px; }
             .hinfo h1 { font-size: 1.1rem; }
-            .hbadge { display: none; }
+            .hbadge, .gemini-badge { display: none; }
         }
     </style>
 </head>
@@ -714,9 +737,9 @@
 
             <div class="input-wrap">
                 <div class="input-container">
-                    <input id="inp" placeholder="พิมพ์อาการเสีย หรือปัญหาไอทีที่พบ..." onkeydown="if(event.key==='Enter')send()" autofocus>
+                    <input id="inp" placeholder="พิมพ์อาการเสีย หรือปัญหาไอทีที่พบ..." onkeydown="if(event.key==='Enter'){send(); document.querySelector('.send-btn').classList.remove('active');}" oninput="document.querySelector('.send-btn').classList.toggle('active', this.value.trim().length > 0)">
                 </div>
-                <button class="send-btn" onclick="send()" title="ส่งข้อความ (Enter)">🚀</button>
+                <button class="send-btn" onclick="send(); this.classList.remove('active');" title="ส่งข้อความ (Enter)">🚀</button>
             </div>
 
             <div class="stats-bar">
@@ -1192,6 +1215,10 @@ function initUI() {
       if (faqEl) faqEl.textContent = 'Error: No KB Found';
     }
   }, 100);
+
+  if (window.innerWidth > 768) {
+    document.getElementById('inp').focus();
+  }
 }
 
 function renderUI() {
