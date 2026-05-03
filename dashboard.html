@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelpDesk Pro | Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #18181b;       /* Zinc 900 */
+            --bg-panel: #27272a;      /* Zinc 800 */
+            --bg-hover: #3f3f46;      /* Zinc 700 */
+            --border: #3f3f46;
+            --text-main: #f4f4f5;
+            --text-dim: #a1a1aa;
+            
+            --accent-blue: #3b82f6;
+            --accent-green: #22c55e;
+            --accent-yellow: #eab308;
+            --accent-red: #ef4444;
+
+            --font: 'Inter', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: var(--font);
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Top Navigation */
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 24px;
+            background-color: #121214;
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-left { display: flex; align-items: center; gap: 30px; }
+        .logo { font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; color: #fff; }
+        .logo span { color: var(--accent-blue); }
+        .nav-links { display: flex; gap: 20px; font-size: 0.9rem; }
+        .nav-links a { color: var(--text-dim); text-decoration: none; transition: 0.2s; }
+        .nav-links a.active { color: #fff; font-weight: 500; border-bottom: 2px solid var(--accent-blue); padding-bottom: 4px; }
+        .nav-links a:hover { color: #fff; }
+
+        .nav-right { display: flex; align-items: center; gap: 16px; font-size: 0.85rem; }
+        .badge-green { background: rgba(34, 197, 94, 0.15); color: #4ade80; padding: 4px 10px; border-radius: 100px; border: 1px solid rgba(34, 197, 94, 0.3); }
+        .user-profile { display: flex; align-items: center; gap: 8px; background: var(--bg-panel); padding: 4px 12px 4px 4px; border-radius: 100px; border: 1px solid var(--border); cursor: pointer; }
+        .avatar { width: 28px; height: 28px; background: var(--accent-blue); color: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 600; font-size: 0.75rem; }
+
+        /* Alert Banner */
+        .alert-banner {
+            background: #ecfccb; /* Lime 100 */
+            color: #3f6212; /* Lime 800 */
+            padding: 10px 24px;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+        }
+        .alert-banner button { background: none; border: none; font-size: 1.2rem; cursor: pointer; color: #3f6212; opacity: 0.6; }
+        .alert-banner button:hover { opacity: 1; }
+
+        /* Metrics Row */
+        .metrics-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-bottom: 1px solid var(--border);
+            background-color: var(--bg-panel);
+        }
+        .metric-card {
+            padding: 20px 24px;
+            border-right: 1px solid var(--border);
+        }
+        .metric-card:last-child { border-right: none; }
+        .metric-value { font-size: 2rem; font-weight: 600; color: #fff; margin-bottom: 4px; }
+        .metric-label { font-size: 0.8rem; color: var(--text-dim); }
+        .metric-sub { font-size: 0.75rem; margin-top: 6px; }
+        .text-green { color: #4ade80; }
+        
+        .val-red { color: #f87171; }
+        .val-green { color: #4ade80; }
+
+        /* Dashboard Layout */
+        .dashboard-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Left: Ticket Queue */
+        .ticket-queue {
+            width: 340px;
+            background: #1e1e20;
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+        }
+        .queue-header {
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+        .queue-header h2 { font-size: 0.95rem; font-weight: 600; color: var(--text-dim); }
+        .btn-new {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-new:hover { background: var(--bg-hover); }
+
+        .queue-list { flex: 1; overflow-y: auto; }
+        .ticket-item {
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            transition: 0.2s;
+            position: relative;
+        }
+        .ticket-item:hover { background: rgba(255,255,255,0.02); }
+        .ticket-item.active { background: var(--bg-panel); border-left: 3px solid var(--accent-blue); }
+        
+        .t-head { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-dim); margin-bottom: 6px; }
+        .t-title { font-size: 0.9rem; font-weight: 500; margin-bottom: 10px; line-height: 1.4; color: #fff; }
+        .t-tags { display: flex; gap: 6px; margin-bottom: 10px; }
+        
+        .chip { padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 500; }
+        .chip-high { background: rgba(234, 179, 8, 0.15); color: #facc15; border: 1px solid rgba(234,179,8,0.3); }
+        .chip-critical { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
+        .chip-medium { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3); }
+        .chip-low { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34,197,94,0.3); }
+        .chip-open { background: rgba(255, 255, 255, 0.1); color: #e4e4e7; border: 1px solid rgba(255,255,255,0.2); }
+        .chip-progress { background: #fff; color: #000; }
+
+        .progress-bar { width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
+        .progress-fill { height: 100%; border-radius: 2px; }
+
+        /* Right: Ticket View */
+        .ticket-view {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-base);
+        }
+        .tv-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-panel);
+        }
+        .tv-id { font-size: 0.8rem; color: var(--text-dim); margin-bottom: 8px; }
+        .tv-title { font-size: 1.4rem; font-weight: 600; color: #fff; margin-bottom: 16px; }
+        
+        .tv-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; font-size: 0.85rem; margin-top: 20px; }
+        .meta-group { display: flex; flex-direction: column; gap: 4px; }
+        .meta-label { color: var(--text-dim); font-size: 0.75rem; }
+        .meta-val { font-weight: 500; color: #fff; }
+
+        .sla-container { margin-top: 20px; display: flex; align-items: center; gap: 16px; }
+        .sla-label { font-size: 0.8rem; font-weight: 600; color: var(--text-dim); }
+        .sla-bar-wrap { flex: 1; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; position: relative; }
+        .sla-bar-fill { position: absolute; left: 0; top: 0; height: 100%; background: var(--accent-yellow); width: 65%; border-radius: 2px; }
+        .sla-time { font-size: 0.8rem; color: var(--accent-yellow); font-weight: 500; }
+
+        /* Chat Timeline */
+        .chat-timeline {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        
+        .msg-row { display: flex; gap: 16px; max-width: 800px; }
+        .msg-av { width: 36px; height: 36px; border-radius: 50%; background: #fff; color: #000; display: flex; justify-content: center; align-items: center; font-weight: 600; font-size: 0.8rem; flex-shrink: 0; }
+        .msg-content { flex: 1; }
+        .msg-box {
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #e4e4e7;
+        }
+        
+        /* Diagnostic Panel inside Chat */
+        .diag-panel {
+            margin-top: 16px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 16px;
+            font-size: 0.8rem;
+        }
+        .diag-row { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .diag-row:last-child { margin-bottom: 0; }
+        .diag-label { color: var(--text-dim); }
+        .diag-val { font-weight: 600; color: #fff; }
+        .conf-bar { width: 100px; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; display: inline-block; margin-right: 8px; vertical-align: middle; }
+        .conf-fill { height: 100%; background: #4ade80; border-radius: 2px; width: 92%; }
+
+        /* Action Chips */
+        .action-chips { display: flex; gap: 12px; margin-top: 16px; }
+        .btn-chip {
+            background: transparent; border: 1px solid var(--border); color: #e4e4e7;
+            padding: 8px 16px; border-radius: 6px; font-size: 0.85rem; cursor: pointer; transition: 0.2s;
+            font-family: var(--font);
+        }
+        .btn-chip:hover { background: rgba(255,255,255,0.05); border-color: #71717a; }
+
+        .msg-footer-text { font-size: 0.7rem; color: var(--text-dim); margin-top: 8px; }
+
+        /* Input Area */
+        .input-area {
+            padding: 16px 24px;
+            background: var(--bg-panel);
+            border-top: 1px solid var(--border);
+        }
+        .input-box {
+            display: flex;
+            gap: 12px;
+            background: var(--bg-base);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
+            transition: 0.2s;
+        }
+        .input-box:focus-within { border-color: #52525b; }
+        .input-box input {
+            flex: 1; background: transparent; border: none; color: #fff; font-size: 0.95rem; outline: none; font-family: var(--font);
+        }
+        .input-box input::placeholder { color: #71717a; }
+        .input-actions { display: flex; gap: 8px; }
+        .btn-icon { width: 32px; height: 32px; border-radius: 6px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text-dim); display: flex; justify-content: center; align-items: center; cursor: pointer; transition: 0.2s; }
+        .btn-icon:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+        .input-hint { font-size: 0.7rem; color: var(--text-dim); margin-top: 10px; display: flex; justify-content: space-between; }
+        .input-hint span.green { color: #4ade80; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #52525b; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #71717a; }
+
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <nav class="topbar">
+        <div class="nav-left">
+            <div class="logo">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--accent-blue)"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                HelpDesk Pro
+            </div>
+            <div class="nav-links">
+                <a href="#" class="active">Tickets</a>
+                <a href="#">Reports</a>
+            </div>
+        </div>
+        <div class="nav-right">
+            <div class="badge-green">On-premise · ไม่มีข้อมูลออกนอก</div>
+            <div class="user-profile">
+                <div class="avatar">IT</div>
+                <span>IT Support</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Alert Banner -->
+    <div class="alert-banner" id="topAlert">
+        <div><strong>HelpDesk Pro</strong> — ระบบ IT Support อัจฉริยะ ทำงาน 100% ภายในองค์กร ไม่ส่งข้อมูลออกภายนอก รองรับปัญหากว่า 50 ประเภท วิเคราะห์และแนะนำวิธีแก้ไขอัตโนมัติ</div>
+        <button onclick="document.getElementById('topAlert').style.display='none'">×</button>
+    </div>
+
+    <!-- Metrics Row -->
+    <div class="metrics-row">
+        <div class="metric-card">
+            <div class="metric-value val-red">7</div>
+            <div class="metric-label">Tickets เปิดอยู่</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">94%</div>
+            <div class="metric-label">Resolution rate</div>
+            <div class="metric-sub text-green">+3% จากเดือนก่อน</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">1.8h</div>
+            <div class="metric-label">Avg. response time</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value val-green">12</div>
+            <div class="metric-label">แก้ไขวันนี้</div>
+        </div>
+    </div>
+
+    <!-- Dashboard Main -->
+    <div class="dashboard-container">
+        
+        <!-- Left Sidebar: Ticket Queue -->
+        <aside class="ticket-queue">
+            <div class="queue-header">
+                <h2>Ticket queue</h2>
+                <button class="btn-new">+ สร้างใหม่</button>
+            </div>
+            <div class="queue-list">
+                <!-- Ticket 1 -->
+                <div class="ticket-item active">
+                    <div class="t-head"><span>INC-0041</span><span>09:15</span></div>
+                    <div class="t-title">เครื่องพิมพ์ชั้น 3 ไม่สามารถ print ได้</div>
+                    <div class="t-tags">
+                        <span class="chip chip-high">high</span>
+                        <span class="chip chip-open">เปิดอยู่</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 75%; background: var(--accent-yellow);"></div></div>
+                </div>
+                <!-- Ticket 2 -->
+                <div class="ticket-item">
+                    <div class="t-head"><span>INC-0040</span><span>08:40</span></div>
+                    <div class="t-title">VPN เชื่อมต่อไม่ได้ ใช้งาน WFH ไม่ได้</div>
+                    <div class="t-tags">
+                        <span class="chip chip-critical">critical</span>
+                        <span class="chip chip-progress">กำลังดำเนิน</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 90%; background: var(--accent-red);"></div></div>
+                </div>
+                <!-- Ticket 3 -->
+                <div class="ticket-item">
+                    <div class="t-head"><span>INC-0039</span><span>08:05</span></div>
+                    <div class="t-title">ลืมรหัสผ่าน Active Directory</div>
+                    <div class="t-tags">
+                        <span class="chip chip-medium">medium</span>
+                        <span class="chip chip-open">เปิดอยู่</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 30%; background: var(--accent-green);"></div></div>
+                </div>
+                <!-- Ticket 4 -->
+                <div class="ticket-item">
+                    <div class="t-head"><span>INC-0038</span><span>เมื่อวาน</span></div>
+                    <div class="t-title">Microsoft Teams crash ทุกครั้งที่เปิด</div>
+                    <div class="t-tags">
+                        <span class="chip chip-medium">medium</span>
+                        <span class="chip chip-progress">กำลังดำเนิน</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 60%; background: var(--accent-yellow);"></div></div>
+                </div>
+                <!-- Ticket 5 -->
+                <div class="ticket-item">
+                    <div class="t-head"><span>INC-0037</span><span>เมื่อวาน</span></div>
+                    <div class="t-title">คอมพิวเตอร์ทำงานช้ามาก</div>
+                    <div class="t-tags">
+                        <span class="chip chip-low">low</span>
+                        <span class="chip chip-open">เปิดอยู่</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 20%; background: var(--accent-green);"></div></div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Right Main: Ticket View -->
+        <main class="ticket-view">
+            <!-- Header Info -->
+            <div class="tv-header">
+                <div class="tv-id">INC-0041</div>
+                <div class="tv-title">เครื่องพิมพ์ชั้น 3 ไม่สามารถ print ได้</div>
+                <div class="t-tags">
+                    <span class="chip chip-high">high</span>
+                    <span class="chip chip-open">เปิดอยู่</span>
+                </div>
+                
+                <div class="tv-meta">
+                    <div class="meta-group">
+                        <span class="meta-label">ผู้แจ้ง</span>
+                        <span class="meta-val">สมชาย ว.</span>
+                    </div>
+                    <div class="meta-group">
+                        <span class="meta-label">แผนก</span>
+                        <span class="meta-val">Finance</span>
+                    </div>
+                    <div class="meta-group">
+                        <span class="meta-label">สร้างเมื่อ</span>
+                        <span class="meta-val">09:15</span>
+                    </div>
+                </div>
+
+                <div class="sla-container">
+                    <span class="sla-label">SLA</span>
+                    <div class="sla-bar-wrap">
+                        <div class="sla-bar-fill"></div>
+                    </div>
+                    <span class="sla-time">หมดใน 2.5 ชั่วโมง</span>
+                </div>
+            </div>
+
+            <!-- Chat / Interaction -->
+            <div class="chat-timeline">
+                <div class="msg-row">
+                    <div class="msg-av">IT</div>
+                    <div class="msg-content">
+                        <div class="msg-box">
+                            <p style="margin-bottom: 8px;">รับทราบ Ticket INC-0041 แล้วครับ</p>
+                            <p>ตรวจพบว่าเกี่ยวกับ: <strong>เครื่องพิมพ์ไม่ตอบสนอง</strong></p>
+                            <p style="margin-top: 16px;">กรุณายืนยัน: ปัญหาเกิดขึ้นตั้งแต่เมื่อไหร่ครับ?</p>
+                            
+                            <!-- Diagnostic Panel -->
+                            <div class="diag-panel">
+                                <div class="diag-row">
+                                    <span class="diag-label">หมวดหมู่ที่ตรวจพบ</span>
+                                    <span class="diag-val">Hardware</span>
+                                </div>
+                                <div class="diag-row">
+                                    <span class="diag-label">ความมั่นใจ</span>
+                                    <div>
+                                        <span class="conf-bar"><span class="conf-fill"></span></span>
+                                        <span class="diag-val">92%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Chips -->
+                            <div class="action-chips">
+                                <button class="btn-chip">เพิ่งเกิดขึ้นวันนี้</button>
+                                <button class="btn-chip">เกิดมาหลายวันแล้ว</button>
+                                <button class="btn-chip">ไม่แน่ใจ</button>
+                            </div>
+                        </div>
+                        <div class="msg-footer-text">Smart Engine · ตอนนี้</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="input-area">
+                <div class="input-box">
+                    <input type="text" placeholder="พิมพ์ปัญหา หรือตอบคำถาม...">
+                    <div class="input-actions">
+                        <button class="btn-icon" title="แนบไฟล์">📎</button>
+                        <button class="btn-icon" title="ส่ง" style="background: var(--accent-blue); border-color: var(--accent-blue); color: #fff;">➤</button>
+                    </div>
+                </div>
+                <div class="input-hint">
+                    <span>Enter ส่ง · Shift+Enter ขึ้นบรรทัด</span>
+                    <span class="green">Smart Engine — ทำงานในเครื่อง</span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>
