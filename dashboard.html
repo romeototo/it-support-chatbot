@@ -226,6 +226,12 @@
         }
         .btn-chip:hover { background: rgba(255,255,255,0.05); border-color: #71717a; }
 
+        .filter-btn {
+            flex:1; padding:6px; background:transparent; border:1px solid var(--border); border-radius:6px; color:var(--text-dim); cursor:pointer; font-size:0.8rem; text-align:center; transition:0.2s;
+        }
+        .filter-btn:hover { border-color:var(--text-dim); }
+        .filter-btn.active { background:var(--bg-panel); color:var(--accent-blue); border-color:var(--accent-blue); font-weight:600; }
+
         .msg-footer-text { font-size: 0.7rem; color: var(--text-dim); margin-top: 8px; }
 
         /* Input Area */
@@ -299,9 +305,9 @@
             <div class="metric-label">Tickets เปิดอยู่</div>
         </div>
         <div class="metric-card">
-            <div class="metric-value">94%</div>
+            <div class="metric-value" id="tResRate">0%</div>
             <div class="metric-label">Resolution rate</div>
-            <div class="metric-sub text-green">+3% จากเดือนก่อน</div>
+            <div class="metric-sub text-green">Real-time stat</div>
         </div>
         <div class="metric-card">
             <div class="metric-value">1.8h</div>
@@ -320,8 +326,19 @@
         <aside class="ticket-queue">
             <div class="queue-header">
                 <h2>Ticket queue</h2>
-                <button class="btn-new">+ สร้างใหม่</button>
+                <button class="btn-new" onclick="clearData()" style="background:transparent; border:1px solid var(--accent-red); color:var(--accent-red); font-size:0.75rem;" title="ล้างข้อมูล Ticket ทั้งหมด (สำหรับ Demo)">🗑️ ล้างระบบ</button>
             </div>
+            
+            <!-- Search & Filter Tab -->
+            <div style="padding: 0 20px 15px;">
+                <input type="text" id="searchInput" placeholder="🔍 ค้นหา รหัส, ปัญหา..." style="width: 100%; box-sizing: border-box; padding: 10px; border-radius: 6px; background: var(--bg-base); border: 1px solid var(--border); color: var(--text-main); margin-bottom: 10px; font-size:0.85rem; font-family:var(--font);" oninput="renderQueue()">
+                <div style="display:flex; gap:6px;">
+                    <button class="filter-btn active" id="f-all" onclick="setFilter('all')">ทั้งหมด</button>
+                    <button class="filter-btn" id="f-open" onclick="setFilter('open')">เปิดอยู่</button>
+                    <button class="filter-btn" id="f-closed" onclick="setFilter('closed')">ปิดแล้ว</button>
+                </div>
+            </div>
+
             <div class="queue-list" id="queueList">
                 <!-- Dynamic Ticket Items injected by JS -->
             </div>
@@ -355,6 +372,15 @@
                 </div>
             </div>
 
+            <!-- Canned Responses -->
+            <div id="cannedResponses" style="padding: 12px 20px; border-top: 1px solid var(--border); background: var(--bg-panel); display:none; gap:10px; overflow-x:auto; white-space:nowrap; align-items: center;">
+                <span style="font-size:0.8rem; color:var(--text-dim); margin-right:5px;">⚡ ตอบด่วน:</span>
+                <button class="btn-chip" onclick="sendQuickReply('แอดมินรับเรื่องตรวจสอบให้ครับ ขอเวลาสักครู่นะครับ')">รับเรื่องตรวจสอบ</button>
+                <button class="btn-chip" onclick="sendQuickReply('รบกวนขอภาพหน้าจอตอนเกิด Error หน่อยได้ไหมครับ?')">ขอภาพหน้าจอ</button>
+                <button class="btn-chip" onclick="sendQuickReply('กำลังรีโมทเข้าไปตรวจสอบ รบกวนกดรับที่หน้าจอด้วยครับ')">กำลังรีโมท</button>
+                <button class="btn-chip" onclick="sendQuickReply('อัปเดตสถานะครับ ตอนนี้แก้ไขเรียบร้อยแล้ว ทดสอบใช้งานได้เลยครับ')">แก้ไขเรียบร้อย</button>
+            </div>
+
             <!-- Input Area -->
             <div class="input-area">
                 <div class="input-box">
@@ -374,6 +400,7 @@
 
 <script>
     let activeTicketId = null;
+    let currentFilter = 'all';
 
     function getTickets() {
         return JSON.parse(localStorage.getItem('helpdesk_tickets') || '[]');
@@ -382,20 +409,54 @@
     function saveTickets(tickets) {
         localStorage.setItem('helpdesk_tickets', JSON.stringify(tickets));
     }
+    
+    function setFilter(f) {
+        currentFilter = f;
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById('f-' + f).classList.add('active');
+        renderQueue();
+    }
+    
+    function clearData() {
+        if(confirm("คุณต้องการล้างข้อมูล Ticket ทั้งหมดใช่หรือไม่? (สำหรับการเริ่มทดสอบ Demo ใหม่)")) {
+            localStorage.removeItem('helpdesk_tickets');
+            activeTicketId = null;
+            renderQueue();
+            renderAnalytics();
+        }
+    }
 
     function renderQueue() {
         const queueList = document.getElementById('queueList');
         const tickets = getTickets();
         
-        document.getElementById('tOpenCount').textContent = tickets.filter(t => t.status === 'open' || t.status === 'progress').length;
+        let openCount = tickets.filter(t => t.status === 'open' || t.status === 'progress').length;
+        let closedCount = tickets.filter(t => t.status === 'closed').length;
+        
+        document.getElementById('tOpenCount').textContent = openCount;
         document.getElementById('tTodayCount').textContent = tickets.length;
+        
+        // Calculate Live Resolution Rate
+        let resRate = tickets.length > 0 ? Math.round((closedCount / tickets.length) * 100) : 0;
+        document.getElementById('tResRate').textContent = `${resRate}%`;
 
-        if (tickets.length === 0) {
-            queueList.innerHTML = '<div style="padding: 20px; text-align: center; color: var(--text-dim); font-size: 0.85rem;">ยังไม่มี Ticket เข้ามา</div>';
+        // Apply Search and Filter
+        const query = document.getElementById('searchInput').value.toLowerCase();
+        let filteredTickets = tickets.filter(t => {
+            let matchFilter = true;
+            if (currentFilter === 'open') matchFilter = (t.status === 'open' || t.status === 'progress');
+            if (currentFilter === 'closed') matchFilter = (t.status === 'closed');
+            
+            let matchSearch = t.id.toLowerCase().includes(query) || t.title.toLowerCase().includes(query);
+            return matchFilter && matchSearch;
+        });
+
+        if (filteredTickets.length === 0) {
+            queueList.innerHTML = '<div style="padding: 20px; text-align: center; color: var(--text-dim); font-size: 0.85rem;">ไม่พบ Ticket ที่ตรงเงื่อนไข</div>';
             return;
         }
 
-        queueList.innerHTML = [...tickets].reverse().map(t => {
+        queueList.innerHTML = [...filteredTickets].reverse().map(t => {
             let priorityColor = t.priority === 'critical' ? 'var(--accent-red)' : (t.priority === 'high' ? 'var(--accent-yellow)' : 'var(--accent-green)');
             let chipClass = `chip-${t.priority}`;
             let activeClass = t.id === activeTicketId ? 'active' : '';
@@ -414,12 +475,25 @@
 
     function renderAnalytics() {
         const tvHeader = document.getElementById('tvHeader');
+        
+        // Calculate for chart based on current data
+        const tickets = getTickets();
+        const catCount = { 'Hardware': 0, 'Network': 0, 'Security': 0, 'General': 0 };
+        tickets.forEach(t => { if(catCount[t.category] !== undefined) catCount[t.category]++; });
+        
+        // If no data, show zero chart instead of mock
+        let chartData = [catCount.Hardware, catCount.Network, catCount.Security, catCount.General];
+        let isEmpty = tickets.length === 0;
+
         tvHeader.innerHTML = `
             <div style="padding: 40px; color: var(--text-main);">
                 <h2 style="font-size: 1.5rem; margin-bottom: 8px;">📊 System Analytics</h2>
                 <p style="color: var(--text-dim); margin-bottom: 30px;">⬅️ เลือก Ticket ทางซ้ายมือเพื่อตอบกลับ หรือดูสรุปข้อมูลระบบด้านล่าง</p>
                 <div style="background: var(--bg-panel); padding: 24px; border-radius: 12px; border: 1px solid var(--border); display: flex; gap: 40px; align-items: center;">
-                    <div style="width: 250px; height: 250px;"><canvas id="catChart"></canvas></div>
+                    <div style="width: 250px; height: 250px; position:relative;">
+                        ${isEmpty ? '<div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--text-dim); font-size:0.8rem;">ยังไม่มีข้อมูล</div>' : ''}
+                        <canvas id="catChart" style="${isEmpty ? 'opacity:0.2' : ''}"></canvas>
+                    </div>
                     <div style="flex: 1;">
                         <h3 style="margin-bottom: 16px; font-weight: 600;">ปัญหาที่พบบ่อย (ตามระบบ Hybrid AI)</h3>
                         <div id="chartLegend" style="display: flex; flex-direction: column; gap: 12px;"></div>
@@ -429,15 +503,7 @@
         `;
         document.getElementById('chatTimeline').innerHTML = '';
         document.getElementById('adminInput').disabled = true;
-
-        const tickets = getTickets();
-        const catCount = { 'Hardware': 0, 'Network': 0, 'Security': 0, 'General': 0 };
-        tickets.forEach(t => { if(catCount[t.category] !== undefined) catCount[t.category]++; });
-        
-        // Ensure some demo data if empty
-        if(tickets.length === 0) {
-            catCount.Hardware = 5; catCount.Network = 3; catCount.Security = 2; catCount.General = 1;
-        }
+        document.getElementById('cannedResponses').style.display = 'none';
 
         const ctx = document.getElementById('catChart').getContext('2d');
         new Chart(ctx, {
@@ -445,8 +511,8 @@
             data: {
                 labels: ['Hardware', 'Network', 'Security', 'General'],
                 datasets: [{
-                    data: [catCount.Hardware, catCount.Network, catCount.Security, catCount.General],
-                    backgroundColor: ['#eab308', '#ef4444', '#3b82f6', '#22c55e'],
+                    data: isEmpty ? [1,1,1,1] : chartData,
+                    backgroundColor: isEmpty ? ['#333','#333','#333','#333'] : ['#eab308', '#ef4444', '#3b82f6', '#22c55e'],
                     borderWidth: 0, hoverOffset: 4
                 }]
             },
@@ -512,14 +578,24 @@
         chatTimeline.scrollTop = chatTimeline.scrollHeight;
 
         const inp = document.getElementById('adminInput');
+        const canned = document.getElementById('cannedResponses');
         if(t.status === 'closed') {
             inp.disabled = true;
             inp.placeholder = "Ticket นี้ถูกปิดแล้วโดยผู้ใช้งาน";
+            canned.style.display = 'none';
         } else {
             inp.disabled = false;
             inp.placeholder = "พิมพ์ปัญหา หรือตอบคำถาม...";
             inp.focus();
+            canned.style.display = 'flex';
         }
+    }
+    
+    function sendQuickReply(text) {
+        if(!activeTicketId) return;
+        const inp = document.getElementById('adminInput');
+        inp.value = text;
+        sendAdminReply();
     }
 
     function sendAdminReply() {
