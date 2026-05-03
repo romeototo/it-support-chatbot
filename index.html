@@ -104,12 +104,19 @@
         }
 
         .api-config {
-            background: rgba(0,0,0,0.3);
-            padding: 8px 30px;
+            background: rgba(0,0,0,0.4);
+            padding: 0 30px;
             display: flex;
             gap: 12px;
             align-items: center;
             border-bottom: 1px solid var(--glass-border);
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+        }
+        .api-config.open {
+            max-height: 60px;
+            padding: 10px 30px;
         }
         .api-config label { font-size: 0.75rem; color: var(--text-dim); }
         .api-config input {
@@ -241,7 +248,19 @@
             box-shadow: 0 5px 20px rgba(99, 102, 241, 0.2);
         }
 
-        .msg-footer { display: flex; gap: 8px; margin-top: 6px; padding-left: 52px; }
+        .msg-footer { display: flex; gap: 8px; margin-top: 6px; padding-left: 52px; align-items: center; }
+        .copy-btn {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--glass-border);
+            color: var(--text-dim);
+            padding: 4px 10px;
+            border-radius: 100px;
+            cursor: pointer;
+            font-size: 0.68rem;
+            transition: all 0.2s;
+            margin-left: auto;
+        }
+        .copy-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
         .fb-btn {
             background: rgba(255,255,255,0.03);
             border: 1px solid var(--glass-border);
@@ -379,6 +398,7 @@
         </div>
         <span class="hbadge" id="faqCount">Loading Knowledge...</span>
         <div class="gemini-badge" id="aiLabel">Keyword Engine</div>
+        <button onclick="toggleAIConfig()" title="ตั้งค่า Gemini AI" style="background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);color:var(--text-dim);padding:5px 12px;border-radius:100px;cursor:pointer;font-size:0.7rem;transition:0.2s;margin-left:8px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">⚙️ AI</button>
     </header>
 
     <div class="api-config">
@@ -427,7 +447,7 @@
                 <div class="stat">Tickets: <span id="sTicket">0</span></div>
                 <div class="stat">Helpful: <span id="sGood">0</span></div>
                 <div class="stat">Issues: <span id="sBad">0</span></div>
-                <div class="stat" style="margin-left:auto">Engine: <span id="sMode">Standard</span></div>
+                <div class="stat" style="margin-left:auto">Engine: <span id="sMode">Keyword Mode</span></div>
             </div>
         </div>
 
@@ -549,12 +569,30 @@ function addMsg(text,role){
   w.appendChild(d); w.scrollTop=w.scrollHeight; return d;
 }
 
-function addFeedback(tNum){
+function addFeedback(tNum, botText){
   const w=document.getElementById('messages');
   const d=document.createElement('div');
   d.className='msg-footer';
-  d.innerHTML=`<button class="fb-btn" id="g${tNum}" onclick="feedback('${tNum}',1)">👍 มีประโยชน์</button><button class="fb-btn" id="b${tNum}" onclick="feedback('${tNum}',-1)">👎 ไม่ตรง</button><span class="ticket-tag">#${tNum}</span>`;
+  d.innerHTML=`<button class="fb-btn" id="g${tNum}" onclick="feedback('${tNum}',1)">👍 มีประโยชน์</button><button class="fb-btn" id="b${tNum}" onclick="feedback('${tNum}',-1)">👎 ไม่ตรง</button><span class="ticket-tag">#${tNum}</span><button class="copy-btn" onclick="copyAnswer('${tNum}')" id="cp${tNum}">📋 คัดลอก</button>`;
+  // store text for copy
+  if(botText) window['_answer_'+tNum] = botText;
   w.appendChild(d); w.scrollTop=w.scrollHeight;
+}
+
+function copyAnswer(tNum){
+  const text = window['_answer_'+tNum] || '';
+  navigator.clipboard.writeText(text).then(()=>{
+    const btn = document.getElementById('cp'+tNum);
+    if(btn){ btn.textContent='✅ คัดลอกแล้ว'; btn.style.color='#4ade80'; setTimeout(()=>{btn.textContent='📋 คัดลอก'; btn.style.color='';},2000); }
+  });
+}
+
+function toggleAIConfig(){
+  const el = document.querySelector('.api-config');
+  el.classList.toggle('open');
+  if(el.classList.contains('open')){
+    setTimeout(()=>document.getElementById('geminiKey').focus(), 350);
+  }
 }
 
 function feedback(tNum,val){
@@ -636,7 +674,7 @@ async function send(){
   
   document.getElementById('typing')?.remove();
   addMsg(reply,'bot');
-  addFeedback(tNum);
+  addFeedback(tNum, reply);
   history.push({ticket:tNum,question:text,time:now,mode,feedback:''});
   renderHistory();
 }
