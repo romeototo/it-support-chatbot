@@ -1,3 +1,9 @@
+"""
+ChromaDB RAG Engine Module
+Handles the ingestion of FAQ data into a vector database (ChromaDB)
+and provides semantic search capabilities using Google Generative AI embeddings
+or local fallback embeddings.
+"""
 import chromadb
 from chromadb.utils import embedding_functions
 import json
@@ -5,7 +11,18 @@ import os
 from pathlib import Path
 
 class RAGEngine:
+    """
+    Core RAG (Retrieval-Augmented Generation) Engine.
+    Manages vector embeddings and similarity search for FAQs.
+    """
     def __init__(self, db_path="./chroma_db", api_key=None):
+        """
+        Initialize the ChromaDB client and embedding function.
+        
+        Args:
+            db_path (str): Path to store the persistent ChromaDB files.
+            api_key (str, optional): Google API key for Gemini embeddings.
+        """
         self.db_path = db_path
         self.client = chromadb.PersistentClient(path=db_path)
         
@@ -60,7 +77,16 @@ class RAGEngine:
         return 0
 
     def query(self, user_query, n_results=3):
-        """Search for relevant context"""
+        """
+        Search for relevant context using semantic similarity.
+        
+        Args:
+            user_query (str): The search query from the user.
+            n_results (int): Number of top results to return.
+            
+        Returns:
+            list: A list of dictionaries containing matched FAQs and their scores.
+        """
         results = self.collection.query(
             query_texts=[user_query],
             n_results=n_results
