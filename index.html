@@ -443,7 +443,17 @@
             </div>
         </div>
     </div>
-    <script src="/static/kb.js" defer></script>
+    <script>
+    // Load kb.js — supports both Flask (localhost) and GitHub Pages
+    (function() {
+        var isFlask = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        var src = isFlask ? '/static/kb.js' : 'kb.js';
+        var s = document.createElement('script');
+        s.src = src;
+        s.defer = true;
+        document.head.appendChild(s);
+    })();
+    </script>
     <script defer>
 
 let geminiKey = localStorage.getItem('geminiKey') || '';
