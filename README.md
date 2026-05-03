@@ -14,6 +14,11 @@
 **ระบบ IT HelpDesk อัจฉริยะ พร้อม Hybrid AI Search Engine, Premium Glassmorphism UI**  
 **ฐานข้อมูล 222 FAQ / 50 หมวดหมู่ ภาษาไทย ครอบคลุมทุกปัญหา IT ในองค์กร**
 
+### 🌐 Live Demo & Portfolio Showcase
+- **[User Chatbot Interface](https://romeototo.github.io/it-support-chatbot/)** — หน้าแชทบอทสำหรับผู้ใช้งาน แจ้งปัญหาและรับการวิเคราะห์เบื้องต้น
+- **[Admin Dashboard (HelpDesk Pro)](https://romeototo.github.io/it-support-chatbot/dashboard.html)** — แดชบอร์ดสำหรับเจ้าหน้าที่ IT เพื่อรับ Ticket และตอบกลับผู้ใช้
+*(**Pro Tip:** เปิด 2 หน้าจอพร้อมกันเพื่อดูการซิงค์ข้อมูล **Real-Time Hybrid Sync** แบบสดๆ!)*
+
 </div>
 
 ---
@@ -31,9 +36,8 @@
 | 📋 **Copy to Clipboard** | คัดลอกคำตอบได้ในคลิกเดียว |
 | 👍👎 **Feedback System** | ให้คะแนนคำตอบได้ บันทึกใน LocalStorage |
 | 🎫 **Ticket History** | บันทึกประวัติการสนทนาแบบ Real-time + Persist หลัง Refresh |
-| 🗑️ **Clear Chat** | ล้างประวัติแชทได้ทันที |
-| ⬇️ **Scroll to Bottom** | ปุ่มลอยขึ้นอัตโนมัติเมื่อ scroll ขึ้น |
-| 📱 **Responsive Design** | รองรับ Desktop / Tablet |
+| 👨‍💻 **Admin Dashboard** | หน้าจอ HelpDesk Pro จัดการ Ticket คิวงาน |
+| ⚡ **Real-Time Hybrid Sync** | การรับส่งข้อมูลระหว่างหน้า User และ Admin บน GitHub Pages (Serverless) |
 | 🌐 **Dual Deploy Mode** | รันได้ทั้งบน Flask (Full Stack) และ GitHub Pages (Static) |
 
 ---
