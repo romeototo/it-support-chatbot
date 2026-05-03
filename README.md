@@ -36,8 +36,12 @@
 | 📋 **Copy to Clipboard** | คัดลอกคำตอบได้ในคลิกเดียว |
 | 👍👎 **Feedback System** | ให้คะแนนคำตอบได้ บันทึกใน LocalStorage |
 | 🎫 **Ticket History** | บันทึกประวัติการสนทนาแบบ Real-time + Persist หลัง Refresh |
-| 👨‍💻 **Admin Dashboard** | หน้าจอ HelpDesk Pro จัดการ Ticket คิวงาน |
-| ⚡ **Real-Time Hybrid Sync** | การรับส่งข้อมูลระหว่างหน้า User และ Admin บน GitHub Pages (Serverless) |
+| 👨‍💻 **Admin Dashboard** | หน้าจอ HelpDesk Pro จัดการ Ticket คิวงานแบบ Enterprise |
+| ⚡ **Real-Time Hybrid Sync** | ซิงค์ข้อมูลข้ามแท็บระหว่าง User และ Admin ด้วย LocalStorage |
+| 📊 **Live Analytics** | สรุปข้อมูลหมวดหมู่ปัญหาและ Resolution Rate ด้วย Chart.js |
+| ⌨️ **Admin Typing Indicator** | สถานะ "Admin กำลังพิมพ์" ซิงค์ไปยังหน้าจอผู้ใช้แบบ Real-time |
+| 🔍 **Search & Filter** | ค้นหา Ticket ID/Keyword และกรองสถานะ (Open/Closed) ได้ทันที |
+| ⚡ **Canned Responses** | ปุ่มตอบกลับด่วนสำหรับ Admin ลดเวลาในการพิมพ์ |
 | 🌐 **Dual Deploy Mode** | รันได้ทั้งบน Flask (Full Stack) และ GitHub Pages (Static) |
 
 ---
