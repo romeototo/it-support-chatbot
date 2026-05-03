@@ -229,6 +229,7 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            position: relative;
             box-shadow: 0 10px 40px rgba(0,0,0,0.2);
         }
 
@@ -413,6 +414,70 @@
         .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
         .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
         @keyframes dot { 0%, 80%, 100% { transform: scale(1); opacity: 0.3; } 40% { transform: scale(1.4); opacity: 1; } }
+        @keyframes fadeInUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes typeCursor { 0%,100%{opacity:1} 50%{opacity:0} }
+
+        /* Scroll to bottom button */
+        .scroll-btn {
+            position: absolute;
+            bottom: 90px;
+            right: 20px;
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            border: none;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px var(--primary-glow);
+            transition: all 0.3s;
+            z-index: 10;
+        }
+        .scroll-btn.visible { display: flex; }
+        .scroll-btn:hover { transform: scale(1.1); }
+
+        /* Clear chat button */
+        .clear-btn {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--glass-border);
+            color: var(--text-dim);
+            padding: 4px 10px;
+            border-radius: 100px;
+            cursor: pointer;
+            font-size: 0.68rem;
+            transition: all 0.2s;
+        }
+        .clear-btn:hover { background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.4); color: #f87171; }
+
+        /* Collapsible long answers */
+        .bub.collapsed { max-height: 150px; overflow: hidden; position: relative; }
+        .bub.collapsed::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 50px;
+            background: linear-gradient(transparent, var(--glass-bg));
+            pointer-events: none;
+        }
+        .expand-btn {
+            display: block;
+            margin-top: 6px;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 0.75rem;
+            cursor: pointer;
+            padding: 2px 0;
+            transition: 0.2s;
+        }
+        .expand-btn:hover { color: var(--secondary); }
+
+        /* Typing cursor */
+        .typing-cursor::after { content:'▌'; animation: typeCursor 0.8s infinite; font-size: 0.9em; }
 
         @media (max-width: 1024px) {
             .history-panel { display: none; }
@@ -467,24 +532,26 @@
         </div>
 
         <div class="chat-wrap">
-            <div class="messages" id="messages">
+            <div class="messages" id="messages" onscroll="checkScrollBtn()">
                 <div class="msg bot" id="welcomeMsg">
                     <div class="av">🤖</div>
                     <div class="bub" id="welcomeBub"></div>
                 </div>
             </div>
+            <button class="scroll-btn" id="scrollBtn" onclick="scrollToBottom()" title="เลื่อนลงล่าง">↓</button>
 
             <div class="input-wrap">
                 <div class="input-container">
                     <input id="inp" placeholder="พิมพ์อาการเสีย หรือปัญหาไอทีที่พบ..." onkeydown="if(event.key==='Enter')send()" autofocus>
                 </div>
-                <button class="send-btn" onclick="send()">🚀</button>
+                <button class="send-btn" onclick="send()" title="ส่งข้อความ (Enter)">🚀</button>
             </div>
 
             <div class="stats-bar">
                 <div class="stat">Tickets: <span id="sTicket">0</span></div>
                 <div class="stat">Helpful: <span id="sGood">0</span></div>
                 <div class="stat">Issues: <span id="sBad">0</span></div>
+                <button class="clear-btn" onclick="clearChat()" title="ล้างประวัติแชท">🗑️ ล้างแชท</button>
                 <div class="stat" style="margin-left:auto">Engine: <span id="sMode">Keyword Mode</span></div>
             </div>
         </div>
@@ -626,12 +693,96 @@ function formatMarkdown(text) {
   return html;
 }
 
-function addMsg(text,role){
+// Scroll-to-bottom helpers
+function scrollToBottom(){
+  const w=document.getElementById('messages');
+  w.scrollTop=w.scrollHeight;
+}
+function checkScrollBtn(){
+  const w=document.getElementById('messages');
+  const btn=document.getElementById('scrollBtn');
+  if(!btn) return;
+  const distFromBottom = w.scrollHeight - w.scrollTop - w.clientHeight;
+  if(distFromBottom > 120) btn.classList.add('visible');
+  else btn.classList.remove('visible');
+}
+
+// Clear chat
+function clearChat(){
+  if(!confirm('ล้างประวัติแชทแน่ใจไหมครับ?')) return;
+  const w=document.getElementById('messages');
+  // Remove all messages except welcome
+  const msgs = w.querySelectorAll('.msg:not(#welcomeMsg), .msg-footer, div[style*="text-align:center"]');
+  msgs.forEach(m => m.remove());
+  history = [];
+  stats = {tickets:0, good:0, bad:0};
+  document.getElementById('sTicket').textContent = 0;
+  document.getElementById('sGood').textContent = 0;
+  document.getElementById('sBad').textContent = 0;
+  localStorage.removeItem('itbot_stats');
+  localStorage.removeItem('itbot_history');
+  document.getElementById('scrollBtn')?.classList.remove('visible');
+}
+
+// Typewriter animation for bot messages
+function typeWrite(el, html, speed=12) {
+  const tmp = document.createElement('div');
+  tmp.innerHTML = html;
+  const plainText = tmp.textContent || '';
+  const fullHTML = html;
+  let i = 0;
+  el.classList.add('typing-cursor');
+  const interval = setInterval(() => {
+    i += 2; // 2 chars per tick for speed
+    if(i >= plainText.length) {
+      clearInterval(interval);
+      el.classList.remove('typing-cursor');
+      el.innerHTML = fullHTML;
+      // Collapse long answers
+      if(el.scrollHeight > 180) {
+        el.classList.add('collapsed');
+        const btn = document.createElement('button');
+        btn.className = 'expand-btn';
+        btn.textContent = '▼ ดูคำตอบเต็ม';
+        btn.onclick = function(){
+          if(el.classList.contains('collapsed')){
+            el.classList.remove('collapsed');
+            btn.textContent = '▲ ย่อลง';
+          } else {
+            el.classList.add('collapsed');
+            btn.textContent = '▼ ดูคำตอบเต็ม';
+          }
+        };
+        el.after(btn);
+      }
+      const w=document.getElementById('messages');
+      w.scrollTop=w.scrollHeight;
+      checkScrollBtn();
+    } else {
+      // Show partial plain text during typing
+      el.textContent = plainText.slice(0, i);
+      const w=document.getElementById('messages');
+      w.scrollTop=w.scrollHeight;
+    }
+  }, speed);
+}
+
+function addMsg(text, role){
   const w=document.getElementById('messages');
   const d=document.createElement('div');
   d.className='msg '+role;
-  d.innerHTML=`<div class="av">${role==='bot'?'🤖':'👤'}</div><div class="bub">${formatMarkdown(text)}</div>`;
-  w.appendChild(d); w.scrollTop=w.scrollHeight; return d;
+  const bub = document.createElement('div');
+  bub.className='bub';
+  d.innerHTML=`<div class="av">${role==='bot'?'🤖':'👤'}</div>`;
+  d.appendChild(bub);
+  w.appendChild(d);
+  if(role==='bot'){
+    typeWrite(bub, formatMarkdown(text));
+  } else {
+    bub.innerHTML = formatMarkdown(text);
+    w.scrollTop=w.scrollHeight;
+  }
+  return d;
 }
 
 function addFeedback(tNum, botText){
