@@ -1026,11 +1026,13 @@ function filterCats() {
   });
 }
 
-function addTyping(){
+function addTyping(role='bot'){
+  document.getElementById('typing')?.remove();
   const w=document.getElementById('messages');
   const d=document.createElement('div');
-  d.className='msg bot'; d.id='typing';
-  d.innerHTML='<div class="av">🤖</div><div class="bub"><div class="typing-dots"><span></span><span></span><span></span></div></div>';
+  d.className='msg ' + role; d.id='typing';
+  let icon = role==='admin' ? '👨‍💻' : '🤖';
+  d.innerHTML=`<div class="av">${icon}</div><div class="bub"><div class="typing-dots"><span></span><span></span><span></span></div></div>`;
   w.appendChild(d); w.scrollTop=w.scrollHeight;
 }
 
@@ -1052,38 +1054,46 @@ async function send(){
   const now=new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
   let reply='', mode='Keyword';
   
-  try {
-    if (window.location.protocol !== 'file:' && !window.location.hostname.includes('github.io')) {
-      try {
-        const res = await fetch('/api/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: text })
-        });
-        if (res.ok) {
-          const data = await res.json();
-          reply = data.response;
-          mode = data.engine || 'RAG Server';
-        }
-      } catch (e) {
-        console.log('Backend fallback', e);
-      }
-    }
+  const lowerText = text.toLowerCase();
+  const isClosing = lowerText.includes('ขอบคุณ') || lowerText.includes('แก้ไขได้แล้ว') || lowerText.includes('เรียบร้อย') || lowerText.includes('โอเค');
 
-    if (!reply && geminiKey) {
-      mode = 'Gemini AI';
-      reply = await callGemini(text);
-    } 
-    
-    if (!reply) {
-      await new Promise(r=>setTimeout(r,700+Math.random()*500));
-      const m = scoreKB(text);
-      reply = m ? `📋 **${m.faq.question}**\n\n${m.faq.answer}` : window.KB.escalation.message;
-      mode = 'Keyword';
+  if (isClosing) {
+    reply = 'ยินดีให้บริการครับ! 💙 หากมีปัญหาเพิ่มเติมสามารถสอบถามเข้ามาได้ตลอดเวลาครับ\n\n*(ระบบได้ทำการบันทึกและปิด Ticket นี้แล้ว)*';
+    mode = 'System';
+  } else {
+    try {
+      if (window.location.protocol !== 'file:' && !window.location.hostname.includes('github.io')) {
+        try {
+          const res = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: text })
+          });
+          if (res.ok) {
+            const data = await res.json();
+            reply = data.response;
+            mode = data.engine || 'RAG Server';
+          }
+        } catch (e) {
+          console.log('Backend fallback', e);
+        }
+      }
+
+      if (!reply && geminiKey) {
+        mode = 'Gemini AI';
+        reply = await callGemini(text);
+      } 
+      
+      if (!reply) {
+        await new Promise(r=>setTimeout(r,700+Math.random()*500));
+        const m = scoreKB(text);
+        reply = m ? `📋 **${m.faq.question}**\n\n${m.faq.answer}` : window.KB.escalation.message;
+        mode = 'Keyword';
+      }
+    } catch(e){
+      reply = '⚠️ ระบบขัดข้อง: ' + e.message;
+      mode = 'Error';
     }
-  } catch(e){
-    reply = '⚠️ ระบบขัดข้อง: ' + e.message;
-    mode = 'Error';
   }
   
   document.getElementById('typing')?.remove();
@@ -1098,30 +1108,44 @@ async function send(){
 
   // Sync to HelpDesk Pro Dashboard via LocalStorage
   let hdTickets = JSON.parse(localStorage.getItem('helpdesk_tickets') || '[]');
-  let priority = (text.includes('ไม่') || text.includes('ด่วน') || text.includes('พัง') || text.includes('ลืม')) ? 'critical' : 'medium';
-  let category = 'General';
-  if(text.toLowerCase().includes('ปริ้น') || text.toLowerCase().includes('พิมพ์')) category = 'Hardware';
-  if(text.toLowerCase().includes('เน็ต') || text.toLowerCase().includes('vpn') || text.toLowerCase().includes('wifi')) category = 'Network';
-  if(text.toLowerCase().includes('รหัส') || text.toLowerCase().includes('password')) category = 'Security';
   
-  hdTickets.push({
-    id: `INC-${tNum}`,
-    time: now,
-    title: text,
-    priority: priority,
-    status: 'open',
-    category: category,
-    messages: [
-      { role: 'user', text: text },
-      { role: 'bot', text: reply }
-    ]
-  });
+  let lastTicket = hdTickets.length > 0 ? hdTickets[hdTickets.length - 1] : null;
+  let newStatus = isClosing ? 'closed' : 'open';
+
+  if (lastTicket && (lastTicket.status === 'open' || lastTicket.status === 'progress')) {
+    // Append to existing active ticket
+    lastTicket.messages.push({ role: 'user', text: text });
+    lastTicket.messages.push({ role: 'bot', text: reply });
+    if (isClosing) lastTicket.status = 'closed';
+    else lastTicket.status = 'open'; // Switch back to open if admin was progressing
+  } else {
+    // Create new ticket
+    let priority = (text.includes('ไม่') || text.includes('ด่วน') || text.includes('พัง') || text.includes('ลืม')) ? 'critical' : 'medium';
+    let category = 'General';
+    if(text.toLowerCase().includes('ปริ้น') || text.toLowerCase().includes('พิมพ์')) category = 'Hardware';
+    if(text.toLowerCase().includes('เน็ต') || text.toLowerCase().includes('vpn') || text.toLowerCase().includes('wifi')) category = 'Network';
+    if(text.toLowerCase().includes('รหัส') || text.toLowerCase().includes('password')) category = 'Security';
+    
+    hdTickets.push({
+      id: `INC-${tNum}`,
+      time: now,
+      title: text,
+      priority: priority,
+      status: newStatus,
+      category: category,
+      messages: [
+        { role: 'user', text: text },
+        { role: 'bot', text: reply }
+      ]
+    });
+  }
+  
   // Keep only latest 50 tickets
   if(hdTickets.length > 50) hdTickets = hdTickets.slice(-50);
   localStorage.setItem('helpdesk_tickets', JSON.stringify(hdTickets));
 }
 
-// Listen for Admin replies from Dashboard
+// Listen for Admin replies and typing from Dashboard
 window.addEventListener('storage', (e) => {
   if (e.key === 'helpdesk_tickets') {
     const oldData = JSON.parse(e.oldValue || '[]');
@@ -1132,9 +1156,19 @@ window.addEventListener('storage', (e) => {
       if (latestNew.id === latestOld.id && latestNew.messages.length > latestOld.messages.length) {
         const newMsg = latestNew.messages[latestNew.messages.length - 1];
         if (newMsg.role === 'admin') {
+          document.getElementById('typing')?.remove();
           addMsg(newMsg.text, 'admin');
         }
       }
+    }
+  }
+  
+  if (e.key === 'admin_typing') {
+    const data = JSON.parse(e.newValue || '{}');
+    if (data.typing) {
+      addTyping('admin');
+    } else {
+      document.getElementById('typing')?.remove();
     }
   }
 });
