@@ -8,6 +8,8 @@ import json
 import re
 import sys
 from pathlib import Path
+from rag_engine import RAGEngine
+import os
 
 # ============================================================
 # CONFIG
@@ -20,7 +22,10 @@ USE_LLM = False
 # LLM Config (Xiaomi Token Plan)
 LLM_API_URL = "https://token-plan-sgp.xiaomimimo.com/v1/chat/completions"
 LLM_MODEL = "mimo-v2.5"
-LLM_API_KEY = ""  # Add your tp-... key here
+LLM_API_KEY = os.getenv("GOOGLE_API_KEY") or ""  # Will use environment variable if set
+
+# Initialize RAG Engine
+rag_engine = RAGEngine(api_key=LLM_API_KEY)
 
 # ============================================================
 # LOAD KNOWLEDGE BASE
@@ -118,37 +123,34 @@ FAQ Context:
 # CHATBOT RESPONSE
 # ============================================================
 def get_response(user_input, kb):
-    """Generate response for user input."""
-    matches = find_relevant_faqs(user_input, kb)
+    # 1. Try Exact Keyword Matching first (Highly accurate for Thai)
+    exact_matches = find_relevant_faqs(user_input, kb)
+    if exact_matches and exact_matches[0][0] >= 3:
+        best = exact_matches[0][1]
+        return f"**{best['question']}**\n\n{best['answer']}", "Keyword"
+
+    # 2. Fallback to Vector DB (RAG)
+    matches = rag_engine.query(user_input, n_results=3)
 
     if not matches:
-        return kb["escalation"]["message"]
+        return kb["escalation"]["message"], "RAG Server"
 
-    best_score = matches[0][0]
-
-    # Low confidence - suggest escalation
-    if best_score < 2:
-        return f"🤔 ไม่แน่ใจว่าตรงกับปัญหาหรือเปล่า ลองดูนี้:\n\n" + \
-               "\n\n".join([f"💡 {faq['question']}\n{faq['answer']}" for _, faq, _ in matches]) + \
-               f"\n\n❓ ถ้าไม่ตรง {kb['escalation']['message']}"
+    best_match = matches[0]
+    
+    # Check confidence (lower is better, depending on distance metric, but if old code used score < 0.3 as low confidence, I will use threshold)
+    # distance metric usually has 0 as exact.
+    if best_match.get('distance', 1.0) > 1.0:
+        return f"ไม่แน่ใจว่าตรงกับที่คุณต้องการไหม แต่คุณอาจหมายถึง:\n\n**{best_match['question']}**\n{best_match['answer']}\n\nหากยังไม่ใช่ กรุณาติดต่อ {kb['escalation']['hotline']}", "RAG Server"
 
     # Try LLM for better response
-    llm_response = llm_answer(user_input, matches)
+    context_faqs = [(m.get('score', 0), m, m.get('category', '')) for m in matches]
+    llm_response = llm_answer(user_input, context_faqs)
+    
     if llm_response:
-        return llm_response
+        return llm_response, "Gemini AI"
 
-    # Return best FAQ match
-    best_faq = matches[0][1]
-    category = matches[0][2]
-
-    response = f"📋 **{best_faq['question']}**\n\n{best_faq['answer']}"
-
-    # Add related questions if available
-    if len(matches) > 1:
-        related = [f"• {faq['question']}" for _, faq, _ in matches[1:3]]
-        response += f"\n\n🔗 คำถามที่เกี่ยวข้อง:\n" + "\n".join(related)
-
-    return response
+    # Fallback to direct FAQ match from RAG
+    return f"**{best_match['question']}**\n\n{best_match['answer']}", "RAG Server"
 
 # ============================================================
 # MAIN LOOP
@@ -157,38 +159,38 @@ def main():
     kb = load_kb()
 
     print("=" * 50)
-    print("  🖥️  IT Support Chatbot - Prototype")
+    print("  IT Support Chatbot - Prototype")
     print("=" * 50)
-    print("  พิมพ์คำถาม IT ของคุณได้เลย")
-    print("  พิมพ์ 'quit' หรือ 'exit' เพื่อออก")
-    print("  พิมพ์ 'help' เพื่อดูหมวดหมู่ทั้งหมด")
+    print("  Type your IT questions here")
+    print("  Type 'quit' or 'exit' to leave")
+    print("  Type 'help' to see all categories")
     print("=" * 50)
     print()
 
     while True:
         try:
-            user_input = input("🧑 คุณ: ").strip()
+            user_input = input("You: ").strip()
         except (KeyboardInterrupt, EOFError):
-            print("\n👋 ขอบคุณที่ใช้บริการ!")
+            print("\nGoodbye!")
             break
 
         if not user_input:
             continue
 
         if user_input.lower() in ["quit", "exit", "ออก", "q"]:
-            print("👋 ขอบคุณที่ใช้บริการ!")
+            print("Goodbye!")
             break
 
         if user_input.lower() in ["help", "ช่วย", "หมวดหมู่"]:
-            print("\n📂 หมวดหมู่ที่มี:")
+            print("\nCategories:")
             for cat in kb["categories"]:
-                print(f"  • {cat['name']} ({len(cat['faqs'])} FAQ)")
-            print(f"\n📞 ติดต่อ IT Support: {kb['escalation']['hotline']}")
+                print(f"  - {cat['name']} ({len(cat['faqs'])} FAQ)")
+            print(f"\nContact IT Support: {kb['escalation']['hotline']}")
             print()
             continue
 
         response = get_response(user_input, kb)
-        print(f"\n🤖 Bot: {response}\n")
+        print(f"\nBot: {response}\n")
 
 if __name__ == "__main__":
     main()

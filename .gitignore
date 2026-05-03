@@ -24,3 +24,6 @@ pin_repo.py
 
 HANDOFF.md
 QUICK_HANDOFF.md
+
+chroma_db/
+*_index*.html
