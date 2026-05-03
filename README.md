@@ -9,6 +9,7 @@
 [![Flask](https://img.shields.io/badge/Flask-2.x-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com)
 [![ChromaDB](https://img.shields.io/badge/ChromaDB-RAG-ff6b35?style=for-the-badge)](https://www.trychroma.com)
 [![Gemini AI](https://img.shields.io/badge/Gemini_AI-Optional-4285f4?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev)
+[![Chart.js](https://img.shields.io/badge/Chart.js-Analytics-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white)](https://www.chartjs.org/)
 [![License](https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge)](LICENSE)
 
 **ระบบ IT HelpDesk อัจฉริยะ พร้อม Hybrid AI Search Engine, Premium Glassmorphism UI**  
@@ -58,8 +59,9 @@ Deploy:    GitHub Pages (Frontend) / Local Flask (Full Stack)
 
 ---
 
-## 🧠 How the AI Works
+## 🧠 System Architecture
 
+### 1. Hybrid Search Engine (Chatbot)
 ```
 User Question
       │
@@ -80,9 +82,22 @@ User Question
            │ ไม่พบ
            ▼
 ┌─────────────────────┐
-│  Escalation Message │ ← ติดต่อ IT Support ext.1234
+│  Escalation Message │ ← เปิด Ticket ส่งให้ Admin
 └─────────────────────┘
 ```
+
+### 2. Real-Time Hybrid Sync (Admin Dashboard)
+การทำงานแบบ **Serverless** บน GitHub Pages ที่ใช้ Web Storage API (`localStorage` + `storage event`) เพื่อจำลองระบบ Real-time Database
+
+```
+[ User Chatbot ] ──(Save to LocalStorage)──> [ Admin Dashboard ]
+       ▲                                            │
+       │                                            ▼
+   (Event Triggered) ◄──(Reply & Sync Status)───────┘
+```
+- ⚡ ซิงค์การพิมพ์แบบสดๆ (Typing Indicator)
+- ⚡ ซิงค์สถานะ Ticket (Open/Closed) อัตโนมัติ
+- 📊 ดึงข้อมูล Ticket มาทำ Analytics แบบ Real-time
 
 ---
 
@@ -124,11 +139,12 @@ python web_app.py
 
 ```
 it-support-chatbot/
-├── index.html           # Frontend (Glassmorphism UI + Chat Logic + Dark/Light Mode)
+├── index.html           # Frontend Chatbot (Glassmorphism UI)
+├── dashboard.html       # Admin Dashboard (HelpDesk Pro + Chart.js)
 ├── kb.js                # Knowledge Base 222 FAQ สำหรับ GitHub Pages (Static)
 ├── knowledge_base.json  # Knowledge Base สำหรับ Flask Backend
 ├── requirements.txt     # Python dependencies
-├── web_app.py           # Flask Server + API Routes
+├── web_app.py           # Flask Server + REST API Routes สำหรับทำ Full-Stack
 ├── chatbot.py           # Hybrid Search Engine (Keyword + RAG + Gemini)
 ├── rag_engine.py        # ChromaDB Vector Search Engine
 ├── init_rag.py          # Script สำหรับ Ingest FAQ เข้า Vector DB
