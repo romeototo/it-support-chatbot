@@ -2,10 +2,7 @@
 
 <div align="center">
 
-<!-- <img src="screenshot.png" alt="IT Support AI Chatbot" width="49%"> <img src="screenshot-dashboard.png" alt="Admin Dashboard" width="49%"> -->
-<img src="screenshot.png" alt="IT Support AI Chatbot" width="80%">
-
-*(เพื่อความสมบูรณ์แบบ แนะนำให้แคปภาพหน้าจอ Admin Dashboard ตั้งชื่อไฟล์ว่า `screenshot-dashboard.png` มาไว้ในโฟลเดอร์นี้ แล้วลบ Comment โค้ดด้านบนออกครับ)*
+<img src="screenshot.png" alt="IT Support AI Chatbot" width="49%"> <img src="screenshot-dashboard.png" alt="Admin Dashboard" width="49%">
 
 [![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-GitHub_Pages-6366f1?style=for-the-badge)](https://romeototo.github.io/it-support-chatbot/)
 [![Python](https://img.shields.io/badge/Python-3.10+-3776ab?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
