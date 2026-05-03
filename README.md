@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![IT Support AI Demo](screenshot.png)
+<img src="screenshot.png" alt="IT Support AI Chatbot" width="49%"> <img src="screenshot-dashboard.png" alt="Admin Dashboard" width="49%">
 
 [![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-GitHub_Pages-6366f1?style=for-the-badge)](https://romeototo.github.io/it-support-chatbot/)
 [![Python](https://img.shields.io/badge/Python-3.10+-3776ab?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
@@ -24,10 +24,24 @@
 
 ---
 
+## 💼 Business Value & Impact
+
+- **Cost Reduction (Zero Server Cost):** โหมด Hybrid Sync สื่อสารผ่าน Web Storage API ทำให้สามารถทำงานบน GitHub Pages ได้โดยไม่ต้องเสียค่าเช่า Server ประหยัดงบประมาณ IT 100%
+- **Time Efficiency:** บอทช่วยตอบคำถามพื้นฐาน (Tier 1) กว่า 222 อาการ ทำให้เจ้าหน้าที่ IT มีเวลาไปโฟกัสกับปัญหาที่ซับซ้อนขึ้น
+- **Seamless Handoff:** หากบอทแก้ปัญหาไม่ได้ ระบบจะเปิด Ticket และซิงค์ข้อมูลไปที่ Admin ทันที ผู้ใช้ไม่ต้องอธิบายปัญหาซ้ำ
+
+---
+
 ## ✨ Features
 
 | Feature | Description |
 |---|---|
+| 👨‍💻 **Admin Dashboard** | หน้าจอ HelpDesk Pro จัดการ Ticket คิวงานแบบ Enterprise |
+| ⚡ **Real-Time Hybrid Sync** | ซิงค์ข้อมูลข้ามแท็บระหว่าง User และ Admin ด้วย LocalStorage |
+| ⌨️ **Admin Typing Indicator** | สถานะ "Admin กำลังพิมพ์" ซิงค์ไปยังหน้าจอผู้ใช้แบบ Real-time |
+| 📊 **Live Analytics** | สรุปข้อมูลหมวดหมู่ปัญหาและ Resolution Rate ด้วย Chart.js |
+| 🔍 **Search & Filter** | ค้นหา Ticket ID/Keyword และกรองสถานะ (Open/Closed) ได้ทันที |
+| ⚡ **Canned Responses** | ปุ่มตอบกลับด่วนสำหรับ Admin ลดเวลาในการพิมพ์ |
 | 🔍 **Hybrid Search Engine** | Keyword Matching → RAG (ChromaDB) → Gemini AI — 3 ชั้นความแม่นยำ |
 | 📚 **222 FAQ / 50 หมวดหมู่** | ครอบคลุมทุกปัญหา IT ในองค์กร ภาษาไทย 100% |
 | 🤖 **Gemini AI Integration** | ใส่ API Key เพื่อเปิดโหมด AI ตอบแบบ Natural Language |
@@ -37,12 +51,6 @@
 | 📋 **Copy to Clipboard** | คัดลอกคำตอบได้ในคลิกเดียว |
 | 👍👎 **Feedback System** | ให้คะแนนคำตอบได้ บันทึกใน LocalStorage |
 | 🎫 **Ticket History** | บันทึกประวัติการสนทนาแบบ Real-time + Persist หลัง Refresh |
-| 👨‍💻 **Admin Dashboard** | หน้าจอ HelpDesk Pro จัดการ Ticket คิวงานแบบ Enterprise |
-| ⚡ **Real-Time Hybrid Sync** | ซิงค์ข้อมูลข้ามแท็บระหว่าง User และ Admin ด้วย LocalStorage |
-| 📊 **Live Analytics** | สรุปข้อมูลหมวดหมู่ปัญหาและ Resolution Rate ด้วย Chart.js |
-| ⌨️ **Admin Typing Indicator** | สถานะ "Admin กำลังพิมพ์" ซิงค์ไปยังหน้าจอผู้ใช้แบบ Real-time |
-| 🔍 **Search & Filter** | ค้นหา Ticket ID/Keyword และกรองสถานะ (Open/Closed) ได้ทันที |
-| ⚡ **Canned Responses** | ปุ่มตอบกลับด่วนสำหรับ Admin ลดเวลาในการพิมพ์ |
 | 🌐 **Dual Deploy Mode** | รันได้ทั้งบน Flask (Full Stack) และ GitHub Pages (Static) |
 
 ---
