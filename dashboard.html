@@ -294,7 +294,7 @@
     <!-- Metrics Row -->
     <div class="metrics-row">
         <div class="metric-card">
-            <div class="metric-value val-red">7</div>
+            <div class="metric-value val-red" id="tOpenCount">0</div>
             <div class="metric-label">Tickets เปิดอยู่</div>
         </div>
         <div class="metric-card">
@@ -307,8 +307,8 @@
             <div class="metric-label">Avg. response time</div>
         </div>
         <div class="metric-card">
-            <div class="metric-value val-green">12</div>
-            <div class="metric-label">แก้ไขวันนี้</div>
+            <div class="metric-value val-green" id="tTodayCount">0</div>
+            <div class="metric-label">Total Tickets วันนี้</div>
         </div>
     </div>
 
@@ -321,148 +321,166 @@
                 <h2>Ticket queue</h2>
                 <button class="btn-new">+ สร้างใหม่</button>
             </div>
-            <div class="queue-list">
-                <!-- Ticket 1 -->
-                <div class="ticket-item active">
-                    <div class="t-head"><span>INC-0041</span><span>09:15</span></div>
-                    <div class="t-title">เครื่องพิมพ์ชั้น 3 ไม่สามารถ print ได้</div>
-                    <div class="t-tags">
-                        <span class="chip chip-high">high</span>
-                        <span class="chip chip-open">เปิดอยู่</span>
-                    </div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 75%; background: var(--accent-yellow);"></div></div>
-                </div>
-                <!-- Ticket 2 -->
-                <div class="ticket-item">
-                    <div class="t-head"><span>INC-0040</span><span>08:40</span></div>
-                    <div class="t-title">VPN เชื่อมต่อไม่ได้ ใช้งาน WFH ไม่ได้</div>
-                    <div class="t-tags">
-                        <span class="chip chip-critical">critical</span>
-                        <span class="chip chip-progress">กำลังดำเนิน</span>
-                    </div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 90%; background: var(--accent-red);"></div></div>
-                </div>
-                <!-- Ticket 3 -->
-                <div class="ticket-item">
-                    <div class="t-head"><span>INC-0039</span><span>08:05</span></div>
-                    <div class="t-title">ลืมรหัสผ่าน Active Directory</div>
-                    <div class="t-tags">
-                        <span class="chip chip-medium">medium</span>
-                        <span class="chip chip-open">เปิดอยู่</span>
-                    </div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 30%; background: var(--accent-green);"></div></div>
-                </div>
-                <!-- Ticket 4 -->
-                <div class="ticket-item">
-                    <div class="t-head"><span>INC-0038</span><span>เมื่อวาน</span></div>
-                    <div class="t-title">Microsoft Teams crash ทุกครั้งที่เปิด</div>
-                    <div class="t-tags">
-                        <span class="chip chip-medium">medium</span>
-                        <span class="chip chip-progress">กำลังดำเนิน</span>
-                    </div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 60%; background: var(--accent-yellow);"></div></div>
-                </div>
-                <!-- Ticket 5 -->
-                <div class="ticket-item">
-                    <div class="t-head"><span>INC-0037</span><span>เมื่อวาน</span></div>
-                    <div class="t-title">คอมพิวเตอร์ทำงานช้ามาก</div>
-                    <div class="t-tags">
-                        <span class="chip chip-low">low</span>
-                        <span class="chip chip-open">เปิดอยู่</span>
-                    </div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 20%; background: var(--accent-green);"></div></div>
-                </div>
+            <div class="queue-list" id="queueList">
+                <!-- Dynamic Ticket Items injected by JS -->
             </div>
         </aside>
 
         <!-- Right Main: Ticket View -->
         <main class="ticket-view">
-            <!-- Header Info -->
-            <div class="tv-header">
-                <div class="tv-id">INC-0041</div>
-                <div class="tv-title">เครื่องพิมพ์ชั้น 3 ไม่สามารถ print ได้</div>
-                <div class="t-tags">
-                    <span class="chip chip-high">high</span>
-                    <span class="chip chip-open">เปิดอยู่</span>
-                </div>
-                
-                <div class="tv-meta">
-                    <div class="meta-group">
-                        <span class="meta-label">ผู้แจ้ง</span>
-                        <span class="meta-val">สมชาย ว.</span>
-                    </div>
-                    <div class="meta-group">
-                        <span class="meta-label">แผนก</span>
-                        <span class="meta-val">Finance</span>
-                    </div>
-                    <div class="meta-group">
-                        <span class="meta-label">สร้างเมื่อ</span>
-                        <span class="meta-val">09:15</span>
-                    </div>
+            <div id="ticketDetailContent" style="display:flex; flex-direction:column; flex:1; overflow:hidden;">
+                <!-- Header Info -->
+                <div class="tv-header" id="tvHeader">
+                    <div style="color:var(--text-dim); text-align:center; padding: 40px;">⬅️ กรุณาเลือก Ticket จากด้านซ้าย</div>
                 </div>
 
-                <div class="sla-container">
-                    <span class="sla-label">SLA</span>
-                    <div class="sla-bar-wrap">
-                        <div class="sla-bar-fill"></div>
-                    </div>
-                    <span class="sla-time">หมดใน 2.5 ชั่วโมง</span>
-                </div>
-            </div>
-
-            <!-- Chat / Interaction -->
-            <div class="chat-timeline">
-                <div class="msg-row">
-                    <div class="msg-av">IT</div>
-                    <div class="msg-content">
-                        <div class="msg-box">
-                            <p style="margin-bottom: 8px;">รับทราบ Ticket INC-0041 แล้วครับ</p>
-                            <p>ตรวจพบว่าเกี่ยวกับ: <strong>เครื่องพิมพ์ไม่ตอบสนอง</strong></p>
-                            <p style="margin-top: 16px;">กรุณายืนยัน: ปัญหาเกิดขึ้นตั้งแต่เมื่อไหร่ครับ?</p>
-                            
-                            <!-- Diagnostic Panel -->
-                            <div class="diag-panel">
-                                <div class="diag-row">
-                                    <span class="diag-label">หมวดหมู่ที่ตรวจพบ</span>
-                                    <span class="diag-val">Hardware</span>
-                                </div>
-                                <div class="diag-row">
-                                    <span class="diag-label">ความมั่นใจ</span>
-                                    <div>
-                                        <span class="conf-bar"><span class="conf-fill"></span></span>
-                                        <span class="diag-val">92%</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Chips -->
-                            <div class="action-chips">
-                                <button class="btn-chip">เพิ่งเกิดขึ้นวันนี้</button>
-                                <button class="btn-chip">เกิดมาหลายวันแล้ว</button>
-                                <button class="btn-chip">ไม่แน่ใจ</button>
-                            </div>
-                        </div>
-                        <div class="msg-footer-text">Smart Engine · ตอนนี้</div>
-                    </div>
+                <!-- Chat / Interaction -->
+                <div class="chat-timeline" id="chatTimeline">
+                    <!-- Chat messages here -->
                 </div>
             </div>
 
             <!-- Input Area -->
             <div class="input-area">
                 <div class="input-box">
-                    <input type="text" placeholder="พิมพ์ปัญหา หรือตอบคำถาม...">
+                    <input type="text" id="adminInput" placeholder="พิมพ์ปัญหา หรือตอบคำถาม..." disabled>
                     <div class="input-actions">
                         <button class="btn-icon" title="แนบไฟล์">📎</button>
-                        <button class="btn-icon" title="ส่ง" style="background: var(--accent-blue); border-color: var(--accent-blue); color: #fff;">➤</button>
+                        <button class="btn-icon" id="sendBtn" title="ส่ง" style="background: var(--accent-blue); border-color: var(--accent-blue); color: #fff;" onclick="sendAdminReply()">➤</button>
                     </div>
                 </div>
                 <div class="input-hint">
                     <span>Enter ส่ง · Shift+Enter ขึ้นบรรทัด</span>
-                    <span class="green">Smart Engine — ทำงานในเครื่อง</span>
+                    <span class="green">Hybrid Sync — เชื่อมต่อ LocalStorage</span>
                 </div>
             </div>
         </main>
     </div>
 
+<script>
+    let activeTicketId = null;
+
+    function getTickets() {
+        return JSON.parse(localStorage.getItem('helpdesk_tickets') || '[]');
+    }
+
+    function saveTickets(tickets) {
+        localStorage.setItem('helpdesk_tickets', JSON.stringify(tickets));
+    }
+
+    function renderQueue() {
+        const queueList = document.getElementById('queueList');
+        const tickets = getTickets();
+        
+        document.getElementById('tOpenCount').textContent = tickets.filter(t => t.status === 'open' || t.status === 'progress').length;
+        document.getElementById('tTodayCount').textContent = tickets.length;
+
+        if (tickets.length === 0) {
+            queueList.innerHTML = '<div style="padding: 20px; text-align: center; color: var(--text-dim); font-size: 0.85rem;">ยังไม่มี Ticket เข้ามา</div>';
+            return;
+        }
+
+        queueList.innerHTML = [...tickets].reverse().map(t => {
+            let priorityColor = t.priority === 'critical' ? 'var(--accent-red)' : (t.priority === 'high' ? 'var(--accent-yellow)' : 'var(--accent-green)');
+            let chipClass = `chip-${t.priority}`;
+            let activeClass = t.id === activeTicketId ? 'active' : '';
+            return `
+            <div class="ticket-item ${activeClass}" onclick="openTicket('${t.id}')">
+                <div class="t-head"><span>${t.id}</span><span>${t.time}</span></div>
+                <div class="t-title">${t.title}</div>
+                <div class="t-tags">
+                    <span class="chip ${chipClass}">${t.priority}</span>
+                    <span class="chip chip-${t.status==='open'?'open':(t.status==='progress'?'progress':'low')}">${t.status==='open'?'เปิดอยู่':(t.status==='progress'?'กำลังดำเนินการ':'ปิดแล้ว')}</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill" style="width: ${Math.random()*60 + 20}%; background: ${priorityColor};"></div></div>
+            </div>`;
+        }).join('');
+    }
+
+    function openTicket(id) {
+        activeTicketId = id;
+        renderQueue(); // update active state
+        renderTicketDetail();
+    }
+
+    function renderTicketDetail() {
+        const tickets = getTickets();
+        const t = tickets.find(x => x.id === activeTicketId);
+        if (!t) return;
+
+        const tvHeader = document.getElementById('tvHeader');
+        let chipClass = `chip-${t.priority}`;
+        tvHeader.innerHTML = `
+            <div class="tv-id">${t.id}</div>
+            <div class="tv-title">${t.title}</div>
+            <div class="t-tags" style="margin-bottom:15px">
+                <span class="chip ${chipClass}">${t.priority}</span>
+                <span class="chip chip-${t.status==='open'?'open':(t.status==='progress'?'progress':'low')}">${t.status==='open'?'เปิดอยู่':(t.status==='progress'?'กำลังดำเนินการ':'ปิดแล้ว')}</span>
+            </div>
+            <div class="tv-meta">
+                <div class="meta-group"><span class="meta-label">ผู้แจ้ง</span><span class="meta-val">ผู้ใช้งานทั่วไป</span></div>
+                <div class="meta-group"><span class="meta-label">หมวดหมู่</span><span class="meta-val">${t.category}</span></div>
+                <div class="meta-group"><span class="meta-label">สร้างเมื่อ</span><span class="meta-val">${t.time}</span></div>
+            </div>
+        `;
+
+        const chatTimeline = document.getElementById('chatTimeline');
+        chatTimeline.innerHTML = t.messages.map(m => {
+            let isBot = m.role === 'bot';
+            let isAdmin = m.role === 'admin';
+            let bg = isBot ? 'rgba(255,255,255,0.02)' : (isAdmin ? 'rgba(59, 130, 246, 0.1)' : 'var(--bg-panel)');
+            let avText = isBot ? '🤖' : (isAdmin ? 'IT' : '👤');
+            let borderColor = isAdmin ? 'var(--accent-blue)' : 'var(--border)';
+            return `
+            <div class="msg-row">
+                <div class="msg-av" style="${isAdmin ? 'background:var(--accent-blue);color:#fff;' : ''}">${avText}</div>
+                <div class="msg-content">
+                    <div class="msg-box" style="background:${bg}; border-color:${borderColor}">
+                        ${m.text.replace(/\n/g, '<br>')}
+                    </div>
+                    ${isAdmin ? '<div class="msg-footer-text">IT Support · ตอนนี้</div>' : (isBot ? '<div class="msg-footer-text">Smart Engine · อัตโนมัติ</div>' : '')}
+                </div>
+            </div>`;
+        }).join('');
+        
+        chatTimeline.scrollTop = chatTimeline.scrollHeight;
+
+        const inp = document.getElementById('adminInput');
+        inp.disabled = false;
+        inp.focus();
+    }
+
+    function sendAdminReply() {
+        const inp = document.getElementById('adminInput');
+        const text = inp.value.trim();
+        if(!text || !activeTicketId) return;
+
+        let tickets = getTickets();
+        let idx = tickets.findIndex(x => x.id === activeTicketId);
+        if(idx > -1) {
+            tickets[idx].messages.push({ role: 'admin', text: text });
+            tickets[idx].status = 'progress';
+            saveTickets(tickets);
+            
+            inp.value = '';
+            renderTicketDetail();
+            renderQueue();
+        }
+    }
+
+    document.getElementById('adminInput').addEventListener('keydown', e => {
+        if(e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendAdminReply(); }
+    });
+
+    window.addEventListener('storage', (e) => {
+        if(e.key === 'helpdesk_tickets') {
+            renderQueue();
+            if(activeTicketId) renderTicketDetail();
+        }
+    });
+
+    // Init
+    renderQueue();
+</script>
 </body>
 </html>

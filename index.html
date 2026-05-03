@@ -945,10 +945,11 @@ function addMsg(text, role){
   d.className='msg '+role;
   const bub = document.createElement('div');
   bub.className='bub';
-  d.innerHTML=`<div class="av">${role==='bot'?'🤖':'👤'}</div>`;
+  let avIcon = role==='bot'?'🤖':(role==='admin'?'👨‍💻':'👤');
+  d.innerHTML=`<div class="av">${avIcon}</div>`;
   d.appendChild(bub);
   w.appendChild(d);
-  if(role==='bot'){
+  if(role==='bot' || role==='admin'){
     typeWrite(bub, formatMarkdown(text));
   } else {
     bub.innerHTML = formatMarkdown(text);
@@ -1094,7 +1095,49 @@ async function send(){
   stats.tickets = parseInt(document.getElementById('sTicket').textContent);
   localStorage.setItem('itbot_stats', JSON.stringify(stats));
   localStorage.setItem('itbot_history', JSON.stringify(history.slice(-20)));
+
+  // Sync to HelpDesk Pro Dashboard via LocalStorage
+  let hdTickets = JSON.parse(localStorage.getItem('helpdesk_tickets') || '[]');
+  let priority = (text.includes('ไม่') || text.includes('ด่วน') || text.includes('พัง') || text.includes('ลืม')) ? 'critical' : 'medium';
+  let category = 'General';
+  if(text.toLowerCase().includes('ปริ้น') || text.toLowerCase().includes('พิมพ์')) category = 'Hardware';
+  if(text.toLowerCase().includes('เน็ต') || text.toLowerCase().includes('vpn') || text.toLowerCase().includes('wifi')) category = 'Network';
+  if(text.toLowerCase().includes('รหัส') || text.toLowerCase().includes('password')) category = 'Security';
+  
+  hdTickets.push({
+    id: `INC-${tNum}`,
+    time: now,
+    title: text,
+    priority: priority,
+    status: 'open',
+    category: category,
+    messages: [
+      { role: 'user', text: text },
+      { role: 'bot', text: reply }
+    ]
+  });
+  // Keep only latest 50 tickets
+  if(hdTickets.length > 50) hdTickets = hdTickets.slice(-50);
+  localStorage.setItem('helpdesk_tickets', JSON.stringify(hdTickets));
 }
+
+// Listen for Admin replies from Dashboard
+window.addEventListener('storage', (e) => {
+  if (e.key === 'helpdesk_tickets') {
+    const oldData = JSON.parse(e.oldValue || '[]');
+    const newData = JSON.parse(e.newValue || '[]');
+    if (newData.length > 0 && oldData.length > 0) {
+      const latestNew = newData[newData.length - 1];
+      const latestOld = oldData[oldData.length - 1];
+      if (latestNew.id === latestOld.id && latestNew.messages.length > latestOld.messages.length) {
+        const newMsg = latestNew.messages[latestNew.messages.length - 1];
+        if (newMsg.role === 'admin') {
+          addMsg(newMsg.text, 'admin');
+        }
+      }
+    }
+  }
+});
 
 document.getElementById('inp').addEventListener('keydown',e=>{if(e.key==='Enter')send();});
 
