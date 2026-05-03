@@ -18,6 +18,25 @@
             --text-dim: #94a3b8;
         }
 
+        /* Light Mode */
+        body.light {
+            --bg-dark: #f1f5f9;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(0, 0, 0, 0.1);
+            --text-main: #0f172a;
+            --text-dim: #475569;
+            background: radial-gradient(circle at top right, #e0e7ff, #f8fafc, #f0fdf4) !important;
+        }
+        body.light::before { background: #6366f1; opacity: 0.08; }
+        body.light::after { background: #a855f7; opacity: 0.06; }
+        body.light .bub strong { color: #4f46e5; }
+        body.light .bot .bub { background: rgba(255,255,255,0.9); color: #1e293b; border-color: rgba(0,0,0,0.1); }
+        body.light .user .bub { color: #fff; }
+        body.light .hp-item { background: rgba(0,0,0,0.04); }
+        body.light .hp-item .hq { color: #1e293b; }
+        body.light .qbtn { color: #334155; }
+        body.light .qbtn:hover { background: rgba(99,102,241,0.15); color: #4f46e5; }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
@@ -399,6 +418,7 @@
         <span class="hbadge" id="faqCount">Loading Knowledge...</span>
         <div class="gemini-badge" id="aiLabel">Keyword Engine</div>
         <button onclick="toggleAIConfig()" title="ตั้งค่า Gemini AI" style="background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);color:var(--text-dim);padding:5px 12px;border-radius:100px;cursor:pointer;font-size:0.7rem;transition:0.2s;margin-left:8px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">⚙️ AI</button>
+        <button id="themeBtn" onclick="toggleTheme()" title="สลับ Dark/Light Mode" style="background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);color:var(--text-dim);padding:5px 12px;border-radius:100px;cursor:pointer;font-size:0.7rem;transition:0.2s;margin-left:4px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">🌙 Dark</button>
     </header>
 
     <div class="api-config">
@@ -478,8 +498,35 @@
 
 let geminiKey = localStorage.getItem('geminiKey') || '';
 let ticketNum = 1000 + Math.floor(Math.random()*1000);
-let stats = {tickets:0, good:0, bad:0};
-let history = [];
+let savedStats = JSON.parse(localStorage.getItem('itbot_stats') || '{"tickets":0,"good":0,"bad":0}');
+let stats = savedStats;
+let history = JSON.parse(localStorage.getItem('itbot_history') || '[]');
+
+// Restore stats display
+document.getElementById('sTicket').textContent = stats.tickets;
+document.getElementById('sGood').textContent   = stats.good;
+document.getElementById('sBad').textContent    = stats.bad;
+if(history.length) renderHistory();
+
+// Theme init
+(function(){
+  const saved = localStorage.getItem('itbot_theme') || 'dark';
+  if(saved === 'light'){
+    document.body.classList.add('light');
+    document.getElementById('themeBtn').textContent = '☀️ Light';
+  }
+})();
+
+function toggleTheme(){
+  const btn = document.getElementById('themeBtn');
+  if(document.body.classList.toggle('light')){
+    btn.textContent = '☀️ Light';
+    localStorage.setItem('itbot_theme','light');
+  } else {
+    btn.textContent = '🌙 Dark';
+    localStorage.setItem('itbot_theme','dark');
+  }
+}
 
 if(geminiKey){ 
   document.getElementById('geminiKey').value=geminiKey; 
@@ -610,6 +657,9 @@ function feedback(tNum,val){
   const h=history.find(x=>x.ticket==tNum);
   if(h) h.feedback=val>0?'👍':'👎';
   renderHistory();
+  // Save to localStorage
+  localStorage.setItem('itbot_stats', JSON.stringify(stats));
+  localStorage.setItem('itbot_history', JSON.stringify(history.slice(-20)));
 }
 
 function addTyping(){
@@ -677,6 +727,10 @@ async function send(){
   addFeedback(tNum, reply);
   history.push({ticket:tNum,question:text,time:now,mode,feedback:''});
   renderHistory();
+  // Save to localStorage
+  stats.tickets = parseInt(document.getElementById('sTicket').textContent);
+  localStorage.setItem('itbot_stats', JSON.stringify(stats));
+  localStorage.setItem('itbot_history', JSON.stringify(history.slice(-20)));
 }
 
 document.getElementById('inp').addEventListener('keydown',e=>{if(e.key==='Enter')send();});

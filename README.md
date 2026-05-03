@@ -1,209 +1,154 @@
-# 🖥️ IT Support AI Chatbot
+# 🤖 IT Support AI — Premium Intelligent HelpDesk
 
-[![GitHub Pages](https://img.shields.io/badge/Demo-Live-brightgreen?style=for-the-badge&logo=github)](https://romeototo.github.io/it-support-chatbot/)
-[![Python](https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge&logo=python)](https://python.org)
-[![Flask](https://img.shields.io/badge/Flask-Web%20App-black?style=for-the-badge&logo=flask)](https://flask.palletsprojects.com)
-[![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
+<div align="center">
 
-> ระบบ AI Chatbot สำหรับช่วยงาน IT Support ภายในองค์กร  
-> ตอบคำถามปัญหาไอทีได้ทันที ลด Ticket และประหยัดเวลา IT Team
+![IT Support AI Demo](https://romeototo.github.io/it-support-chatbot/screenshot.png)
 
----
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-GitHub_Pages-6366f1?style=for-the-badge)](https://romeototo.github.io/it-support-chatbot/)
+[![Python](https://img.shields.io/badge/Python-3.10+-3776ab?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![Flask](https://img.shields.io/badge/Flask-2.x-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com)
+[![ChromaDB](https://img.shields.io/badge/ChromaDB-RAG-orange?style=for-the-badge)](https://www.trychroma.com)
+[![Gemini AI](https://img.shields.io/badge/Gemini_AI-Optional-4285f4?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
-## 📋 Case Study — ทำไมถึงสร้างโปรเจกต์นี้?
+**ระบบ IT HelpDesk อัจฉริยะ พร้อม Hybrid AI Search Engine, Premium Glassmorphism UI และฐานข้อมูล 202 FAQ ภาษาไทย**
 
-### ❓ ปัญหา (Problem)
-
-ทีม IT Support ในองค์กรทั่วไปใช้เวลา **30-40%** ไปกับการตอบคำถามซ้ำๆ เช่น:
-- "WiFi เชื่อมไม่ได้"
-- "ลืมรหัสผ่าน"
-- "เครื่องพิมพ์ใช้ไม่ได้"
-
-สิ่งเหล่านี้เป็นปัญหาที่มี **ขั้นตอนการแก้ไขตายตัว** แต่ต้องรอ IT มาช่วยทุกครั้ง ทำให้:
-- พนักงานรอนาน → ผลิตภาพลดลง
-- IT Team เหนื่อยกับงานซ้ำซาก → ไม่มีเวลาทำงาน Infrastructure
-- Ticket สะสม → SLA ไม่ผ่าน
-
-### 💡 แนวทางแก้ไข (Solution)
-
-สร้าง **AI Chatbot** ที่พนักงานเปิดใช้งานได้ทันทีผ่าน Browser โดย:
-
-| องค์ประกอบ | รายละเอียด |
-|---|---|
-| 📚 Knowledge Base | รวบรวม **202 FAQ** จากปัญหาจริงใน **45 หมวดหมู่** |
-| 🤖 AI Engine | ใช้ **Google Gemini API** วิเคราะห์คำถามและตอบอัจฉริยะ |
-| ⚡ Keyword Fallback | ทำงานได้แม้ไม่มี Internet (Offline Mode) |
-| 🎫 Ticket Tracking | ออกหมายเลข Ticket + ประวัติสนทนา |
-| 📊 Feedback Loop | ระบบ 👍👎 เพื่อปรับปรุง FAQ ต่อเนื่อง |
-
-### 📈 ผลลัพธ์ที่คาดหวัง (Expected Impact)
-
-```
-🎯 ลด Ticket ซ้ำซาก        → ประมาณ 40%
-⏱️ ลดเวลารอ IT            → จาก 30 นาที เหลือ 30 วินาที
-📊 เพิ่มเวลา IT Team       → ไปทำ Infrastructure + Security
-🌐 เข้าถึงได้ 24/7         → ไม่ต้องรอเวลาทำการ
-```
-
-### 🔮 ขั้นตอนถัดไป (Next Phase)
-
-1. เชื่อมต่อ **LINE OA / Telegram** เพื่อเข้าถึงพนักงานในช่องทางที่ใช้อยู่แล้ว
-2. ใช้ **RAG + Vector Database** เพื่อค้นหาจากเอกสาร IT จริง (PDF, Wiki)
-3. สร้าง **Admin Dashboard** เพื่อวิเคราะห์ปัญหาที่เกิดบ่อย และปรับปรุงเชิงรุก
-
----
-
-## 🚀 Live Demo
-
-**👉 [เปิด Demo ได้เลย](https://romeototo.github.io/it-support-chatbot/)**
-
-![IT Support Chatbot Screenshot](screenshot.png)
+</div>
 
 ---
 
 ## ✨ Features
 
-| Feature | รายละเอียด |
+| Feature | Description |
 |---|---|
-| 💬 Chat Interface | UI สวย Dark Theme พร้อม Typing Animation |
-| 🤖 Gemini AI | เชื่อมต่อ Google Gemini API ตอบอัจฉริยะ |
-| 🔍 Keyword Fallback | Keyword Matching เมื่อไม่มี API Key |
-| 📋 202 FAQ | ครอบคลุม 45 หมวดหมู่ปัญหา IT ทั่วไป |
-| ⚡ Quick Actions | ปุ่มลัด 16 หัวข้อ กดได้เลย |
-| 🎫 Ticket System | ออก Ticket Number + History Panel |
-| 👍👎 Feedback | ปุ่มให้คะแนนทุก Ticket |
-| 📊 Stats Bar | สถิติ Ticket / Helpful / Mode แบบ Real-time |
-| 📱 Responsive | รองรับ Desktop + Mobile |
-| 🌐 Standalone | ทำงานได้ใน Browser ไม่ต้อง Server |
+| 🔍 **Hybrid Search** | ค้นหาด้วย Keyword ก่อน → ถ้าไม่เจอจึง fallback ไป RAG (ChromaDB Vector DB) |
+| 📚 **202 FAQ / 45 หมวด** | ฐานข้อมูลครอบคลุมปัญหา IT ทุกประเภทในองค์กร |
+| 🤖 **Gemini AI Integration** | ใส่ API Key เพื่อเปิดโหมด AI ตอบแบบ Natural Language |
+| 💎 **Premium Glassmorphism UI** | ดีไซน์ Dark Mode ระดับ Premium พร้อม Micro-animations |
+| 📋 **Copy Answer Button** | คัดลอกคำตอบได้ในคลิกเดียว |
+| 👍👎 **Feedback System** | พนักงานให้คะแนนคำตอบได้ บอท Track ความแม่นยำ |
+| 🎫 **Ticket Tracking** | บันทึก Ticket History แบบ Real-time |
+| 📱 **Responsive Design** | รองรับทุกขนาดหน้าจอ (Desktop / Tablet) |
+| 🌐 **Dual Mode** | รันได้ทั้งบน Flask (Local) และ GitHub Pages (Static) |
 
 ---
 
-## 📂 หมวดหมู่ FAQ (45 หมวด / 202 ข้อ)
+## 🏗️ Tech Stack
 
 ```
-🖨️ เครื่องพิมพ์          📶 WiFi / Network       📧 อีเมล / Outlook
-💻 คอมพิวเตอร์            🔑 Password / Security  📦 Software
-🔐 VPN / Remote Work     📹 Video Conference     📱 Mobile / BYOD
-💾 Backup / Recovery      👤 Account / AD          💬 Microsoft Teams
-🔌 Hardware / USB         🗂️ Network Drive        📊 Office 365
-🪟 Windows System         🛡️ Antivirus / PDPA     🌐 Browser / Chrome
-🖥️ Remote Desktop        💥 Blue Screen / BSOD    📞 IP Phone
-📽️ Projector             ☁️ Cloud Storage         🔐 MFA / 2FA
-📊 Excel / Word / PPT    🔊 Audio / ลำโพง        ⚡ Power / UPS
+Frontend:  HTML5 + Vanilla CSS (Glassmorphism) + JavaScript
+Backend:   Python 3 + Flask + ChromaDB (Vector DB)
+AI Engine: Hybrid (Keyword Match → RAG → Gemini API)
+Deploy:    GitHub Pages (Frontend) / Local Flask (Full Stack)
 ```
 
 ---
 
-## 🛠️ Tech Stack
+## 🚀 Quick Start
 
-```
-Frontend   → HTML5 + Vanilla CSS + JavaScript (ES6+)
-Backend    → Python 3 + Flask
-AI Engine  → Keyword Matching + Optional LLM API
-Data       → JSON Knowledge Base (knowledge_base.json)
-Deploy     → GitHub Pages (Frontend) / Any Server (Backend)
-```
+### Option A — GitHub Pages (Frontend Only, ไม่ต้องติดตั้งอะไร)
+เข้า **[https://romeototo.github.io/it-support-chatbot/](https://romeototo.github.io/it-support-chatbot/)** ได้เลยครับ
 
----
+### Option B — Local Full Stack (พร้อม RAG Backend)
 
-## ⚡ วิธีใช้งาน
-
-### วิธีที่ 1 — เปิดใน Browser (ง่ายสุด)
 ```bash
-# เปิดไฟล์ index.html ใน Browser โดยตรง
-# ไม่ต้อง Install อะไรเพิ่ม
-```
-
-### วิธีที่ 2 — Web Mode (Flask)
-```bash
-# Clone โปรเจกต์
+# 1. Clone repo
 git clone https://github.com/romeototo/it-support-chatbot.git
 cd it-support-chatbot
 
-# ติดตั้ง Flask
-pip install flask
+# 2. ติดตั้ง dependencies
+pip install flask chromadb sentence-transformers
 
-# รัน Web App
+# 3. สร้าง Vector Database จาก FAQ
+python init_rag.py
+
+# 4. รัน Server
 python web_app.py
-# เปิด http://localhost:5000
-```
 
-### วิธีที่ 3 — Terminal Mode
-```bash
-python chatbot.py
+# 5. เปิด Browser
+http://localhost:5000
 ```
 
 ---
 
-## 📁 โครงสร้างโปรเจกต์
+## 📂 Project Structure
 
 ```
 it-support-chatbot/
-├── 🌟 index.html              # Standalone Demo (GitHub Pages)
-├── 🐍 chatbot.py              # Terminal Chatbot
-├── 🌐 web_app.py              # Flask Web Application
-├── 📚 knowledge_base.json     # FAQ Database (202 ข้อ / 45 หมวด)
-├── 📄 README.md               # คู่มือนี้
-├── 📄 GUIDE.md                # คู่มือการใช้งาน
-└── 📄 requirements.txt        # Python Dependencies
+├── index.html          # Frontend (Glassmorphism UI + Chat Logic)
+├── kb.js               # Knowledge Base (202 FAQ สำหรับ GitHub Pages)
+├── knowledge_base.json # Knowledge Base (สำหรับ Flask Backend)
+├── web_app.py          # Flask Server + API Routes
+├── chatbot.py          # Hybrid Search Engine (Keyword + RAG)
+├── rag_engine.py       # ChromaDB Vector Search Engine
+└── init_rag.py         # Script สำหรับ Ingest ข้อมูลเข้า Vector DB
 ```
 
 ---
 
-## 🔧 การเพิ่ม FAQ
+## 🧠 How the AI Works
 
-แก้ไขไฟล์ `knowledge_base.json`:
-
-```json
-{
-  "name": "หมวดหมู่ใหม่",
-  "keywords": ["keyword1", "keyword2"],
-  "faqs": [
-    {
-      "question": "คำถาม?",
-      "answer": "1. ขั้นตอนที่ 1\n2. ขั้นตอนที่ 2"
-    }
-  ]
-}
+```
+User Question
+      │
+      ▼
+┌─────────────────────┐
+│  Keyword Matching   │ ← เร็ว + แม่นยำสำหรับภาษาไทย
+│  (Score ≥ 3)        │
+└──────────┬──────────┘
+           │ ไม่พบ
+           ▼
+┌─────────────────────┐
+│  RAG Vector Search  │ ← ChromaDB Semantic Search
+│  (ChromaDB)         │
+└──────────┬──────────┘
+           │ ไม่พบ
+           ▼
+┌─────────────────────┐
+│  Gemini AI (LLM)    │ ← ถ้ามี API Key
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│  Escalation Message │ ← ติดต่อ IT ext.1234
+└─────────────────────┘
 ```
 
 ---
 
-## 🗺️ Roadmap
+## 📊 Knowledge Base Coverage (202 FAQs)
 
-- [x] Keyword Matching Engine
-- [x] Flask Web UI
-- [x] 202 FAQ / 45 หมวดหมู่
-- [x] Standalone HTML Demo
-- [x] GitHub Pages Deploy
-- [x] Gemini AI Integration
-- [x] Ticket History Panel
-- [x] Feedback System (👍👎)
-- [x] Mobile Responsive
-- [x] Stats Dashboard
-- [ ] LINE OA Bot
-- [ ] Telegram Bot
-- [ ] Admin Dashboard
-- [ ] RAG + Vector Database
+| หมวดหมู่ | ตัวอย่างปัญหา |
+|---|---|
+| 🖨️ Printer | พิมพ์ไม่ออก, กระดาษติด, ตั้ง Default Printer |
+| 📶 Network/WiFi | เชื่อมต่อไม่ได้, ช้า, Map Drive |
+| 🔑 Password/Security | ลืมรหัสผ่าน, MFA/2FA, Account Lock |
+| 💻 Hardware | คอมช้า, USB ไม่ขึ้น, Dual Monitor |
+| 📧 Email/Outlook | ส่งเมลไม่ได้, Attachment ใหญ่, Signature |
+| 🔐 VPN/Remote | เชื่อมต่อไม่ได้, WFH Setup, RDP |
+| 📹 Video Conference | Zoom/Teams กล้องไม่ทำงาน, Share Screen |
+| 📊 Microsoft 365 | Office หมดอายุ, Excel ค้าง, Teams |
+| 👤 HR/Onboarding | พนักงานใหม่, ลาออก, Account สิทธิ์ |
+| + 36 หมวดอื่นๆ | ... |
 
 ---
 
-## 📞 ติดต่อ IT Support
+## 🤝 Contributing
 
-```
-📞 โทร: ext. 1234
-📧 อีเมล: it-support@company.com
-💬 Line: @company-it
-🕐 จันทร์-ศุกร์ 8:30-17:30
-```
-
----
-
-## 👨‍💻 Author
-
-**romeototo** — IT Support & Developer  
-[![GitHub](https://img.shields.io/badge/GitHub-romeototo-black?style=flat&logo=github)](https://github.com/romeototo)
+1. Fork repo นี้
+2. สร้าง Branch ใหม่: `git checkout -b feature/add-faqs`
+3. เพิ่ม FAQ ใน `knowledge_base.json` และ `kb.js`
+4. รัน `python init_rag.py` เพื่อ Update Vector DB
+5. Pull Request มาได้เลย!
 
 ---
 
-*สร้างด้วย ❤️ เพื่อลด Ticket และช่วยให้ทีม IT ทำงานได้มีประสิทธิภาพมากขึ้น*
+## 📄 License
+
+MIT License — ใช้งานได้ฟรีทั้งงาน Personal และ Commercial ครับ
+
+---
+
+<div align="center">
+  Made with ❤️ by <a href="https://github.com/romeototo">Romeo</a> | Powered by Python + ChromaDB + Gemini AI
+</div>
