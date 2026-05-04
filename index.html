@@ -1009,7 +1009,20 @@ async function callGemini(userInput){
     if(top3.length>=3) break;
   }
   const ctx = top3.map(f=>`Q: ${f.question}\nA: ${f.answer}`).join('\n\n');
-  const prompt = `คุณเป็น IT Support AI ขององค์กร ตอบคำถามสั้น ชัดเจน เป็นภาษาไทย ใช้ขั้นตอนแบบ numbered list\nถ้าไม่มีข้อมูล ให้แจ้ง: ติดต่อ IT Support ext.1234\n\nFAQ Reference:\n${ctx}\n\nคำถาม: ${userInput}\n\nตอบ:`;
+  
+  const langPrompt = currentLang === 'en' 
+    ? 'Respond in English. Keep it professional and helpful.' 
+    : 'ตอบเป็นภาษาไทย สั้น ชัดเจน เป็นกันเอง และสุภาพ';
+    
+  const prompt = `You are a Corporate IT Support AI. ${langPrompt} Use numbered lists for steps.
+If no info is found, say: Please contact IT Support ext.1234
+
+FAQ Context (might be in Thai, please translate if needed for the response):
+${ctx}
+
+User Question: ${userInput}
+
+Answer:`;
   
   const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiKey}`,{
     method:'POST', headers:{'Content-Type':'application/json'},
@@ -1228,7 +1241,8 @@ async function send(){
   let reply='', mode='Keyword';
   
   const lowerText = text.toLowerCase();
-  const isClosing = lowerText.includes('ขอบคุณ') || lowerText.includes('แก้ไขได้แล้ว') || lowerText.includes('เรียบร้อย') || lowerText.includes('โอเค');
+  const isClosing = lowerText.includes('ขอบคุณ') || lowerText.includes('แก้ไขได้แล้ว') || lowerText.includes('เรียบร้อย') || lowerText.includes('โอเค') ||
+                    lowerText.includes('thanks') || lowerText.includes('thank you') || lowerText.includes('solved') || lowerText.includes('it works') || lowerText.includes('ok');
 
   if (isClosing) {
     reply = translations[currentLang].closingMsg;
