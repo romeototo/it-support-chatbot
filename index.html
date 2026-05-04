@@ -635,29 +635,6 @@
         }
         .clear-btn:hover { background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.4); color: #f87171; }
 
-        /* Collapsible long answers */
-        .bub.collapsed { max-height: 150px; overflow: hidden; position: relative; }
-        .bub.collapsed::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            height: 50px;
-            background: linear-gradient(transparent, var(--glass-bg));
-            pointer-events: none;
-        }
-        .expand-btn {
-            display: block;
-            margin-top: 6px;
-            background: none;
-            border: none;
-            color: var(--primary);
-            font-size: 0.75rem;
-            cursor: pointer;
-            padding: 2px 0;
-            transition: 0.2s;
-        }
-        .expand-btn:hover { color: var(--secondary); }
-
         /* Typing cursor */
         .typing-cursor::after { content:'▌'; animation: typeCursor 0.8s infinite; font-size: 0.9em; }
 
@@ -815,8 +792,6 @@ const translations = {
     confirmClear: "Are you sure you want to clear chat history?",
     sysAiEnabled: "✅ Gemini AI is now enabled! Real AI will now respond.",
     sysAiDisabled: "ℹ️ Gemini AI disabled. Back to Keyword Mode.",
-    btnViewFull: "▼ View Full Answer",
-    btnCollapse: "▲ Collapse",
     btnGood: "👍 Helpful",
     btnBad: "👎 Not Match",
     btnCopy: "📋 Copy",
@@ -875,8 +850,6 @@ const translations = {
     confirmClear: "คุณแน่ใจหรือไม่ว่าต้องการล้างประวัติการสนทนาทั้งหมด?",
     sysAiEnabled: "✅ เปิดใช้งาน Gemini AI แล้ว! ระบบจะใช้ AI ในการตอบคำถาม",
     sysAiDisabled: "ℹ️ ปิดการใช้งาน Gemini AI กลับสู่โหมด Keyword",
-    btnViewFull: "▼ ดูคำตอบเต็ม",
-    btnCollapse: "▲ พับเก็บ",
     btnGood: "👍 แก้ได้",
     btnBad: "👎 ไม่ตรง",
     btnCopy: "📋 คัดลอก",
@@ -1100,23 +1073,6 @@ function typeWrite(el, html, speed=12) {
       clearInterval(interval);
       el.classList.remove('typing-cursor');
       el.innerHTML = fullHTML;
-      // Collapse long answers
-      if(el.scrollHeight > 180) {
-        el.classList.add('collapsed');
-        const btn = document.createElement('button');
-        btn.className = 'expand-btn';
-        btn.textContent = translations[currentLang].btnViewFull;
-        btn.onclick = function(){
-          if(el.classList.contains('collapsed')){
-            el.classList.remove('collapsed');
-            btn.textContent = translations[currentLang].btnCollapse;
-          } else {
-            el.classList.add('collapsed');
-            btn.textContent = translations[currentLang].btnViewFull;
-          }
-        };
-        el.after(btn);
-      }
       const w=document.getElementById('messages');
       w.scrollTop=w.scrollHeight;
       checkScrollBtn();
