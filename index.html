@@ -518,6 +518,11 @@
             background: rgba(255,255,255,0.08);
             box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
         }
+        .input-container input:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: rgba(0,0,0,0.2);
+        }
 
         .send-btn {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -1019,13 +1024,58 @@ function addSys(text){
 
 function formatMarkdown(text) {
   let html = text.replace(/</g, '&lt;');
-  // Bold: **text** (multiline safe)
+  // Code Blocks
+  html = html.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+  // Inline Code
+  html = html.replace(/`([^`]+)`/g, '<code style="background:rgba(0,0,0,0.2);padding:2px 4px;border-radius:4px;color:#a78bfa;">$1</code>');
+  // Bold
   html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-  // Italic: *text*
+  // Italic
   html = html.replace(/\*([^*\n]+)\*/g, '<em>$1</em>');
-  // Line breaks
-  html = html.replace(/\n/g, '<br>');
+  // Links
+  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" style="color:var(--accent);text-decoration:underline;">$1</a>');
+  
+  // Handle newlines and lists
+  let lines = html.split('\n');
+  let inUl = false, inOl = false;
+  let parsed = [];
+  
+  for(let i=0; i<lines.length; i++) {
+    let line = lines[i];
+    let ulMatch = line.match(/^[-*]\s+(.*)/);
+    let olMatch = line.match(/^\d+\.\s+(.*)/);
+    
+    if (ulMatch) {
+      if (inOl) { parsed.push('</ol>'); inOl = false; }
+      if (!inUl) { parsed.push('<ul style="margin-top:5px; margin-bottom:5px; padding-left:20px;">'); inUl = true; }
+      parsed.push(`<li>${ulMatch[1]}</li>`);
+    } else if (olMatch) {
+      if (inUl) { parsed.push('</ul>'); inUl = false; }
+      if (!inOl) { parsed.push('<ol style="margin-top:5px; margin-bottom:5px; padding-left:20px;">'); inOl = true; }
+      parsed.push(`<li>${olMatch[1]}</li>`);
+    } else {
+      if (inUl) { parsed.push('</ul>'); inUl = false; }
+      if (inOl) { parsed.push('</ol>'); inOl = false; }
+      parsed.push(line);
+    }
+  }
+  if (inUl) parsed.push('</ul>');
+  if (inOl) parsed.push('</ol>');
+  
+  html = parsed.join('<br>');
+  // Clean up <br> around lists and inside pre
+  html = html.replace(/<\/ul><br>/g, '</ul>').replace(/<\/ol><br>/g, '</ol>').replace(/<ul><br>/g, '<ul>').replace(/<ol><br>/g, '<ol>');
+  html = html.replace(/<pre><code>([\s\S]*?)<\/code><\/pre>/g, (m, c) => `<pre style="background:rgba(0,0,0,0.3);padding:10px;border-radius:8px;overflow-x:auto;margin:5px 0;"><code>${c.replace(/<br>/g, '\n')}</code></pre>`);
+  
   return html;
+}
+
+function disableInput(disabled) {
+  const inp = document.getElementById('inp');
+  const btn = document.querySelector('.send-btn');
+  if(inp) inp.disabled = disabled;
+  if(btn) btn.disabled = disabled;
+  if(!disabled && inp) inp.focus();
 }
 
 // Scroll-to-bottom helpers
@@ -1076,6 +1126,7 @@ function typeWrite(el, html, speed=12) {
       const w=document.getElementById('messages');
       w.scrollTop=w.scrollHeight;
       checkScrollBtn();
+      disableInput(false);
     } else {
       // Show partial plain text during typing
       el.textContent = plainText.slice(0, i);
@@ -1112,9 +1163,9 @@ function addFeedback(tNum, botText){
   
   const chips = document.createElement('div');
   chips.className = 'quick-chips-wrap';
-  chips.innerHTML = `<button class="chip-btn" onclick="ask('${translations[currentLang].chipSolved}')">${translations[currentLang].chipSolved}</button>
-                     <button class="chip-btn" onclick="ask('${translations[currentLang].chipNotSolved}')">${translations[currentLang].chipNotSolved}</button>
-                     <button class="chip-btn" onclick="ask('${translations[currentLang].chipContact}')">${translations[currentLang].chipContact}</button>`;
+  chips.innerHTML = `<button class="chip-btn" onclick="ask('${translations[currentLang].chipSolved}', this)">${translations[currentLang].chipSolved}</button>
+                     <button class="chip-btn" onclick="ask('${translations[currentLang].chipNotSolved}', this)">${translations[currentLang].chipNotSolved}</button>
+                     <button class="chip-btn" onclick="ask('${translations[currentLang].chipContact}', this)">${translations[currentLang].chipContact}</button>`;
 
   // store text for copy
   if(botText) window['_answer_'+tNum] = botText;
@@ -1188,11 +1239,20 @@ function renderHistory(){
   el.innerHTML=[...history].reverse().map(h=>`<div class="hp-item"><div class="hn">#${h.ticket} • ${h.time} ${h.feedback||''}</div><div class="hq">${h.question}</div><div class="hr">${h.mode}</div></div>`).join('');
 }
 
-function ask(q){document.getElementById('inp').value=q;send();}
+function ask(q, btnEl){
+  if(btnEl){
+    btnEl.parentNode.style.opacity = '0.5';
+    btnEl.parentNode.style.pointerEvents = 'none';
+  }
+  const inp=document.getElementById('inp');
+  inp.value=q;
+  send();
+}
 
 async function send(){
   const inp=document.getElementById('inp');
   const text=inp.value.trim(); if(!text) return;
+  disableInput(true);
   inp.value=''; addMsg(text,'user');
   const tNum=++ticketNum; stats.tickets++;
   document.getElementById('sTicket').textContent=stats.tickets;
