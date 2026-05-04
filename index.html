@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -687,43 +687,44 @@
     <header>
         <div class="logo-container">🖥️</div>
         <div class="hinfo">
-            <h1>IT Support AI</h1>
-            <p>Intelligence HelpDesk System</p>
+            <h1 data-i18n="title">IT Support AI</h1>
+            <p data-i18n="subtitle">Intelligence HelpDesk System</p>
         </div>
-        <span class="hbadge" id="faqCount">Loading Knowledge...</span>
-        <div class="gemini-badge" id="aiLabel">Keyword Engine</div>
-        <button onclick="toggleAIConfig()" title="ตั้งค่า Gemini AI" style="background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);color:var(--text-dim);padding:5px 12px;border-radius:100px;cursor:pointer;font-size:0.7rem;transition:0.2s;margin-left:8px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">⚙️ AI</button>
-        <button id="themeBtn" onclick="toggleTheme()" title="สลับ Dark/Light Mode" style="background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);color:var(--text-dim);padding:5px 12px;border-radius:100px;cursor:pointer;font-size:0.7rem;transition:0.2s;margin-left:4px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">🌙 Dark</button>
+        <span class="hbadge" id="faqCount" data-i18n="kbLoading">Loading Knowledge...</span>
+        <div class="gemini-badge" id="aiLabel" data-i18n="engineKeyword">Keyword Engine</div>
+        <button onclick="toggleLang()" id="langBtn" title="Switch Language" style="background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);color:var(--text-dim);padding:5px 12px;border-radius:100px;cursor:pointer;font-size:0.7rem;transition:0.2s;margin-left:8px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">🌐 EN</button>
+        <button onclick="toggleAIConfig()" title="AI Config" style="background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);color:var(--text-dim);padding:5px 12px;border-radius:100px;cursor:pointer;font-size:0.7rem;transition:0.2s;margin-left:4px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">⚙️ AI</button>
+        <button id="themeBtn" onclick="toggleTheme()" title="Toggle Dark/Light Mode" style="background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);color:var(--text-dim);padding:5px 12px;border-radius:100px;cursor:pointer;font-size:0.7rem;transition:0.2s;margin-left:4px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">🌙 Dark</button>
     </header>
 
     <div class="api-config">
-        <label>🤖 Gemini AI Config:</label>
-        <input type="password" id="geminiKey" placeholder="วาง API Key ของ Gemini ตรงนี้ เพื่อใช้ AI ช่วยตอบ...">
-        <button onclick="saveKey()">Activate AI</button>
+        <label data-i18n="aiConfigTitle">🤖 Gemini AI Config:</label>
+        <input type="password" id="geminiKey" data-i18n-placeholder="aiConfigPlaceholder" placeholder="Paste Gemini API Key here to enable AI responses...">
+        <button onclick="saveKey()" data-i18n="aiConfigSave">Activate AI</button>
     </div>
 
     <div class="main">
         <div class="sidebar">
-            <div class="stitle">Quick Solutions</div>
+            <div class="stitle" data-i18n="quickSolutions">Quick Solutions</div>
             <div class="sidebar-search">
-                <input type="text" id="catSearch" placeholder="🔍 ค้นหาหมวดหมู่..." oninput="filterCats()">
+                <input type="text" id="catSearch" data-i18n-placeholder="searchPlaceholder" placeholder="🔍 Search categories..." oninput="filterCats()">
             </div>
-            <button class="qbtn" onclick="ask('เครื่องพิมพ์พิมพ์ไม่ออก')" title="เครื่องพิมพ์พิมพ์ไม่ออก">🖨️ เครื่องพิมพ์</button>
-            <button class="qbtn" onclick="ask('เชื่อมต่อ WiFi ไม่ได้')" title="เชื่อมต่อ WiFi ไม่ได้">📶 WiFi/เน็ต</button>
-            <button class="qbtn" onclick="ask('ลืมรหัสผ่าน')" title="ลืมรหัสผ่าน / รหัสผ่านหมดอายุ">🔑 ลืมรหัสผ่าน</button>
-            <button class="qbtn" onclick="ask('คอมช้ามาก')" title="คอมพิวเตอร์ทำงานช้า">💻 คอมช้า</button>
-            <button class="qbtn" onclick="ask('ส่งอีเมลไม่ได้')" title="ส่งอีเมลไม่ได้ / Outlook มีปัญหา">📧 อีเมล</button>
-            <button class="qbtn" onclick="ask('VPN เชื่อมต่อไม่ได้')" title="VPN เชื่อมต่อไม่ได้">🔐 VPN</button>
-            <button class="qbtn" onclick="ask('Zoom กล้องไม่ทำงาน')" title="Zoom/Teams กล้องหรือไมค์ไม่ทำงาน">📹 Video Call</button>
-            <button class="qbtn" onclick="ask('ไฟล์ถูกลบกู้คืนยังไง')" title="ไฟล์ถูกลบ / กู้คืนไฟล์">💾 กู้ไฟล์</button>
-            <button class="qbtn" onclick="ask('Teams เปิดไม่ขึ้น')" title="Microsoft Teams เปิดไม่ขึ้น">💬 Teams</button>
-            <button class="qbtn" onclick="ask('เสียบ USB แล้วไม่ขึ้น')" title="USB/อุปกรณ์ต่อพ่วงไม่ขึ้น">🔌 USB/Hardware</button>
-            <button class="qbtn" onclick="ask('Map Network Drive ทำยังไง')" title="Map Network Drive / เชื่อมต่อ Shared Folder">🗂️ Network Drive</button>
-            <button class="qbtn" onclick="ask('Office 365 activation failed')" title="Microsoft Office 365 Activation">📊 Office 365</button>
-            <button class="qbtn" onclick="ask('C Drive เต็ม')" title="C Drive เต็ม / Windows Update">🪟 Windows</button>
-            <button class="qbtn" onclick="ask('ต่อ 2 จอ Dual Monitor')" title="ตั้งค่า Dual Monitor 2 จอ">🖥️ Dual Monitor</button>
-            <button class="qbtn" onclick="ask('พนักงานใหม่ต้องทำอะไร')" title="IT Onboarding สำหรับพนักงานใหม่">👤 New Employee</button>
-            <button class="qbtn" onclick="ask('ติดตั้งโปรแกรมใหม่')" title="ขอติดตั้งโปรแกรม/ซอฟต์แวร์ใหม่">📦 ลงโปรแกรม</button>
+            <button class="qbtn" onclick="ask('เครื่องพิมพ์พิมพ์ไม่ออก')" data-i18n="catPrinter">🖨️ เครื่องพิมพ์</button>
+            <button class="qbtn" onclick="ask('เชื่อมต่อ WiFi ไม่ได้')" data-i18n="catWifi">📶 WiFi/เน็ต</button>
+            <button class="qbtn" onclick="ask('ลืมรหัสผ่าน')" data-i18n="catPassword">🔑 ลืมรหัสผ่าน</button>
+            <button class="qbtn" onclick="ask('คอมช้ามาก')" data-i18n="catSlow">💻 คอมช้า</button>
+            <button class="qbtn" onclick="ask('ส่งอีเมลไม่ได้')" data-i18n="catEmail">📧 อีเมล</button>
+            <button class="qbtn" onclick="ask('VPN เชื่อมต่อไม่ได้')" data-i18n="catVPN">🔐 VPN</button>
+            <button class="qbtn" onclick="ask('Zoom กล้องไม่ทำงาน')" data-i18n="catVideo">📹 Video Call</button>
+            <button class="qbtn" onclick="ask('ไฟล์ถูกลบกู้คืนยังไง')" data-i18n="catFile">💾 กู้ไฟล์</button>
+            <button class="qbtn" onclick="ask('Teams เปิดไม่ขึ้น')" data-i18n="catTeams">💬 Teams</button>
+            <button class="qbtn" onclick="ask('เสียบ USB แล้วไม่ขึ้น')" data-i18n="catHardware">🔌 USB/Hardware</button>
+            <button class="qbtn" onclick="ask('Map Network Drive ทำยังไง')" data-i18n="catNetworkDrive">🗂️ Network Drive</button>
+            <button class="qbtn" onclick="ask('Office 365 activation failed')" data-i18n="catOffice">📊 Office 365</button>
+            <button class="qbtn" onclick="ask('C Drive เต็ม')" data-i18n="catWindows">🪟 Windows</button>
+            <button class="qbtn" onclick="ask('ต่อ 2 จอ Dual Monitor')" data-i18n="catMonitor">🖥️ Dual Monitor</button>
+            <button class="qbtn" onclick="ask('พนักงานใหม่ต้องทำอะไร')" data-i18n="catNewEmp">👤 New Employee</button>
+            <button class="qbtn" onclick="ask('ติดตั้งโปรแกรมใหม่')" data-i18n="catSoftware">📦 ลงโปรแกรม</button>
         </div>
 
         <div class="chat-wrap">
@@ -737,27 +738,27 @@
 
             <div class="input-wrap">
                 <div class="input-container">
-                    <input id="inp" placeholder="พิมพ์อาการเสีย หรือปัญหาไอทีที่พบ..." onkeydown="if(event.key==='Enter'){send(); document.querySelector('.send-btn').classList.remove('active');}" oninput="document.querySelector('.send-btn').classList.toggle('active', this.value.trim().length > 0)">
+                    <input id="inp" data-i18n-placeholder="chatInputPlaceholder" placeholder="Type your symptoms or IT issues..." onkeydown="if(event.key==='Enter'){send(); document.querySelector('.send-btn').classList.remove('active');}" oninput="document.querySelector('.send-btn').classList.toggle('active', this.value.trim().length > 0)">
                 </div>
-                <button class="send-btn" onclick="send(); this.classList.remove('active');" title="ส่งข้อความ (Enter)">🚀</button>
+                <button class="send-btn" onclick="send(); this.classList.remove('active');" title="Send Message (Enter)">🚀</button>
             </div>
 
             <div class="stats-bar">
-                <div class="stat">Tickets: <span id="sTicket">0</span></div>
-                <div class="stat">Helpful: <span id="sGood">0</span></div>
-                <div class="stat">Issues: <span id="sBad">0</span></div>
-                <button class="clear-btn" onclick="clearChat()" title="ล้างประวัติแชท">🗑️ ล้างแชท</button>
-                <div class="stat" style="margin-left:auto">Engine: <span id="sMode">Keyword Mode</span></div>
+                <div class="stat"><span data-i18n="statTickets">Tickets</span>: <span id="sTicket">0</span></div>
+                <div class="stat"><span data-i18n="statHelpful">Helpful</span>: <span id="sGood">0</span></div>
+                <div class="stat"><span data-i18n="statIssues">Issues</span>: <span id="sBad">0</span></div>
+                <button class="clear-btn" onclick="clearChat()" data-i18n="btnClear" title="Clear chat history">🗑️ Clear Chat</button>
+                <div class="stat" style="margin-left:auto"><span data-i18n="statEngine">Engine</span>: <span id="sMode">Keyword Mode</span></div>
             </div>
         </div>
 
         <div class="history-panel">
             <div class="hp-title">
-                <span>🎫 Recent Tickets</span>
-                <span style="font-size: 0.6rem; color: var(--accent); cursor: pointer;">View All</span>
+                <span data-i18n="histTitle">🎫 Recent Tickets</span>
+                <span style="font-size: 0.6rem; color: var(--accent); cursor: pointer;" data-i18n="histViewAll">View All</span>
             </div>
             <div class="hp-list" id="histList">
-                <div style="padding:40px 20px;text-align:center;color:var(--text-dim);font-size:0.8rem">
+                <div style="padding:40px 20px;text-align:center;color:var(--text-dim);font-size:0.8rem" data-i18n="histEmpty">
                     No active tickets
                 </div>
             </div>
@@ -904,7 +905,7 @@ function checkScrollBtn(){
 
 // Clear chat
 function clearChat(){
-  if(!confirm('ล้างประวัติแชทแน่ใจไหมครับ?')) return;
+  if(!confirm(translations[currentLang].confirmClear)) return;
   const w=document.getElementById('messages');
   // Remove all messages except welcome
   const msgs = w.querySelectorAll('.msg:not(#welcomeMsg), .msg-footer, .quick-chips-wrap, div[style*="text-align:center"]');
@@ -938,14 +939,14 @@ function typeWrite(el, html, speed=12) {
         el.classList.add('collapsed');
         const btn = document.createElement('button');
         btn.className = 'expand-btn';
-        btn.textContent = '▼ ดูคำตอบเต็ม';
+        btn.textContent = translations[currentLang].btnViewFull;
         btn.onclick = function(){
           if(el.classList.contains('collapsed')){
             el.classList.remove('collapsed');
-            btn.textContent = '▲ ย่อลง';
+            btn.textContent = translations[currentLang].btnCollapse;
           } else {
             el.classList.add('collapsed');
-            btn.textContent = '▼ ดูคำตอบเต็ม';
+            btn.textContent = translations[currentLang].btnViewFull;
           }
         };
         el.after(btn);
@@ -985,13 +986,13 @@ function addFeedback(tNum, botText){
   const w=document.getElementById('messages');
   const d=document.createElement('div');
   d.className='msg-footer';
-  d.innerHTML=`<button class="fb-btn" id="g${tNum}" onclick="feedback('${tNum}',1)">👍 มีประโยชน์</button><button class="fb-btn" id="b${tNum}" onclick="feedback('${tNum}',-1)">👎 ไม่ตรง</button><span class="ticket-tag">#${tNum}</span><button class="copy-btn" onclick="copyAnswer('${tNum}')" id="cp${tNum}">📋 คัดลอก</button>`;
+  d.innerHTML=`<button class="fb-btn" id="g${tNum}" onclick="feedback('${tNum}',1)">${translations[currentLang].btnGood}</button><button class="fb-btn" id="b${tNum}" onclick="feedback('${tNum}',-1)">${translations[currentLang].btnBad}</button><span class="ticket-tag">#${tNum}</span><button class="copy-btn" onclick="copyAnswer('${tNum}')" id="cp${tNum}">${translations[currentLang].btnCopy}</button>`;
   
   const chips = document.createElement('div');
   chips.className = 'quick-chips-wrap';
-  chips.innerHTML = `<button class="chip-btn" onclick="ask('✅ แก้ไขได้แล้ว ขอบคุณครับ')">✅ แก้ไขได้แล้ว</button>
-                     <button class="chip-btn" onclick="ask('❌ ยังไม่ได้ผล ขอวิธีอื่น')">❌ ยังไม่ได้ผล</button>
-                     <button class="chip-btn" onclick="ask('📞 ขอติดต่อเจ้าหน้าที่ IT')">📞 ขอคุยกับเจ้าหน้าที่</button>`;
+  chips.innerHTML = `<button class="chip-btn" onclick="ask('${translations[currentLang].chipSolved}')">${translations[currentLang].chipSolved}</button>
+                     <button class="chip-btn" onclick="ask('${translations[currentLang].chipNotSolved}')">${translations[currentLang].chipNotSolved}</button>
+                     <button class="chip-btn" onclick="ask('${translations[currentLang].chipContact}')">${translations[currentLang].chipContact}</button>`;
 
   // store text for copy
   if(botText) window['_answer_'+tNum] = botText;
@@ -1004,7 +1005,7 @@ function copyAnswer(tNum){
   const text = window['_answer_'+tNum] || '';
   navigator.clipboard.writeText(text).then(()=>{
     const btn = document.getElementById('cp'+tNum);
-    if(btn){ btn.textContent='✅ คัดลอกแล้ว'; btn.style.color='#4ade80'; setTimeout(()=>{btn.textContent='📋 คัดลอก'; btn.style.color='';},2000); }
+    if(btn){ btn.textContent=translations[currentLang].btnCopied; btn.style.color='#4ade80'; setTimeout(()=>{btn.textContent=translations[currentLang].btnCopy; btn.style.color='';},2000); }
   });
 }
 
@@ -1061,7 +1062,7 @@ function addTyping(role='bot'){
 
 function renderHistory(){
   const el=document.getElementById('histList');
-  if(!history.length){el.innerHTML='<div style="padding:20px;text-align:center;color:#475569;font-size:.78rem">ยังไม่มี Ticket</div>';return;}
+  if(!history.length){el.innerHTML=`<div style="padding:20px;text-align:center;color:#475569;font-size:.78rem">${translations[currentLang].histEmpty}</div>`;return;}
   el.innerHTML=[...history].reverse().map(h=>`<div class="hp-item"><div class="hn">#${h.ticket} • ${h.time} ${h.feedback||''}</div><div class="hq">${h.question}</div><div class="hr">${h.mode}</div></div>`).join('');
 }
 
@@ -1081,7 +1082,7 @@ async function send(){
   const isClosing = lowerText.includes('ขอบคุณ') || lowerText.includes('แก้ไขได้แล้ว') || lowerText.includes('เรียบร้อย') || lowerText.includes('โอเค');
 
   if (isClosing) {
-    reply = 'ยินดีให้บริการครับ! 💙 หากมีปัญหาเพิ่มเติมสามารถสอบถามเข้ามาได้ตลอดเวลาครับ\n\n*(ระบบได้ทำการบันทึกและปิด Ticket นี้แล้ว)*';
+    reply = translations[currentLang].closingMsg;
     mode = 'System';
   } else {
     try {
@@ -1227,15 +1228,17 @@ function renderUI() {
     const totalCat = window.KB.categories.length;
     
     const faqEl = document.getElementById('faqCount');
-    if (faqEl) faqEl.textContent = totalFaq + ' FAQ | ' + totalCat + ' หมวด';
+    if (faqEl) {
+      faqEl.textContent = totalFaq + ' FAQ | ' + totalCat + (currentLang === 'th' ? ' หมวด' : ' Cats');
+    }
     
     const topCats = window.KB.categories.slice(0, 5).map(c => c.name).join(', ');
     const wb = document.getElementById('welcomeBub');
     if (wb) {
-      wb.innerHTML = 'สวัสดีครับ! 👋 ผม <strong>IT Support AI</strong> ยินดีให้บริการครับ<br><br>'
-        + '📊 ฐานข้อมูลปัจจุบัน: <strong>' + totalFaq + ' คำถาม</strong> ใน <strong>' + totalCat + ' หมวด</strong><br>'
-        + '📂 หมวดหมู่หลัก: ' + topCats + '<br><br>'
-        + '💡 พิมพ์ปัญหาของคุณ หรือเลือกจากเมนูด้านซ้ายได้เลยครับ';
+      wb.innerHTML = translations[currentLang].welcomeTitle + '<br><br>'
+        + translations[currentLang].welcomeStats.replace('{faq}', totalFaq).replace('{cat}', totalCat) + '<br>'
+        + translations[currentLang].welcomeCats + topCats + '<br><br>'
+        + translations[currentLang].welcomeAction;
     }
   } catch (err) {
     console.error('Render UI error:', err);
