@@ -825,6 +825,7 @@ const translations = {
     chipNotSolved: "❌ Not working",
     chipContact: "📞 Contact IT",
     closingMsg: "Happy to help! 💙 If you have more questions, feel free to ask anytime.\n\n*(System has recorded and closed this Ticket)*",
+    escalationMsg: "I couldn't find a matching solution in the database. Please contact IT Support:\n📞 Call: ext. 1234\n📧 Email: it-support@company.com\n🕐 Hours: Mon-Fri 8:30-17:30",
     catPrinter: "🖨️ Printer",
     catWifi: "📶 WiFi/Net",
     catPassword: "🔑 Password",
@@ -840,7 +841,8 @@ const translations = {
     catWindows: "🪟 Windows",
     catMonitor: "🖥️ Dual Monitor",
     catNewEmp: "👤 New Employee",
-    catSoftware: "📦 Software"
+    catSoftware: "📦 Software",
+    sysError: "⚠️ System Error: "
   },
   th: {
     title: "IT Support AI",
@@ -883,6 +885,7 @@ const translations = {
     chipNotSolved: "❌ ยังทำไม่ได้",
     chipContact: "📞 ติดต่อไอที",
     closingMsg: "ยินดีให้บริการครับ! 💙 หากมีปัญหาเพิ่มเติมสามารถสอบถามเข้ามาได้ตลอดเวลาครับ\n\n*(ระบบได้ทำการบันทึกและปิด Ticket นี้แล้ว)*",
+    escalationMsg: "ไม่พบคำตอบที่ตรงกับปัญหาของคุณ กรุณาติดต่อ IT Support:\n📞 โทร: ext. 1234\n📧 อีเมล: it-support@company.com\n🕐 เวลา: จันทร์-ศุกร์ 8:30-17:30",
     catPrinter: "🖨️ เครื่องพิมพ์",
     catWifi: "📶 WiFi/เน็ต",
     catPassword: "🔑 ลืมรหัสผ่าน",
@@ -898,7 +901,9 @@ const translations = {
     catWindows: "🪟 Windows",
     catMonitor: "🖥️ Dual Monitor",
     catNewEmp: "👤 พนักงานใหม่",
-    catSoftware: "📦 ลงโปรแกรม"
+    catSoftware: "📦 ลงโปรแกรม",
+    sysError: "⚠️ ระบบขัดข้อง: "
+  }
   }
 };
 
@@ -1011,13 +1016,13 @@ async function callGemini(userInput){
   const ctx = top3.map(f=>`Q: ${f.question}\nA: ${f.answer}`).join('\n\n');
   
   const langPrompt = currentLang === 'en' 
-    ? 'Respond in English. Keep it professional and helpful.' 
+    ? 'STRICTLY respond in English. Do not use Thai in the answer.' 
     : 'ตอบเป็นภาษาไทย สั้น ชัดเจน เป็นกันเอง และสุภาพ';
     
   const prompt = `You are a Corporate IT Support AI. ${langPrompt} Use numbered lists for steps.
 If no info is found, say: Please contact IT Support ext.1234
 
-FAQ Context (might be in Thai, please translate if needed for the response):
+Context (This is from our Thai KB, please translate the relevant parts to English for your response):
 ${ctx}
 
 User Question: ${userInput}
@@ -1274,11 +1279,33 @@ async function send(){
       if (!reply) {
         await new Promise(r=>setTimeout(r,700+Math.random()*500));
         const m = scoreKB(text);
-        reply = m ? `📋 **${m.faq.question}**\n\n${m.faq.answer}` : window.KB.escalation.message;
+        if (m) {
+          reply = `📋 **${m.faq.question}**\n\n${m.faq.answer}`;
+          // If in English mode but Keyword result is Thai, try translating if API key exists
+          if (currentLang === 'en' && geminiKey) {
+            try {
+              const transPrompt = `Translate this IT Support FAQ to professional English:\n\n${reply}`;
+              const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiKey}`,{
+                method:'POST', headers:{'Content-Type':'application/json'},
+                body: JSON.stringify({contents:[{parts:[{text:transPrompt}]}]})
+              });
+              if(res.ok){
+                const d = await res.json();
+                reply = d.candidates[0].content.parts[0].text;
+                mode = 'Keyword (Translated)';
+              }
+            } catch(e) { console.error('Translation error', e); }
+          } else if (currentLang === 'en') {
+             // Disclaimer if no API key for translation
+             reply = `*(Note: Knowledge Base is only in Thai for Keyword Mode)*\n\n` + reply;
+          }
+        } else {
+          reply = translations[currentLang].escalationMsg;
+        }
         mode = 'Keyword';
       }
     } catch(e){
-      reply = '⚠️ ระบบขัดข้อง: ' + e.message;
+      reply = translations[currentLang].sysError + e.message;
       mode = 'Error';
     }
   }
