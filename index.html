@@ -783,11 +783,165 @@ let savedStats = JSON.parse(localStorage.getItem('itbot_stats') || '{"tickets":0
 let stats = savedStats;
 let history = JSON.parse(localStorage.getItem('itbot_history') || '[]');
 
+const translations = {
+  en: {
+    title: "IT Support AI",
+    subtitle: "Intelligence HelpDesk System",
+    kbLoading: "Loading Knowledge...",
+    engineKeyword: "Keyword Engine",
+    engineGemini: "Gemini AI",
+    btnAi: "⚙️ AI",
+    btnThemeDark: "🌙 Dark",
+    btnThemeLight: "☀️ Light",
+    btnLang: "🌐 EN",
+    aiConfigTitle: "🤖 Gemini AI Config:",
+    aiConfigPlaceholder: "Paste Gemini API Key here to enable AI responses...",
+    aiConfigSave: "Activate AI",
+    quickSolutions: "Quick Solutions",
+    searchPlaceholder: "🔍 Search categories...",
+    chatInputPlaceholder: "Type your symptoms or IT issues...",
+    statTickets: "Tickets",
+    statHelpful: "Helpful",
+    statIssues: "Issues",
+    statEngine: "Engine",
+    btnClear: "🗑️ Clear Chat",
+    histTitle: "🎫 Recent Tickets",
+    histViewAll: "View All",
+    histEmpty: "No active tickets",
+    welcomeTitle: "Hello! 👋 I am <strong>IT Support AI</strong> ready to assist you.",
+    welcomeStats: "📊 Current DB: <strong>{faq} FAQs</strong> in <strong>{cat} Categories</strong>",
+    welcomeCats: "📂 Main Categories: ",
+    welcomeAction: "💡 Type your problem or choose from the menu on the left.",
+    confirmClear: "Are you sure you want to clear chat history?",
+    sysAiEnabled: "✅ Gemini AI is now enabled! Real AI will now respond.",
+    sysAiDisabled: "ℹ️ Gemini AI disabled. Back to Keyword Mode.",
+    btnViewFull: "▼ View Full Answer",
+    btnCollapse: "▲ Collapse",
+    btnGood: "👍 Helpful",
+    btnBad: "👎 Not Match",
+    btnCopy: "📋 Copy",
+    btnCopied: "✅ Copied",
+    chipSolved: "✅ Solved",
+    chipNotSolved: "❌ Not working",
+    chipContact: "📞 Contact IT",
+    closingMsg: "Happy to help! 💙 If you have more questions, feel free to ask anytime.\n\n*(System has recorded and closed this Ticket)*",
+    catPrinter: "🖨️ Printer",
+    catWifi: "📶 WiFi/Net",
+    catPassword: "🔑 Password",
+    catSlow: "💻 Slow PC",
+    catEmail: "📧 Email",
+    catVPN: "🔐 VPN",
+    catVideo: "📹 Video Call",
+    catFile: "💾 Recover File",
+    catTeams: "💬 Teams",
+    catHardware: "🔌 Hardware",
+    catNetworkDrive: "🗂️ Network Drive",
+    catOffice: "📊 Office 365",
+    catWindows: "🪟 Windows",
+    catMonitor: "🖥️ Dual Monitor",
+    catNewEmp: "👤 New Employee",
+    catSoftware: "📦 Software"
+  },
+  th: {
+    title: "IT Support AI",
+    subtitle: "ระบบช่วยเหลือไอทีอัจฉริยะ",
+    kbLoading: "กำลังโหลดข้อมูล...",
+    engineKeyword: "Keyword Engine",
+    engineGemini: "Gemini AI",
+    btnAi: "⚙️ AI",
+    btnThemeDark: "🌙 มืด",
+    btnThemeLight: "☀️ สว่าง",
+    btnLang: "🌐 TH",
+    aiConfigTitle: "🤖 ตั้งค่า Gemini AI:",
+    aiConfigPlaceholder: "วาง API Key ของ Gemini ตรงนี้ เพื่อใช้ AI ช่วยตอบ...",
+    aiConfigSave: "เปิดใช้งาน AI",
+    quickSolutions: "วิธีแก้ปัญหาด่วน",
+    searchPlaceholder: "🔍 ค้นหาหมวดหมู่...",
+    chatInputPlaceholder: "พิมพ์อาการเสีย หรือปัญหาไอทีที่พบ...",
+    statTickets: "Ticket ทั้งหมด",
+    statHelpful: "แก้ได้",
+    statIssues: "แก้ไม่ได้",
+    statEngine: "ระบบ",
+    btnClear: "🗑️ ล้างแชท",
+    histTitle: "🎫 Ticket ล่าสุด",
+    histViewAll: "ดูทั้งหมด",
+    histEmpty: "ยังไม่มีรายการ",
+    welcomeTitle: "สวัสดีครับ! 👋 ผม <strong>IT Support AI</strong> ยินดีให้บริการครับ",
+    welcomeStats: "📊 ฐานข้อมูลปัจจุบัน: <strong>{faq} คำถาม</strong> ใน <strong>{cat} หมวด</strong>",
+    welcomeCats: "📂 หมวดหมู่หลัก: ",
+    welcomeAction: "💡 พิมพ์ปัญหาของคุณ หรือเลือกจากเมนูด้านซ้ายได้เลยครับ",
+    confirmClear: "คุณแน่ใจหรือไม่ว่าต้องการล้างประวัติการสนทนาทั้งหมด?",
+    sysAiEnabled: "✅ เปิดใช้งาน Gemini AI แล้ว! ระบบจะใช้ AI ในการตอบคำถาม",
+    sysAiDisabled: "ℹ️ ปิดการใช้งาน Gemini AI กลับสู่โหมด Keyword",
+    btnViewFull: "▼ ดูคำตอบเต็ม",
+    btnCollapse: "▲ พับเก็บ",
+    btnGood: "👍 แก้ได้",
+    btnBad: "👎 ไม่ตรง",
+    btnCopy: "📋 คัดลอก",
+    btnCopied: "✅ คัดลอกแล้ว",
+    chipSolved: "✅ แก้ไขได้แล้ว",
+    chipNotSolved: "❌ ยังทำไม่ได้",
+    chipContact: "📞 ติดต่อไอที",
+    closingMsg: "ยินดีให้บริการครับ! 💙 หากมีปัญหาเพิ่มเติมสามารถสอบถามเข้ามาได้ตลอดเวลาครับ\n\n*(ระบบได้ทำการบันทึกและปิด Ticket นี้แล้ว)*",
+    catPrinter: "🖨️ เครื่องพิมพ์",
+    catWifi: "📶 WiFi/เน็ต",
+    catPassword: "🔑 ลืมรหัสผ่าน",
+    catSlow: "💻 คอมช้า",
+    catEmail: "📧 อีเมล",
+    catVPN: "🔐 VPN",
+    catVideo: "📹 Video Call",
+    catFile: "💾 กู้ไฟล์",
+    catTeams: "💬 Teams",
+    catHardware: "🔌 Hardware",
+    catNetworkDrive: "🗂️ Network Drive",
+    catOffice: "📊 Office 365",
+    catWindows: "🪟 Windows",
+    catMonitor: "🖥️ Dual Monitor",
+    catNewEmp: "👤 พนักงานใหม่",
+    catSoftware: "📦 ลงโปรแกรม"
+  }
+};
+
+let currentLang = localStorage.getItem('itbot_lang') || 'en';
+
+function applyTranslations() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (translations[currentLang][key]) {
+      el.innerHTML = translations[currentLang][key];
+    }
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (translations[currentLang][key]) {
+      el.placeholder = translations[currentLang][key];
+    }
+  });
+  
+  // Update buttons with specific logic
+  const theme = document.body.classList.contains('light') ? 'light' : 'dark';
+  document.getElementById('themeBtn').textContent = theme === 'light' ? translations[currentLang].btnThemeLight : translations[currentLang].btnThemeDark;
+  document.getElementById('langBtn').textContent = translations[currentLang].btnLang;
+  
+  // Refresh UI if KB is already loaded
+  if (window.KB) renderUI();
+}
+
+function toggleLang() {
+  currentLang = currentLang === 'en' ? 'th' : 'en';
+  localStorage.setItem('itbot_lang', currentLang);
+  document.documentElement.lang = currentLang;
+  applyTranslations();
+}
+
 // Restore stats display
 document.getElementById('sTicket').textContent = stats.tickets;
 document.getElementById('sGood').textContent   = stats.good;
 document.getElementById('sBad').textContent    = stats.bad;
 if(history.length) renderHistory();
+
+// Lang init
+applyTranslations();
 
 // Theme init
 (function(){
@@ -799,14 +953,9 @@ if(history.length) renderHistory();
 })();
 
 function toggleTheme(){
-  const btn = document.getElementById('themeBtn');
-  if(document.body.classList.toggle('light')){
-    btn.textContent = '☀️ Light';
-    localStorage.setItem('itbot_theme','light');
-  } else {
-    btn.textContent = '🌙 Dark';
-    localStorage.setItem('itbot_theme','dark');
-  }
+  const isLight = document.body.classList.toggle('light');
+  localStorage.setItem('itbot_theme', isLight ? 'light' : 'dark');
+  applyTranslations();
 }
 
 if(geminiKey){ 
@@ -819,20 +968,20 @@ function saveKey(){
   if(geminiKey){ 
     localStorage.setItem('geminiKey',geminiKey); 
     setAIMode(true); 
-    addSys('✅ เปิดใช้ Gemini AI แล้วครับ! ตอนนี้จะตอบด้วย AI จริง'); 
+    addSys(translations[currentLang].sysAiEnabled); 
   } else { 
     localStorage.removeItem('geminiKey'); 
     setAIMode(false); 
-    addSys('ℹ️ ปิด Gemini AI แล้ว กลับเป็น Keyword Mode'); 
+    addSys(translations[currentLang].sysAiDisabled); 
   }
 }
 
 function setAIMode(on){
-  document.getElementById('aiLabel').textContent = on ? 'Gemini AI' : 'Keyword AI';
+  document.getElementById('aiLabel').textContent = on ? translations[currentLang].engineGemini : translations[currentLang].engineKeyword;
   document.getElementById('aiLabel').style.background = on ? '#7c3aed22' : '#1e40af22';
   document.getElementById('aiLabel').style.borderColor = on ? '#7c3aed55' : '#1e40af55';
   document.getElementById('aiLabel').style.color = on ? '#a78bfa' : '#60a5fa';
-  document.getElementById('sMode').textContent = on ? 'Gemini AI Mode' : 'Keyword Mode';
+  document.getElementById('sMode').textContent = on ? (currentLang === 'th' ? 'Gemini AI Mode' : 'Gemini AI Mode') : (currentLang === 'th' ? 'Keyword Mode' : 'Keyword Mode');
 }
 
 function scoreKB(input){
