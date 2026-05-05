@@ -1,1 +1,2034 @@
-window.KB = {"categories": [{"name": "เครื่องพิมพ์", "keywords": ["printer", "พิมพ์", "ปริ้น", "print", "ปริ้นเตอร์", "กระดาษติด", "หมึก", "toner", "scan", "สแกน", "scanner", "paper jam"], "faqs": [{"question": "เครื่องพิมพ์พิมพ์ไม่ออก ทำยังไง?", "answer": "1. ตรวจสอบสาย USB หรือ Network ว่าเชื่อมต่อหรือยัง\n2. ตรวจว่าเครื่องพิมพ์เปิดอยู่\n3. Restart Print Spooler: เปิด Services > Print Spooler > Restart\n4. ลองพิมพ์ Test Page จาก Printer Properties\n5. ถ้ายังไม่ได้ ติดต่อ IT Support ที่ ext. 1234"}, {"question": "กระดาษติดในเครื่องพิมพ์ แก้ยังไง?", "answer": "1. ปิดเครื่องพิมพ์ก่อน\n2. เปิดฝาเครื่องพิมพ์ ค่อยๆ ดึงกระดาษออกช้าๆ\n3. ตรวจว่าไม่มีเศษกระดาษค้าง\n4. ตรวจถาดกระดาษว่าใส่ถูกต้อง\n5. เปิดเครื่องลองพิมพ์ใหม่"}, {"question": "เครื่องพิมพ์ขึ้น Low Toner ทำยังไง?", "answer": "1. ถ้าพิมพ์ยังชัดอยู่ กด OK เพื่อพิมพ์ต่อได้\n2. สั่งซื้อ Toner ใหม่ผ่านระบบจัดซื้อ\n3. แจ้ง IT Support เพื่อขอเปลี่ยน Toner\n4. อย่าเปิด Toner ใหม่ทิ้งไว้โดนแสง"}, {"question": "สั่งพิมพ์จากเครื่องอื่น ทำยังไง?", "answer": "1. เพิ่ม Network Printer: Settings > Printers > Add Printer\n2. พิมพ์ IP ของเครื่องพิมพ์ (ถาม IT หรือดูที่หน้าจอเครื่องพิมพ์)\n3. Install Driver ถ้าจำเป็น\n4. ทดสอบพิมพ์ Test Page\n5. ถ้าเชื่อมไม่ได้ ตรวจ Firewall หรือติดต่อ IT"}, {"question": "สแกนเอกสารไม่ได้ ทำยังไง?", "answer": "1. ตรวจว่าติดตั้ง Scanner Driver แล้ว\n2. ลองใช้ Windows Scan App (Microsoft Store)\n3. ตรวจ USB Connection\n4. ถ้าเป็น Network Scanner ตรวจ IP Address\n5. บันทึกไฟล์เป็น PDF หรือ JPEG\n6. ติดต่อ IT Support ext. 1234"}, {"question": "เครื่องพิมพ์พิมพ์สีเพี้ยน / สีไม่ออก", "answer": "1. Run Head Cleaning จาก Printer Utility\n2. ตรวจระดับหมึก/toner\n3. ทดสอบพิมพ์ Test Page (Color)\n4. ตรวจว่าตั้งค่าพิมพ์เป็น Color ไม่ใช่ Grayscale\n5. ถ้าหมึกหมด แจ้ง IT เพื่อเปลี่ยน"}, {"question": "พิมพ์ขอบไม่ครบ ตัดข้อความ", "answer": "1. File > Print > Page Setup > Margins\n2. ลด Margins ให้เล็กลง\n3. เลือก Fit to Page\n4. ตรวจ Paper Size ตรงกับกระดาษ"}]}, {"name": "อินเทอร์เน็ต/Network", "keywords": ["internet", "เน็ต", "wifi", "ไวไฟ", "network", "เชื่อมต่อ", "หลุด", "ช้า", "disconnect", "lan", "ethernet", "router", "modem", "dns", "ip address"], "faqs": [{"question": "เชื่อมต่อ WiFi ไม่ได้ ทำยังไง?", "answer": "1. ตรวจว่าเปิด WiFi แล้ว (Fn + F-key ที่มีสัญลักษณ์ WiFi)\n2. Forget network แล้วเชื่อมต่อใหม่\n3. ใช้รหัส WiFi: บริษัท/OfficeName + ปี เช่น Company2024\n4. Restart เครื่อง\n5. ถ้าใช้ LAN ได้ ให้ใช้สาย LAN แทน\n6. ติดต่อ IT Support ext. 1234"}, {"question": "อินเทอร์เน็ตช้ามาก ทำยังไง?", "answer": "1. ปิด VPN แล้วลองใหม่ (ถ้าไม่จำเป็น)\n2. ปิดแท็บ Browser ที่ไม่ใช้\n3. ทดสอบความเร็วที่ speedtest.net\n4. Restart Router/Modem\n5. ถ้าทั้งออฟฟิศช้า แจ้ง IT เพราะอาจเป็นปัญหา ISP\n6. ติดต่อ IT Support ext. 1234"}, {"question": "VPN เชื่อมต่อไม่ได้", "answer": "1. ตรวจ Internet ก่อนว่าใช้ได้\n2. Restart VPN Client\n3. ตรวจว่าใช้ Server ถูกต้อง (vpn.company.com)\n4. ตรวจ Username/Password\n5. ถ้าหมดอายุ ติดต่อ IT เพื่อ Reset\n6. ลองใช้ GlobalProtect แทน (ถ้ามี)"}, {"question": "WiFi หลุดบ่อย ทำยังไง?", "answer": "1. อยู่ใกล้ Router/WiFi Access Point\n2. Forget network แล้วเชื่อมต่อใหม่\n3. ปิด Bluetooth (อาจรบกวนสัญญาณ)\n4. Update WiFi Driver\n5. ถ้าใช้ 5GHz ลองสลับเป็น 2.4GHz\n6. แจ้ง IT เพื่อตรวจ Access Point"}, {"question": "เข้าเว็บไม่ได้ ขึ้น DNS Error", "answer": "1. Flush DNS: เปิด CMD พิมพ์ ipconfig /flushdns\n2. เปลี่ยน DNS เป็น 8.8.8.8 หรือ 1.1.1.1\n3. Restart Network Adapter\n4. ตรวจ Proxy Settings (Internet Options > LAN Settings)\n5. ถ้าใช้บริษัท อาจถูก Block โดย Firewall\n6. ติดต่อ IT Support ext. 1234"}, {"question": "ต่อ LAN แล้วไม่มีสัญญาณ", "answer": "1. ตรวจสาย LAN ว่าเสียบแน่นทั้ง 2 ฝั่ง\n2. ลองเปลี่ยนสาย LAN\n3. ตรวจไฟ LED ที่ช่องเสียบ (ต้องมีไฟ)\n4. Restart Network Adapter\n5. ตรวจ IP Address: ipconfig /all\n6. ติดต่อ IT Support ext. 1234"}]}, {"name": "อีเมล", "keywords": ["email", "อีเมล", "เมล", "outlook", "gmail", "ส่งเมล", "รับเมล", "inbox", "spam", "calendar", "ปฏิทิน", "meeting", "ประชุม", "attachment", "ไฟล์แนบ"], "faqs": [{"question": "ส่งอีเมลไม่ได้ ทำยังไง?", "answer": "1. ตรวจ Internet ว่าใช้ได้\n2. ตรวจขนาดไฟล์แนบ (ไม่เกิน 25MB)\n3. ตรวจว่าที่อยู่ผู้รับถูกต้อง\n4. ตรวจ Sent Items ว่าส่งจริงหรือไม่\n5. ลองส่งจาก Webmail แทน\n6. ติดต่อ IT Support ext. 1234"}, {"question": "อีเมลเข้า Spam เยอะมาก แก้ยังไง?", "answer": "1. ตรวจ Junk Email Settings ใน Outlook\n2. เพิ่มผู้ส่งใน Safe Senders List\n3. Right-click อีเมล > Not Junk\n4. อย่ากด unsubscribe จากอีเมลที่ไม่รู้จัก\n5. แจ้ง IT ถ้ามี phishing เข้ามาบ่อย"}, {"question": "Outlook เปิดไม่ขึ้น / ค้าง", "answer": "1. ปิด Outlook จาก Task Manager (Ctrl+Shift+Esc)\n2. เปิด Outlook ใน Safe Mode: กด Win+R พิมพ์ outlook.exe /safe\n3. ลบไฟล์ .ost เก่า (C:\\Users\\ชื่อ\\AppData\\Local\\Microsoft\\Outlook)\n4. Repair Office: Control Panel > Programs > Microsoft Office > Repair\n5. Restart เครื่อง\n6. ติดต่อ IT Support ext. 1234"}, {"question": "อีเมลไม่ sync / ไม่อัพเดท", "answer": "1. กด Send/Receive ที่ Outlook\n2. ตรวจ Internet Connection\n3. ตรวจ Account Settings: File > Account Settings\n4. ลบ Account แล้วเพิ่มใหม่\n5. ตรวจ Cache Mode (Cached Exchange Mode)\n6. ติดต่อ IT Support ext. 1234"}, {"question": "ส่งไฟล์แนบใหญ่ไม่ได้ ทำยังไง?", "answer": "1. บีบอัดไฟล์: Right-click > Send to > Compressed (zipped) folder\n2. ใช้ OneDrive/Google Drive แล้วแชร์ Link\n3. ใช้ WeTransfer หรือ Filemail\n4. แยกไฟล์เป็นหลาย Part\n5. จำกัดขนาดสูงสุด: Outlook 25MB, Gmail 25MB"}, {"question": "สร้าง Meeting / นัดประชุมใน Outlook ทำยังไง?", "answer": "1. เปิด Calendar ใน Outlook\n2. กด New Meeting หรือ Ctrl+Shift+Q\n3. เพิ่มผู้เข้าร่วมใน To:\n4. ตั้งวันเวลา + ห้องประชุม (Room Finder)\n5. กด Send\n6. ถ้าใช้ Teams กด Add Online Meeting"}, {"question": "อีเมล Phishing / อีเมลหลอกลวง ดูยังไง?", "answer": "1. ตรวจ Sender Address ให้ละเอียด (อย่าดูแค่ชื่อ)\n2. อย่าคลิกลิงก์แปลกๆ\n3. Hover ดู URL ก่อนคลิก\n4. อย่าเปิดไฟล์แนบจากคนไม่รู้จัก\n5. สงสัยให้ Forward แจ้ง IT Security\n6. อย่าตอบกลับหรือให้ข้อมูลส่วนตัว"}]}, {"name": "คอมพิวเตอร์", "keywords": ["คอม", "computer", "pc", "notebook", "laptop", "ช้า", "ค้าง", "restart", "shutdown", "blue screen", "เปิดไม่ติด", "boot", "จอ", "monitor", "keyboard", "คีย์บอร์ด", "เมาส์", "mouse", "แบต", "battery", "ชาร์จ", "charge", "เสียง", "speaker", "headphone", "หูฟัง"], "faqs": [{"question": "คอมช้ามาก ทำยังไง?", "answer": "1. Restart เครื่อง (วิธีง่ายสุดและมักได้ผล)\n2. ปิด Program ที่ไม่ใช้ (Task Manager > Startup > Disable)\n3. ลบไฟล์ Temp: Win+R พิมพ์ %temp% แล้วลบ\n4. ตรวจ Disk Space ว่าเหลือพอ (>10%)\n5. Scan Virus ด้วย Windows Defender\n6. ถ้ายังช้า แจ้ง IT เพื่อเพิ่ม RAM หรือ SSD"}, {"question": "คอมเปิดไม่ติด ทำยังไง?", "answer": "1. ตรวจสายไฟว่าเสียบแน่น\n2. กดปุ่ม Power ค้าง 10 วินาที แล้วลองใหม่\n3. ตรวจว่า Adapter ไฟเข้า (ไฟ LED)\n4. ถ้า Notebook ถอดแบตฯ ใส่ใหม่แล้วลอง\n5. ติดต่อ IT Support ext. 1234 (อาจเป็น Hardware)"}, {"question": "Blue Screen (จอฟ้า) ทำยังไง?", "answer": "1. จด Error Code ที่หน้าจอ (เช่น DRIVER_IRQL_NOT_LESS_OR_EQUAL)\n2. Restart เครื่อง\n3. ถ้าเกิดซ้ำ อาจเป็น Driver หรือ Hardware\n4. อย่า Install Program เองที่ไม่ใช่ลิขสิทธิ์\n5. ติดต่อ IT Support ext. 1234 พร้อมแจ้ง Error Code"}, {"question": " Notebook แบตหมดเร็ว ทำยังไง?", "answer": "1. ลดความสว่างหน้าจอ\n2. ปิด Bluetooth, WiFi ถ้าไม่ใช้\n3. ปิด Program ที่ทำงานเบื้องหลัง\n4. ใช้ Battery Saver Mode\n5. ตรวจ Battery Health: powercfg /batteryreport\n6. ถ้าแบตเสื่อม แจ้ง IT เพื่อเปลี่ยน"}, {"question": "Notebook ชาร์จไฟไม่เข้า", "answer": "1. ตรวจสายชาร์จว่าเสียบแน่น\n2. ลองใช้ปลั๊กอื่น\n3. ตรวจ Adapter ว่าไฟเข้า (ไฟ LED)\n4. ถอดแบตฯ ใส่ใหม่ (ถ้าถอดได้)\n5. ตรวจพอร์ตชาร์จว่ามีฝุ่น\n6. ติดต่อ IT Support ext. 1234"}, {"question": "จอคอมไม่ขึ้น / จอดำ", "answer": "1. ตรวจสายจอ (HDMI/VGA/DP) ว่าเสียบแน่น\n2. ตรวจว่าจอเปิดอยู่ (ไฟ LED)\n3. กด Windows + P สลับ Display Mode\n4. ลองเสียบจออื่น\n5. Restart เครื่อง\n6. ติดต่อ IT Support ext. 1234"}, {"question": "คีย์บอร์ด / เมาส์ ใช้ไม่ได้", "answer": "1. ตรวจสาย USB ว่าเสียบแน่น\n2. ลองเสียบช่อง USB อื่น\n3. ถ้า Wireless ตรวจ Battery + Receiver\n4. Restart เครื่อง\n5. Update Driver: Device Manager\n6. ขอยืมชั่วคราวจาก IT"}, {"question": "คอมไม่มีเสียง / เสียงไม่ออก", "answer": "1. ตรวจ Volume Mixer (คลิกขวาที่ Speaker Icon)\n2. ตรวจว่าไม่ได้ Mute\n3. ตรวจ Output Device ว่าถูกต้อง\n4. Restart Audio Service\n5. Update Audio Driver\n6. ลองใช้หูฟังอื่น"}, {"question": "คอม Restart เอง / ปิดเอง", "answer": "1. ตรวจว่าไม่ได้ตั้ง Windows Update ไว้\n2. ตรวจ Temperature (อาจร้อนเกินไป)\n3. ตรวจ Event Viewer > Windows Logs > System\n4. Scan Virus\n5. อาจเป็น PSU เสีย\n6. ติดต่อ IT Support ext. 1234"}]}, {"name": "Password/Security", "keywords": ["password", "รหัส", "ลืมรหัส", "เปลี่ยนรหัส", "reset password", "lock", "ล็อค", "hack", "ไวรัส", "virus", "phishing", "2fa", "mfa", "otp", "ยืนยันตัวตน", "authentication"], "faqs": [{"question": "ลืมรหัสผ่าน ทำยังไง?", "answer": "1. กด Forgot Password ที่หน้า Login\n2. ตรวจสอบอีเมลสำรองหรือเบอร์โทร\n3. ติดต่อ IT Support ext. 1234 เพื่อ Reset\n4. หลัง Reset ต้องเปลี่ยนรหัสใหม่ทันที\n5. รหัสต้องมี: ตัวใหญ่+ตัวเล็ก+ตัวเลข+อักขระพิเศษ 8 ตัวขึ้นไป"}, {"question": "บัญชีถูกล็อค ทำยังไง?", "answer": "1. รอ 30 นาที แล้วลองใหม่ (Auto Unlock)\n2. ถ้ายังล็อค ติดต่อ IT Support ext. 1234\n3. อาจเกิดจากกรอกรหัสผิดหลายครั้ง\n4. ตรวจสอบว่า Caps Lock ไม่ได้เปิดอยู่\n5. ระวัง Email หลอกลวง (Phishing) ที่ขโมยรหัสผ่าน"}, {"question": "สงสัยว่าติดไวรัส ทำยังไง?", "answer": "1. อย่า Panic! ถอดสาย LAN/WiFi ออกก่อน\n2. Scan ด้วย Windows Defender (Full Scan)\n3. อย่าเปิดไฟล์ที่สงสัย\n4. บันทึกสิ่งผิดปกติที่เห็น\n5. ติดต่อ IT Support ext. 1234 ทันที\n6. อย่าจ่ายเงินถ้าเจอ Ransomware ให้แจ้ง IT ก่อน"}, {"question": "ตั้งค่า 2FA / MFA ทำยังไง?", "answer": "1. ไปที่ Account Settings > Security\n2. เลือก Two-Factor Authentication\n3. Download Microsoft Authenticator หรือ Google Authenticator\n4. Scan QR Code\n5. กรอก OTP เพื่อยืนยัน\n6. เก็บ Backup Code ไว้ในที่ปลอดภัย"}, {"question": "OTP / 2FA ไม่ยอมรับ ทำยังไง?", "answer": "1. ตรวจว่าเวลาในมือถือตรงกับ Server (Sync Time)\n2. ลองกรอก OTP ใหม่ (หมดอายุทุก 30 วินาที)\n3. ปิด-เปิด Authenticator App ใหม่\n4. ใช้ Backup Code แทน\n5. ติดต่อ IT Support ext. 1234 เพื่อ Reset 2FA"}, {"question": "เปลี่ยนรหัสผ่าน ทำยังไง?", "answer": "1. Windows: Ctrl+Alt+Del > Change a Password\n2. Email: Settings > Security > Change Password\n3. รหัสใหม่ควรมี: ตัวใหญ่+ตัวเล็ก+ตัวเลข+อักขระพิเศษ 8+ ตัว\n4. อย่าใช้รหัสซ้ำกับที่อื่น\n5. เปลี่ยนทุก 90 วัน (ตามนโยบายบริษัท)"}]}, {"name": "Software/Application", "keywords": ["program", "โปรแกร", "install", "ติดตั้ง", "update", "อัพเดท", "license", "ลิขสิทธิ์", "crack", "excel", "word", "powerpoint", "teams", "zoom", "chrome", "browser", "adobe", "acrobat", "pdf"], "faqs": [{"question": "ติดตั้งโปรแกรมใหม่ ทำยังไง?", "answer": "1. ส่งคำขอผ่าน IT Service Portal\n2. ระบุชื่อโปรแกรม + เหตุผลที่ต้องใช้\n3. IT จะตรวจสอบ License และติดตั้งให้\n4. อย่า Download เองจาก Internet (เสี่ยง Malware)\n5. โปรแกรมที่ต้องซื้อ ต้องผ่านการอนุมัติจากหัวหน้า"}, {"question": "Microsoft Office หมดอายุ / เปิดไม่ได้", "answer": "1. ตรวจว่า Sign in ด้วยบัญชีบริษัท (@company.com)\n2. Repair Office: Settings > Apps > Microsoft Office > Modify > Repair\n3. ถ้าหมดอายุ แจ้ง IT เพื่อ Renew License\n4. ใช้ Office Online ชั่วคราว: office.com\n5. ติดต่อ IT Support ext. 1234"}, {"question": "Excel / Word ค้าง / เปิดช้า", "answer": "1. ปิดจาก Task Manager (Ctrl+Shift+Esc)\n2. เปิดใน Safe Mode: Win+R > excel.exe /safe\n3. ปิด Add-ins ที่ไม่ใช้\n4. Repair Office\n5. ถ้าไฟล์ใหญ่มาก ลองเปิดเครื่องอื่น\n6. ติดต่อ IT Support ext. 1234"}, {"question": "Zoom / Teams ประชุมไม่ได้ ทำยังไง?", "answer": "1. ตรวจ Internet Connection\n2. ตรวจ Camera + Microphone Permissions\n3. Restart App\n4. Update เป็น Version ล่าสุด\n5. ตรวจ Firewall อาจ Block\n6. ใช้ Web Version ชั่วคราว\n7. ติดต่อ IT Support ext. 1234"}, {"question": "Chrome / Browser ช้า / เปิดเยอะ", "answer": "1. ปิดแท็บที่ไม่ใช้\n2. Clear Cache: Ctrl+Shift+Del\n3. ปิด Extensions ที่ไม่ใช้\n4. Update Browser\n5. Reset Browser Settings\n6. ลองใช้ Browser อื่น"}, {"question": "เปิดไฟล์ PDF ไม่ได้ ทำยังไง?", "answer": "1. ติดตั้ง Adobe Acrobat Reader (ฟรี)\n2. ลองเปิดด้วย Browser (Chrome, Edge)\n3. ตรวจว่าไฟล์ไม่เสีย (ลองเปิดเครื่องอื่น)\n4. Repair Adobe Acrobat\n5. ติดต่อ IT Support ext. 1234"}, {"question": "Windows Update ทำยังไง? / Update ไม่ได้", "answer": "1. Settings > Windows Update > Check for updates\n2. Restart หลัง Update\n3. ถ้า Error: Run Troubleshooter\n4. ตรวจ Disk Space ว่าเหลือพอ\n5. อย่า Skip Update นานเกินไป (เสี่ยง Security)\n6. ติดต่อ IT Support ext. 1234"}]}, {"name": "VPN / Remote Work", "keywords": ["vpn", "remote", "work from home", "wfh", "เชื่อมต่อบริษัท", "เข้าระบบ", "เข้าไม่ได้", "globalprotect", "cisco", "anyconnect", "rdp", "remote desktop"], "faqs": [{"question": "VPN เชื่อมต่อไม่ได้ ทำยังไง?", "answer": "1. ตรวจ Internet ก่อน (เปิดเว็บอื่นได้ไหม)\n2. Restart VPN Client\n3. เปลี่ยน Server Location\n4. ตรวจ Username/Password\n5. ลองปิด Firewall/Antivirus ชั่วคราว\n6. ติดต่อ IT Support ext. 1234"}, {"question": "Work From Home เชื่อมต่อบริษัท ทำยังไง?", "answer": "1. ติดตั้ง VPN Client (GlobalProtect/Cisco AnyConnect)\n2. เชื่อม VPN ก่อนเข้าระบบ\n3. ใช้ Remote Desktop (ถ้ามี)\n4. เข้าระบบผ่าน Browser (Web Portal)\n5. ติดต่อ IT เพื่อขอสิทธิ์ WFH"}, {"question": "Remote Desktop เข้าเครื่องออฟฟิศ ทำยังไง?", "answer": "1. เชื่อม VPN ก่อน\n2. เปิด Remote Desktop Connection (Win+R > mstsc)\n3. กรอก IP เครื่องออฟฟิศ\n4. Login ด้วยบัญชีบริษัท\n5. ถ้าเข้าไม่ได้ ตรวจว่าเครื่องเปิดอยู่\n6. ติดต่อ IT Support ext. 1234"}, {"question": "VPN ช้า / หลุดบ่อย", "answer": "1. เปลี่ยน Server Location\n2. ปิด App ที่ใช้ Bandwidth เยอะ\n3. ใช้สาย LAN แทน WiFi\n4. ลอง Protocol อื่น (IKEv2, WireGuard)\n5. Restart Router\n6. ติดต่อ IT Support ext. 1234"}, {"question": "VPN เชื่อมแล้วแต่เข้า Network ภายในไม่ได้", "answer": "1. ตรวจว่า VPN ยัง Connected อยู่\n2. ลอง Disconnect แล้ว Connect ใหม่\n3. ตรวจว่าเข้า IP ที่ถูกต้อง\n4. ติดต่อ IT ext.1234"}, {"question": "WFH ทำงานช้ากว่าที่ Office", "answer": "1. ตรวจ Internet Speed ที่บ้าน\n2. ใช้สาย LAN แทน WiFi ถ้าได้\n3. ปิดโปรแกรมอื่นที่ใช้ Bandwidth\n4. VPN อาจช้า ลองเปลี่ยน Server\n5. ติดต่อ IT ext.1234"}]}, {"name": "Video Conference", "keywords": ["zoom", "teams", "google meet", "ประชุม", "meeting", "video", "camera", "webcam", "กล้อง", "ไมค์", "microphone", "share screen", "แชร์จอ"], "faqs": [{"question": "เข้า Zoom Meeting ไม่ได้ ทำยังไง?", "answer": "1. ตรวจ Internet Connection\n2. ตรวจ Link ประชุมว่าถูกต้อง\n3. Update Zoom เป็น Version ล่าสุด\n4. ลอง Join จาก Browser แทน App\n5. ตรวจ Firewall อาจ Block\n6. ติดต่อ IT Support ext. 1234"}, {"question": "กล้อง/ไมค์ ใช้ไม่ได้ใน Meeting", "answer": "1. ตรวจ Camera/Microphone Permissions\n   - Settings > Privacy > Camera/Microphone\n2. ตรวจว่า App อื่นไม่ได้ใช้กล้องอยู่\n3. Restart App\n4. ตรวจ Device Manager ว่า Driver ปกติ\n5. ลองใช้ External Webcam/Mic\n6. ติดต่อ IT Support ext. 1234"}, {"question": "Share Screen ไม่ได้ / แชร์จอไม่ขึ้น", "answer": "1. ตรวจ Screen Sharing Permissions\n2. ปิด-เปิด Meeting ใหม่\n3. ลอง Share เฉพาะ Window แทน Entire Screen\n4. ตรวจว่าไม่มี Pop-up Blocker\n5. Update App\n6. ติดต่อ IT Support ext. 1234"}, {"question": "Meeting เสียง Echo / เสียงก้อง", "answer": "1. ใช้หูฟัง (แก้ปัญหาได้ 90%)\n2. Mute ตัวเองเมื่อไม่ได้พูด\n3. ตรวจ Speaker/Mic Settings\n4. ปิด Speaker ที่ซ้ำกัน\n5. อย่าใช้ Speakerphone\n6. ให้คนอื่น Mute ด้วย"}]}, {"name": "Mobile Device", "keywords": ["มือถือ", "mobile", "phone", "iphone", "android", "samsung", "app", "application", "sync", "ซิงค์", "email มือถือ", "outlook มือถือ", "teams มือถือ"], "faqs": [{"question": "ตั้งค่า Email บริษัทในมือถือ ทำยังไง?", "answer": "1. Download Outlook App (แนะนำ)\n2. Login ด้วยอีเมลบริษัท\n3. ถ้าใช้ 2FA ต้องยืนยัน OTP\n4. ถ้าใช้ Gmail App: เพิ่ม Account > Exchange\n5. Server: outlook.office365.com\n6. ติดต่อ IT Support ext. 1234"}, {"question": "App บริษัทเปิดไม่ได้ / Login ไม่ได้", "answer": "1. Update App เป็น Version ล่าสุด\n2. Clear App Data/Cache\n3. ตรวจ Internet Connection\n4. ลอง Uninstall แล้วลงใหม่\n5. ตรวจ VPN (ถ้าจำเป็น)\n6. ติดต่อ IT Support ext. 1234"}, {"question": "มือถือหาย / ถูกขโมย ทำยังไง?", "answer": "1. แจ้ง IT ทันที! (ext. 1234)\n2. Remote Lock/Wipe: Find My iPhone / Find My Device\n3. เปลี่ยนรหัสผ่านทั้งหมด\n4. แจ้งหัวหน้า\n5. ลงบันทึกประจำวัน (ถ้าถูกขโมย)\n6. ขออุปกรณ์ใหม่จาก IT"}]}, {"name": "ข้อมูลสูญหาย / Backup", "keywords": ["backup", "สำรอง", "ข้อมูลหาย", "delete", "ลบ", "recover", "กู้ข้อมูล", "กู้คืน", "onedrive", "google drive", "dropbox", "cloud", "sync", "ซิงค์", "ไฟล์หาย", "lost file", "file missing", "กู้ไฟล์", "restore"], "faqs": [{"question": "ไฟล์ถูกลบ / ข้อมูลหาย กู้คืนยังไง?", "answer": "1. ตรวจ Recycle Bin ก่อน\n2. ตรวจ OneDrive/Google Drive > Trash\n3. ใช้ Previous Version: Right-click folder > Restore previous versions\n4. อย่า Save อะไรทับ (จะกู้ยากขึ้น)\n5. ติดต่อ IT Support ext. 1234 (อาจกู้จาก Backup ได้)"}, {"question": "OneDrive / Google Drive ไม่ Sync", "answer": "1. ตรวจ Internet Connection\n2. Restart Sync App\n3. ตรวจ Disk Space ว่าเหลือพอ\n4. ตรวจไฟล์ที่ Sync ไม่ได้ (ชื่อยาว, อักขระพิเศษ)\n5. Pause แล้ว Resume Sync\n6. ติดต่อ IT Support ext. 1234"}, {"question": "Backup ข้อมูล ทำยังไง?", "answer": "1. ใช้ OneDrive (แนะนำ - บริษัทมีให้)\n2. Save ไฟล์ใน OneDrive Folder\n3. ตรวจว่า Sync ขึ้น Cloud แล้ว (ไอคอนเขียว)\n4. อย่าเก็บไฟล์สำคัญแค่ใน Desktop\n5. สำรองไฟล์สำคัญทุกสัปดาห์\n6. ติดต่อ IT Support ext. 1234"}]}, {"name": "Account / Permission", "keywords": ["account", "บัญชี", "permission", "สิทธิ์", "access", "เข้าไม่ได้", "denied", "blocked", "request", "ขอสิทธิ์", "new user", "พนักงานใหม่", "resign", "ลาออก"], "faqs": [{"question": "พนักงานใหม่ ต้องทำอะไรบ้าง? (IT Onboarding)", "answer": "1. แจ้ง IT ล่วงหน้า 3 วันก่อนเริ่มงาน\n2. IT จะเตรียม: เครื่อง, Email, VPN, สิทธิ์ต่างๆ\n3. วันแรก: รับเครื่อง + ตั้งรหัสผ่าน\n4. ติดตั้ง VPN + ตั้งค่า Email\n5. เข้า Training ระบบพื้นฐาน\n6. ติดต่อ IT Support ext. 1234"}, {"question": "พนักงานลาออก ต้องทำอะไรบ้าง? (IT Offboarding)", "answer": "1. แจ้ง IT ล่วงหน้า 1 วัน\n2. Backup ข้อมูลสำคัญ\n3. คืนอุปกรณ์: เครื่อง, Mouse, Keyboard, Charger\n4. IT จะ Disable Account\n5. ถ่ายโอนไฟล์สำคัญให้ทีม\n6. ติดต่อ IT Support ext. 1234"}, {"question": "ขอสิทธิ์เข้าถึงระบบ / Folder ทำยังไง?", "answer": "1. ส่งคำขอผ่าน IT Service Portal\n2. ระบุ: ระบบ/Folder + เหตุผล + CC หัวหน้า\n3. หัวหน้าอนุมัติ\n4. IT ดำเนินการ (1-2 วันทำการ)\n5. ทดสอบว่าเข้าได้\n6. ติดต่อ IT Support ext. 1234"}, {"question": "เข้าระบบไม่ได้ / Access Denied", "answer": "1. ตรวจ Username/Password ว่าถูกต้อง\n2. ตรวจว่า Account ไม่ถูกล็อค\n3. ตรวจ VPN (ถ้าเข้าจากข้างนอก)\n4. ตรวจว่ามีสิทธิ์เข้าระบบนั้นหรือไม่\n5. ลอง Browser อื่น / Clear Cache\n6. ติดต่อ IT Support ext. 1234"}]}, {"name": "Microsoft Teams", "keywords": ["teams", "microsoft teams", "แชท", "channel", "ช่อง", "notification", "แจ้งเตือน", "status", "สถานะ", "meeting teams"], "faqs": [{"question": "Teams เปิดไม่ขึ้น / ค้าง ทำยังไง?", "answer": "1. ปิดจาก Task Manager (Ctrl+Shift+Esc)\n2. ลบ Cache: %AppData%\\Microsoft\\Teams\\Cache\n3. Restart Teams\n4. Update เป็น Version ล่าสุด\n5. ถ้ายังไม่ได้ ติดต่อ IT ext.1234"}, {"question": "Teams แจ้งเตือนไม่ขึ้น ทำยังไง?", "answer": "1. Teams > Settings > Notifications\n2. ตรวจ Windows Focus Assist ว่าปิดอยู่\n3. Settings > System > Notifications > Teams ให้เปิด\n4. Restart Teams\n5. ติดต่อ IT ext.1234"}, {"question": "ตั้งค่า Status Teams ยังไง?", "answer": "1. คลิกรูปโปรไฟล์มุมบนขวา\n2. เลือก Status: Available / Busy / Do not disturb / Away\n3. ตั้ง Status Message ได้ที่ 'Set status message'\n4. Duration Message หมดอายุอัตโนมัติได้"}, {"question": "ส่งไฟล์ใน Teams ทำยังไง?", "answer": "1. คลิก Attach (📎) ใน Chat\n2. เลือก Upload from computer หรือ OneDrive\n3. ขนาดสูงสุด 250MB ต่อไฟล์\n4. ลาก Drop ไฟล์เข้า Chat ได้เลย\n5. ไฟล์จะเก็บใน SharePoint อัตโนมัติ"}, {"question": "Teams ไม่ยอม Login ทำยังไง?", "answer": "1. Sign out แล้ว Sign in ใหม่\n2. ล้าง Cache: %AppData%\\Microsoft\\Teams\n3. ลอง Teams Web: teams.microsoft.com\n4. ตรวจ Password ว่าไม่หมดอายุ\n5. ติดต่อ IT ext.1234"}]}, {"name": "Hardware / อุปกรณ์", "keywords": ["usb", "port", "จอ", "monitor", "display", "hdmi", "vga", "hub", "dock", "docking", "keyboard", "mouse", "เมาส์", "คีย์บอร์ด", "webcam", "กล้อง", "headset", "หูฟัง", "speaker", "ลำโพง", "charger", "adapter"], "faqs": [{"question": "เสียบ USB แล้วไม่ขึ้น ทำยังไง?", "answer": "1. ลองเสียบช่อง USB อื่น\n2. Restart เครื่อง\n3. Device Manager > Action > Scan for hardware changes\n4. ลองเสียบเครื่องอื่นว่าใช้ได้ไหม\n5. ถ้าพอร์ต USB เสีย ติดต่อ IT ext.1234"}, {"question": "จอแสดงสีผิดเพี้ยน / แสงกะพริบ", "answer": "1. ตรวจสาย HDMI/DP ว่าเสียบแน่น\n2. ลองเปลี่ยนสาย\n3. อัปเดต Graphics Driver\n4. ลด Refresh Rate: Display Settings > Advanced\n5. ถ้าจอเสีย ติดต่อ IT ext.1234"}, {"question": "ต่อ 2 จอ (Dual Monitor) ทำยังไง?", "answer": "1. เสียบสายจอที่ 2 เข้า HDMI/DP/VGA\n2. คลิกขวา Desktop > Display Settings\n3. เลือก Extend these displays\n4. ลาก Position จอให้ถูกต้อง\n5. ถ้าไม่พบ ตรวจ Driver หรือติดต่อ IT ext.1234"}, {"question": "Docking Station ใช้ไม่ได้ ทำยังไง?", "answer": "1. ตรวจสาย Power Dock ว่าเสียบแน่น\n2. ถอด-เสียบ USB-C/Thunderbolt ใหม่\n3. Restart เครื่องขณะเสียบ Dock อยู่\n4. อัปเดต Dock Firmware\n5. ติดต่อ IT ext.1234"}, {"question": "Webcam ภาพมืด / พร่ามัว ทำยังไง?", "answer": "1. ตรวจแสงในห้องว่าเพียงพอ\n2. ล้างเลนส์ด้วยผ้านุ่ม\n3. เปิด Camera App ทดสอบ\n4. Update Webcam Driver\n5. ตรวจ Privacy Settings > Camera\n6. ติดต่อ IT ext.1234"}]}, {"name": "File / Folder / Network Drive", "keywords": ["folder", "ไฟล์", "file", "share", "shared drive", "network drive", "map drive", "z:", "เชื่อมไดร์ฟ", "sharepoint", "onedrive", "permission", "สิทธิ์ไฟล์", "เข้าโฟลเดอร์ไม่ได้"], "faqs": [{"question": "Map Network Drive ทำยังไง?", "answer": "1. เปิด File Explorer\n2. คลิก This PC > Map network drive\n3. เลือก Drive Letter (เช่น Z:)\n4. กรอก Path: \\\\server\\foldername\n5. ติ๊ก Reconnect at sign-in\n6. ถ้าไม่รู้ Path ติดต่อ IT ext.1234"}, {"question": "เข้า Network Drive ไม่ได้ ทำยังไง?", "answer": "1. ตรวจว่าต่อ VPN แล้ว (ถ้า WFH)\n2. Disconnect แล้ว Map ใหม่\n3. ตรวจ Username/Password\n4. Restart เครื่อง\n5. ติดต่อ IT ext.1234 เพื่อตรวจสิทธิ์"}, {"question": "ไฟล์ใน SharePoint เปิดไม่ได้", "answer": "1. ตรวจ Internet Connection\n2. Login ด้วยบัญชีบริษัทใหม่\n3. Clear Browser Cache\n4. ลอง Browser อื่น\n5. ดาวน์โหลดมาเปิดแทน\n6. ติดต่อ IT ext.1234"}, {"question": "ไฟล์ถูกล็อค / เปิดพร้อมกันไม่ได้", "answer": "1. ตรวจว่าคนอื่นเปิดไฟล์อยู่หรือเปล่า\n2. รอให้คนนั้นปิดก่อน\n3. ถ้าล็อคค้าง ติดต่อ IT ext.1234\n4. ใช้ OneDrive จะ Co-edit พร้อมกันได้\n5. ลองเปิดแบบ Read-Only ชั่วคราว"}, {"question": "ขนาด Folder ดูยังไง?", "answer": "1. Right-click Folder > Properties\n2. ดูที่ Size on disk\n3. ถ้าช้า ใช้ WinDirStat (ขอจาก IT)\n4. ถ้า Quota เต็ม ลบไฟล์เก่าหรือย้ายไป Archive\n5. ติดต่อ IT ext.1234 เพื่อขอเพิ่ม Space"}]}, {"name": "Office 365 / Microsoft 365", "keywords": ["office 365", "microsoft 365", "m365", "word", "excel", "powerpoint", "onenote", "onedrive", "sharepoint", "activation", "activate", "ลงทะเบียน", "license office"], "faqs": [{"question": "Office 365 ขึ้น Product Activation Failed ทำยังไง?", "answer": "1. Sign out แล้ว Sign in ด้วยบัญชีบริษัท\n2. File > Account > Sign In\n3. ตรวจ Internet Connection\n4. Repair Office: Settings > Apps > Microsoft 365 > Modify\n5. ติดต่อ IT ext.1234 เพื่อ Renew License"}, {"question": "Excel ไฟล์ใหญ่เปิดช้า ทำยังไง?", "answer": "1. ปิด Auto-Calculate: Formulas > Calculation Options > Manual\n2. ลบ Conditional Formatting ที่ไม่ใช้\n3. ลด Pivot Cache\n4. แยกไฟล์เป็น Sheet ย่อย\n5. เพิ่ม RAM ติดต่อ IT ext.1234"}, {"question": "Word ไม่ยอม Save ทำยังไง?", "answer": "1. ลอง Save As ชื่อใหม่\n2. ตรวจ Disk Space ว่าเหลือพอ\n3. Save เป็น .docx ไม่ใช่ .doc\n4. ปิด OneDrive Sync ชั่วคราวแล้ว Save\n5. ติดต่อ IT ext.1234"}, {"question": "PowerPoint เล่น Presentation แบบเต็มจอยังไง?", "answer": "1. กด F5 เล่นตั้งแต่ Slide แรก\n2. กด Shift+F5 เล่นจาก Slide ปัจจุบัน\n3. ถ้าต่อโปรเจกเตอร์ กด Win+P เลือก Extend\n4. Presenter View: Slide Show > Use Presenter View\n5. กด Esc เพื่อออก"}, {"question": "OneDrive Sync ไฟล์ขึ้น Error ทำยังไง?", "answer": "1. คลิกขวา OneDrive Icon > View sync errors\n2. ตรวจชื่อไฟล์ว่ามีอักขระพิเศษ (: * ? < > | )\n3. ตรวจ Disk Space\n4. Pause แล้ว Resume Sync\n5. Unlink แล้ว Link บัญชีใหม่\n6. ติดต่อ IT ext.1234"}]}, {"name": "Windows / System", "keywords": ["windows", "windows 10", "windows 11", "update", "อัพเดท", "driver", "ไดร์เวอร์", "activation windows", "disk", "storage", "ดิสก์เต็ม", "c drive", "task manager", "registry", "startup", "บูต", "boot slow"], "faqs": [{"question": "Windows Update ค้าง ทำยังไง?", "answer": "1. รอให้ครบ อย่าปิดเครื่อง\n2. ถ้าค้างนาน Restart แล้วลอง Update ใหม่\n3. Run Windows Update Troubleshooter\n4. ตรวจ Disk Space C: ต้องเหลือ > 10GB\n5. ติดต่อ IT ext.1234"}, {"question": "C Drive เต็ม ทำยังไง?", "answer": "1. Disk Cleanup: คลิกขวา C: > Properties > Disk Cleanup\n2. ลบไฟล์ Temp: Win+R พิมพ์ %temp%\n3. Uninstall Program ที่ไม่ใช้\n4. ย้ายไฟล์ใหญ่ไป D: หรือ OneDrive\n5. ติดต่อ IT ext.1234 เพื่อขยาย Disk"}, {"question": "Windows Boot ช้ามาก ทำยังไง?", "answer": "1. Task Manager > Startup > Disable โปรแกรมที่ไม่จำเป็น\n2. Settings > System > Power & Sleep > Shutdown Settings > Fast Startup ON\n3. ตรวจ SSD/HDD ว่า Health ดี\n4. Scan Malware\n5. ติดต่อ IT ext.1234"}, {"question": "Windows ขึ้น 'Not Genuine' ทำยังไง?", "answer": "1. ตรวจว่า Sign in ด้วย Microsoft Account บริษัทหรือยัง\n2. Settings > Update & Security > Activation\n3. ติดต่อ IT ext.1234 เพื่อใส่ Product Key\n4. อย่าซื้อ Key นอกหรือ Crack (ผิด Policy)"}, {"question": "Task Manager เปิดไม่ได้ ทำยังไง?", "answer": "1. กด Ctrl+Shift+Esc\n2. คลิกขวา Taskbar > Task Manager\n3. Win+R พิมพ์ taskmgr\n4. ถ้าเปิดไม่ได้อาจมี Malware\n5. ติดต่อ IT ext.1234 ทันที"}]}, {"name": "Line / Communication App", "keywords": ["line", "ไลน์", "line oa", "แจ้งเตือน", "sticker", "สติ๊กเกอร์", "line pc", "facebook", "messenger", "whatsapp", "slack"], "faqs": [{"question": "Line PC แจ้งเตือนไม่ขึ้น ทำยังไง?", "answer": "1. Line > Settings > Notifications > เปิดทั้งหมด\n2. Windows Settings > Notifications > Line > เปิด\n3. ตรวจว่า Focus Assist ปิดอยู่\n4. Restart Line\n5. Update Line เป็น Version ล่าสุด"}, {"question": "Line Login บนเครื่องใหม่ ทำยังไง?", "answer": "1. Download Line PC จาก line.me\n2. เปิด Line บนมือถือ\n3. Setting > Devices > Scan QR Code\n4. ยืนยัน OTP\n5. ข้อความจะ Sync มา (แต่ไม่ย้อนหลัง)"}]}, {"name": "Antivirus / Security", "keywords": ["virus", "antivirus", "malware", "ransomware", "ไวรัส", "มัลแวร์", "scan", "threat", "trojan", "phishing", "spam"], "faqs": [{"question": "เครื่องติดไวรัส ทำยังไง?", "answer": "1. ตัดการเชื่อมต่อ Network ทันที\n2. Scan ด้วย Windows Defender Full Scan\n3. ห้ามเปิดไฟล์ที่สงสัย\n4. ติดต่อ IT ext.1234 ด่วน\n5. อาจต้อง Format เครื่องใหม่"}, {"question": "ได้อีเมล Phishing ทำยังไง?", "answer": "1. ห้ามกดลิงก์ใดๆ ในอีเมล\n2. ห้ามกรอกข้อมูลส่วนตัว\n3. Report Phishing ใน Outlook\n4. แจ้ง IT ext.1234 ทันที\n5. ลบอีเมลออกจาก Inbox"}, {"question": "Windows Defender ปิดไม่ได้ / เปิดไม่ได้", "answer": "1. Settings > Privacy & Security > Windows Security\n2. Virus & threat protection > Manage settings\n3. Real-time protection > เปิด\n4. ถ้าเปิดไม่ได้ อาจมี Group Policy บังคับ\n5. ติดต่อ IT ext.1234"}, {"question": "Ransomware เข้ารหัสไฟล์ ทำยังไง?", "answer": "1. ปิดเครื่องทันที! ห้ามใช้ต่อ\n2. ถอดสาย Network\n3. ติดต่อ IT ext.1234 ด่วนที่สุด\n4. ห้ามจ่ายค่าไถ่\n5. IT จะกู้จาก Backup"}, {"question": "เว็บไซต์ถูก Block ทำยังไง?", "answer": "1. ตรวจว่าเว็บนั้นเกี่ยวข้องกับงานหรือไม่\n2. ถ้าเกี่ยวกับงาน ติดต่อ IT ext.1234\n3. ส่ง URL ที่ถูก Block ให้ IT ตรวจสอบ\n4. IT จะ Whitelist ให้ถ้าปลอดภัย"}, {"question": "USB ถูก Block ใช้ไม่ได้", "answer": "1. บริษัทอาจมี Policy ปิด USB\n2. ใช้ OneDrive/SharePoint แทน\n3. ถ้าจำเป็นต้องใช้ USB ส่ง Request ผ่าน IT\n4. ติดต่อ IT ext.1234"}]}, {"name": "Browser / Chrome", "keywords": ["browser", "chrome", "firefox", "edge", "เบราว์เซอร์", "bookmark", "cache", "cookie", "popup", "extension", "tab"], "faqs": [{"question": "Chrome เปิดช้า / ค้าง", "answer": "1. ปิด Tab ที่ไม่ใช้ (แต่ละ Tab กิน RAM)\n2. ล้าง Cache: Settings > Privacy > Clear browsing data\n3. ปิด Extension ที่ไม่จำเป็น\n4. Restart Chrome\n5. ติดต่อ IT ext.1234 ถ้ายังช้า"}, {"question": "Bookmark หาย ทำยังไง?", "answer": "1. Chrome > Bookmark Manager (Ctrl+Shift+O)\n2. ตรวจว่า Login Chrome Account อยู่\n3. ถ้า Sync เปิด จะดึงกลับมาได้\n4. ตรวจ Chrome Profile ว่าถูกตัว"}, {"question": "Popup โฆษณาเยอะมาก", "answer": "1. Settings > Privacy > Site Settings > Pop-ups > Block\n2. ลบ Extension ที่ไม่รู้จัก\n3. Scan Malware ด้วย Windows Defender\n4. Reset Chrome Settings\n5. ติดต่อ IT ext.1234"}, {"question": "เปลี่ยน Default Browser ยังไง?", "answer": "1. Settings > Apps > Default Apps\n2. Web browser > เลือก Chrome/Edge\n3. Apply\n4. Restart เครื่อง"}, {"question": "Certificate Error / Not Secure", "answer": "1. ตรวจวันที่-เวลาเครื่องว่าถูกต้อง\n2. ล้าง Cache ของ Browser\n3. ลอง Incognito Mode\n4. ถ้าเป็นเว็บภายใน ติดต่อ IT ext.1234"}]}, {"name": "Remote Desktop", "keywords": ["remote desktop", "rdp", "remote", "รีโมท", "anydesk", "teamviewer", "ควบคุมระยะไกล", "remote access"], "faqs": [{"question": "Remote Desktop เข้าไม่ได้", "answer": "1. ตรวจว่าเครื่องปลายทางเปิดอยู่\n2. ตรวจ IP/ชื่อเครื่องว่าถูกต้อง\n3. ตรวจว่าต่อ VPN แล้ว (ถ้า WFH)\n4. ตรวจ Firewall ว่าเปิด Port 3389\n5. ติดต่อ IT ext.1234"}, {"question": "Remote Desktop ภาพกระตุก / Lag", "answer": "1. ลดคุณภาพภาพ: Options > Display > Colors > Low\n2. ปิด Visual Effects: Options > Experience\n3. ตรวจ Internet Speed\n4. ใช้สาย LAN แทน WiFi\n5. ติดต่อ IT ext.1234"}, {"question": "ขอสิทธิ์ Remote Desktop ทำยังไง?", "answer": "1. ส่ง Request ผ่าน IT Service Desk\n2. แจ้งชื่อเครื่องที่ต้องการ Remote\n3. แจ้งเหตุผลการใช้งาน\n4. รอ Approve จาก Manager + IT\n5. IT ext.1234"}]}, {"name": "Blue Screen / BSOD", "keywords": ["blue screen", "bsod", "จอฟ้า", "crash", "dump", "stop code", "restart อัตโนมัติ", "เครื่องดับ"], "faqs": [{"question": "เจอจอฟ้า (BSOD) ทำยังไง?", "answer": "1. จดรหัส Stop Code ไว้ (เช่น KERNEL_DATA_INPAGE_ERROR)\n2. Restart เครื่อง\n3. ถ้าเข้า Windows ได้ > อัปเดต Driver\n4. ตรวจ RAM ด้วย Windows Memory Diagnostic\n5. ติดต่อ IT ext.1234 แจ้ง Stop Code"}, {"question": "เครื่อง Restart เอง / ดับเอง", "answer": "1. ตรวจสาย Power / ปลั๊กไฟ\n2. ตรวจ Event Viewer ดู Error Log\n3. ตรวจอุณหภูมิ CPU (อาจร้อนเกิน)\n4. Scan Virus\n5. ติดต่อ IT ext.1234 อาจต้องเปลี่ยน Power Supply"}, {"question": "เครื่องค้าง (Freeze) ทำอะไรไม่ได้เลย", "answer": "1. รอ 2-3 นาที อาจกำลัง Process\n2. ลอง Ctrl+Alt+Delete\n3. ถ้าไม่ได้ กดปุ่ม Power ค้าง 10 วินาที\n4. เปิดเครื่องใหม่\n5. ถ้าเป็นบ่อย ติดต่อ IT ext.1234"}]}, {"name": "IP Phone / โทรศัพท์", "keywords": ["phone", "โทรศัพท์", "ip phone", "extension", "สายภายใน", "voip", "โทร", "กดเบอร์", "headset"], "faqs": [{"question": "โทรศัพท์ IP Phone ใช้ไม่ได้", "answer": "1. ตรวจสาย Network ที่เสียบ Phone\n2. Restart โทรศัพท์ (ถอดสายแล้วเสียบใหม่)\n3. ตรวจว่ามีไฟติดหน้าจอ\n4. ติดต่อ IT ext.1234"}, {"question": "โอนสายยังไง?", "answer": "1. กดปุ่ม Transfer ระหว่างสนทนา\n2. กดเบอร์ Extension ปลายทาง\n3. รอคนรับ แล้วกด Transfer อีกครั้ง\n4. ถ้าจะโอนแบบไม่รอรับ กด Transfer > กดเบอร์ > วางสาย"}, {"question": "ตั้งค่า Voicemail ยังไง?", "answer": "1. กดปุ่ม Voicemail / Messages บนโทรศัพท์\n2. ตั้ง PIN (ค่าเริ่มต้น: 0000 หรือ 1234)\n3. อัด Greeting Message\n4. ตั้งค่าส่ง Email แจ้งเตือนเมื่อมี Voicemail\n5. ติดต่อ IT ext.1234 ถ้าต้องการช่วย"}]}, {"name": "Projector / อุปกรณ์ห้องประชุม", "keywords": ["projector", "โปรเจคเตอร์", "ห้องประชุม", "meeting room", "screen", "ฉายจอ", "cast", "miracast", "wireless display"], "faqs": [{"question": "Projector ไม่แสดงภาพ", "answer": "1. กด Win+P เลือก Duplicate หรือ Extend\n2. ตรวจสาย HDMI/VGA\n3. เปลี่ยน Input Source บน Projector\n4. Restart Laptop\n5. ติดต่อ IT ext.1234"}, {"question": "ฉายจอ Wireless Display ทำยังไง?", "answer": "1. Win+K เปิด Connect\n2. เลือกชื่อ Wireless Display ของห้อง\n3. เลือก Duplicate หรือ Extend\n4. ถ้าไม่เจอ ตรวจว่าอยู่ WiFi เดียวกัน\n5. ติดต่อ IT ext.1234"}, {"question": "เสียงไม่ออก Projector / ลำโพงห้องประชุม", "answer": "1. ตรวจ Volume เครื่อง + Projector\n2. คลิกขวา Speaker icon > Sound settings\n3. เลือก Output Device เป็น HDMI/Projector\n4. ตรวจสาย Audio\n5. ติดต่อ IT ext.1234"}]}, {"name": "Cloud Storage", "keywords": ["cloud", "onedrive", "google drive", "dropbox", "sharepoint", "sync", "อัพโหลด", "แชร์ไฟล์", "share file", "storage"], "faqs": [{"question": "OneDrive พื้นที่เต็ม ทำยังไง?", "answer": "1. คลิกขวา OneDrive > Settings > Account > Manage storage\n2. ลบไฟล์ที่ไม่ใช้\n3. ใช้ Files On-Demand: คลิกขวา > Free up space\n4. ติดต่อ IT ext.1234 เพื่อขอพื้นที่เพิ่ม"}, {"question": "แชร์ไฟล์ OneDrive ให้คนอื่นยังไง?", "answer": "1. คลิกขวาไฟล์ > Share\n2. กรอกอีเมลคนที่ต้องการแชร์\n3. เลือกสิทธิ์: Can view / Can edit\n4. กด Send\n5. หรือ Copy Link ส่งได้"}, {"question": "SharePoint เข้าไม่ได้", "answer": "1. ตรวจว่า Login ด้วยบัญชีบริษัท\n2. ตรวจ Internet Connection\n3. ลอง Incognito Mode\n4. ล้าง Browser Cache\n5. ติดต่อ IT ext.1234 เพื่อตรวจสิทธิ์"}, {"question": "Google Drive ใน Browser ช้ามาก", "answer": "1. ลดจำนวนไฟล์ใน Root Folder\n2. ใช้ Search แทนการเลื่อนหา\n3. ล้าง Browser Cache\n4. ปิด Tab อื่นที่ไม่ใช้\n5. ลอง Google Drive Desktop App"}]}, {"name": "Scanner / เครื่อง Scan", "keywords": ["scan", "scanner", "สแกน", "เครื่องสแกน", "scan to email", "scan to folder", "pdf scan"], "faqs": [{"question": "เครื่อง Scan ใช้ไม่ได้", "answer": "1. ตรวจว่าเครื่องเปิดอยู่\n2. ตรวจสาย USB/Network\n3. Restart เครื่อง Scan\n4. ตรวจ Driver ใน Device Manager\n5. ติดต่อ IT ext.1234"}, {"question": "Scan to Email ทำยังไง?", "answer": "1. วางเอกสารบนเครื่อง Scan\n2. เลือก Scan to Email\n3. กรอกอีเมลปลายทาง\n4. เลือก Format: PDF/JPEG\n5. กด Start\n6. ติดต่อ IT ext.1234 ถ้าตั้งค่าไม่ได้"}, {"question": "ไฟล์ Scan ภาพมืด / ไม่ชัด", "answer": "1. ทำความสะอาดกระจก Scanner\n2. ปรับ Resolution เป็น 300 DPI ขึ้นไป\n3. ปรับ Brightness / Contrast\n4. วางกระดาษให้ตรง\n5. ติดต่อ IT ext.1234"}]}, {"name": "Power / UPS / ไฟฟ้า", "keywords": ["power", "ups", "ไฟดับ", "ปลั๊ก", "ชาร์จ", "battery", "แบตเตอรี่", "adapter", "สายชาร์จ", "ไฟกระพริบ"], "faqs": [{"question": "ไฟดับ เครื่องดับ ทำยังไง?", "answer": "1. รอไฟมา แล้วเปิดเครื่องใหม่\n2. ตรวจว่า UPS ทำงานปกติ\n3. ตรวจไฟล์งานที่เปิดค้างว่าเสียหายไหม\n4. Office จะ Auto-Recovery ให้\n5. ติดต่อ IT ext.1234 ถ้าเครื่องไม่เปิด"}, {"question": "Notebook ชาร์จไม่เข้า", "answer": "1. ตรวจสาย Adapter ว่าเสียบแน่น\n2. ลองปลั๊กไฟช่องอื่น\n3. ลอง Adapter อื่น (ถ้ามี)\n4. Restart เครื่อง\n5. ติดต่อ IT ext.1234 อาจต้องเปลี่ยน Adapter"}, {"question": "แบตเตอรี่เสื่อม หมดเร็ว", "answer": "1. Settings > System > Power & Battery\n2. เลือก Best Power Efficiency\n3. ลดความสว่างหน้าจอ\n4. ปิด Bluetooth/WiFi เมื่อไม่ใช้\n5. ติดต่อ IT ext.1234 เพื่อเปลี่ยนแบต"}, {"question": "UPS ส่งเสียงดัง Beep", "answer": "1. ตรวจว่าไฟหลักยังมีอยู่\n2. ถ้าไฟดับ UPS กำลังจ่ายไฟสำรอง\n3. Save งาน + ปิดเครื่องถ้า UPS แบตต่ำ\n4. ติดต่อ IT ext.1234\n5. อาจต้องเปลี่ยนแบต UPS"}]}, {"name": "Data Security / PDPA", "keywords": ["pdpa", "data", "ข้อมูลส่วนตัว", "privacy", "encrypt", "เข้ารหัส", "sensitive", "confidential", "ลับ", "bitlocker"], "faqs": [{"question": "BitLocker ล็อคเครื่อง ทำยังไง?", "answer": "1. ใส่ BitLocker Recovery Key\n2. ค้น Recovery Key ที่ https://aka.ms/myrecoverykey\n3. Login ด้วยบัญชีบริษัท\n4. ติดต่อ IT ext.1234 ถ้าหา Key ไม่เจอ"}, {"question": "จะส่งไฟล์ลับทางอีเมลยังไงให้ปลอดภัย?", "answer": "1. ใส่ Password ในไฟล์ (Excel/Word/ZIP)\n2. ส่ง Password แยกช่องทาง (เช่น LINE/โทร)\n3. ใช้ OneDrive Share Link แทน Attach\n4. ตั้ง Link Expiry Date\n5. ติดต่อ IT ext.1234 ถ้าไม่แน่ใจ"}, {"question": "ทำไมต้องล็อคหน้าจอ?", "answer": "1. Win+L ล็อคทุกครั้งที่ลุกจากโต๊ะ\n2. ป้องกันคนอื่นเข้าถึงข้อมูล\n3. เป็นนโยบายบริษัท / PDPA\n4. ตั้ง Auto-Lock 5 นาที: Settings > Accounts > Sign-in options"}, {"question": "ลบข้อมูลถาวรยังไง?", "answer": "1. ลบไฟล์ + ล้าง Recycle Bin\n2. ถ้าเป็น HDD ใช้ Secure Erase Tool\n3. ถ้าเป็น SSD ใช้ Manufacturer Tool\n4. ติดต่อ IT ext.1234 สำหรับการทำลายข้อมูล"}]}, {"name": "Active Directory / Domain", "keywords": ["domain", "ad", "active directory", "join domain", "login domain", "group policy", "gpo", "เข้าโดเมน"], "faqs": [{"question": "เครื่องหลุด Domain ทำยังไง?", "answer": "1. ลอง Restart เครื่อง\n2. ตรวจสาย Network\n3. ติดต่อ IT ext.1234 เพื่อ Rejoin Domain\n4. อาจต้องใช้ Local Admin Account"}, {"question": "Group Policy ทำให้ใช้งานบางอย่างไม่ได้", "answer": "1. เป็นนโยบายที่บริษัทกำหนด\n2. ส่ง Request ผ่าน IT ถ้าจำเป็นต้องใช้\n3. แนบเหตุผลและ Manager Approve\n4. ติดต่อ IT ext.1234"}, {"question": "Computer Account Expired", "answer": "1. Restart เครื่อง\n2. ถ้ายังไม่ได้ ต้อง Rejoin Domain\n3. ติดต่อ IT ext.1234\n4. IT จะ Reset Computer Account ใน AD"}]}, {"name": "IT Policy / การร้องขอ", "keywords": ["policy", "request", "ร้องขอ", "ขอ", "approval", "อนุมัติ", "it service", "service desk", "sla", "ticket"], "faqs": [{"question": "ขอเครื่องใหม่ ทำยังไง?", "answer": "1. ส่ง Request ผ่าน IT Service Desk\n2. แนบเหตุผล + Manager Approve\n3. IT จะตรวจสอบและจัดซื้อ\n4. SLA: 5-10 วันทำการ\n5. ติดต่อ IT ext.1234"}, {"question": "ขอติดตั้ง Software ทำยังไง?", "answer": "1. ส่ง Request ผ่าน IT Service Desk\n2. แจ้งชื่อ Software + เหตุผลการใช้งาน\n3. IT ตรวจ License + ความปลอดภัย\n4. Manager Approve\n5. IT ติดตั้งให้ภายใน 1-3 วัน"}, {"question": "SLA IT Support คืออะไร?", "answer": "1. Critical (ระบบล่ม): ตอบภายใน 15 นาที\n2. High (ใช้งานไม่ได้): ตอบภายใน 1 ชม.\n3. Medium (มีปัญหาบางส่วน): ตอบภายใน 4 ชม.\n4. Low (คำถามทั่วไป): ตอบภายใน 1 วัน"}, {"question": "ลาออก ต้องคืนอะไรบ้าง?", "answer": "1. คืน Notebook / Desktop\n2. คืน Mouse, Keyboard, หูฟัง\n3. คืนบัตรพนักงาน\n4. IT จะปิด Account ทั้งหมด\n5. Backup ข้อมูลส่วนตัวก่อนวันสุดท้าย"}]}, {"name": "Outlook / Calendar", "keywords": ["outlook", "calendar", "ปฏิทิน", "นัดหมาย", "meeting", "invite", "ห้องประชุม", "จองห้อง", "auto reply", "out of office", "ลายเซ็น", "signature"], "faqs": [{"question": "ตั้ง Out of Office ยังไง?", "answer": "1. Outlook > File > Automatic Replies\n2. เลือก Send automatic replies\n3. กรอกข้อความ + วันที่เริ่ม-สิ้นสุด\n4. เลือกส่งให้คนนอกองค์กรด้วยหรือไม่\n5. กด OK"}, {"question": "จองห้องประชุมยังไง?", "answer": "1. Outlook > Calendar > New Meeting\n2. กด Room Finder / Add Room\n3. เลือกห้องที่ว่าง\n4. ใส่หัวข้อ + เวลา + ผู้เข้าร่วม\n5. กด Send"}, {"question": "Calendar ไม่ Sync กับมือถือ", "answer": "1. ตรวจ Outlook App ว่า Login อยู่\n2. Settings > Account > Refresh\n3. ลบ Account แล้ว Add ใหม่\n4. ตรวจ Internet Connection\n5. ติดต่อ IT ext.1234"}, {"question": "ตั้ง Email Signature ยังไง?", "answer": "1. Outlook > File > Options > Mail > Signatures\n2. กด New สร้างลายเซ็น\n3. ใส่ชื่อ ตำแหน่ง เบอร์โทร\n4. เลือกใช้กับ New messages + Replies\n5. กด OK"}, {"question": "Outlook Archive ข้อมูลยังไง?", "answer": "1. File > Options > Advanced > AutoArchive Settings\n2. ตั้ง Archive ทุกกี่วัน\n3. เลือก Folder ที่จะ Archive\n4. หรือ Manual: File > Cleanup Tools > Archive\n5. ไฟล์ Archive จะเป็น .pst"}, {"question": "แนบไฟล์ใหญ่เกิน 25MB ส่งไม่ได้", "answer": "1. อัพโหลดไฟล์ขึ้น OneDrive ก่อน\n2. แชร์ Link แทนการ Attach\n3. ใช้ SharePoint สำหรับไฟล์ภายใน\n4. Compress ไฟล์เป็น ZIP\n5. ติดต่อ IT ext.1234 ถ้าต้องเพิ่ม Limit"}]}, {"name": "Network / Internet ขั้นสูง", "keywords": ["dns", "dhcp", "ip address", "subnet", "gateway", "ping", "tracert", "network", "static ip", "proxy", "firewall rule"], "faqs": [{"question": "ตรวจ IP Address ของเครื่องยังไง?", "answer": "1. Win+R > cmd > ipconfig\n2. ดูที่ IPv4 Address\n3. หรือ Settings > Network > Properties\n4. WiFi: ดูที่ Wi-Fi Properties"}, {"question": "Ping เช็ค Network ยังไง?", "answer": "1. Win+R > cmd\n2. พิมพ์: ping google.com\n3. ถ้าได้ Reply = Network OK\n4. ถ้า Request timed out = มีปัญหา\n5. แจ้ง IT ext.1234 พร้อมผล Ping"}, {"question": "Internet ช้ามาก ทำยังไง?", "answer": "1. ทดสอบ Speed: speedtest.net\n2. ลอง Restart Router/Modem\n3. ใช้สาย LAN แทน WiFi\n4. ปิดโปรแกรมที่ใช้ Bandwidth มาก\n5. ติดต่อ IT ext.1234 แจ้งผล Speed Test"}, {"question": "DNS Error / ไม่พบเว็บไซต์", "answer": "1. ลอง Flush DNS: cmd > ipconfig /flushdns\n2. เปลี่ยน DNS เป็น 8.8.8.8\n3. ลอง Browser อื่น\n4. Restart Router\n5. ติดต่อ IT ext.1234"}, {"question": "Static IP ตั้งค่ายังไง?", "answer": "1. Settings > Network > Change adapter options\n2. คลิกขวา Adapter > Properties\n3. เลือก IPv4 > Properties\n4. ใส่ IP, Subnet, Gateway, DNS ตามที่ IT แจ้ง\n5. ติดต่อ IT ext.1234 ขอข้อมูล IP"}]}, {"name": "Printing ขั้นสูง", "keywords": ["print queue", "ค้างพิมพ์", "network printer", "shared printer", "add printer", "driver printer", "scan to pc", "toner", "หมึก"], "faqs": [{"question": "งานพิมพ์ค้าง (Print Queue) ทำยังไง?", "answer": "1. เปิด Print Queue: Control Panel > Devices > Printers\n2. คลิกขวา Printer > Cancel All Documents\n3. Restart Print Spooler: services.msc > Print Spooler > Restart\n4. ลองพิมพ์ใหม่"}, {"question": "เพิ่มเครื่องพิมพ์ Network ยังไง?", "answer": "1. Settings > Devices > Printers > Add a printer\n2. เลือก The printer that I want isn't listed\n3. ใส่ \\\\servername\\printername\n4. Install Driver ตามที่แนะนำ\n5. ติดต่อ IT ext.1234 ขอชื่อ Printer"}, {"question": "เครื่องพิมพ์ขึ้น Offline", "answer": "1. ตรวจสาย Power + Network\n2. Restart เครื่องพิมพ์\n3. คลิกขวา Printer > Use Printer Online\n4. ลบ Printer แล้ว Add ใหม่\n5. ติดต่อ IT ext.1234"}, {"question": "หมึกหมด / Toner Low", "answer": "1. แจ้ง IT ext.1234 หรือ Admin ขอเปลี่ยน\n2. ห้ามเขย่าตลับหมึก (อาจเสียหาย)\n3. ระบุรุ่นเครื่องพิมพ์ให้ IT\n4. รอ IT เปลี่ยนให้"}, {"question": "พิมพ์สี แต่ออกมาเป็นขาวดำ", "answer": "1. File > Print > Properties > Color\n2. เลือก Color แทน Grayscale\n3. ตรวจว่าเครื่องพิมพ์รองรับสี\n4. ติดต่อ IT ext.1234"}]}, {"name": "Zoom / Google Meet", "keywords": ["zoom", "google meet", "gmeet", "ประชุม", "screen share", "share screen", "background", "virtual background", "record", "บันทึก"], "faqs": [{"question": "Zoom ไม่มีเสียง ทำยังไง?", "answer": "1. ตรวจว่า Unmute แล้ว\n2. Zoom > Settings > Audio > Test Speaker/Mic\n3. ตรวจ Volume Windows\n4. เลือก Audio Device ที่ถูกต้อง\n5. ลอง Leave & Rejoin Meeting"}, {"question": "Share Screen ทำยังไง?", "answer": "1. กดปุ่ม Share Screen ด้านล่าง\n2. เลือก Window หรือ Desktop ที่ต้องการ\n3. ติ๊ก Share sound ถ้าต้องการแชร์เสียง\n4. กด Share\n5. กด Stop Share เมื่อเสร็จ"}, {"question": "ตั้ง Virtual Background ยังไง?", "answer": "1. Zoom > Settings > Background & Effects\n2. เลือกภาพ Background\n3. หรือกด + เพิ่มภาพเอง\n4. ควรนั่งหน้าพื้นหลังเรียบ\n5. ต้องใช้ Green Screen จะชัดกว่า"}, {"question": "บันทึก Meeting ยังไง?", "answer": "1. กด Record ด้านล่าง\n2. เลือก Record on this Computer\n3. เมื่อจบ Meeting ไฟล์จะ Convert อัตโนมัติ\n4. ไฟล์อยู่ใน Documents > Zoom\n5. ต้องเป็น Host ถึงจะ Record ได้"}, {"question": "Google Meet เปิดกล้อง/ไมค์ไม่ได้", "answer": "1. ตรวจ Permission: Browser > ไอคอนกล้อง > Allow\n2. Settings > Privacy > Camera/Microphone > เปิด\n3. ตรวจว่า App อื่นไม่ได้ใช้กล้องอยู่\n4. Restart Browser\n5. ติดต่อ IT ext.1234"}]}, {"name": "Excel / Spreadsheet", "keywords": ["excel", "spreadsheet", "formula", "สูตร", "pivot", "vlookup", "macro", "filter", "sort", "freeze", "ตาราง"], "faqs": [{"question": "Excel สูตรไม่คำนวณ ทำยังไง?", "answer": "1. ตรวจว่าเซลล์เป็น Number ไม่ใช่ Text\n2. Formulas > Calculation Options > Automatic\n3. กด F9 เพื่อ Force Calculate\n4. ตรวจ Circular Reference\n5. ติดต่อ IT ext.1234"}, {"question": "Freeze Panes (ตรึงแถว) ยังไง?", "answer": "1. คลิกเซลล์ใต้แถวที่ต้องการตรึง\n2. View > Freeze Panes > Freeze Top Row\n3. หรือ Freeze First Column\n4. ยกเลิก: View > Unfreeze Panes"}, {"question": "VLOOKUP ใช้ยังไง?", "answer": "1. =VLOOKUP(ค่าที่หา, ตารางข้อมูล, คอลัมน์ที่ต้องการ, FALSE)\n2. ตัวอย่าง: =VLOOKUP(A2, Sheet2!A:C, 3, FALSE)\n3. FALSE = หาตรง, TRUE = หาใกล้เคียง\n4. ใช้ XLOOKUP แทนใน Excel ใหม่"}, {"question": "สร้าง Pivot Table ยังไง?", "answer": "1. เลือกข้อมูลทั้งหมด\n2. Insert > PivotTable\n3. เลือก New Worksheet\n4. ลาก Field ไป Row/Column/Values\n5. ใช้ Filter เพื่อกรองข้อมูล"}, {"question": "Excel Protected Sheet ปลดล็อคยังไง?", "answer": "1. Review > Unprotect Sheet\n2. ใส่ Password (ถ้ามี)\n3. ถ้าลืม Password ติดต่อเจ้าของไฟล์\n4. ติดต่อ IT ext.1234"}]}, {"name": "Word / Document", "keywords": ["word", "document", "เอกสาร", "header", "footer", "page number", "table of contents", "สารบัญ", "mail merge", "template"], "faqs": [{"question": "ใส่เลขหน้า Word ยังไง?", "answer": "1. Insert > Page Number\n2. เลือกตำแหน่ง: Top/Bottom of Page\n3. เลือกรูปแบบ\n4. เริ่มจากหน้าอื่น: Page Number > Format > Start at"}, {"question": "สร้างสารบัญอัตโนมัติ ยังไง?", "answer": "1. ใช้ Heading 1, 2, 3 สำหรับหัวข้อ\n2. References > Table of Contents\n3. เลือกรูปแบบ\n4. อัปเดต: คลิกขวาสารบัญ > Update Field"}, {"question": "Mail Merge ทำยังไง?", "answer": "1. Mailings > Start Mail Merge > Letters\n2. Select Recipients > ใช้ Excel List\n3. Insert Merge Field > เลือก Field\n4. Preview Results\n5. Finish & Merge > Print/Email"}, {"question": "Word เปิดแล้วแสดงผิดเพี้ยน (Font หาย)", "answer": "1. ติดตั้ง Font ที่หายไป\n2. เปิดใน Compatibility Mode\n3. เลือก Font อื่นที่มีในเครื่อง\n4. ติดต่อ IT ext.1234 เพื่อลง Font"}]}, {"name": "PowerPoint / Presentation", "keywords": ["powerpoint", "presentation", "slide", "สไลด์", "animation", "template", "presenter view", "นำเสนอ"], "faqs": [{"question": "PowerPoint เปิดแล้วค้าง / ช้า", "answer": "1. ลดจำนวนรูปภาพ / Compress Pictures\n2. ลบ Animation ที่ไม่จำเป็น\n3. ลบ Slide ที่ซ่อน\n4. ปิด Auto-save ชั่วคราว\n5. ติดต่อ IT ext.1234 ถ้ายังช้า"}, {"question": "Presenter View ใช้ยังไง?", "answer": "1. ต่อจอที่ 2 (Projector)\n2. Slide Show > Use Presenter View\n3. จอของเราจะเห็น Notes + Timer\n4. ผู้ชมเห็นเฉพาะ Slide"}, {"question": "แปลง PowerPoint เป็น PDF ยังไง?", "answer": "1. File > Save As > เลือก PDF\n2. หรือ File > Export > Create PDF\n3. เลือก Standard (ไฟล์ใหญ่) หรือ Minimum (ไฟล์เล็ก)\n4. กด Publish"}]}, {"name": "Line PC / Line App", "keywords": ["line", "line pc", "ไลน์", "line group", "sticker", "line call", "line oc", "line official"], "faqs": [{"question": "Line PC Login ไม่ได้", "answer": "1. ตรวจว่า Line มือถือยัง Login อยู่\n2. ใช้ QR Code Login จาก Line มือถือ\n3. Settings > Account > Login Devices\n4. อัปเดต Line PC เป็นเวอร์ชันล่าสุด\n5. ติดต่อ IT ext.1234"}, {"question": "Line PC ส่งไฟล์ไม่ได้ / ไฟล์ใหญ่เกิน", "answer": "1. Line PC จำกัดไฟล์ 100MB\n2. ถ้าไฟล์ใหญ่ ใช้ OneDrive Share Link แทน\n3. Compress ไฟล์เป็น ZIP\n4. ตรวจ Internet Connection"}, {"question": "Line Group แจ้งเตือนรัวมาก", "answer": "1. คลิกชื่อ Group > ไอคอนลำโพง > ปิดแจ้งเตือน\n2. เลือก: ปิด 1 ชม. / ถาวร\n3. หรือ Settings > Notifications > ปรับ"}]}, {"name": "Mobile / BYOD", "keywords": ["mobile", "มือถือ", "byod", "mdm", "intune", "company portal", "อีเมลมือถือ", "โทรศัพท์มือถือ", "iphone", "android"], "faqs": [{"question": "ตั้งค่าอีเมลบริษัทบนมือถือยังไง?", "answer": "1. ดาวน์โหลด Microsoft Outlook App\n2. เปิด App > Add Account\n3. ใส่อีเมลบริษัท + Password\n4. ตั้ง PIN/FaceID ตาม Policy\n5. ติดต่อ IT ext.1234 ถ้ามีปัญหา"}, {"question": "Company Portal / Intune คืออะไร?", "answer": "1. เป็น App จัดการอุปกรณ์ของบริษัท (MDM)\n2. ติดตั้งจาก App Store/Play Store\n3. Login ด้วยบัญชีบริษัท\n4. จะได้ VPN + Email + Apps อัตโนมัติ\n5. จำเป็นสำหรับ BYOD"}, {"question": "ล็อคมือถือหาย / ถูกขโมย", "answer": "1. แจ้ง IT ext.1234 ทันที!\n2. IT จะ Remote Wipe ข้อมูลบริษัท\n3. เปลี่ยนรหัสผ่านบัญชีบริษัท\n4. แจ้งความ + แจ้ง HR"}, {"question": "WiFi บริษัทเชื่อมมือถือไม่ได้", "answer": "1. ลืม WiFi เดิม แล้วเชื่อมใหม่\n2. ใส่ Password ให้ถูกต้อง\n3. ตรวจว่า MAC Address ลงทะเบียนแล้ว\n4. ติดต่อ IT ext.1234 เพื่อลงทะเบียนเครื่อง"}]}, {"name": "Keyboard / Mouse / อุปกรณ์ต่อพ่วง", "keywords": ["keyboard", "mouse", "คีย์บอร์ด", "เมาส์", "bluetooth", "wireless", "shortcut", "hotkey", "touchpad", "trackpad"], "faqs": [{"question": "Keyboard บาง Key ไม่ทำงาน", "answer": "1. Restart เครื่อง\n2. ลองต่อ Keyboard ภายนอก\n3. ตรวจ Device Manager > Keyboards\n4. ถ้าเป็น Notebook อาจต้องเปลี่ยน Keyboard\n5. ติดต่อ IT ext.1234"}, {"question": "Mouse Bluetooth เชื่อมไม่ได้", "answer": "1. เปิด Bluetooth บนเครื่อง\n2. กดปุ่ม Pair บน Mouse\n3. Settings > Bluetooth > Add device\n4. เลือก Mouse ที่เจอ\n5. เปลี่ยนถ่าน/ชาร์จ Mouse"}, {"question": "Touchpad ไม่ทำงาน", "answer": "1. กด Fn+F6/F7 (แล้วแต่รุ่น) เพื่อเปิด Touchpad\n2. Settings > Devices > Touchpad > เปิด\n3. ตรวจ Driver ใน Device Manager\n4. Restart เครื่อง\n5. ติดต่อ IT ext.1234"}, {"question": "Shortcut Keys ที่ควรรู้มีอะไรบ้าง?", "answer": "1. Win+L = ล็อคหน้าจอ\n2. Ctrl+C/V/X = Copy/Paste/Cut\n3. Ctrl+Z = Undo\n4. Win+D = แสดง Desktop\n5. Alt+Tab = สลับหน้าต่าง\n6. Win+Shift+S = Screenshot\n7. Ctrl+Shift+Esc = Task Manager"}]}, {"name": "Audio / เสียง", "keywords": ["audio", "เสียง", "speaker", "ลำโพง", "headphone", "หูฟัง", "microphone", "ไมค์", "sound", "volume"], "faqs": [{"question": "เสียงไม่ออก ทำยังไง?", "answer": "1. ตรวจ Volume ว่าไม่ได้ Mute\n2. คลิกขวา Speaker icon > Sound settings\n3. เลือก Output Device ที่ถูกต้อง\n4. ตรวจสาย Headphone/Speaker\n5. Update Audio Driver\n6. ติดต่อ IT ext.1234"}, {"question": "ไมค์ไม่ทำงาน ประชุมไม่ได้ยิน", "answer": "1. ตรวจว่า Unmute แล้ว\n2. Settings > Privacy > Microphone > เปิด\n3. Sound settings > Input Device > เลือกไมค์ที่ถูก\n4. ตรวจว่า App ได้สิทธิ์ใช้ไมค์\n5. ลอง Headset อื่น"}, {"question": "เสียง Echo / ก้อง ระหว่างประชุม", "answer": "1. ใช้ Headset แทน Speaker\n2. Mute เมื่อไม่พูด\n3. อย่าเปิดทั้ง Speaker + Mic พร้อมกัน\n4. ลดระยะห่าง Mic กับ Speaker\n5. ปิด Mic ของคนที่ไม่พูด"}]}, {"name": "Notebook / Laptop", "keywords": ["notebook", "laptop", "โน้ตบุ๊ค", "lid", "ฝาจอ", "dock station", "docking", "undock", "sleep", "hibernate"], "faqs": [{"question": "ปิดฝา Notebook แล้วเครื่องดับ ตั้งค่ายังไง?", "answer": "1. Control Panel > Power Options\n2. Choose what closing the lid does\n3. เปลี่ยนเป็น Do nothing / Sleep\n4. Apply"}, {"question": "Dock Station เชื่อมต่อไม่ได้", "answer": "1. ถอดสาย Dock แล้วเสียบใหม่\n2. Restart เครื่อง\n3. Update Dock Firmware\n4. ตรวจว่า Dock รองรับรุ่น Notebook\n5. ติดต่อ IT ext.1234"}, {"question": "Notebook ร้อนมาก พัดลมดัง", "answer": "1. วางบนพื้นเรียบ อย่าวางบนผ้า/หมอน\n2. ทำความสะอาดช่องระบายอากาศ\n3. ปิดโปรแกรมที่ใช้ CPU สูง\n4. ใช้ Cooling Pad\n5. ติดต่อ IT ext.1234 อาจต้องทำความสะอาดภายใน"}, {"question": "Notebook จอไม่ติด แต่มีไฟ", "answer": "1. กด Win+P เลือก PC screen only\n2. ต่อจอนอกดูว่าภาพออกไหม\n3. กดปุ่ม Power ค้าง 15 วินาที แล้วเปิดใหม่\n4. ติดต่อ IT ext.1234"}]}, {"name": "Backup / การสำรองข้อมูล", "keywords": ["backup", "สำรอง", "restore", "recovery", "image", "system restore", "กู้ระบบ", "onedrive backup"], "faqs": [{"question": "Backup ข้อมูลเครื่องยังไง?", "answer": "1. ใช้ OneDrive Sync อัตโนมัติ\n2. เปิด OneDrive > Settings > Backup > Manage backup\n3. เลือก Desktop, Documents, Pictures\n4. ข้อมูลจะ Sync ขึ้น Cloud อัตโนมัติ"}, {"question": "System Restore ทำยังไง?", "answer": "1. Search > System Restore\n2. เลือก Recommended restore point\n3. กด Next > Finish\n4. เครื่องจะ Restart\n5. ติดต่อ IT ext.1234 ถ้ามีปัญหา"}, {"question": "กู้ไฟล์จาก Previous Versions", "answer": "1. คลิกขวา Folder > Properties\n2. Tab Previous Versions\n3. เลือกวันที่ที่ต้องการ\n4. กด Restore หรือ Open\n5. ติดต่อ IT ext.1234 ถ้าไม่มี Version"}, {"question": "ข้อมูล OneDrive หายทำยังไง?", "answer": "1. OneDrive > Recycle Bin (ค้น 30 วัน)\n2. ถ้าไม่เจอ ใช้ OneDrive Restore\n3. เลือกวันที่ก่อนที่ข้อมูลหาย\n4. ติดต่อ IT ext.1234"}]}, {"name": "Multi-Factor Auth / MFA", "keywords": ["mfa", "2fa", "otp", "authenticator", "ยืนยันตัวตน", "two factor", "multi factor", "security key", "verify"], "faqs": [{"question": "MFA / 2FA คืออะไร?", "answer": "1. Multi-Factor Authentication = ยืนยันตัวตน 2 ชั้น\n2. Password + OTP/Authenticator App\n3. เพิ่มความปลอดภัยบัญชี\n4. บริษัทบังคับใช้กับทุกบัญชี"}, {"question": "Authenticator App ใช้ยังไง?", "answer": "1. ดาวน์โหลด Microsoft Authenticator\n2. เปิด App > Add Account > Work Account\n3. Scan QR Code จากหน้า MFA Setup\n4. ทดสอบ Login ใหม่\n5. ติดต่อ IT ext.1234 ถ้า QR ไม่ขึ้น"}, {"question": "เปลี่ยนมือถือ MFA ย้ายยังไง?", "answer": "1. ก่อนเปลี่ยนมือถือ: ลง Authenticator บนเครื่องใหม่\n2. ไป aka.ms/mysecurityinfo\n3. เพิ่ม Method ใหม่ (มือถือเครื่องใหม่)\n4. ลบเครื่องเก่าออก\n5. ติดต่อ IT ext.1234 ถ้าล็อคบัญชี"}, {"question": "MFA ล็อค Login ไม่ได้", "answer": "1. ตรวจเวลามือถือว่าตรง (Authenticator อิง Timestamp)\n2. ลอง SMS OTP แทน\n3. ติดต่อ IT ext.1234 เพื่อ Reset MFA\n4. IT จะให้ Temporary Access Pass"}]}, {"name": "ปัญหาเครื่องพิมพ์เพิ่มเติม", "keywords": ["printer", "เครื่องพิมพ์", "กระดาษติด", "paper jam", "duplex", "พิมพ์สองหน้า", "default printer"], "faqs": [{"question": "กระดาษติด (Paper Jam) ทำยังไง?", "answer": "1. เปิดฝาเครื่องพิมพ์\n2. ดึงกระดาษออกเบาๆ ตามทิศทางกระดาษ\n3. ตรวจว่าไม่มีเศษกระดาษค้าง\n4. ปิดฝาแล้วลองพิมพ์ใหม่\n5. ถ้าติดบ่อย ติดต่อ IT ext.1234"}, {"question": "พิมพ์ 2 หน้า (Duplex) ยังไง?", "answer": "1. File > Print > Properties\n2. เลือก Print on Both Sides\n3. Flip on Long Edge (แนวตั้ง)\n4. Flip on Short Edge (แนวนอน)\n5. ถ้าไม่มีตัวเลือก เครื่องไม่รองรับ"}, {"question": "ตั้ง Default Printer ยังไง?", "answer": "1. Settings > Devices > Printers & Scanners\n2. ปิด Let Windows manage my default printer\n3. คลิกเครื่องพิมพ์ที่ต้องการ > Manage\n4. กด Set as default"}, {"question": "พิมพ์จากมือถือยังไง?", "answer": "1. เครื่องพิมพ์ต้องรองรับ AirPrint/WiFi\n2. มือถืออยู่ WiFi เดียวกับเครื่องพิมพ์\n3. เลือก Share/Print ในไฟล์\n4. เลือกเครื่องพิมพ์\n5. ติดต่อ IT ext.1234 ถ้าไม่เจอ Printer"}]}, {"name": "การตั้งค่า Windows เพิ่มเติม", "keywords": ["settings", "ตั้งค่า", "display", "resolution", "ความละเอียด", "night light", "dark mode", "language", "ภาษา", "input", "keyboard layout"], "faqs": [{"question": "เปลี่ยน Display Resolution ยังไง?", "answer": "1. คลิกขวา Desktop > Display settings\n2. Display resolution > เลือกค่าที่ต้องการ\n3. แนะนำ: ค่า Recommended\n4. กด Keep changes"}, {"question": "เปิด Dark Mode ยังไง?", "answer": "1. Settings > Personalization > Colors\n2. Choose your mode > Dark\n3. จะเปลี่ยนทั้ง Windows + Apps\n4. หรือเลือก Custom เพื่อแยกตั้ง"}, {"question": "เปลี่ยนภาษา / เพิ่มภาษาพิมพ์ ยังไง?", "answer": "1. Settings > Time & Language > Language\n2. Add a language > เลือกภาษา\n3. สลับภาษา: Win+Space หรือ Ctrl+Shift\n4. ลาก Priority ภาษาได้"}, {"question": "Night Light (ลดแสงสีฟ้า) ยังไง?", "answer": "1. Settings > System > Display\n2. Night light > เปิด\n3. ตั้ง Schedule: Sunset to sunrise\n4. ปรับ Strength ได้"}, {"question": "Screenshot ทำยังไง?", "answer": "1. Win+Shift+S = Snip & Sketch (แนะนำ)\n2. PrtSc = จับทั้งหน้าจอ\n3. Alt+PrtSc = จับ Window ที่เปิดอยู่\n4. Win+PrtSc = บันทึกเข้า Pictures > Screenshots"}]}, {"name": "Power BI", "keywords": ["power bi", "powerbi", "dashboard", "report", "bi", "analytics", "กราฟ", "รายงาน"], "faqs": [{"question": "Power BI เปิด Report ไม่ได้", "answer": "1. ตรวจว่า Login ด้วยบัญชีบริษัท\n2. ตรวจว่ามีสิทธิ์ดู Report\n3. ล้าง Browser Cache\n4. ลอง Browser อื่น\n5. ติดต่อ IT ext.1234"}, {"question": "Power BI Data ไม่อัปเดต", "answer": "1. กด Refresh บน Report\n2. ตรวจ Scheduled Refresh ใน Settings\n3. ตรวจ Data Source Connection\n4. ติดต่อ IT ext.1234 หรือ Admin BI"}, {"question": "ขอสิทธิ์ดู Power BI Dashboard ยังไง?", "answer": "1. ขอจากเจ้าของ Report โดยตรง\n2. หรือส่ง Request ผ่าน IT Service Desk\n3. แจ้งชื่อ Report + เหตุผล\n4. Manager Approve\n5. ติดต่อ IT ext.1234"}, {"question": "Power BI Desktop ติดตั้งยังไง?", "answer": "1. ส่ง Request ขอติดตั้งผ่าน IT Service Desk\n2. IT จะ Install Power BI Desktop ให้\n3. Login ด้วยบัญชีบริษัท\n4. ใช้งานได้ฟรีสำหรับพนักงาน\n5. ติดต่อ IT ext.1234"}]}, {"name": "Azure AD / Entra ID", "keywords": ["azure", "azure ad", "entra", "sso", "single sign on", "conditional access", "cloud account", "identity"], "faqs": [{"question": "Azure AD SSO Login ไม่ได้", "answer": "1. ตรวจ Internet Connection\n2. ล้าง Browser Cache / Cookie\n3. ลอง Incognito Mode\n4. ตรวจว่า Password ไม่หมดอายุ\n5. ติดต่อ IT ext.1234"}, {"question": "Conditional Access บล็อค Login", "answer": "1. อาจเกิดจาก: เครื่องไม่ Compliant หรือ VPN ไม่ได้เปิด\n2. ตรวจว่า VPN เปิดอยู่\n3. ลง Company Portal / Intune\n4. ตรวจ MFA ว่าผ่านหรือไม่\n5. ติดต่อ IT ext.1234"}, {"question": "Account ถูก Disabled ใน Azure AD", "answer": "1. ติดต่อ IT ext.1234 ทันที\n2. แจ้ง Email + ชื่อพนักงาน\n3. อาจเกิดจาก: ลาออก, Suspicious Login, หรือ Admin Disable\n4. IT จะตรวจสอบและแก้ไขให้"}, {"question": "ลงทะเบียนเครื่องใน Azure AD ยังไง?", "answer": "1. Settings > Accounts > Access work or school\n2. Connect > เชื่อมต่อบัญชีบริษัท\n3. หรือผ่าน Company Portal App\n4. IT จะ Push Policy ให้อัตโนมัติ\n5. ติดต่อ IT ext.1234"}]}, {"name": "IT Security Awareness", "keywords": ["security", "ความปลอดภัย", "phishing", "social engineering", "pdpa", "policy", "awareness", "zero trust"], "faqs": [{"question": "รู้ได้ยังไงว่าอีเมลนี้เป็น Phishing?", "answer": "1. ตรวจ Sender Email ให้ละเอียด (ไม่ใช่แค่ชื่อ)\n2. Hover Link ดู URL จริงก่อนคลิก\n3. มีการขอ Password / ข้อมูลส่วนตัว\n4. มี Urgency เช่น ด่วน! บัญชีจะถูกลบ\n5. ไฟล์แนบ .exe .zip แปลกๆ\n6. แจ้ง IT ext.1234 ถ้าสงสัย"}, {"question": "Password ที่ดีควรเป็นยังไง?", "answer": "1. ยาวอย่างน้อย 12 ตัวอักษร\n2. มีตัวใหญ่+ตัวเล็ก+ตัวเลข+อักขระพิเศษ\n3. ไม่ซ้ำกับ Account อื่น\n4. ใช้ Password Manager\n5. เปลี่ยนทุก 90 วัน"}, {"question": "ข้อมูลส่วนตัว PDPA ต้องระวังอะไร?", "answer": "1. อย่าเก็บข้อมูลส่วนตัวมากกว่าจำเป็น\n2. ลบข้อมูลเมื่อหมดความจำเป็น\n3. ไม่แชร์ข้อมูลลูกค้าออกภายนอก\n4. Lock Computer เมื่อเดินออกจากโต๊ะ\n5. ติดต่อ IT ถ้าสงสัยว่าข้อมูลรั่ว"}, {"question": "ทำงาน Public WiFi ปลอดภัยไหม?", "answer": "1. ต้องต่อ VPN บริษัทก่อนเสมอ\n2. อย่าเข้าระบบบริษัทโดยไม่มี VPN\n3. ระวัง Shoulder Surfing (คนมองหน้าจอ)\n4. ล็อคหน้าจอเมื่อไม่ใช้\n5. ติดต่อ IT ext.1234"}, {"question": "Social Engineering คืออะไร?", "answer": "1. การหลอกลวงให้เปิดเผยข้อมูล\n2. ตัวอย่าง: แอบอ้างเป็น IT / CEO\n3. ห้ามบอก Password แม้ IT จริงขอ\n4. ตรวจสอบ Identity ก่อนให้ข้อมูล\n5. แจ้ง IT ext.1234 ถ้าสงสัย"}]}, {"name": "Google Workspace", "keywords": ["google", "gmail", "google drive", "google docs", "google sheets", "google meet", "workspace", "g suite"], "faqs": [{"question": "Gmail บริษัทเข้าไม่ได้", "answer": "1. ตรวจ Internet Connection\n2. ล้าง Browser Cache\n3. ลอง Incognito Mode\n4. ตรวจว่าใช้ Email บริษัทถูกต้อง\n5. ติดต่อ IT ext.1234"}, {"question": "Google Drive แชร์ไฟล์ยังไง?", "answer": "1. คลิกขวาไฟล์ > Share\n2. กรอกอีเมลผู้รับ\n3. เลือกสิทธิ์: Viewer / Commenter / Editor\n4. กด Send\n5. หรือ Copy Link สำหรับแชร์"}, {"question": "Google Docs แก้ไขพร้อมกันหลายคนยังไง?", "answer": "1. แชร์ Link ให้ผู้ร่วมงาน (Editor)\n2. ทุกคนเปิด Link เดียวกัน\n3. เห็น Cursor ของกันและกัน Real-time\n4. Comment: Insert > Comment\n5. ประวัติแก้ไข: File > Version History"}, {"question": "Google Meet กล้องหรือไมค์ไม่ทำงาน", "answer": "1. ตรวจ Permission ใน Browser\n2. Settings > Privacy > Camera/Microphone > เปิด\n3. Restart Browser\n4. ลอง Browser อื่น\n5. ติดต่อ IT ext.1234"}]}, {"name": "Microsoft Intune / MDM", "keywords": ["intune", "mdm", "company portal", "device compliance", "mobile device", "enrollment", "ลงทะเบียนเครื่อง"], "faqs": [{"question": "Company Portal ลงทะเบียนเครื่องยังไง?", "answer": "1. Download Company Portal จาก App Store\n2. Login ด้วยบัญชีบริษัท\n3. ทำตามขั้นตอนในแอป\n4. IT จะ Push App + Policy ให้อัตโนมัติ\n5. ติดต่อ IT ext.1234"}, {"question": "Device Not Compliant แก้ยังไง?", "answer": "1. ตรวจ Company Portal > Device Details\n2. ดูว่าขาด Requirement ใด\n3. อาจต้อง: เปิด BitLocker, อัปเดต Windows\n4. ทำตามที่แนะนำ แล้วกด Check Compliance\n5. ติดต่อ IT ext.1234"}, {"question": "IT Remote Wipe เครื่องได้ไหม?", "answer": "1. ได้ ถ้าเครื่องลงทะเบียน Intune\n2. ใช้เมื่อเครื่องสูญหายหรือถูกขโมย\n3. IT จะ Wipe เฉพาะข้อมูลบริษัท (Corporate Wipe)\n4. หรือ Full Wipe ถ้าเครื่องบริษัท\n5. แจ้ง IT ext.1234 ทันทีถ้าเครื่องหาย"}]}], "escalation": {"message": "ไม่พบคำตอบที่ตรงกับปัญหาของคุณ กรุณาติดต่อ IT Support:\n📞 โทร: ext. 1234\n📧 อีเมล: it-support@company.com\n💬 Line: @company-it\n🕐 เวลา: จันทร์-ศุกร์ 8:30-17:30", "hotline": "ext. 1234"}};
+window.KB = {
+  categories: [
+    {
+      name: "เครื่องพิมพ์",
+      keywords: [
+        "printer",
+        "พิมพ์",
+        "ปริ้น",
+        "print",
+        "ปริ้นเตอร์",
+        "กระดาษติด",
+        "หมึก",
+        "toner",
+        "scan",
+        "สแกน",
+        "scanner",
+        "paper jam",
+      ],
+      faqs: [
+        {
+          question: "เครื่องพิมพ์พิมพ์ไม่ออก ทำยังไง?",
+          answer:
+            "1. ตรวจสอบสาย USB หรือ Network ว่าเชื่อมต่อหรือยัง\n2. ตรวจว่าเครื่องพิมพ์เปิดอยู่\n3. Restart Print Spooler: เปิด Services > Print Spooler > Restart\n4. ลองพิมพ์ Test Page จาก Printer Properties\n5. ถ้ายังไม่ได้ ติดต่อ IT Support ที่ ext. 1234",
+        },
+        {
+          question: "กระดาษติดในเครื่องพิมพ์ แก้ยังไง?",
+          answer:
+            "1. ปิดเครื่องพิมพ์ก่อน\n2. เปิดฝาเครื่องพิมพ์ ค่อยๆ ดึงกระดาษออกช้าๆ\n3. ตรวจว่าไม่มีเศษกระดาษค้าง\n4. ตรวจถาดกระดาษว่าใส่ถูกต้อง\n5. เปิดเครื่องลองพิมพ์ใหม่",
+        },
+        {
+          question: "เครื่องพิมพ์ขึ้น Low Toner ทำยังไง?",
+          answer:
+            "1. ถ้าพิมพ์ยังชัดอยู่ กด OK เพื่อพิมพ์ต่อได้\n2. สั่งซื้อ Toner ใหม่ผ่านระบบจัดซื้อ\n3. แจ้ง IT Support เพื่อขอเปลี่ยน Toner\n4. อย่าเปิด Toner ใหม่ทิ้งไว้โดนแสง",
+        },
+        {
+          question: "สั่งพิมพ์จากเครื่องอื่น ทำยังไง?",
+          answer:
+            "1. เพิ่ม Network Printer: Settings > Printers > Add Printer\n2. พิมพ์ IP ของเครื่องพิมพ์ (ถาม IT หรือดูที่หน้าจอเครื่องพิมพ์)\n3. Install Driver ถ้าจำเป็น\n4. ทดสอบพิมพ์ Test Page\n5. ถ้าเชื่อมไม่ได้ ตรวจ Firewall หรือติดต่อ IT",
+        },
+        {
+          question: "สแกนเอกสารไม่ได้ ทำยังไง?",
+          answer:
+            "1. ตรวจว่าติดตั้ง Scanner Driver แล้ว\n2. ลองใช้ Windows Scan App (Microsoft Store)\n3. ตรวจ USB Connection\n4. ถ้าเป็น Network Scanner ตรวจ IP Address\n5. บันทึกไฟล์เป็น PDF หรือ JPEG\n6. ติดต่อ IT Support ext. 1234",
+        },
+        {
+          question: "เครื่องพิมพ์พิมพ์สีเพี้ยน / สีไม่ออก",
+          answer:
+            "1. Run Head Cleaning จาก Printer Utility\n2. ตรวจระดับหมึก/toner\n3. ทดสอบพิมพ์ Test Page (Color)\n4. ตรวจว่าตั้งค่าพิมพ์เป็น Color ไม่ใช่ Grayscale\n5. ถ้าหมึกหมด แจ้ง IT เพื่อเปลี่ยน",
+        },
+        {
+          question: "พิมพ์ขอบไม่ครบ ตัดข้อความ",
+          answer:
+            "1. File > Print > Page Setup > Margins\n2. ลด Margins ให้เล็กลง\n3. เลือก Fit to Page\n4. ตรวจ Paper Size ตรงกับกระดาษ",
+        },
+      ],
+    },
+    {
+      name: "อินเทอร์เน็ต/Network",
+      keywords: [
+        "internet",
+        "เน็ต",
+        "wifi",
+        "ไวไฟ",
+        "network",
+        "เชื่อมต่อ",
+        "หลุด",
+        "ช้า",
+        "disconnect",
+        "lan",
+        "ethernet",
+        "router",
+        "modem",
+        "dns",
+        "ip address",
+      ],
+      faqs: [
+        {
+          question: "เชื่อมต่อ WiFi ไม่ได้ ทำยังไง?",
+          answer:
+            "1. ตรวจว่าเปิด WiFi แล้ว (Fn + F-key ที่มีสัญลักษณ์ WiFi)\n2. Forget network แล้วเชื่อมต่อใหม่\n3. ใช้รหัส WiFi: บริษัท/OfficeName + ปี เช่น Company2024\n4. Restart เครื่อง\n5. ถ้าใช้ LAN ได้ ให้ใช้สาย LAN แทน\n6. ติดต่อ IT Support ext. 1234",
+        },
+        {
+          question: "อินเทอร์เน็ตช้ามาก ทำยังไง?",
+          answer:
+            "1. ปิด VPN แล้วลองใหม่ (ถ้าไม่จำเป็น)\n2. ปิดแท็บ Browser ที่ไม่ใช้\n3. ทดสอบความเร็วที่ speedtest.net\n4. Restart Router/Modem\n5. ถ้าทั้งออฟฟิศช้า แจ้ง IT เพราะอาจเป็นปัญหา ISP\n6. ติดต่อ IT Support ext. 1234",
+        },
+        {
+          question: "VPN เชื่อมต่อไม่ได้",
+          answer:
+            "1. ตรวจ Internet ก่อนว่าใช้ได้\n2. Restart VPN Client\n3. ตรวจว่าใช้ Server ถูกต้อง (vpn.company.com)\n4. ตรวจ Username/Password\n5. ถ้าหมดอายุ ติดต่อ IT เพื่อ Reset\n6. ลองใช้ GlobalProtect แทน (ถ้ามี)",
+        },
+        {
+          question: "WiFi หลุดบ่อย ทำยังไง?",
+          answer:
+            "1. อยู่ใกล้ Router/WiFi Access Point\n2. Forget network แล้วเชื่อมต่อใหม่\n3. ปิด Bluetooth (อาจรบกวนสัญญาณ)\n4. Update WiFi Driver\n5. ถ้าใช้ 5GHz ลองสลับเป็น 2.4GHz\n6. แจ้ง IT เพื่อตรวจ Access Point",
+        },
+        {
+          question: "เข้าเว็บไม่ได้ ขึ้น DNS Error",
+          answer:
+            "1. Flush DNS: เปิด CMD พิมพ์ ipconfig /flushdns\n2. เปลี่ยน DNS เป็น 8.8.8.8 หรือ 1.1.1.1\n3. Restart Network Adapter\n4. ตรวจ Proxy Settings (Internet Options > LAN Settings)\n5. ถ้าใช้บริษัท อาจถูก Block โดย Firewall\n6. ติดต่อ IT Support ext. 1234",
+        },
+        {
+          question: "ต่อ LAN แล้วไม่มีสัญญาณ",
+          answer:
+            "1. ตรวจสาย LAN ว่าเสียบแน่นทั้ง 2 ฝั่ง\n2. ลองเปลี่ยนสาย LAN\n3. ตรวจไฟ LED ที่ช่องเสียบ (ต้องมีไฟ)\n4. Restart Network Adapter\n5. ตรวจ IP Address: ipconfig /all\n6. ติดต่อ IT Support ext. 1234",
+        },
+      ],
+    },
+    {
+      name: "อีเมล",
+      keywords: [
+        "email",
+        "อีเมล",
+        "เมล",
+        "outlook",
+        "gmail",
+        "ส่งเมล",
+        "รับเมล",
+        "inbox",
+        "spam",
+        "calendar",
+        "ปฏิทิน",
+        "meeting",
+        "ประชุม",
+        "attachment",
+        "ไฟล์แนบ",
+      ],
+      faqs: [
+        {
+          question: "ส่งอีเมลไม่ได้ ทำยังไง?",
+          answer:
+            "1. ตรวจ Internet ว่าใช้ได้\n2. ตรวจขนาดไฟล์แนบ (ไม่เกิน 25MB)\n3. ตรวจว่าที่อยู่ผู้รับถูกต้อง\n4. ตรวจ Sent Items ว่าส่งจริงหรือไม่\n5. ลองส่งจาก Webmail แทน\n6. ติดต่อ IT Support ext. 1234",
+        },
+        {
+          question: "อีเมลเข้า Spam เยอะมาก แก้ยังไง?",
+          answer:
+            "1. ตรวจ Junk Email Settings ใน Outlook\n2. เพิ่มผู้ส่งใน Safe Senders List\n3. Right-click อีเมล > Not Junk\n4. อย่ากด unsubscribe จากอีเมลที่ไม่รู้จัก\n5. แจ้ง IT ถ้ามี phishing เข้ามาบ่อย",
+        },
+        {
+          question: "Outlook เปิดไม่ขึ้น / ค้าง",
+          answer:
+            "1. ปิด Outlook จาก Task Manager (Ctrl+Shift+Esc)\n2. เปิด Outlook ใน Safe Mode: กด Win+R พิมพ์ outlook.exe /safe\n3. ลบไฟล์ .ost เก่า (C:\\Users\\ชื่อ\\AppData\\Local\\Microsoft\\Outlook)\n4. Repair Office: Control Panel > Programs > Microsoft Office > Repair\n5. Restart เครื่อง\n6. ติดต่อ IT Support ext. 1234",
+        },
+        {
+          question: "อีเมลไม่ sync / ไม่อัพเดท",
+          answer:
+            "1. กด Send/Receive ที่ Outlook\n2. ตรวจ Internet Connection\n3. ตรวจ Account Settings: File > Account Settings\n4. ลบ Account แล้วเพิ่มใหม่\n5. ตรวจ Cache Mode (Cached Exchange Mode)\n6. ติดต่อ IT Support ext. 1234",
+        },
+        {
+          question: "ส่งไฟล์แนบใหญ่ไม่ได้ ทำยังไง?",
+          answer:
+            "1. บีบอัดไฟล์: Right-click > Send to > Compressed (zipped) folder\n2. ใช้ OneDrive/Google Drive แล้วแชร์ Link\n3. ใช้ WeTransfer หรือ Filemail\n4. แยกไฟล์เป็นหลาย Part\n5. จำกัดขนาดสูงสุด: Outlook 25MB, Gmail 25MB",
+        },
+        {
+          question: "สร้าง Meeting / นัดประชุมใน Outlook ทำยังไง?",
+          answer:
+            "1. เปิด Calendar ใน Outlook\n2. กด New Meeting หรือ Ctrl+Shift+Q\n3. เพิ่มผู้เข้าร่วมใน To:\n4. ตั้งวันเวลา + ห้องประชุม (Room Finder)\n5. กด Send\n6. ถ้าใช้ Teams กด Add Online Meeting",
+        },
+        {
+          question: "อีเมล Phishing / อีเมลหลอกลวง ดูยังไง?",
+          answer:
+            "1. ตรวจ Sender Address ให้ละเอียด (อย่าดูแค่ชื่อ)\n2. อย่าคลิกลิงก์แปลกๆ\n3. Hover ดู URL ก่อนคลิก\n4. อย่าเปิดไฟล์แนบจากคนไม่รู้จัก\n5. สงสัยให้ Forward แจ้ง IT Security\n6. อย่าตอบกลับหรือให้ข้อมูลส่วนตัว",
+        },
+      ],
+    },
+    {
+      name: "คอมพิวเตอร์",
+      keywords: [
+        "คอม",
+        "computer",
+        "pc",
+        "notebook",
+        "laptop",
+        "ช้า",
+        "ค้าง",
+        "restart",
+        "shutdown",
+        "blue screen",
+        "เปิดไม่ติด",
+        "boot",
+        "จอ",
+        "monitor",
+        "keyboard",
+        "คีย์บอร์ด",
+        "เมาส์",
+        "mouse",
+        "แบต",
+        "battery",
+        "ชาร์จ",
+        "charge",
+        "เสียง",
+        "speaker",
+        "headphone",
+        "หูฟัง",
+      ],
+      faqs: [
+        {
+          question: "คอมช้ามาก ทำยังไง?",
+          answer:
+            "1. Restart เครื่อง (วิธีง่ายสุดและมักได้ผล)\n2. ปิด Program ที่ไม่ใช้ (Task Manager > Startup > Disable)\n3. ลบไฟล์ Temp: Win+R พิมพ์ %temp% แล้วลบ\n4. ตรวจ Disk Space ว่าเหลือพอ (>10%)\n5. Scan Virus ด้วย Windows Defender\n6. ถ้ายังช้า แจ้ง IT เพื่อเพิ่ม RAM หรือ SSD",
+        },
+        {
+          question: "คอมเปิดไม่ติด ทำยังไง?",
+          answer:
+            "1. ตรวจสายไฟว่าเสียบแน่น\n2. กดปุ่ม Power ค้าง 10 วินาที แล้วลองใหม่\n3. ตรวจว่า Adapter ไฟเข้า (ไฟ LED)\n4. ถ้า Notebook ถอดแบตฯ ใส่ใหม่แล้วลอง\n5. ติดต่อ IT Support ext. 1234 (อาจเป็น Hardware)",
+        },
+        {
+          question: "Blue Screen (จอฟ้า) ทำยังไง?",
+          answer:
+            "1. จด Error Code ที่หน้าจอ (เช่น DRIVER_IRQL_NOT_LESS_OR_EQUAL)\n2. Restart เครื่อง\n3. ถ้าเกิดซ้ำ อาจเป็น Driver หรือ Hardware\n4. อย่า Install Program เองที่ไม่ใช่ลิขสิทธิ์\n5. ติดต่อ IT Support ext. 1234 พร้อมแจ้ง Error Code",
+        },
+        {
+          question: " Notebook แบตหมดเร็ว ทำยังไง?",
+          answer:
+            "1. ลดความสว่างหน้าจอ\n2. ปิด Bluetooth, WiFi ถ้าไม่ใช้\n3. ปิด Program ที่ทำงานเบื้องหลัง\n4. ใช้ Battery Saver Mode\n5. ตรวจ Battery Health: powercfg /batteryreport\n6. ถ้าแบตเสื่อม แจ้ง IT เพื่อเปลี่ยน",
+        },
+        {
+          question: "Notebook ชาร์จไฟไม่เข้า",
+          answer:
+            "1. ตรวจสายชาร์จว่าเสียบแน่น\n2. ลองใช้ปลั๊กอื่น\n3. ตรวจ Adapter ว่าไฟเข้า (ไฟ LED)\n4. ถอดแบตฯ ใส่ใหม่ (ถ้าถอดได้)\n5. ตรวจพอร์ตชาร์จว่ามีฝุ่น\n6. ติดต่อ IT Support ext. 1234",
+        },
+        {
+          question: "จอคอมไม่ขึ้น / จอดำ",
+          answer:
+            "1. ตรวจสายจอ (HDMI/VGA/DP) ว่าเสียบแน่น\n2. ตรวจว่าจอเปิดอยู่ (ไฟ LED)\n3. กด Windows + P สลับ Display Mode\n4. ลองเสียบจออื่น\n5. Restart เครื่อง\n6. ติดต่อ IT Support ext. 1234",
+        },
+        {
+          question: "คีย์บอร์ด / เมาส์ ใช้ไม่ได้",
+          answer:
+            "1. ตรวจสาย USB ว่าเสียบแน่น\n2. ลองเสียบช่อง USB อื่น\n3. ถ้า Wireless ตรวจ Battery + Receiver\n4. Restart เครื่อง\n5. Update Driver: Device Manager\n6. ขอยืมชั่วคราวจาก IT",
+        },
+        {
+          question: "คอมไม่มีเสียง / เสียงไม่ออก",
+          answer:
+            "1. ตรวจ Volume Mixer (คลิกขวาที่ Speaker Icon)\n2. ตรวจว่าไม่ได้ Mute\n3. ตรวจ Output Device ว่าถูกต้อง\n4. Restart Audio Service\n5. Update Audio Driver\n6. ลองใช้หูฟังอื่น",
+        },
+        {
+          question: "คอม Restart เอง / ปิดเอง",
+          answer:
+            "1. ตรวจว่าไม่ได้ตั้ง Windows Update ไว้\n2. ตรวจ Temperature (อาจร้อนเกินไป)\n3. ตรวจ Event Viewer > Windows Logs > System\n4. Scan Virus\n5. อาจเป็น PSU เสีย\n6. ติดต่อ IT Support ext. 1234",
+        },
+      ],
+    },
+    {
+      name: "Password/Security",
+      keywords: [
+        "password",
+        "รหัส",
+        "ลืมรหัส",
+        "เปลี่ยนรหัส",
+        "reset password",
+        "lock",
+        "ล็อค",
+        "hack",
+        "ไวรัส",
+        "virus",
+        "phishing",
+        "2fa",
+        "mfa",
+        "otp",
+        "ยืนยันตัวตน",
+        "authentication",
+      ],
+      faqs: [
+        {
+          question: "ลืมรหัสผ่าน ทำยังไง?",
+          answer:
+            "1. กด Forgot Password ที่หน้า Login\n2. ตรวจสอบอีเมลสำรองหรือเบอร์โทร\n3. ติดต่อ IT Support ext. 1234 เพื่อ Reset\n4. หลัง Reset ต้องเปลี่ยนรหัสใหม่ทันที\n5. รหัสต้องมี: ตัวใหญ่+ตัวเล็ก+ตัวเลข+อักขระพิเศษ 8 ตัวขึ้นไป",
+        },
+        {
+          question: "บัญชีถูกล็อค ทำยังไง?",
+          answer:
+            "1. รอ 30 นาที แล้วลองใหม่ (Auto Unlock)\n2. ถ้ายังล็อค ติดต่อ IT Support ext. 1234\n3. อาจเกิดจากกรอกรหัสผิดหลายครั้ง\n4. ตรวจสอบว่า Caps Lock ไม่ได้เปิดอยู่\n5. ระวัง Email หลอกลวง (Phishing) ที่ขโมยรหัสผ่าน",
+        },
+        {
+          question: "สงสัยว่าติดไวรัส ทำยังไง?",
+          answer:
+            "1. อย่า Panic! ถอดสาย LAN/WiFi ออกก่อน\n2. Scan ด้วย Windows Defender (Full Scan)\n3. อย่าเปิดไฟล์ที่สงสัย\n4. บันทึกสิ่งผิดปกติที่เห็น\n5. ติดต่อ IT Support ext. 1234 ทันที\n6. อย่าจ่ายเงินถ้าเจอ Ransomware ให้แจ้ง IT ก่อน",
+        },
+        {
+          question: "ตั้งค่า 2FA / MFA ทำยังไง?",
+          answer:
+            "1. ไปที่ Account Settings > Security\n2. เลือก Two-Factor Authentication\n3. Download Microsoft Authenticator หรือ Google Authenticator\n4. Scan QR Code\n5. กรอก OTP เพื่อยืนยัน\n6. เก็บ Backup Code ไว้ในที่ปลอดภัย",
+        },
+        {
+          question: "OTP / 2FA ไม่ยอมรับ ทำยังไง?",
+          answer:
+            "1. ตรวจว่าเวลาในมือถือตรงกับ Server (Sync Time)\n2. ลองกรอก OTP ใหม่ (หมดอายุทุก 30 วินาที)\n3. ปิด-เปิด Authenticator App ใหม่\n4. ใช้ Backup Code แทน\n5. ติดต่อ IT Support ext. 1234 เพื่อ Reset 2FA",
+        },
+        {
+          question: "เปลี่ยนรหัสผ่าน ทำยังไง?",
+          answer:
+            "1. Windows: Ctrl+Alt+Del > Change a Password\n2. Email: Settings > Security > Change Password\n3. รหัสใหม่ควรมี: ตัวใหญ่+ตัวเล็ก+ตัวเลข+อักขระพิเศษ 8+ ตัว\n4. อย่าใช้รหัสซ้ำกับที่อื่น\n5. เปลี่ยนทุก 90 วัน (ตามนโยบายบริษัท)",
+        },
+      ],
+    },
+    {
+      name: "Software/Application",
+      keywords: [
+        "program",
+        "โปรแกร",
+        "install",
+        "ติดตั้ง",
+        "update",
+        "อัพเดท",
+        "license",
+        "ลิขสิทธิ์",
+        "crack",
+        "excel",
+        "word",
+        "powerpoint",
+        "teams",
+        "zoom",
+        "chrome",
+        "browser",
+        "adobe",
+        "acrobat",
+        "pdf",
+      ],
+      faqs: [
+        {
+          question: "ติดตั้งโปรแกรมใหม่ ทำยังไง?",
+          answer:
+            "1. ส่งคำขอผ่าน IT Service Portal\n2. ระบุชื่อโปรแกรม + เหตุผลที่ต้องใช้\n3. IT จะตรวจสอบ License และติดตั้งให้\n4. อย่า Download เองจาก Internet (เสี่ยง Malware)\n5. โปรแกรมที่ต้องซื้อ ต้องผ่านการอนุมัติจากหัวหน้า",
+        },
+        {
+          question: "Microsoft Office หมดอายุ / เปิดไม่ได้",
+          answer:
+            "1. ตรวจว่า Sign in ด้วยบัญชีบริษัท (@company.com)\n2. Repair Office: Settings > Apps > Microsoft Office > Modify > Repair\n3. ถ้าหมดอายุ แจ้ง IT เพื่อ Renew License\n4. ใช้ Office Online ชั่วคราว: office.com\n5. ติดต่อ IT Support ext. 1234",
+        },
+        {
+          question: "Excel / Word ค้าง / เปิดช้า",
+          answer:
+            "1. ปิดจาก Task Manager (Ctrl+Shift+Esc)\n2. เปิดใน Safe Mode: Win+R > excel.exe /safe\n3. ปิด Add-ins ที่ไม่ใช้\n4. Repair Office\n5. ถ้าไฟล์ใหญ่มาก ลองเปิดเครื่องอื่น\n6. ติดต่อ IT Support ext. 1234",
+        },
+        {
+          question: "Zoom / Teams ประชุมไม่ได้ ทำยังไง?",
+          answer:
+            "1. ตรวจ Internet Connection\n2. ตรวจ Camera + Microphone Permissions\n3. Restart App\n4. Update เป็น Version ล่าสุด\n5. ตรวจ Firewall อาจ Block\n6. ใช้ Web Version ชั่วคราว\n7. ติดต่อ IT Support ext. 1234",
+        },
+        {
+          question: "Chrome / Browser ช้า / เปิดเยอะ",
+          answer:
+            "1. ปิดแท็บที่ไม่ใช้\n2. Clear Cache: Ctrl+Shift+Del\n3. ปิด Extensions ที่ไม่ใช้\n4. Update Browser\n5. Reset Browser Settings\n6. ลองใช้ Browser อื่น",
+        },
+        {
+          question: "เปิดไฟล์ PDF ไม่ได้ ทำยังไง?",
+          answer:
+            "1. ติดตั้ง Adobe Acrobat Reader (ฟรี)\n2. ลองเปิดด้วย Browser (Chrome, Edge)\n3. ตรวจว่าไฟล์ไม่เสีย (ลองเปิดเครื่องอื่น)\n4. Repair Adobe Acrobat\n5. ติดต่อ IT Support ext. 1234",
+        },
+        {
+          question: "Windows Update ทำยังไง? / Update ไม่ได้",
+          answer:
+            "1. Settings > Windows Update > Check for updates\n2. Restart หลัง Update\n3. ถ้า Error: Run Troubleshooter\n4. ตรวจ Disk Space ว่าเหลือพอ\n5. อย่า Skip Update นานเกินไป (เสี่ยง Security)\n6. ติดต่อ IT Support ext. 1234",
+        },
+      ],
+    },
+    {
+      name: "VPN / Remote Work",
+      keywords: [
+        "vpn",
+        "remote",
+        "work from home",
+        "wfh",
+        "เชื่อมต่อบริษัท",
+        "เข้าระบบ",
+        "เข้าไม่ได้",
+        "globalprotect",
+        "cisco",
+        "anyconnect",
+        "rdp",
+        "remote desktop",
+      ],
+      faqs: [
+        {
+          question: "VPN เชื่อมต่อไม่ได้ ทำยังไง?",
+          answer:
+            "1. ตรวจ Internet ก่อน (เปิดเว็บอื่นได้ไหม)\n2. Restart VPN Client\n3. เปลี่ยน Server Location\n4. ตรวจ Username/Password\n5. ลองปิด Firewall/Antivirus ชั่วคราว\n6. ติดต่อ IT Support ext. 1234",
+        },
+        {
+          question: "Work From Home เชื่อมต่อบริษัท ทำยังไง?",
+          answer:
+            "1. ติดตั้ง VPN Client (GlobalProtect/Cisco AnyConnect)\n2. เชื่อม VPN ก่อนเข้าระบบ\n3. ใช้ Remote Desktop (ถ้ามี)\n4. เข้าระบบผ่าน Browser (Web Portal)\n5. ติดต่อ IT เพื่อขอสิทธิ์ WFH",
+        },
+        {
+          question: "Remote Desktop เข้าเครื่องออฟฟิศ ทำยังไง?",
+          answer:
+            "1. เชื่อม VPN ก่อน\n2. เปิด Remote Desktop Connection (Win+R > mstsc)\n3. กรอก IP เครื่องออฟฟิศ\n4. Login ด้วยบัญชีบริษัท\n5. ถ้าเข้าไม่ได้ ตรวจว่าเครื่องเปิดอยู่\n6. ติดต่อ IT Support ext. 1234",
+        },
+        {
+          question: "VPN ช้า / หลุดบ่อย",
+          answer:
+            "1. เปลี่ยน Server Location\n2. ปิด App ที่ใช้ Bandwidth เยอะ\n3. ใช้สาย LAN แทน WiFi\n4. ลอง Protocol อื่น (IKEv2, WireGuard)\n5. Restart Router\n6. ติดต่อ IT Support ext. 1234",
+        },
+        {
+          question: "VPN เชื่อมแล้วแต่เข้า Network ภายในไม่ได้",
+          answer:
+            "1. ตรวจว่า VPN ยัง Connected อยู่\n2. ลอง Disconnect แล้ว Connect ใหม่\n3. ตรวจว่าเข้า IP ที่ถูกต้อง\n4. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "WFH ทำงานช้ากว่าที่ Office",
+          answer:
+            "1. ตรวจ Internet Speed ที่บ้าน\n2. ใช้สาย LAN แทน WiFi ถ้าได้\n3. ปิดโปรแกรมอื่นที่ใช้ Bandwidth\n4. VPN อาจช้า ลองเปลี่ยน Server\n5. ติดต่อ IT ext.1234",
+        },
+      ],
+    },
+    {
+      name: "Video Conference",
+      keywords: [
+        "zoom",
+        "teams",
+        "google meet",
+        "ประชุม",
+        "meeting",
+        "video",
+        "camera",
+        "webcam",
+        "กล้อง",
+        "ไมค์",
+        "microphone",
+        "share screen",
+        "แชร์จอ",
+      ],
+      faqs: [
+        {
+          question: "เข้า Zoom Meeting ไม่ได้ ทำยังไง?",
+          answer:
+            "1. ตรวจ Internet Connection\n2. ตรวจ Link ประชุมว่าถูกต้อง\n3. Update Zoom เป็น Version ล่าสุด\n4. ลอง Join จาก Browser แทน App\n5. ตรวจ Firewall อาจ Block\n6. ติดต่อ IT Support ext. 1234",
+        },
+        {
+          question: "กล้อง/ไมค์ ใช้ไม่ได้ใน Meeting",
+          answer:
+            "1. ตรวจ Camera/Microphone Permissions\n   - Settings > Privacy > Camera/Microphone\n2. ตรวจว่า App อื่นไม่ได้ใช้กล้องอยู่\n3. Restart App\n4. ตรวจ Device Manager ว่า Driver ปกติ\n5. ลองใช้ External Webcam/Mic\n6. ติดต่อ IT Support ext. 1234",
+        },
+        {
+          question: "Share Screen ไม่ได้ / แชร์จอไม่ขึ้น",
+          answer:
+            "1. ตรวจ Screen Sharing Permissions\n2. ปิด-เปิด Meeting ใหม่\n3. ลอง Share เฉพาะ Window แทน Entire Screen\n4. ตรวจว่าไม่มี Pop-up Blocker\n5. Update App\n6. ติดต่อ IT Support ext. 1234",
+        },
+        {
+          question: "Meeting เสียง Echo / เสียงก้อง",
+          answer:
+            "1. ใช้หูฟัง (แก้ปัญหาได้ 90%)\n2. Mute ตัวเองเมื่อไม่ได้พูด\n3. ตรวจ Speaker/Mic Settings\n4. ปิด Speaker ที่ซ้ำกัน\n5. อย่าใช้ Speakerphone\n6. ให้คนอื่น Mute ด้วย",
+        },
+      ],
+    },
+    {
+      name: "Mobile Device",
+      keywords: [
+        "มือถือ",
+        "mobile",
+        "phone",
+        "iphone",
+        "android",
+        "samsung",
+        "app",
+        "application",
+        "sync",
+        "ซิงค์",
+        "email มือถือ",
+        "outlook มือถือ",
+        "teams มือถือ",
+      ],
+      faqs: [
+        {
+          question: "ตั้งค่า Email บริษัทในมือถือ ทำยังไง?",
+          answer:
+            "1. Download Outlook App (แนะนำ)\n2. Login ด้วยอีเมลบริษัท\n3. ถ้าใช้ 2FA ต้องยืนยัน OTP\n4. ถ้าใช้ Gmail App: เพิ่ม Account > Exchange\n5. Server: outlook.office365.com\n6. ติดต่อ IT Support ext. 1234",
+        },
+        {
+          question: "App บริษัทเปิดไม่ได้ / Login ไม่ได้",
+          answer:
+            "1. Update App เป็น Version ล่าสุด\n2. Clear App Data/Cache\n3. ตรวจ Internet Connection\n4. ลอง Uninstall แล้วลงใหม่\n5. ตรวจ VPN (ถ้าจำเป็น)\n6. ติดต่อ IT Support ext. 1234",
+        },
+        {
+          question: "มือถือหาย / ถูกขโมย ทำยังไง?",
+          answer:
+            "1. แจ้ง IT ทันที! (ext. 1234)\n2. Remote Lock/Wipe: Find My iPhone / Find My Device\n3. เปลี่ยนรหัสผ่านทั้งหมด\n4. แจ้งหัวหน้า\n5. ลงบันทึกประจำวัน (ถ้าถูกขโมย)\n6. ขออุปกรณ์ใหม่จาก IT",
+        },
+      ],
+    },
+    {
+      name: "ข้อมูลสูญหาย / Backup",
+      keywords: [
+        "backup",
+        "สำรอง",
+        "ข้อมูลหาย",
+        "delete",
+        "ลบ",
+        "recover",
+        "กู้ข้อมูล",
+        "กู้คืน",
+        "onedrive",
+        "google drive",
+        "dropbox",
+        "cloud",
+        "sync",
+        "ซิงค์",
+        "ไฟล์หาย",
+        "lost file",
+        "file missing",
+        "กู้ไฟล์",
+        "restore",
+      ],
+      faqs: [
+        {
+          question: "ไฟล์ถูกลบ / ข้อมูลหาย กู้คืนยังไง?",
+          answer:
+            "1. ตรวจ Recycle Bin ก่อน\n2. ตรวจ OneDrive/Google Drive > Trash\n3. ใช้ Previous Version: Right-click folder > Restore previous versions\n4. อย่า Save อะไรทับ (จะกู้ยากขึ้น)\n5. ติดต่อ IT Support ext. 1234 (อาจกู้จาก Backup ได้)",
+        },
+        {
+          question: "OneDrive / Google Drive ไม่ Sync",
+          answer:
+            "1. ตรวจ Internet Connection\n2. Restart Sync App\n3. ตรวจ Disk Space ว่าเหลือพอ\n4. ตรวจไฟล์ที่ Sync ไม่ได้ (ชื่อยาว, อักขระพิเศษ)\n5. Pause แล้ว Resume Sync\n6. ติดต่อ IT Support ext. 1234",
+        },
+        {
+          question: "Backup ข้อมูล ทำยังไง?",
+          answer:
+            "1. ใช้ OneDrive (แนะนำ - บริษัทมีให้)\n2. Save ไฟล์ใน OneDrive Folder\n3. ตรวจว่า Sync ขึ้น Cloud แล้ว (ไอคอนเขียว)\n4. อย่าเก็บไฟล์สำคัญแค่ใน Desktop\n5. สำรองไฟล์สำคัญทุกสัปดาห์\n6. ติดต่อ IT Support ext. 1234",
+        },
+      ],
+    },
+    {
+      name: "Account / Permission",
+      keywords: [
+        "account",
+        "บัญชี",
+        "permission",
+        "สิทธิ์",
+        "access",
+        "เข้าไม่ได้",
+        "denied",
+        "blocked",
+        "request",
+        "ขอสิทธิ์",
+        "new user",
+        "พนักงานใหม่",
+        "resign",
+        "ลาออก",
+      ],
+      faqs: [
+        {
+          question: "พนักงานใหม่ ต้องทำอะไรบ้าง? (IT Onboarding)",
+          answer:
+            "1. แจ้ง IT ล่วงหน้า 3 วันก่อนเริ่มงาน\n2. IT จะเตรียม: เครื่อง, Email, VPN, สิทธิ์ต่างๆ\n3. วันแรก: รับเครื่อง + ตั้งรหัสผ่าน\n4. ติดตั้ง VPN + ตั้งค่า Email\n5. เข้า Training ระบบพื้นฐาน\n6. ติดต่อ IT Support ext. 1234",
+        },
+        {
+          question: "พนักงานลาออก ต้องทำอะไรบ้าง? (IT Offboarding)",
+          answer:
+            "1. แจ้ง IT ล่วงหน้า 1 วัน\n2. Backup ข้อมูลสำคัญ\n3. คืนอุปกรณ์: เครื่อง, Mouse, Keyboard, Charger\n4. IT จะ Disable Account\n5. ถ่ายโอนไฟล์สำคัญให้ทีม\n6. ติดต่อ IT Support ext. 1234",
+        },
+        {
+          question: "ขอสิทธิ์เข้าถึงระบบ / Folder ทำยังไง?",
+          answer:
+            "1. ส่งคำขอผ่าน IT Service Portal\n2. ระบุ: ระบบ/Folder + เหตุผล + CC หัวหน้า\n3. หัวหน้าอนุมัติ\n4. IT ดำเนินการ (1-2 วันทำการ)\n5. ทดสอบว่าเข้าได้\n6. ติดต่อ IT Support ext. 1234",
+        },
+        {
+          question: "เข้าระบบไม่ได้ / Access Denied",
+          answer:
+            "1. ตรวจ Username/Password ว่าถูกต้อง\n2. ตรวจว่า Account ไม่ถูกล็อค\n3. ตรวจ VPN (ถ้าเข้าจากข้างนอก)\n4. ตรวจว่ามีสิทธิ์เข้าระบบนั้นหรือไม่\n5. ลอง Browser อื่น / Clear Cache\n6. ติดต่อ IT Support ext. 1234",
+        },
+      ],
+    },
+    {
+      name: "Microsoft Teams",
+      keywords: [
+        "teams",
+        "microsoft teams",
+        "แชท",
+        "channel",
+        "ช่อง",
+        "notification",
+        "แจ้งเตือน",
+        "status",
+        "สถานะ",
+        "meeting teams",
+      ],
+      faqs: [
+        {
+          question: "Teams เปิดไม่ขึ้น / ค้าง ทำยังไง?",
+          answer:
+            "1. ปิดจาก Task Manager (Ctrl+Shift+Esc)\n2. ลบ Cache: %AppData%\\Microsoft\\Teams\\Cache\n3. Restart Teams\n4. Update เป็น Version ล่าสุด\n5. ถ้ายังไม่ได้ ติดต่อ IT ext.1234",
+        },
+        {
+          question: "Teams แจ้งเตือนไม่ขึ้น ทำยังไง?",
+          answer:
+            "1. Teams > Settings > Notifications\n2. ตรวจ Windows Focus Assist ว่าปิดอยู่\n3. Settings > System > Notifications > Teams ให้เปิด\n4. Restart Teams\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "ตั้งค่า Status Teams ยังไง?",
+          answer:
+            "1. คลิกรูปโปรไฟล์มุมบนขวา\n2. เลือก Status: Available / Busy / Do not disturb / Away\n3. ตั้ง Status Message ได้ที่ 'Set status message'\n4. Duration Message หมดอายุอัตโนมัติได้",
+        },
+        {
+          question: "ส่งไฟล์ใน Teams ทำยังไง?",
+          answer:
+            "1. คลิก Attach (📎) ใน Chat\n2. เลือก Upload from computer หรือ OneDrive\n3. ขนาดสูงสุด 250MB ต่อไฟล์\n4. ลาก Drop ไฟล์เข้า Chat ได้เลย\n5. ไฟล์จะเก็บใน SharePoint อัตโนมัติ",
+        },
+        {
+          question: "Teams ไม่ยอม Login ทำยังไง?",
+          answer:
+            "1. Sign out แล้ว Sign in ใหม่\n2. ล้าง Cache: %AppData%\\Microsoft\\Teams\n3. ลอง Teams Web: teams.microsoft.com\n4. ตรวจ Password ว่าไม่หมดอายุ\n5. ติดต่อ IT ext.1234",
+        },
+      ],
+    },
+    {
+      name: "Hardware / อุปกรณ์",
+      keywords: [
+        "usb",
+        "port",
+        "จอ",
+        "monitor",
+        "display",
+        "hdmi",
+        "vga",
+        "hub",
+        "dock",
+        "docking",
+        "keyboard",
+        "mouse",
+        "เมาส์",
+        "คีย์บอร์ด",
+        "webcam",
+        "กล้อง",
+        "headset",
+        "หูฟัง",
+        "speaker",
+        "ลำโพง",
+        "charger",
+        "adapter",
+      ],
+      faqs: [
+        {
+          question: "เสียบ USB แล้วไม่ขึ้น ทำยังไง?",
+          answer:
+            "1. ลองเสียบช่อง USB อื่น\n2. Restart เครื่อง\n3. Device Manager > Action > Scan for hardware changes\n4. ลองเสียบเครื่องอื่นว่าใช้ได้ไหม\n5. ถ้าพอร์ต USB เสีย ติดต่อ IT ext.1234",
+        },
+        {
+          question: "จอแสดงสีผิดเพี้ยน / แสงกะพริบ",
+          answer:
+            "1. ตรวจสาย HDMI/DP ว่าเสียบแน่น\n2. ลองเปลี่ยนสาย\n3. อัปเดต Graphics Driver\n4. ลด Refresh Rate: Display Settings > Advanced\n5. ถ้าจอเสีย ติดต่อ IT ext.1234",
+        },
+        {
+          question: "ต่อ 2 จอ (Dual Monitor) ทำยังไง?",
+          answer:
+            "1. เสียบสายจอที่ 2 เข้า HDMI/DP/VGA\n2. คลิกขวา Desktop > Display Settings\n3. เลือก Extend these displays\n4. ลาก Position จอให้ถูกต้อง\n5. ถ้าไม่พบ ตรวจ Driver หรือติดต่อ IT ext.1234",
+        },
+        {
+          question: "Docking Station ใช้ไม่ได้ ทำยังไง?",
+          answer:
+            "1. ตรวจสาย Power Dock ว่าเสียบแน่น\n2. ถอด-เสียบ USB-C/Thunderbolt ใหม่\n3. Restart เครื่องขณะเสียบ Dock อยู่\n4. อัปเดต Dock Firmware\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "Webcam ภาพมืด / พร่ามัว ทำยังไง?",
+          answer:
+            "1. ตรวจแสงในห้องว่าเพียงพอ\n2. ล้างเลนส์ด้วยผ้านุ่ม\n3. เปิด Camera App ทดสอบ\n4. Update Webcam Driver\n5. ตรวจ Privacy Settings > Camera\n6. ติดต่อ IT ext.1234",
+        },
+      ],
+    },
+    {
+      name: "File / Folder / Network Drive",
+      keywords: [
+        "folder",
+        "ไฟล์",
+        "file",
+        "share",
+        "shared drive",
+        "network drive",
+        "map drive",
+        "z:",
+        "เชื่อมไดร์ฟ",
+        "sharepoint",
+        "onedrive",
+        "permission",
+        "สิทธิ์ไฟล์",
+        "เข้าโฟลเดอร์ไม่ได้",
+      ],
+      faqs: [
+        {
+          question: "Map Network Drive ทำยังไง?",
+          answer:
+            "1. เปิด File Explorer\n2. คลิก This PC > Map network drive\n3. เลือก Drive Letter (เช่น Z:)\n4. กรอก Path: \\\\server\\foldername\n5. ติ๊ก Reconnect at sign-in\n6. ถ้าไม่รู้ Path ติดต่อ IT ext.1234",
+        },
+        {
+          question: "เข้า Network Drive ไม่ได้ ทำยังไง?",
+          answer:
+            "1. ตรวจว่าต่อ VPN แล้ว (ถ้า WFH)\n2. Disconnect แล้ว Map ใหม่\n3. ตรวจ Username/Password\n4. Restart เครื่อง\n5. ติดต่อ IT ext.1234 เพื่อตรวจสิทธิ์",
+        },
+        {
+          question: "ไฟล์ใน SharePoint เปิดไม่ได้",
+          answer:
+            "1. ตรวจ Internet Connection\n2. Login ด้วยบัญชีบริษัทใหม่\n3. Clear Browser Cache\n4. ลอง Browser อื่น\n5. ดาวน์โหลดมาเปิดแทน\n6. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "ไฟล์ถูกล็อค / เปิดพร้อมกันไม่ได้",
+          answer:
+            "1. ตรวจว่าคนอื่นเปิดไฟล์อยู่หรือเปล่า\n2. รอให้คนนั้นปิดก่อน\n3. ถ้าล็อคค้าง ติดต่อ IT ext.1234\n4. ใช้ OneDrive จะ Co-edit พร้อมกันได้\n5. ลองเปิดแบบ Read-Only ชั่วคราว",
+        },
+        {
+          question: "ขนาด Folder ดูยังไง?",
+          answer:
+            "1. Right-click Folder > Properties\n2. ดูที่ Size on disk\n3. ถ้าช้า ใช้ WinDirStat (ขอจาก IT)\n4. ถ้า Quota เต็ม ลบไฟล์เก่าหรือย้ายไป Archive\n5. ติดต่อ IT ext.1234 เพื่อขอเพิ่ม Space",
+        },
+      ],
+    },
+    {
+      name: "Office 365 / Microsoft 365",
+      keywords: [
+        "office 365",
+        "microsoft 365",
+        "m365",
+        "word",
+        "excel",
+        "powerpoint",
+        "onenote",
+        "onedrive",
+        "sharepoint",
+        "activation",
+        "activate",
+        "ลงทะเบียน",
+        "license office",
+      ],
+      faqs: [
+        {
+          question: "Office 365 ขึ้น Product Activation Failed ทำยังไง?",
+          answer:
+            "1. Sign out แล้ว Sign in ด้วยบัญชีบริษัท\n2. File > Account > Sign In\n3. ตรวจ Internet Connection\n4. Repair Office: Settings > Apps > Microsoft 365 > Modify\n5. ติดต่อ IT ext.1234 เพื่อ Renew License",
+        },
+        {
+          question: "Excel ไฟล์ใหญ่เปิดช้า ทำยังไง?",
+          answer:
+            "1. ปิด Auto-Calculate: Formulas > Calculation Options > Manual\n2. ลบ Conditional Formatting ที่ไม่ใช้\n3. ลด Pivot Cache\n4. แยกไฟล์เป็น Sheet ย่อย\n5. เพิ่ม RAM ติดต่อ IT ext.1234",
+        },
+        {
+          question: "Word ไม่ยอม Save ทำยังไง?",
+          answer:
+            "1. ลอง Save As ชื่อใหม่\n2. ตรวจ Disk Space ว่าเหลือพอ\n3. Save เป็น .docx ไม่ใช่ .doc\n4. ปิด OneDrive Sync ชั่วคราวแล้ว Save\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "PowerPoint เล่น Presentation แบบเต็มจอยังไง?",
+          answer:
+            "1. กด F5 เล่นตั้งแต่ Slide แรก\n2. กด Shift+F5 เล่นจาก Slide ปัจจุบัน\n3. ถ้าต่อโปรเจกเตอร์ กด Win+P เลือก Extend\n4. Presenter View: Slide Show > Use Presenter View\n5. กด Esc เพื่อออก",
+        },
+        {
+          question: "OneDrive Sync ไฟล์ขึ้น Error ทำยังไง?",
+          answer:
+            "1. คลิกขวา OneDrive Icon > View sync errors\n2. ตรวจชื่อไฟล์ว่ามีอักขระพิเศษ (: * ? < > | )\n3. ตรวจ Disk Space\n4. Pause แล้ว Resume Sync\n5. Unlink แล้ว Link บัญชีใหม่\n6. ติดต่อ IT ext.1234",
+        },
+      ],
+    },
+    {
+      name: "Windows / System",
+      keywords: [
+        "windows",
+        "windows 10",
+        "windows 11",
+        "update",
+        "อัพเดท",
+        "driver",
+        "ไดร์เวอร์",
+        "activation windows",
+        "disk",
+        "storage",
+        "ดิสก์เต็ม",
+        "c drive",
+        "task manager",
+        "registry",
+        "startup",
+        "บูต",
+        "boot slow",
+      ],
+      faqs: [
+        {
+          question: "Windows Update ค้าง ทำยังไง?",
+          answer:
+            "1. รอให้ครบ อย่าปิดเครื่อง\n2. ถ้าค้างนาน Restart แล้วลอง Update ใหม่\n3. Run Windows Update Troubleshooter\n4. ตรวจ Disk Space C: ต้องเหลือ > 10GB\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "C Drive เต็ม ทำยังไง?",
+          answer:
+            "1. Disk Cleanup: คลิกขวา C: > Properties > Disk Cleanup\n2. ลบไฟล์ Temp: Win+R พิมพ์ %temp%\n3. Uninstall Program ที่ไม่ใช้\n4. ย้ายไฟล์ใหญ่ไป D: หรือ OneDrive\n5. ติดต่อ IT ext.1234 เพื่อขยาย Disk",
+        },
+        {
+          question: "Windows Boot ช้ามาก ทำยังไง?",
+          answer:
+            "1. Task Manager > Startup > Disable โปรแกรมที่ไม่จำเป็น\n2. Settings > System > Power & Sleep > Shutdown Settings > Fast Startup ON\n3. ตรวจ SSD/HDD ว่า Health ดี\n4. Scan Malware\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "Windows ขึ้น 'Not Genuine' ทำยังไง?",
+          answer:
+            "1. ตรวจว่า Sign in ด้วย Microsoft Account บริษัทหรือยัง\n2. Settings > Update & Security > Activation\n3. ติดต่อ IT ext.1234 เพื่อใส่ Product Key\n4. อย่าซื้อ Key นอกหรือ Crack (ผิด Policy)",
+        },
+        {
+          question: "Task Manager เปิดไม่ได้ ทำยังไง?",
+          answer:
+            "1. กด Ctrl+Shift+Esc\n2. คลิกขวา Taskbar > Task Manager\n3. Win+R พิมพ์ taskmgr\n4. ถ้าเปิดไม่ได้อาจมี Malware\n5. ติดต่อ IT ext.1234 ทันที",
+        },
+      ],
+    },
+    {
+      name: "Line / Communication App",
+      keywords: [
+        "line",
+        "ไลน์",
+        "line oa",
+        "แจ้งเตือน",
+        "sticker",
+        "สติ๊กเกอร์",
+        "line pc",
+        "facebook",
+        "messenger",
+        "whatsapp",
+        "slack",
+      ],
+      faqs: [
+        {
+          question: "Line PC แจ้งเตือนไม่ขึ้น ทำยังไง?",
+          answer:
+            "1. Line > Settings > Notifications > เปิดทั้งหมด\n2. Windows Settings > Notifications > Line > เปิด\n3. ตรวจว่า Focus Assist ปิดอยู่\n4. Restart Line\n5. Update Line เป็น Version ล่าสุด",
+        },
+        {
+          question: "Line Login บนเครื่องใหม่ ทำยังไง?",
+          answer:
+            "1. Download Line PC จาก line.me\n2. เปิด Line บนมือถือ\n3. Setting > Devices > Scan QR Code\n4. ยืนยัน OTP\n5. ข้อความจะ Sync มา (แต่ไม่ย้อนหลัง)",
+        },
+      ],
+    },
+    {
+      name: "Antivirus / Security",
+      keywords: [
+        "virus",
+        "antivirus",
+        "malware",
+        "ransomware",
+        "ไวรัส",
+        "มัลแวร์",
+        "scan",
+        "threat",
+        "trojan",
+        "phishing",
+        "spam",
+      ],
+      faqs: [
+        {
+          question: "เครื่องติดไวรัส ทำยังไง?",
+          answer:
+            "1. ตัดการเชื่อมต่อ Network ทันที\n2. Scan ด้วย Windows Defender Full Scan\n3. ห้ามเปิดไฟล์ที่สงสัย\n4. ติดต่อ IT ext.1234 ด่วน\n5. อาจต้อง Format เครื่องใหม่",
+        },
+        {
+          question: "ได้อีเมล Phishing ทำยังไง?",
+          answer:
+            "1. ห้ามกดลิงก์ใดๆ ในอีเมล\n2. ห้ามกรอกข้อมูลส่วนตัว\n3. Report Phishing ใน Outlook\n4. แจ้ง IT ext.1234 ทันที\n5. ลบอีเมลออกจาก Inbox",
+        },
+        {
+          question: "Windows Defender ปิดไม่ได้ / เปิดไม่ได้",
+          answer:
+            "1. Settings > Privacy & Security > Windows Security\n2. Virus & threat protection > Manage settings\n3. Real-time protection > เปิด\n4. ถ้าเปิดไม่ได้ อาจมี Group Policy บังคับ\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "Ransomware เข้ารหัสไฟล์ ทำยังไง?",
+          answer:
+            "1. ปิดเครื่องทันที! ห้ามใช้ต่อ\n2. ถอดสาย Network\n3. ติดต่อ IT ext.1234 ด่วนที่สุด\n4. ห้ามจ่ายค่าไถ่\n5. IT จะกู้จาก Backup",
+        },
+        {
+          question: "เว็บไซต์ถูก Block ทำยังไง?",
+          answer:
+            "1. ตรวจว่าเว็บนั้นเกี่ยวข้องกับงานหรือไม่\n2. ถ้าเกี่ยวกับงาน ติดต่อ IT ext.1234\n3. ส่ง URL ที่ถูก Block ให้ IT ตรวจสอบ\n4. IT จะ Whitelist ให้ถ้าปลอดภัย",
+        },
+        {
+          question: "USB ถูก Block ใช้ไม่ได้",
+          answer:
+            "1. บริษัทอาจมี Policy ปิด USB\n2. ใช้ OneDrive/SharePoint แทน\n3. ถ้าจำเป็นต้องใช้ USB ส่ง Request ผ่าน IT\n4. ติดต่อ IT ext.1234",
+        },
+      ],
+    },
+    {
+      name: "Browser / Chrome",
+      keywords: [
+        "browser",
+        "chrome",
+        "firefox",
+        "edge",
+        "เบราว์เซอร์",
+        "bookmark",
+        "cache",
+        "cookie",
+        "popup",
+        "extension",
+        "tab",
+      ],
+      faqs: [
+        {
+          question: "Chrome เปิดช้า / ค้าง",
+          answer:
+            "1. ปิด Tab ที่ไม่ใช้ (แต่ละ Tab กิน RAM)\n2. ล้าง Cache: Settings > Privacy > Clear browsing data\n3. ปิด Extension ที่ไม่จำเป็น\n4. Restart Chrome\n5. ติดต่อ IT ext.1234 ถ้ายังช้า",
+        },
+        {
+          question: "Bookmark หาย ทำยังไง?",
+          answer:
+            "1. Chrome > Bookmark Manager (Ctrl+Shift+O)\n2. ตรวจว่า Login Chrome Account อยู่\n3. ถ้า Sync เปิด จะดึงกลับมาได้\n4. ตรวจ Chrome Profile ว่าถูกตัว",
+        },
+        {
+          question: "Popup โฆษณาเยอะมาก",
+          answer:
+            "1. Settings > Privacy > Site Settings > Pop-ups > Block\n2. ลบ Extension ที่ไม่รู้จัก\n3. Scan Malware ด้วย Windows Defender\n4. Reset Chrome Settings\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "เปลี่ยน Default Browser ยังไง?",
+          answer:
+            "1. Settings > Apps > Default Apps\n2. Web browser > เลือก Chrome/Edge\n3. Apply\n4. Restart เครื่อง",
+        },
+        {
+          question: "Certificate Error / Not Secure",
+          answer:
+            "1. ตรวจวันที่-เวลาเครื่องว่าถูกต้อง\n2. ล้าง Cache ของ Browser\n3. ลอง Incognito Mode\n4. ถ้าเป็นเว็บภายใน ติดต่อ IT ext.1234",
+        },
+      ],
+    },
+    {
+      name: "Remote Desktop",
+      keywords: [
+        "remote desktop",
+        "rdp",
+        "remote",
+        "รีโมท",
+        "anydesk",
+        "teamviewer",
+        "ควบคุมระยะไกล",
+        "remote access",
+      ],
+      faqs: [
+        {
+          question: "Remote Desktop เข้าไม่ได้",
+          answer:
+            "1. ตรวจว่าเครื่องปลายทางเปิดอยู่\n2. ตรวจ IP/ชื่อเครื่องว่าถูกต้อง\n3. ตรวจว่าต่อ VPN แล้ว (ถ้า WFH)\n4. ตรวจ Firewall ว่าเปิด Port 3389\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "Remote Desktop ภาพกระตุก / Lag",
+          answer:
+            "1. ลดคุณภาพภาพ: Options > Display > Colors > Low\n2. ปิด Visual Effects: Options > Experience\n3. ตรวจ Internet Speed\n4. ใช้สาย LAN แทน WiFi\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "ขอสิทธิ์ Remote Desktop ทำยังไง?",
+          answer:
+            "1. ส่ง Request ผ่าน IT Service Desk\n2. แจ้งชื่อเครื่องที่ต้องการ Remote\n3. แจ้งเหตุผลการใช้งาน\n4. รอ Approve จาก Manager + IT\n5. IT ext.1234",
+        },
+      ],
+    },
+    {
+      name: "Blue Screen / BSOD",
+      keywords: [
+        "blue screen",
+        "bsod",
+        "จอฟ้า",
+        "crash",
+        "dump",
+        "stop code",
+        "restart อัตโนมัติ",
+        "เครื่องดับ",
+      ],
+      faqs: [
+        {
+          question: "เจอจอฟ้า (BSOD) ทำยังไง?",
+          answer:
+            "1. จดรหัส Stop Code ไว้ (เช่น KERNEL_DATA_INPAGE_ERROR)\n2. Restart เครื่อง\n3. ถ้าเข้า Windows ได้ > อัปเดต Driver\n4. ตรวจ RAM ด้วย Windows Memory Diagnostic\n5. ติดต่อ IT ext.1234 แจ้ง Stop Code",
+        },
+        {
+          question: "เครื่อง Restart เอง / ดับเอง",
+          answer:
+            "1. ตรวจสาย Power / ปลั๊กไฟ\n2. ตรวจ Event Viewer ดู Error Log\n3. ตรวจอุณหภูมิ CPU (อาจร้อนเกิน)\n4. Scan Virus\n5. ติดต่อ IT ext.1234 อาจต้องเปลี่ยน Power Supply",
+        },
+        {
+          question: "เครื่องค้าง (Freeze) ทำอะไรไม่ได้เลย",
+          answer:
+            "1. รอ 2-3 นาที อาจกำลัง Process\n2. ลอง Ctrl+Alt+Delete\n3. ถ้าไม่ได้ กดปุ่ม Power ค้าง 10 วินาที\n4. เปิดเครื่องใหม่\n5. ถ้าเป็นบ่อย ติดต่อ IT ext.1234",
+        },
+      ],
+    },
+    {
+      name: "IP Phone / โทรศัพท์",
+      keywords: [
+        "phone",
+        "โทรศัพท์",
+        "ip phone",
+        "extension",
+        "สายภายใน",
+        "voip",
+        "โทร",
+        "กดเบอร์",
+        "headset",
+      ],
+      faqs: [
+        {
+          question: "โทรศัพท์ IP Phone ใช้ไม่ได้",
+          answer:
+            "1. ตรวจสาย Network ที่เสียบ Phone\n2. Restart โทรศัพท์ (ถอดสายแล้วเสียบใหม่)\n3. ตรวจว่ามีไฟติดหน้าจอ\n4. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "โอนสายยังไง?",
+          answer:
+            "1. กดปุ่ม Transfer ระหว่างสนทนา\n2. กดเบอร์ Extension ปลายทาง\n3. รอคนรับ แล้วกด Transfer อีกครั้ง\n4. ถ้าจะโอนแบบไม่รอรับ กด Transfer > กดเบอร์ > วางสาย",
+        },
+        {
+          question: "ตั้งค่า Voicemail ยังไง?",
+          answer:
+            "1. กดปุ่ม Voicemail / Messages บนโทรศัพท์\n2. ตั้ง PIN (ค่าเริ่มต้น: 0000 หรือ 1234)\n3. อัด Greeting Message\n4. ตั้งค่าส่ง Email แจ้งเตือนเมื่อมี Voicemail\n5. ติดต่อ IT ext.1234 ถ้าต้องการช่วย",
+        },
+      ],
+    },
+    {
+      name: "Projector / อุปกรณ์ห้องประชุม",
+      keywords: [
+        "projector",
+        "โปรเจคเตอร์",
+        "ห้องประชุม",
+        "meeting room",
+        "screen",
+        "ฉายจอ",
+        "cast",
+        "miracast",
+        "wireless display",
+      ],
+      faqs: [
+        {
+          question: "Projector ไม่แสดงภาพ",
+          answer:
+            "1. กด Win+P เลือก Duplicate หรือ Extend\n2. ตรวจสาย HDMI/VGA\n3. เปลี่ยน Input Source บน Projector\n4. Restart Laptop\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "ฉายจอ Wireless Display ทำยังไง?",
+          answer:
+            "1. Win+K เปิด Connect\n2. เลือกชื่อ Wireless Display ของห้อง\n3. เลือก Duplicate หรือ Extend\n4. ถ้าไม่เจอ ตรวจว่าอยู่ WiFi เดียวกัน\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "เสียงไม่ออก Projector / ลำโพงห้องประชุม",
+          answer:
+            "1. ตรวจ Volume เครื่อง + Projector\n2. คลิกขวา Speaker icon > Sound settings\n3. เลือก Output Device เป็น HDMI/Projector\n4. ตรวจสาย Audio\n5. ติดต่อ IT ext.1234",
+        },
+      ],
+    },
+    {
+      name: "Cloud Storage",
+      keywords: [
+        "cloud",
+        "onedrive",
+        "google drive",
+        "dropbox",
+        "sharepoint",
+        "sync",
+        "อัพโหลด",
+        "แชร์ไฟล์",
+        "share file",
+        "storage",
+      ],
+      faqs: [
+        {
+          question: "OneDrive พื้นที่เต็ม ทำยังไง?",
+          answer:
+            "1. คลิกขวา OneDrive > Settings > Account > Manage storage\n2. ลบไฟล์ที่ไม่ใช้\n3. ใช้ Files On-Demand: คลิกขวา > Free up space\n4. ติดต่อ IT ext.1234 เพื่อขอพื้นที่เพิ่ม",
+        },
+        {
+          question: "แชร์ไฟล์ OneDrive ให้คนอื่นยังไง?",
+          answer:
+            "1. คลิกขวาไฟล์ > Share\n2. กรอกอีเมลคนที่ต้องการแชร์\n3. เลือกสิทธิ์: Can view / Can edit\n4. กด Send\n5. หรือ Copy Link ส่งได้",
+        },
+        {
+          question: "SharePoint เข้าไม่ได้",
+          answer:
+            "1. ตรวจว่า Login ด้วยบัญชีบริษัท\n2. ตรวจ Internet Connection\n3. ลอง Incognito Mode\n4. ล้าง Browser Cache\n5. ติดต่อ IT ext.1234 เพื่อตรวจสิทธิ์",
+        },
+        {
+          question: "Google Drive ใน Browser ช้ามาก",
+          answer:
+            "1. ลดจำนวนไฟล์ใน Root Folder\n2. ใช้ Search แทนการเลื่อนหา\n3. ล้าง Browser Cache\n4. ปิด Tab อื่นที่ไม่ใช้\n5. ลอง Google Drive Desktop App",
+        },
+      ],
+    },
+    {
+      name: "Scanner / เครื่อง Scan",
+      keywords: [
+        "scan",
+        "scanner",
+        "สแกน",
+        "เครื่องสแกน",
+        "scan to email",
+        "scan to folder",
+        "pdf scan",
+      ],
+      faqs: [
+        {
+          question: "เครื่อง Scan ใช้ไม่ได้",
+          answer:
+            "1. ตรวจว่าเครื่องเปิดอยู่\n2. ตรวจสาย USB/Network\n3. Restart เครื่อง Scan\n4. ตรวจ Driver ใน Device Manager\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "Scan to Email ทำยังไง?",
+          answer:
+            "1. วางเอกสารบนเครื่อง Scan\n2. เลือก Scan to Email\n3. กรอกอีเมลปลายทาง\n4. เลือก Format: PDF/JPEG\n5. กด Start\n6. ติดต่อ IT ext.1234 ถ้าตั้งค่าไม่ได้",
+        },
+        {
+          question: "ไฟล์ Scan ภาพมืด / ไม่ชัด",
+          answer:
+            "1. ทำความสะอาดกระจก Scanner\n2. ปรับ Resolution เป็น 300 DPI ขึ้นไป\n3. ปรับ Brightness / Contrast\n4. วางกระดาษให้ตรง\n5. ติดต่อ IT ext.1234",
+        },
+      ],
+    },
+    {
+      name: "Power / UPS / ไฟฟ้า",
+      keywords: [
+        "power",
+        "ups",
+        "ไฟดับ",
+        "ปลั๊ก",
+        "ชาร์จ",
+        "battery",
+        "แบตเตอรี่",
+        "adapter",
+        "สายชาร์จ",
+        "ไฟกระพริบ",
+      ],
+      faqs: [
+        {
+          question: "ไฟดับ เครื่องดับ ทำยังไง?",
+          answer:
+            "1. รอไฟมา แล้วเปิดเครื่องใหม่\n2. ตรวจว่า UPS ทำงานปกติ\n3. ตรวจไฟล์งานที่เปิดค้างว่าเสียหายไหม\n4. Office จะ Auto-Recovery ให้\n5. ติดต่อ IT ext.1234 ถ้าเครื่องไม่เปิด",
+        },
+        {
+          question: "Notebook ชาร์จไม่เข้า",
+          answer:
+            "1. ตรวจสาย Adapter ว่าเสียบแน่น\n2. ลองปลั๊กไฟช่องอื่น\n3. ลอง Adapter อื่น (ถ้ามี)\n4. Restart เครื่อง\n5. ติดต่อ IT ext.1234 อาจต้องเปลี่ยน Adapter",
+        },
+        {
+          question: "แบตเตอรี่เสื่อม หมดเร็ว",
+          answer:
+            "1. Settings > System > Power & Battery\n2. เลือก Best Power Efficiency\n3. ลดความสว่างหน้าจอ\n4. ปิด Bluetooth/WiFi เมื่อไม่ใช้\n5. ติดต่อ IT ext.1234 เพื่อเปลี่ยนแบต",
+        },
+        {
+          question: "UPS ส่งเสียงดัง Beep",
+          answer:
+            "1. ตรวจว่าไฟหลักยังมีอยู่\n2. ถ้าไฟดับ UPS กำลังจ่ายไฟสำรอง\n3. Save งาน + ปิดเครื่องถ้า UPS แบตต่ำ\n4. ติดต่อ IT ext.1234\n5. อาจต้องเปลี่ยนแบต UPS",
+        },
+      ],
+    },
+    {
+      name: "Data Security / PDPA",
+      keywords: [
+        "pdpa",
+        "data",
+        "ข้อมูลส่วนตัว",
+        "privacy",
+        "encrypt",
+        "เข้ารหัส",
+        "sensitive",
+        "confidential",
+        "ลับ",
+        "bitlocker",
+      ],
+      faqs: [
+        {
+          question: "BitLocker ล็อคเครื่อง ทำยังไง?",
+          answer:
+            "1. ใส่ BitLocker Recovery Key\n2. ค้น Recovery Key ที่ https://aka.ms/myrecoverykey\n3. Login ด้วยบัญชีบริษัท\n4. ติดต่อ IT ext.1234 ถ้าหา Key ไม่เจอ",
+        },
+        {
+          question: "จะส่งไฟล์ลับทางอีเมลยังไงให้ปลอดภัย?",
+          answer:
+            "1. ใส่ Password ในไฟล์ (Excel/Word/ZIP)\n2. ส่ง Password แยกช่องทาง (เช่น LINE/โทร)\n3. ใช้ OneDrive Share Link แทน Attach\n4. ตั้ง Link Expiry Date\n5. ติดต่อ IT ext.1234 ถ้าไม่แน่ใจ",
+        },
+        {
+          question: "ทำไมต้องล็อคหน้าจอ?",
+          answer:
+            "1. Win+L ล็อคทุกครั้งที่ลุกจากโต๊ะ\n2. ป้องกันคนอื่นเข้าถึงข้อมูล\n3. เป็นนโยบายบริษัท / PDPA\n4. ตั้ง Auto-Lock 5 นาที: Settings > Accounts > Sign-in options",
+        },
+        {
+          question: "ลบข้อมูลถาวรยังไง?",
+          answer:
+            "1. ลบไฟล์ + ล้าง Recycle Bin\n2. ถ้าเป็น HDD ใช้ Secure Erase Tool\n3. ถ้าเป็น SSD ใช้ Manufacturer Tool\n4. ติดต่อ IT ext.1234 สำหรับการทำลายข้อมูล",
+        },
+      ],
+    },
+    {
+      name: "Active Directory / Domain",
+      keywords: [
+        "domain",
+        "ad",
+        "active directory",
+        "join domain",
+        "login domain",
+        "group policy",
+        "gpo",
+        "เข้าโดเมน",
+      ],
+      faqs: [
+        {
+          question: "เครื่องหลุด Domain ทำยังไง?",
+          answer:
+            "1. ลอง Restart เครื่อง\n2. ตรวจสาย Network\n3. ติดต่อ IT ext.1234 เพื่อ Rejoin Domain\n4. อาจต้องใช้ Local Admin Account",
+        },
+        {
+          question: "Group Policy ทำให้ใช้งานบางอย่างไม่ได้",
+          answer:
+            "1. เป็นนโยบายที่บริษัทกำหนด\n2. ส่ง Request ผ่าน IT ถ้าจำเป็นต้องใช้\n3. แนบเหตุผลและ Manager Approve\n4. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "Computer Account Expired",
+          answer:
+            "1. Restart เครื่อง\n2. ถ้ายังไม่ได้ ต้อง Rejoin Domain\n3. ติดต่อ IT ext.1234\n4. IT จะ Reset Computer Account ใน AD",
+        },
+      ],
+    },
+    {
+      name: "IT Policy / การร้องขอ",
+      keywords: [
+        "policy",
+        "request",
+        "ร้องขอ",
+        "ขอ",
+        "approval",
+        "อนุมัติ",
+        "it service",
+        "service desk",
+        "sla",
+        "ticket",
+      ],
+      faqs: [
+        {
+          question: "ขอเครื่องใหม่ ทำยังไง?",
+          answer:
+            "1. ส่ง Request ผ่าน IT Service Desk\n2. แนบเหตุผล + Manager Approve\n3. IT จะตรวจสอบและจัดซื้อ\n4. SLA: 5-10 วันทำการ\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "ขอติดตั้ง Software ทำยังไง?",
+          answer:
+            "1. ส่ง Request ผ่าน IT Service Desk\n2. แจ้งชื่อ Software + เหตุผลการใช้งาน\n3. IT ตรวจ License + ความปลอดภัย\n4. Manager Approve\n5. IT ติดตั้งให้ภายใน 1-3 วัน",
+        },
+        {
+          question: "SLA IT Support คืออะไร?",
+          answer:
+            "1. Critical (ระบบล่ม): ตอบภายใน 15 นาที\n2. High (ใช้งานไม่ได้): ตอบภายใน 1 ชม.\n3. Medium (มีปัญหาบางส่วน): ตอบภายใน 4 ชม.\n4. Low (คำถามทั่วไป): ตอบภายใน 1 วัน",
+        },
+        {
+          question: "ลาออก ต้องคืนอะไรบ้าง?",
+          answer:
+            "1. คืน Notebook / Desktop\n2. คืน Mouse, Keyboard, หูฟัง\n3. คืนบัตรพนักงาน\n4. IT จะปิด Account ทั้งหมด\n5. Backup ข้อมูลส่วนตัวก่อนวันสุดท้าย",
+        },
+      ],
+    },
+    {
+      name: "Outlook / Calendar",
+      keywords: [
+        "outlook",
+        "calendar",
+        "ปฏิทิน",
+        "นัดหมาย",
+        "meeting",
+        "invite",
+        "ห้องประชุม",
+        "จองห้อง",
+        "auto reply",
+        "out of office",
+        "ลายเซ็น",
+        "signature",
+      ],
+      faqs: [
+        {
+          question: "ตั้ง Out of Office ยังไง?",
+          answer:
+            "1. Outlook > File > Automatic Replies\n2. เลือก Send automatic replies\n3. กรอกข้อความ + วันที่เริ่ม-สิ้นสุด\n4. เลือกส่งให้คนนอกองค์กรด้วยหรือไม่\n5. กด OK",
+        },
+        {
+          question: "จองห้องประชุมยังไง?",
+          answer:
+            "1. Outlook > Calendar > New Meeting\n2. กด Room Finder / Add Room\n3. เลือกห้องที่ว่าง\n4. ใส่หัวข้อ + เวลา + ผู้เข้าร่วม\n5. กด Send",
+        },
+        {
+          question: "Calendar ไม่ Sync กับมือถือ",
+          answer:
+            "1. ตรวจ Outlook App ว่า Login อยู่\n2. Settings > Account > Refresh\n3. ลบ Account แล้ว Add ใหม่\n4. ตรวจ Internet Connection\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "ตั้ง Email Signature ยังไง?",
+          answer:
+            "1. Outlook > File > Options > Mail > Signatures\n2. กด New สร้างลายเซ็น\n3. ใส่ชื่อ ตำแหน่ง เบอร์โทร\n4. เลือกใช้กับ New messages + Replies\n5. กด OK",
+        },
+        {
+          question: "Outlook Archive ข้อมูลยังไง?",
+          answer:
+            "1. File > Options > Advanced > AutoArchive Settings\n2. ตั้ง Archive ทุกกี่วัน\n3. เลือก Folder ที่จะ Archive\n4. หรือ Manual: File > Cleanup Tools > Archive\n5. ไฟล์ Archive จะเป็น .pst",
+        },
+        {
+          question: "แนบไฟล์ใหญ่เกิน 25MB ส่งไม่ได้",
+          answer:
+            "1. อัพโหลดไฟล์ขึ้น OneDrive ก่อน\n2. แชร์ Link แทนการ Attach\n3. ใช้ SharePoint สำหรับไฟล์ภายใน\n4. Compress ไฟล์เป็น ZIP\n5. ติดต่อ IT ext.1234 ถ้าต้องเพิ่ม Limit",
+        },
+      ],
+    },
+    {
+      name: "Network / Internet ขั้นสูง",
+      keywords: [
+        "dns",
+        "dhcp",
+        "ip address",
+        "subnet",
+        "gateway",
+        "ping",
+        "tracert",
+        "network",
+        "static ip",
+        "proxy",
+        "firewall rule",
+      ],
+      faqs: [
+        {
+          question: "ตรวจ IP Address ของเครื่องยังไง?",
+          answer:
+            "1. Win+R > cmd > ipconfig\n2. ดูที่ IPv4 Address\n3. หรือ Settings > Network > Properties\n4. WiFi: ดูที่ Wi-Fi Properties",
+        },
+        {
+          question: "Ping เช็ค Network ยังไง?",
+          answer:
+            "1. Win+R > cmd\n2. พิมพ์: ping google.com\n3. ถ้าได้ Reply = Network OK\n4. ถ้า Request timed out = มีปัญหา\n5. แจ้ง IT ext.1234 พร้อมผล Ping",
+        },
+        {
+          question: "Internet ช้ามาก ทำยังไง?",
+          answer:
+            "1. ทดสอบ Speed: speedtest.net\n2. ลอง Restart Router/Modem\n3. ใช้สาย LAN แทน WiFi\n4. ปิดโปรแกรมที่ใช้ Bandwidth มาก\n5. ติดต่อ IT ext.1234 แจ้งผล Speed Test",
+        },
+        {
+          question: "DNS Error / ไม่พบเว็บไซต์",
+          answer:
+            "1. ลอง Flush DNS: cmd > ipconfig /flushdns\n2. เปลี่ยน DNS เป็น 8.8.8.8\n3. ลอง Browser อื่น\n4. Restart Router\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "Static IP ตั้งค่ายังไง?",
+          answer:
+            "1. Settings > Network > Change adapter options\n2. คลิกขวา Adapter > Properties\n3. เลือก IPv4 > Properties\n4. ใส่ IP, Subnet, Gateway, DNS ตามที่ IT แจ้ง\n5. ติดต่อ IT ext.1234 ขอข้อมูล IP",
+        },
+      ],
+    },
+    {
+      name: "Printing ขั้นสูง",
+      keywords: [
+        "print queue",
+        "ค้างพิมพ์",
+        "network printer",
+        "shared printer",
+        "add printer",
+        "driver printer",
+        "scan to pc",
+        "toner",
+        "หมึก",
+      ],
+      faqs: [
+        {
+          question: "งานพิมพ์ค้าง (Print Queue) ทำยังไง?",
+          answer:
+            "1. เปิด Print Queue: Control Panel > Devices > Printers\n2. คลิกขวา Printer > Cancel All Documents\n3. Restart Print Spooler: services.msc > Print Spooler > Restart\n4. ลองพิมพ์ใหม่",
+        },
+        {
+          question: "เพิ่มเครื่องพิมพ์ Network ยังไง?",
+          answer:
+            "1. Settings > Devices > Printers > Add a printer\n2. เลือก The printer that I want isn't listed\n3. ใส่ \\\\servername\\printername\n4. Install Driver ตามที่แนะนำ\n5. ติดต่อ IT ext.1234 ขอชื่อ Printer",
+        },
+        {
+          question: "เครื่องพิมพ์ขึ้น Offline",
+          answer:
+            "1. ตรวจสาย Power + Network\n2. Restart เครื่องพิมพ์\n3. คลิกขวา Printer > Use Printer Online\n4. ลบ Printer แล้ว Add ใหม่\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "หมึกหมด / Toner Low",
+          answer:
+            "1. แจ้ง IT ext.1234 หรือ Admin ขอเปลี่ยน\n2. ห้ามเขย่าตลับหมึก (อาจเสียหาย)\n3. ระบุรุ่นเครื่องพิมพ์ให้ IT\n4. รอ IT เปลี่ยนให้",
+        },
+        {
+          question: "พิมพ์สี แต่ออกมาเป็นขาวดำ",
+          answer:
+            "1. File > Print > Properties > Color\n2. เลือก Color แทน Grayscale\n3. ตรวจว่าเครื่องพิมพ์รองรับสี\n4. ติดต่อ IT ext.1234",
+        },
+      ],
+    },
+    {
+      name: "Zoom / Google Meet",
+      keywords: [
+        "zoom",
+        "google meet",
+        "gmeet",
+        "ประชุม",
+        "screen share",
+        "share screen",
+        "background",
+        "virtual background",
+        "record",
+        "บันทึก",
+      ],
+      faqs: [
+        {
+          question: "Zoom ไม่มีเสียง ทำยังไง?",
+          answer:
+            "1. ตรวจว่า Unmute แล้ว\n2. Zoom > Settings > Audio > Test Speaker/Mic\n3. ตรวจ Volume Windows\n4. เลือก Audio Device ที่ถูกต้อง\n5. ลอง Leave & Rejoin Meeting",
+        },
+        {
+          question: "Share Screen ทำยังไง?",
+          answer:
+            "1. กดปุ่ม Share Screen ด้านล่าง\n2. เลือก Window หรือ Desktop ที่ต้องการ\n3. ติ๊ก Share sound ถ้าต้องการแชร์เสียง\n4. กด Share\n5. กด Stop Share เมื่อเสร็จ",
+        },
+        {
+          question: "ตั้ง Virtual Background ยังไง?",
+          answer:
+            "1. Zoom > Settings > Background & Effects\n2. เลือกภาพ Background\n3. หรือกด + เพิ่มภาพเอง\n4. ควรนั่งหน้าพื้นหลังเรียบ\n5. ต้องใช้ Green Screen จะชัดกว่า",
+        },
+        {
+          question: "บันทึก Meeting ยังไง?",
+          answer:
+            "1. กด Record ด้านล่าง\n2. เลือก Record on this Computer\n3. เมื่อจบ Meeting ไฟล์จะ Convert อัตโนมัติ\n4. ไฟล์อยู่ใน Documents > Zoom\n5. ต้องเป็น Host ถึงจะ Record ได้",
+        },
+        {
+          question: "Google Meet เปิดกล้อง/ไมค์ไม่ได้",
+          answer:
+            "1. ตรวจ Permission: Browser > ไอคอนกล้อง > Allow\n2. Settings > Privacy > Camera/Microphone > เปิด\n3. ตรวจว่า App อื่นไม่ได้ใช้กล้องอยู่\n4. Restart Browser\n5. ติดต่อ IT ext.1234",
+        },
+      ],
+    },
+    {
+      name: "Excel / Spreadsheet",
+      keywords: [
+        "excel",
+        "spreadsheet",
+        "formula",
+        "สูตร",
+        "pivot",
+        "vlookup",
+        "macro",
+        "filter",
+        "sort",
+        "freeze",
+        "ตาราง",
+      ],
+      faqs: [
+        {
+          question: "Excel สูตรไม่คำนวณ ทำยังไง?",
+          answer:
+            "1. ตรวจว่าเซลล์เป็น Number ไม่ใช่ Text\n2. Formulas > Calculation Options > Automatic\n3. กด F9 เพื่อ Force Calculate\n4. ตรวจ Circular Reference\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "Freeze Panes (ตรึงแถว) ยังไง?",
+          answer:
+            "1. คลิกเซลล์ใต้แถวที่ต้องการตรึง\n2. View > Freeze Panes > Freeze Top Row\n3. หรือ Freeze First Column\n4. ยกเลิก: View > Unfreeze Panes",
+        },
+        {
+          question: "VLOOKUP ใช้ยังไง?",
+          answer:
+            "1. =VLOOKUP(ค่าที่หา, ตารางข้อมูล, คอลัมน์ที่ต้องการ, FALSE)\n2. ตัวอย่าง: =VLOOKUP(A2, Sheet2!A:C, 3, FALSE)\n3. FALSE = หาตรง, TRUE = หาใกล้เคียง\n4. ใช้ XLOOKUP แทนใน Excel ใหม่",
+        },
+        {
+          question: "สร้าง Pivot Table ยังไง?",
+          answer:
+            "1. เลือกข้อมูลทั้งหมด\n2. Insert > PivotTable\n3. เลือก New Worksheet\n4. ลาก Field ไป Row/Column/Values\n5. ใช้ Filter เพื่อกรองข้อมูล",
+        },
+        {
+          question: "Excel Protected Sheet ปลดล็อคยังไง?",
+          answer:
+            "1. Review > Unprotect Sheet\n2. ใส่ Password (ถ้ามี)\n3. ถ้าลืม Password ติดต่อเจ้าของไฟล์\n4. ติดต่อ IT ext.1234",
+        },
+      ],
+    },
+    {
+      name: "Word / Document",
+      keywords: [
+        "word",
+        "document",
+        "เอกสาร",
+        "header",
+        "footer",
+        "page number",
+        "table of contents",
+        "สารบัญ",
+        "mail merge",
+        "template",
+      ],
+      faqs: [
+        {
+          question: "ใส่เลขหน้า Word ยังไง?",
+          answer:
+            "1. Insert > Page Number\n2. เลือกตำแหน่ง: Top/Bottom of Page\n3. เลือกรูปแบบ\n4. เริ่มจากหน้าอื่น: Page Number > Format > Start at",
+        },
+        {
+          question: "สร้างสารบัญอัตโนมัติ ยังไง?",
+          answer:
+            "1. ใช้ Heading 1, 2, 3 สำหรับหัวข้อ\n2. References > Table of Contents\n3. เลือกรูปแบบ\n4. อัปเดต: คลิกขวาสารบัญ > Update Field",
+        },
+        {
+          question: "Mail Merge ทำยังไง?",
+          answer:
+            "1. Mailings > Start Mail Merge > Letters\n2. Select Recipients > ใช้ Excel List\n3. Insert Merge Field > เลือก Field\n4. Preview Results\n5. Finish & Merge > Print/Email",
+        },
+        {
+          question: "Word เปิดแล้วแสดงผิดเพี้ยน (Font หาย)",
+          answer:
+            "1. ติดตั้ง Font ที่หายไป\n2. เปิดใน Compatibility Mode\n3. เลือก Font อื่นที่มีในเครื่อง\n4. ติดต่อ IT ext.1234 เพื่อลง Font",
+        },
+      ],
+    },
+    {
+      name: "PowerPoint / Presentation",
+      keywords: [
+        "powerpoint",
+        "presentation",
+        "slide",
+        "สไลด์",
+        "animation",
+        "template",
+        "presenter view",
+        "นำเสนอ",
+      ],
+      faqs: [
+        {
+          question: "PowerPoint เปิดแล้วค้าง / ช้า",
+          answer:
+            "1. ลดจำนวนรูปภาพ / Compress Pictures\n2. ลบ Animation ที่ไม่จำเป็น\n3. ลบ Slide ที่ซ่อน\n4. ปิด Auto-save ชั่วคราว\n5. ติดต่อ IT ext.1234 ถ้ายังช้า",
+        },
+        {
+          question: "Presenter View ใช้ยังไง?",
+          answer:
+            "1. ต่อจอที่ 2 (Projector)\n2. Slide Show > Use Presenter View\n3. จอของเราจะเห็น Notes + Timer\n4. ผู้ชมเห็นเฉพาะ Slide",
+        },
+        {
+          question: "แปลง PowerPoint เป็น PDF ยังไง?",
+          answer:
+            "1. File > Save As > เลือก PDF\n2. หรือ File > Export > Create PDF\n3. เลือก Standard (ไฟล์ใหญ่) หรือ Minimum (ไฟล์เล็ก)\n4. กด Publish",
+        },
+      ],
+    },
+    {
+      name: "Line PC / Line App",
+      keywords: [
+        "line",
+        "line pc",
+        "ไลน์",
+        "line group",
+        "sticker",
+        "line call",
+        "line oc",
+        "line official",
+      ],
+      faqs: [
+        {
+          question: "Line PC Login ไม่ได้",
+          answer:
+            "1. ตรวจว่า Line มือถือยัง Login อยู่\n2. ใช้ QR Code Login จาก Line มือถือ\n3. Settings > Account > Login Devices\n4. อัปเดต Line PC เป็นเวอร์ชันล่าสุด\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "Line PC ส่งไฟล์ไม่ได้ / ไฟล์ใหญ่เกิน",
+          answer:
+            "1. Line PC จำกัดไฟล์ 100MB\n2. ถ้าไฟล์ใหญ่ ใช้ OneDrive Share Link แทน\n3. Compress ไฟล์เป็น ZIP\n4. ตรวจ Internet Connection",
+        },
+        {
+          question: "Line Group แจ้งเตือนรัวมาก",
+          answer:
+            "1. คลิกชื่อ Group > ไอคอนลำโพง > ปิดแจ้งเตือน\n2. เลือก: ปิด 1 ชม. / ถาวร\n3. หรือ Settings > Notifications > ปรับ",
+        },
+      ],
+    },
+    {
+      name: "Mobile / BYOD",
+      keywords: [
+        "mobile",
+        "มือถือ",
+        "byod",
+        "mdm",
+        "intune",
+        "company portal",
+        "อีเมลมือถือ",
+        "โทรศัพท์มือถือ",
+        "iphone",
+        "android",
+      ],
+      faqs: [
+        {
+          question: "ตั้งค่าอีเมลบริษัทบนมือถือยังไง?",
+          answer:
+            "1. ดาวน์โหลด Microsoft Outlook App\n2. เปิด App > Add Account\n3. ใส่อีเมลบริษัท + Password\n4. ตั้ง PIN/FaceID ตาม Policy\n5. ติดต่อ IT ext.1234 ถ้ามีปัญหา",
+        },
+        {
+          question: "Company Portal / Intune คืออะไร?",
+          answer:
+            "1. เป็น App จัดการอุปกรณ์ของบริษัท (MDM)\n2. ติดตั้งจาก App Store/Play Store\n3. Login ด้วยบัญชีบริษัท\n4. จะได้ VPN + Email + Apps อัตโนมัติ\n5. จำเป็นสำหรับ BYOD",
+        },
+        {
+          question: "ล็อคมือถือหาย / ถูกขโมย",
+          answer:
+            "1. แจ้ง IT ext.1234 ทันที!\n2. IT จะ Remote Wipe ข้อมูลบริษัท\n3. เปลี่ยนรหัสผ่านบัญชีบริษัท\n4. แจ้งความ + แจ้ง HR",
+        },
+        {
+          question: "WiFi บริษัทเชื่อมมือถือไม่ได้",
+          answer:
+            "1. ลืม WiFi เดิม แล้วเชื่อมใหม่\n2. ใส่ Password ให้ถูกต้อง\n3. ตรวจว่า MAC Address ลงทะเบียนแล้ว\n4. ติดต่อ IT ext.1234 เพื่อลงทะเบียนเครื่อง",
+        },
+      ],
+    },
+    {
+      name: "Keyboard / Mouse / อุปกรณ์ต่อพ่วง",
+      keywords: [
+        "keyboard",
+        "mouse",
+        "คีย์บอร์ด",
+        "เมาส์",
+        "bluetooth",
+        "wireless",
+        "shortcut",
+        "hotkey",
+        "touchpad",
+        "trackpad",
+      ],
+      faqs: [
+        {
+          question: "Keyboard บาง Key ไม่ทำงาน",
+          answer:
+            "1. Restart เครื่อง\n2. ลองต่อ Keyboard ภายนอก\n3. ตรวจ Device Manager > Keyboards\n4. ถ้าเป็น Notebook อาจต้องเปลี่ยน Keyboard\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "Mouse Bluetooth เชื่อมไม่ได้",
+          answer:
+            "1. เปิด Bluetooth บนเครื่อง\n2. กดปุ่ม Pair บน Mouse\n3. Settings > Bluetooth > Add device\n4. เลือก Mouse ที่เจอ\n5. เปลี่ยนถ่าน/ชาร์จ Mouse",
+        },
+        {
+          question: "Touchpad ไม่ทำงาน",
+          answer:
+            "1. กด Fn+F6/F7 (แล้วแต่รุ่น) เพื่อเปิด Touchpad\n2. Settings > Devices > Touchpad > เปิด\n3. ตรวจ Driver ใน Device Manager\n4. Restart เครื่อง\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "Shortcut Keys ที่ควรรู้มีอะไรบ้าง?",
+          answer:
+            "1. Win+L = ล็อคหน้าจอ\n2. Ctrl+C/V/X = Copy/Paste/Cut\n3. Ctrl+Z = Undo\n4. Win+D = แสดง Desktop\n5. Alt+Tab = สลับหน้าต่าง\n6. Win+Shift+S = Screenshot\n7. Ctrl+Shift+Esc = Task Manager",
+        },
+      ],
+    },
+    {
+      name: "Audio / เสียง",
+      keywords: [
+        "audio",
+        "เสียง",
+        "speaker",
+        "ลำโพง",
+        "headphone",
+        "หูฟัง",
+        "microphone",
+        "ไมค์",
+        "sound",
+        "volume",
+      ],
+      faqs: [
+        {
+          question: "เสียงไม่ออก ทำยังไง?",
+          answer:
+            "1. ตรวจ Volume ว่าไม่ได้ Mute\n2. คลิกขวา Speaker icon > Sound settings\n3. เลือก Output Device ที่ถูกต้อง\n4. ตรวจสาย Headphone/Speaker\n5. Update Audio Driver\n6. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "ไมค์ไม่ทำงาน ประชุมไม่ได้ยิน",
+          answer:
+            "1. ตรวจว่า Unmute แล้ว\n2. Settings > Privacy > Microphone > เปิด\n3. Sound settings > Input Device > เลือกไมค์ที่ถูก\n4. ตรวจว่า App ได้สิทธิ์ใช้ไมค์\n5. ลอง Headset อื่น",
+        },
+        {
+          question: "เสียง Echo / ก้อง ระหว่างประชุม",
+          answer:
+            "1. ใช้ Headset แทน Speaker\n2. Mute เมื่อไม่พูด\n3. อย่าเปิดทั้ง Speaker + Mic พร้อมกัน\n4. ลดระยะห่าง Mic กับ Speaker\n5. ปิด Mic ของคนที่ไม่พูด",
+        },
+      ],
+    },
+    {
+      name: "Notebook / Laptop",
+      keywords: [
+        "notebook",
+        "laptop",
+        "โน้ตบุ๊ค",
+        "lid",
+        "ฝาจอ",
+        "dock station",
+        "docking",
+        "undock",
+        "sleep",
+        "hibernate",
+      ],
+      faqs: [
+        {
+          question: "ปิดฝา Notebook แล้วเครื่องดับ ตั้งค่ายังไง?",
+          answer:
+            "1. Control Panel > Power Options\n2. Choose what closing the lid does\n3. เปลี่ยนเป็น Do nothing / Sleep\n4. Apply",
+        },
+        {
+          question: "Dock Station เชื่อมต่อไม่ได้",
+          answer:
+            "1. ถอดสาย Dock แล้วเสียบใหม่\n2. Restart เครื่อง\n3. Update Dock Firmware\n4. ตรวจว่า Dock รองรับรุ่น Notebook\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "Notebook ร้อนมาก พัดลมดัง",
+          answer:
+            "1. วางบนพื้นเรียบ อย่าวางบนผ้า/หมอน\n2. ทำความสะอาดช่องระบายอากาศ\n3. ปิดโปรแกรมที่ใช้ CPU สูง\n4. ใช้ Cooling Pad\n5. ติดต่อ IT ext.1234 อาจต้องทำความสะอาดภายใน",
+        },
+        {
+          question: "Notebook จอไม่ติด แต่มีไฟ",
+          answer:
+            "1. กด Win+P เลือก PC screen only\n2. ต่อจอนอกดูว่าภาพออกไหม\n3. กดปุ่ม Power ค้าง 15 วินาที แล้วเปิดใหม่\n4. ติดต่อ IT ext.1234",
+        },
+      ],
+    },
+    {
+      name: "Backup / การสำรองข้อมูล",
+      keywords: [
+        "backup",
+        "สำรอง",
+        "restore",
+        "recovery",
+        "image",
+        "system restore",
+        "กู้ระบบ",
+        "onedrive backup",
+      ],
+      faqs: [
+        {
+          question: "Backup ข้อมูลเครื่องยังไง?",
+          answer:
+            "1. ใช้ OneDrive Sync อัตโนมัติ\n2. เปิด OneDrive > Settings > Backup > Manage backup\n3. เลือก Desktop, Documents, Pictures\n4. ข้อมูลจะ Sync ขึ้น Cloud อัตโนมัติ",
+        },
+        {
+          question: "System Restore ทำยังไง?",
+          answer:
+            "1. Search > System Restore\n2. เลือก Recommended restore point\n3. กด Next > Finish\n4. เครื่องจะ Restart\n5. ติดต่อ IT ext.1234 ถ้ามีปัญหา",
+        },
+        {
+          question: "กู้ไฟล์จาก Previous Versions",
+          answer:
+            "1. คลิกขวา Folder > Properties\n2. Tab Previous Versions\n3. เลือกวันที่ที่ต้องการ\n4. กด Restore หรือ Open\n5. ติดต่อ IT ext.1234 ถ้าไม่มี Version",
+        },
+        {
+          question: "ข้อมูล OneDrive หายทำยังไง?",
+          answer:
+            "1. OneDrive > Recycle Bin (ค้น 30 วัน)\n2. ถ้าไม่เจอ ใช้ OneDrive Restore\n3. เลือกวันที่ก่อนที่ข้อมูลหาย\n4. ติดต่อ IT ext.1234",
+        },
+      ],
+    },
+    {
+      name: "Multi-Factor Auth / MFA",
+      keywords: [
+        "mfa",
+        "2fa",
+        "otp",
+        "authenticator",
+        "ยืนยันตัวตน",
+        "two factor",
+        "multi factor",
+        "security key",
+        "verify",
+      ],
+      faqs: [
+        {
+          question: "MFA / 2FA คืออะไร?",
+          answer:
+            "1. Multi-Factor Authentication = ยืนยันตัวตน 2 ชั้น\n2. Password + OTP/Authenticator App\n3. เพิ่มความปลอดภัยบัญชี\n4. บริษัทบังคับใช้กับทุกบัญชี",
+        },
+        {
+          question: "Authenticator App ใช้ยังไง?",
+          answer:
+            "1. ดาวน์โหลด Microsoft Authenticator\n2. เปิด App > Add Account > Work Account\n3. Scan QR Code จากหน้า MFA Setup\n4. ทดสอบ Login ใหม่\n5. ติดต่อ IT ext.1234 ถ้า QR ไม่ขึ้น",
+        },
+        {
+          question: "เปลี่ยนมือถือ MFA ย้ายยังไง?",
+          answer:
+            "1. ก่อนเปลี่ยนมือถือ: ลง Authenticator บนเครื่องใหม่\n2. ไป aka.ms/mysecurityinfo\n3. เพิ่ม Method ใหม่ (มือถือเครื่องใหม่)\n4. ลบเครื่องเก่าออก\n5. ติดต่อ IT ext.1234 ถ้าล็อคบัญชี",
+        },
+        {
+          question: "MFA ล็อค Login ไม่ได้",
+          answer:
+            "1. ตรวจเวลามือถือว่าตรง (Authenticator อิง Timestamp)\n2. ลอง SMS OTP แทน\n3. ติดต่อ IT ext.1234 เพื่อ Reset MFA\n4. IT จะให้ Temporary Access Pass",
+        },
+      ],
+    },
+    {
+      name: "ปัญหาเครื่องพิมพ์เพิ่มเติม",
+      keywords: [
+        "printer",
+        "เครื่องพิมพ์",
+        "กระดาษติด",
+        "paper jam",
+        "duplex",
+        "พิมพ์สองหน้า",
+        "default printer",
+      ],
+      faqs: [
+        {
+          question: "กระดาษติด (Paper Jam) ทำยังไง?",
+          answer:
+            "1. เปิดฝาเครื่องพิมพ์\n2. ดึงกระดาษออกเบาๆ ตามทิศทางกระดาษ\n3. ตรวจว่าไม่มีเศษกระดาษค้าง\n4. ปิดฝาแล้วลองพิมพ์ใหม่\n5. ถ้าติดบ่อย ติดต่อ IT ext.1234",
+        },
+        {
+          question: "พิมพ์ 2 หน้า (Duplex) ยังไง?",
+          answer:
+            "1. File > Print > Properties\n2. เลือก Print on Both Sides\n3. Flip on Long Edge (แนวตั้ง)\n4. Flip on Short Edge (แนวนอน)\n5. ถ้าไม่มีตัวเลือก เครื่องไม่รองรับ",
+        },
+        {
+          question: "ตั้ง Default Printer ยังไง?",
+          answer:
+            "1. Settings > Devices > Printers & Scanners\n2. ปิด Let Windows manage my default printer\n3. คลิกเครื่องพิมพ์ที่ต้องการ > Manage\n4. กด Set as default",
+        },
+        {
+          question: "พิมพ์จากมือถือยังไง?",
+          answer:
+            "1. เครื่องพิมพ์ต้องรองรับ AirPrint/WiFi\n2. มือถืออยู่ WiFi เดียวกับเครื่องพิมพ์\n3. เลือก Share/Print ในไฟล์\n4. เลือกเครื่องพิมพ์\n5. ติดต่อ IT ext.1234 ถ้าไม่เจอ Printer",
+        },
+      ],
+    },
+    {
+      name: "การตั้งค่า Windows เพิ่มเติม",
+      keywords: [
+        "settings",
+        "ตั้งค่า",
+        "display",
+        "resolution",
+        "ความละเอียด",
+        "night light",
+        "dark mode",
+        "language",
+        "ภาษา",
+        "input",
+        "keyboard layout",
+      ],
+      faqs: [
+        {
+          question: "เปลี่ยน Display Resolution ยังไง?",
+          answer:
+            "1. คลิกขวา Desktop > Display settings\n2. Display resolution > เลือกค่าที่ต้องการ\n3. แนะนำ: ค่า Recommended\n4. กด Keep changes",
+        },
+        {
+          question: "เปิด Dark Mode ยังไง?",
+          answer:
+            "1. Settings > Personalization > Colors\n2. Choose your mode > Dark\n3. จะเปลี่ยนทั้ง Windows + Apps\n4. หรือเลือก Custom เพื่อแยกตั้ง",
+        },
+        {
+          question: "เปลี่ยนภาษา / เพิ่มภาษาพิมพ์ ยังไง?",
+          answer:
+            "1. Settings > Time & Language > Language\n2. Add a language > เลือกภาษา\n3. สลับภาษา: Win+Space หรือ Ctrl+Shift\n4. ลาก Priority ภาษาได้",
+        },
+        {
+          question: "Night Light (ลดแสงสีฟ้า) ยังไง?",
+          answer:
+            "1. Settings > System > Display\n2. Night light > เปิด\n3. ตั้ง Schedule: Sunset to sunrise\n4. ปรับ Strength ได้",
+        },
+        {
+          question: "Screenshot ทำยังไง?",
+          answer:
+            "1. Win+Shift+S = Snip & Sketch (แนะนำ)\n2. PrtSc = จับทั้งหน้าจอ\n3. Alt+PrtSc = จับ Window ที่เปิดอยู่\n4. Win+PrtSc = บันทึกเข้า Pictures > Screenshots",
+        },
+      ],
+    },
+    {
+      name: "Power BI",
+      keywords: [
+        "power bi",
+        "powerbi",
+        "dashboard",
+        "report",
+        "bi",
+        "analytics",
+        "กราฟ",
+        "รายงาน",
+      ],
+      faqs: [
+        {
+          question: "Power BI เปิด Report ไม่ได้",
+          answer:
+            "1. ตรวจว่า Login ด้วยบัญชีบริษัท\n2. ตรวจว่ามีสิทธิ์ดู Report\n3. ล้าง Browser Cache\n4. ลอง Browser อื่น\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "Power BI Data ไม่อัปเดต",
+          answer:
+            "1. กด Refresh บน Report\n2. ตรวจ Scheduled Refresh ใน Settings\n3. ตรวจ Data Source Connection\n4. ติดต่อ IT ext.1234 หรือ Admin BI",
+        },
+        {
+          question: "ขอสิทธิ์ดู Power BI Dashboard ยังไง?",
+          answer:
+            "1. ขอจากเจ้าของ Report โดยตรง\n2. หรือส่ง Request ผ่าน IT Service Desk\n3. แจ้งชื่อ Report + เหตุผล\n4. Manager Approve\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "Power BI Desktop ติดตั้งยังไง?",
+          answer:
+            "1. ส่ง Request ขอติดตั้งผ่าน IT Service Desk\n2. IT จะ Install Power BI Desktop ให้\n3. Login ด้วยบัญชีบริษัท\n4. ใช้งานได้ฟรีสำหรับพนักงาน\n5. ติดต่อ IT ext.1234",
+        },
+      ],
+    },
+    {
+      name: "Azure AD / Entra ID",
+      keywords: [
+        "azure",
+        "azure ad",
+        "entra",
+        "sso",
+        "single sign on",
+        "conditional access",
+        "cloud account",
+        "identity",
+      ],
+      faqs: [
+        {
+          question: "Azure AD SSO Login ไม่ได้",
+          answer:
+            "1. ตรวจ Internet Connection\n2. ล้าง Browser Cache / Cookie\n3. ลอง Incognito Mode\n4. ตรวจว่า Password ไม่หมดอายุ\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "Conditional Access บล็อค Login",
+          answer:
+            "1. อาจเกิดจาก: เครื่องไม่ Compliant หรือ VPN ไม่ได้เปิด\n2. ตรวจว่า VPN เปิดอยู่\n3. ลง Company Portal / Intune\n4. ตรวจ MFA ว่าผ่านหรือไม่\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "Account ถูก Disabled ใน Azure AD",
+          answer:
+            "1. ติดต่อ IT ext.1234 ทันที\n2. แจ้ง Email + ชื่อพนักงาน\n3. อาจเกิดจาก: ลาออก, Suspicious Login, หรือ Admin Disable\n4. IT จะตรวจสอบและแก้ไขให้",
+        },
+        {
+          question: "ลงทะเบียนเครื่องใน Azure AD ยังไง?",
+          answer:
+            "1. Settings > Accounts > Access work or school\n2. Connect > เชื่อมต่อบัญชีบริษัท\n3. หรือผ่าน Company Portal App\n4. IT จะ Push Policy ให้อัตโนมัติ\n5. ติดต่อ IT ext.1234",
+        },
+      ],
+    },
+    {
+      name: "IT Security Awareness",
+      keywords: [
+        "security",
+        "ความปลอดภัย",
+        "phishing",
+        "social engineering",
+        "pdpa",
+        "policy",
+        "awareness",
+        "zero trust",
+      ],
+      faqs: [
+        {
+          question: "รู้ได้ยังไงว่าอีเมลนี้เป็น Phishing?",
+          answer:
+            "1. ตรวจ Sender Email ให้ละเอียด (ไม่ใช่แค่ชื่อ)\n2. Hover Link ดู URL จริงก่อนคลิก\n3. มีการขอ Password / ข้อมูลส่วนตัว\n4. มี Urgency เช่น ด่วน! บัญชีจะถูกลบ\n5. ไฟล์แนบ .exe .zip แปลกๆ\n6. แจ้ง IT ext.1234 ถ้าสงสัย",
+        },
+        {
+          question: "Password ที่ดีควรเป็นยังไง?",
+          answer:
+            "1. ยาวอย่างน้อย 12 ตัวอักษร\n2. มีตัวใหญ่+ตัวเล็ก+ตัวเลข+อักขระพิเศษ\n3. ไม่ซ้ำกับ Account อื่น\n4. ใช้ Password Manager\n5. เปลี่ยนทุก 90 วัน",
+        },
+        {
+          question: "ข้อมูลส่วนตัว PDPA ต้องระวังอะไร?",
+          answer:
+            "1. อย่าเก็บข้อมูลส่วนตัวมากกว่าจำเป็น\n2. ลบข้อมูลเมื่อหมดความจำเป็น\n3. ไม่แชร์ข้อมูลลูกค้าออกภายนอก\n4. Lock Computer เมื่อเดินออกจากโต๊ะ\n5. ติดต่อ IT ถ้าสงสัยว่าข้อมูลรั่ว",
+        },
+        {
+          question: "ทำงาน Public WiFi ปลอดภัยไหม?",
+          answer:
+            "1. ต้องต่อ VPN บริษัทก่อนเสมอ\n2. อย่าเข้าระบบบริษัทโดยไม่มี VPN\n3. ระวัง Shoulder Surfing (คนมองหน้าจอ)\n4. ล็อคหน้าจอเมื่อไม่ใช้\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "Social Engineering คืออะไร?",
+          answer:
+            "1. การหลอกลวงให้เปิดเผยข้อมูล\n2. ตัวอย่าง: แอบอ้างเป็น IT / CEO\n3. ห้ามบอก Password แม้ IT จริงขอ\n4. ตรวจสอบ Identity ก่อนให้ข้อมูล\n5. แจ้ง IT ext.1234 ถ้าสงสัย",
+        },
+      ],
+    },
+    {
+      name: "Google Workspace",
+      keywords: [
+        "google",
+        "gmail",
+        "google drive",
+        "google docs",
+        "google sheets",
+        "google meet",
+        "workspace",
+        "g suite",
+      ],
+      faqs: [
+        {
+          question: "Gmail บริษัทเข้าไม่ได้",
+          answer:
+            "1. ตรวจ Internet Connection\n2. ล้าง Browser Cache\n3. ลอง Incognito Mode\n4. ตรวจว่าใช้ Email บริษัทถูกต้อง\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "Google Drive แชร์ไฟล์ยังไง?",
+          answer:
+            "1. คลิกขวาไฟล์ > Share\n2. กรอกอีเมลผู้รับ\n3. เลือกสิทธิ์: Viewer / Commenter / Editor\n4. กด Send\n5. หรือ Copy Link สำหรับแชร์",
+        },
+        {
+          question: "Google Docs แก้ไขพร้อมกันหลายคนยังไง?",
+          answer:
+            "1. แชร์ Link ให้ผู้ร่วมงาน (Editor)\n2. ทุกคนเปิด Link เดียวกัน\n3. เห็น Cursor ของกันและกัน Real-time\n4. Comment: Insert > Comment\n5. ประวัติแก้ไข: File > Version History",
+        },
+        {
+          question: "Google Meet กล้องหรือไมค์ไม่ทำงาน",
+          answer:
+            "1. ตรวจ Permission ใน Browser\n2. Settings > Privacy > Camera/Microphone > เปิด\n3. Restart Browser\n4. ลอง Browser อื่น\n5. ติดต่อ IT ext.1234",
+        },
+      ],
+    },
+    {
+      name: "Microsoft Intune / MDM",
+      keywords: [
+        "intune",
+        "mdm",
+        "company portal",
+        "device compliance",
+        "mobile device",
+        "enrollment",
+        "ลงทะเบียนเครื่อง",
+      ],
+      faqs: [
+        {
+          question: "Company Portal ลงทะเบียนเครื่องยังไง?",
+          answer:
+            "1. Download Company Portal จาก App Store\n2. Login ด้วยบัญชีบริษัท\n3. ทำตามขั้นตอนในแอป\n4. IT จะ Push App + Policy ให้อัตโนมัติ\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "Device Not Compliant แก้ยังไง?",
+          answer:
+            "1. ตรวจ Company Portal > Device Details\n2. ดูว่าขาด Requirement ใด\n3. อาจต้อง: เปิด BitLocker, อัปเดต Windows\n4. ทำตามที่แนะนำ แล้วกด Check Compliance\n5. ติดต่อ IT ext.1234",
+        },
+        {
+          question: "IT Remote Wipe เครื่องได้ไหม?",
+          answer:
+            "1. ได้ ถ้าเครื่องลงทะเบียน Intune\n2. ใช้เมื่อเครื่องสูญหายหรือถูกขโมย\n3. IT จะ Wipe เฉพาะข้อมูลบริษัท (Corporate Wipe)\n4. หรือ Full Wipe ถ้าเครื่องบริษัท\n5. แจ้ง IT ext.1234 ทันทีถ้าเครื่องหาย",
+        },
+      ],
+    },
+  ],
+  escalation: {
+    message:
+      "ไม่พบคำตอบที่ตรงกับปัญหาของคุณ กรุณาติดต่อ IT Support:\n📞 โทร: ext. 1234\n📧 อีเมล: it-support@company.com\n💬 Line: @company-it\n🕐 เวลา: จันทร์-ศุกร์ 8:30-17:30",
+    hotline: "ext. 1234",
+  },
+};

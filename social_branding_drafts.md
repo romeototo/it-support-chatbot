@@ -7,7 +7,8 @@
 ## 💼 1. สำหรับใส่ใน Resume (หมวด Projects / Experience)
 
 **IT Support AI Chatbot (Web Application)**
-*Developed an intelligent helpdesk assistant to reduce Level-1 IT support tickets.*
+_Developed an intelligent helpdesk assistant to reduce Level-1 IT support tickets._
+
 - Designed a responsive, glassmorphism UI using HTML5, CSS3, and Vanilla JavaScript.
 - Built a dynamic knowledge base (`JSON`) containing over 200+ FAQs across 45 IT categories (Networking, Hardware, O365, etc.).
 - Integrated **Google Gemini API** for natural language understanding, allowing the bot to parse context and deliver precise troubleshooting steps.
@@ -20,7 +21,7 @@
 
 **[แนะนำให้แนบวิดีโออัดหน้าจอ (Screen Recording) ตอนกำลังพิมพ์คุยกับบอท หรือแนบเป็น Screenshot สวยๆ]**
 
-เพิ่งพัฒนาโปรเจคใหม่เสร็จครับ! 🎉 กับ **"IT Support AI"** แชทบอทอัจฉริยะที่เกิดจาก Pain Point คลาสสิกของชาวไอที: *การตอบคำถามเดิมๆ ซ้ำๆ ทุกวัน* 😅
+เพิ่งพัฒนาโปรเจคใหม่เสร็จครับ! 🎉 กับ **"IT Support AI"** แชทบอทอัจฉริยะที่เกิดจาก Pain Point คลาสสิกของชาวไอที: _การตอบคำถามเดิมๆ ซ้ำๆ ทุกวัน_ 😅
 
 ผมเลยรวบรวมปัญหาด้านไอทีที่เจอบ่อยกว่า 200 เคส (เช่น ลืมรหัสผ่าน, ต่อ WiFi ไม่ได้, เครื่องพิมพ์ค้าง, ตั้งค่า VPN) จัดเป็น 45 หมวดหมู่ แล้วเขียนเป็น Web Application แบบเบาๆ (Zero dependencies)
 

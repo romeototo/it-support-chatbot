@@ -3,10 +3,10 @@ name: Validate Knowledge Base
 on:
   push:
     paths:
-      - 'knowledge_base.json'
+      - "knowledge_base.json"
   pull_request:
     paths:
-      - 'knowledge_base.json'
+      - "knowledge_base.json"
 
 jobs:
   validate-json:
@@ -15,12 +15,12 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-      
+
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
-          
+          python-version: "3.11"
+
       - name: Validate JSON Format
         run: |
           python -c "

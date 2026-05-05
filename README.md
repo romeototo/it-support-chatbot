@@ -17,9 +17,10 @@
 **Pre-loaded with 222 FAQs across 50 IT categories covering enterprise-grade issues**
 
 ### 🌐 Live Demo & Portfolio Showcase
+
 - **[User Chatbot Interface](https://romeototo.github.io/it-support-chatbot/)** — The user-facing chatbot for reporting issues and receiving preliminary automated support.
 - **[Admin Dashboard (HelpDesk Pro)](https://romeototo.github.io/it-support-chatbot/dashboard.html)** — The backend portal for IT staff to manage tickets and reply to users.
-*(**Pro Tip:** Open both windows side-by-side to experience the **Real-Time Hybrid Sync** in action!)*
+  _(**Pro Tip:** Open both windows side-by-side to experience the **Real-Time Hybrid Sync** in action!)_
 
 </div>
 
@@ -35,24 +36,24 @@
 
 ## ✨ Features
 
-| Feature | Description |
-|---|---|
-| 👨‍💻 **Admin Dashboard** | Enterprise-grade HelpDesk Pro portal for ticket management and queues. |
-| ⚡ **Real-Time Hybrid Sync** | Cross-tab data synchronization between User and Admin via LocalStorage. |
-| ⌨️ **Admin Typing Indicator** | Real-time "Admin is typing..." status synchronized to the user's view. |
-| 📊 **Live Analytics** | Automated issue categorization and real-time Resolution Rate metrics via Chart.js. |
-| 🔍 **Search & Filter** | Instant Ticket ID / Keyword search and dynamic state filtering (Open/Closed). |
-| ⚡ **Canned Responses** | One-click quick replies for Admins to drastically reduce response time. |
-| 🔍 **Hybrid Search Engine** | 3-layer precision: Keyword Matching → RAG (ChromaDB) → Gemini AI LLM. |
-| 📚 **222 FAQ / 50 Categories** | Comprehensive built-in enterprise IT knowledge base. |
-| 🤖 **Gemini AI Integration** | Toggle on LLM capabilities via API Key for Natural Language Generation. |
-| 💎 **Premium Glassmorphism UI** | Sleek Dark/Light mode toggle with micro-interactions and smooth animations. |
-| ⌨️ **Typewriter Animation** | Engaging character-by-character typing effect for bot responses. |
-| 📖 **Smart Collapse** | Long answers are automatically collapsed with a "Read More" expansion button. |
-| 📋 **Copy to Clipboard** | Single-click action to copy technical instructions. |
-| 👍👎 **Feedback System** | Answer quality rating system locally persisted in the browser. |
-| 🎫 **Ticket History** | Persistent real-time chat history that survives browser refreshes. |
-| 🌐 **Dual Deploy Mode** | Fully functional as a static site (GitHub Pages) or Full-Stack App (Flask). |
+| Feature                         | Description                                                                        |
+| ------------------------------- | ---------------------------------------------------------------------------------- |
+| 👨‍💻 **Admin Dashboard**          | Enterprise-grade HelpDesk Pro portal for ticket management and queues.             |
+| ⚡ **Real-Time Hybrid Sync**    | Cross-tab data synchronization between User and Admin via LocalStorage.            |
+| ⌨️ **Admin Typing Indicator**   | Real-time "Admin is typing..." status synchronized to the user's view.             |
+| 📊 **Live Analytics**           | Automated issue categorization and real-time Resolution Rate metrics via Chart.js. |
+| 🔍 **Search & Filter**          | Instant Ticket ID / Keyword search and dynamic state filtering (Open/Closed).      |
+| ⚡ **Canned Responses**         | One-click quick replies for Admins to drastically reduce response time.            |
+| 🔍 **Hybrid Search Engine**     | 3-layer precision: Keyword Matching → RAG (ChromaDB) → Gemini AI LLM.              |
+| 📚 **222 FAQ / 50 Categories**  | Comprehensive built-in enterprise IT knowledge base.                               |
+| 🤖 **Gemini AI Integration**    | Toggle on LLM capabilities via API Key for Natural Language Generation.            |
+| 💎 **Premium Glassmorphism UI** | Sleek Dark/Light mode toggle with micro-interactions and smooth animations.        |
+| ⌨️ **Typewriter Animation**     | Engaging character-by-character typing effect for bot responses.                   |
+| 📖 **Smart Collapse**           | Long answers are automatically collapsed with a "Read More" expansion button.      |
+| 📋 **Copy to Clipboard**        | Single-click action to copy technical instructions.                                |
+| 👍👎 **Feedback System**        | Answer quality rating system locally persisted in the browser.                     |
+| 🎫 **Ticket History**           | Persistent real-time chat history that survives browser refreshes.                 |
+| 🌐 **Dual Deploy Mode**         | Fully functional as a static site (GitHub Pages) or Full-Stack App (Flask).        |
 
 ---
 
@@ -71,6 +72,7 @@ Deploy:    GitHub Pages (Frontend) / Local Flask (Full Stack)
 ## 🧠 System Architecture
 
 ### 1. Hybrid Search Engine (Chatbot)
+
 ```
 User Question
       │
@@ -96,6 +98,7 @@ User Question
 ```
 
 ### 2. Real-Time Hybrid Sync (Admin Dashboard)
+
 A **Serverless** implementation running entirely on GitHub Pages using Web Storage API (`localStorage` + `storage event`) to mock real-time database capabilities.
 
 ```
@@ -104,6 +107,7 @@ A **Serverless** implementation running entirely on GitHub Pages using Web Stora
        │                                            ▼
    (Event Triggered) ◄──(Reply & Sync Status)───────┘
 ```
+
 - ⚡ Live Typing Indicator Synchronization
 - ⚡ Automated Ticket Status (Open/Closed) Updates
 - 📊 Real-time data pipeline for Analytics and Chart rendering

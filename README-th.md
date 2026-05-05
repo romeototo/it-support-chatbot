@@ -17,9 +17,10 @@
 **ฐานข้อมูล 222 FAQ / 50 หมวดหมู่ ภาษาไทย ครอบคลุมทุกปัญหา IT ในองค์กร**
 
 ### 🌐 Live Demo & Portfolio Showcase
+
 - **[User Chatbot Interface](https://romeototo.github.io/it-support-chatbot/)** — หน้าแชทบอทสำหรับผู้ใช้งาน แจ้งปัญหาและรับการวิเคราะห์เบื้องต้น
 - **[Admin Dashboard (HelpDesk Pro)](https://romeototo.github.io/it-support-chatbot/dashboard.html)** — แดชบอร์ดสำหรับเจ้าหน้าที่ IT เพื่อรับ Ticket และตอบกลับผู้ใช้
-*(**Pro Tip:** เปิด 2 หน้าจอพร้อมกันเพื่อดูการซิงค์ข้อมูล **Real-Time Hybrid Sync** แบบสดๆ!)*
+  _(**Pro Tip:** เปิด 2 หน้าจอพร้อมกันเพื่อดูการซิงค์ข้อมูล **Real-Time Hybrid Sync** แบบสดๆ!)_
 
 </div>
 
@@ -35,24 +36,24 @@
 
 ## ✨ Features
 
-| Feature | Description |
-|---|---|
-| 👨‍💻 **Admin Dashboard** | หน้าจอ HelpDesk Pro จัดการ Ticket คิวงานแบบ Enterprise |
-| ⚡ **Real-Time Hybrid Sync** | ซิงค์ข้อมูลข้ามแท็บระหว่าง User และ Admin ด้วย LocalStorage |
-| ⌨️ **Admin Typing Indicator** | สถานะ "Admin กำลังพิมพ์" ซิงค์ไปยังหน้าจอผู้ใช้แบบ Real-time |
-| 📊 **Live Analytics** | สรุปข้อมูลหมวดหมู่ปัญหาและ Resolution Rate ด้วย Chart.js |
-| 🔍 **Search & Filter** | ค้นหา Ticket ID/Keyword และกรองสถานะ (Open/Closed) ได้ทันที |
-| ⚡ **Canned Responses** | ปุ่มตอบกลับด่วนสำหรับ Admin ลดเวลาในการพิมพ์ |
-| 🔍 **Hybrid Search Engine** | Keyword Matching → RAG (ChromaDB) → Gemini AI — 3 ชั้นความแม่นยำ |
-| 📚 **222 FAQ / 50 หมวดหมู่** | ครอบคลุมทุกปัญหา IT ในองค์กร ภาษาไทย 100% |
-| 🤖 **Gemini AI Integration** | ใส่ API Key เพื่อเปิดโหมด AI ตอบแบบ Natural Language |
-| 💎 **Premium Glassmorphism UI** | Dark Mode + Light Mode สลับได้ พร้อม Micro-animations |
-| ⌨️ **Typewriter Animation** | บอทพิมพ์คำตอบทีละตัวอักษร เหมือน ChatGPT |
-| 📖 **Smart Collapse** | คำตอบยาวๆ ย่อได้ พร้อมปุ่ม "ดูคำตอบเต็ม" |
-| 📋 **Copy to Clipboard** | คัดลอกคำตอบได้ในคลิกเดียว |
-| 👍👎 **Feedback System** | ให้คะแนนคำตอบได้ บันทึกใน LocalStorage |
-| 🎫 **Ticket History** | บันทึกประวัติการสนทนาแบบ Real-time + Persist หลัง Refresh |
-| 🌐 **Dual Deploy Mode** | รันได้ทั้งบน Flask (Full Stack) และ GitHub Pages (Static) |
+| Feature                         | Description                                                      |
+| ------------------------------- | ---------------------------------------------------------------- |
+| 👨‍💻 **Admin Dashboard**          | หน้าจอ HelpDesk Pro จัดการ Ticket คิวงานแบบ Enterprise           |
+| ⚡ **Real-Time Hybrid Sync**    | ซิงค์ข้อมูลข้ามแท็บระหว่าง User และ Admin ด้วย LocalStorage      |
+| ⌨️ **Admin Typing Indicator**   | สถานะ "Admin กำลังพิมพ์" ซิงค์ไปยังหน้าจอผู้ใช้แบบ Real-time     |
+| 📊 **Live Analytics**           | สรุปข้อมูลหมวดหมู่ปัญหาและ Resolution Rate ด้วย Chart.js         |
+| 🔍 **Search & Filter**          | ค้นหา Ticket ID/Keyword และกรองสถานะ (Open/Closed) ได้ทันที      |
+| ⚡ **Canned Responses**         | ปุ่มตอบกลับด่วนสำหรับ Admin ลดเวลาในการพิมพ์                     |
+| 🔍 **Hybrid Search Engine**     | Keyword Matching → RAG (ChromaDB) → Gemini AI — 3 ชั้นความแม่นยำ |
+| 📚 **222 FAQ / 50 หมวดหมู่**    | ครอบคลุมทุกปัญหา IT ในองค์กร ภาษาไทย 100%                        |
+| 🤖 **Gemini AI Integration**    | ใส่ API Key เพื่อเปิดโหมด AI ตอบแบบ Natural Language             |
+| 💎 **Premium Glassmorphism UI** | Dark Mode + Light Mode สลับได้ พร้อม Micro-animations            |
+| ⌨️ **Typewriter Animation**     | บอทพิมพ์คำตอบทีละตัวอักษร เหมือน ChatGPT                         |
+| 📖 **Smart Collapse**           | คำตอบยาวๆ ย่อได้ พร้อมปุ่ม "ดูคำตอบเต็ม"                         |
+| 📋 **Copy to Clipboard**        | คัดลอกคำตอบได้ในคลิกเดียว                                        |
+| 👍👎 **Feedback System**        | ให้คะแนนคำตอบได้ บันทึกใน LocalStorage                           |
+| 🎫 **Ticket History**           | บันทึกประวัติการสนทนาแบบ Real-time + Persist หลัง Refresh        |
+| 🌐 **Dual Deploy Mode**         | รันได้ทั้งบน Flask (Full Stack) และ GitHub Pages (Static)        |
 
 ---
 
@@ -71,6 +72,7 @@ Deploy:    GitHub Pages (Frontend) / Local Flask (Full Stack)
 ## 🧠 System Architecture
 
 ### 1. Hybrid Search Engine (Chatbot)
+
 ```
 User Question
       │
@@ -96,6 +98,7 @@ User Question
 ```
 
 ### 2. Real-Time Hybrid Sync (Admin Dashboard)
+
 การทำงานแบบ **Serverless** บน GitHub Pages ที่ใช้ Web Storage API (`localStorage` + `storage event`) เพื่อจำลองระบบ Real-time Database
 
 ```
@@ -104,6 +107,7 @@ User Question
        │                                            ▼
    (Event Triggered) ◄──(Reply & Sync Status)───────┘
 ```
+
 - ⚡ ซิงค์การพิมพ์แบบสดๆ (Typing Indicator)
 - ⚡ ซิงค์สถานะ Ticket (Open/Closed) อัตโนมัติ
 - 📊 ดึงข้อมูล Ticket มาทำ Analytics แบบ Real-time
@@ -164,23 +168,23 @@ it-support-chatbot/
 
 ## 📊 Knowledge Base Coverage (222 FAQs / 50 Categories)
 
-| หมวดหมู่ | ตัวอย่างปัญหา |
-|---|---|
-| 🖨️ Printer | พิมพ์ไม่ออก, กระดาษติด, Toner หมด, Duplex |
-| 📶 Network/WiFi | เชื่อมต่อไม่ได้, DNS Error, IP Address, Map Drive |
-| 🔑 Password/Security | ลืมรหัสผ่าน, MFA/2FA, PDPA, Phishing |
-| 💻 Hardware | คอมช้า, BSOD, USB ไม่ขึ้น, Dual Monitor |
-| 📧 Email/Outlook | ส่งเมลไม่ได้, Signature, Calendar, Archive |
-| 🔐 VPN/Remote | เชื่อมต่อไม่ได้, WFH Setup, RDP |
-| 📹 Video Conference | Zoom/Teams, Google Meet, Share Screen, Virtual BG |
-| 📊 Microsoft 365 | Office Activation, Excel, Word, PowerPoint |
-| ☁️ Cloud Storage | OneDrive, SharePoint, Google Drive |
-| 🛡️ Security | Antivirus, Ransomware, BitLocker, PDPA |
-| 📱 Mobile/BYOD | Intune, Company Portal, Email บนมือถือ |
-| 📈 Power BI | Dashboard, Report, Permissions |
-| ☁️ Azure AD | SSO, Conditional Access, Entra ID |
-| 🌐 Google Workspace | Gmail, Google Docs, Google Meet |
-| + 36 หมวดอื่นๆ | Active Directory, Backup, IP Phone, Projector, ... |
+| หมวดหมู่             | ตัวอย่างปัญหา                                      |
+| -------------------- | -------------------------------------------------- |
+| 🖨️ Printer           | พิมพ์ไม่ออก, กระดาษติด, Toner หมด, Duplex          |
+| 📶 Network/WiFi      | เชื่อมต่อไม่ได้, DNS Error, IP Address, Map Drive  |
+| 🔑 Password/Security | ลืมรหัสผ่าน, MFA/2FA, PDPA, Phishing               |
+| 💻 Hardware          | คอมช้า, BSOD, USB ไม่ขึ้น, Dual Monitor            |
+| 📧 Email/Outlook     | ส่งเมลไม่ได้, Signature, Calendar, Archive         |
+| 🔐 VPN/Remote        | เชื่อมต่อไม่ได้, WFH Setup, RDP                    |
+| 📹 Video Conference  | Zoom/Teams, Google Meet, Share Screen, Virtual BG  |
+| 📊 Microsoft 365     | Office Activation, Excel, Word, PowerPoint         |
+| ☁️ Cloud Storage     | OneDrive, SharePoint, Google Drive                 |
+| 🛡️ Security          | Antivirus, Ransomware, BitLocker, PDPA             |
+| 📱 Mobile/BYOD       | Intune, Company Portal, Email บนมือถือ             |
+| 📈 Power BI          | Dashboard, Report, Permissions                     |
+| ☁️ Azure AD          | SSO, Conditional Access, Entra ID                  |
+| 🌐 Google Workspace  | Gmail, Google Docs, Google Meet                    |
+| + 36 หมวดอื่นๆ       | Active Directory, Backup, IP Phone, Projector, ... |
 
 ---
 

@@ -1,1002 +1,1601 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IT Support AI | Premium Intelligent HelpDesk</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        :root {
-            --primary: #6366f1;
-            --primary-glow: rgba(99, 102, 241, 0.5);
-            --secondary: #a855f7;
-            --accent: #22d3ee;
-            --bg-dark: #05070a;
-            --glass-bg: rgba(17, 25, 40, 0.75);
-            --glass-border: rgba(255, 255, 255, 0.125);
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
-        }
+      :root {
+        --primary: #6366f1;
+        --primary-glow: rgba(99, 102, 241, 0.5);
+        --secondary: #a855f7;
+        --accent: #22d3ee;
+        --bg-dark: #05070a;
+        --glass-bg: rgba(17, 25, 40, 0.75);
+        --glass-border: rgba(255, 255, 255, 0.125);
+        --text-main: #f8fafc;
+        --text-dim: #94a3b8;
+      }
 
-        /* ===================== LIGHT MODE ===================== */
-        body.light {
-            --glass-bg:     rgba(226, 232, 240, 0.75);
-            --glass-border: rgba(100, 116, 139, 0.22);
-            --text-main:    #0f172a;
-            --text-dim:     #334155;
-            --primary:      #4f46e5;
-            --primary-glow: rgba(79, 70, 229, 0.4);
-            --secondary:    #7c3aed;
-            --accent:       #0ea5e9;
-            background: linear-gradient(135deg, #dde4f0 0%, #e8edf7 40%, #d4dff0 100%) !important;
-        }
-        /* Glow orbs lighter */
-        body.light::before { background: #6366f1; opacity: 0.06; }
-        body.light::after  { background: #a855f7; opacity: 0.05; }
+      /* ===================== LIGHT MODE ===================== */
+      body.light {
+        --glass-bg: rgba(226, 232, 240, 0.75);
+        --glass-border: rgba(100, 116, 139, 0.22);
+        --text-main: #0f172a;
+        --text-dim: #334155;
+        --primary: #4f46e5;
+        --primary-glow: rgba(79, 70, 229, 0.4);
+        --secondary: #7c3aed;
+        --accent: #0ea5e9;
+        background: linear-gradient(
+          135deg,
+          #dde4f0 0%,
+          #e8edf7 40%,
+          #d4dff0 100%
+        ) !important;
+      }
+      /* Glow orbs lighter */
+      body.light::before {
+        background: #6366f1;
+        opacity: 0.06;
+      }
+      body.light::after {
+        background: #a855f7;
+        opacity: 0.05;
+      }
 
-        /* Header */
-        body.light header {
-            background: rgba(255,255,255,0.72);
-            border-bottom: 1px solid rgba(99,102,241,0.18);
-        }
-        body.light header h1 { color: #1e1b4b; }
-        body.light header p  { color: #475569; }
+      /* Header */
+      body.light header {
+        background: rgba(255, 255, 255, 0.72);
+        border-bottom: 1px solid rgba(99, 102, 241, 0.18);
+      }
+      body.light header h1 {
+        color: #1e1b4b;
+      }
+      body.light header p {
+        color: #475569;
+      }
 
-        /* Sidebar */
-        body.light .sidebar {
-            background: rgba(255,255,255,0.65);
-            border-color: rgba(99,102,241,0.15);
-        }
-        body.light .stitle { color: #6366f1; }
-        body.light .qbtn {
-            color: #1e293b;
-            background: rgba(255,255,255,0.5);
-            border-color: rgba(148,163,184,0.25);
-        }
-        body.light .qbtn:hover {
-            background: rgba(99,102,241,0.12);
-            border-color: rgba(99,102,241,0.35);
-            border-left-color: #4f46e5;
-            color: #312e81;
-            box-shadow: 0 2px 10px rgba(99,102,241,0.15);
-        }
+      /* Sidebar */
+      body.light .sidebar {
+        background: rgba(255, 255, 255, 0.65);
+        border-color: rgba(99, 102, 241, 0.15);
+      }
+      body.light .stitle {
+        color: #6366f1;
+      }
+      body.light .qbtn {
+        color: #1e293b;
+        background: rgba(255, 255, 255, 0.5);
+        border-color: rgba(148, 163, 184, 0.25);
+      }
+      body.light .qbtn:hover {
+        background: rgba(99, 102, 241, 0.12);
+        border-color: rgba(99, 102, 241, 0.35);
+        border-left-color: #4f46e5;
+        color: #312e81;
+        box-shadow: 0 2px 10px rgba(99, 102, 241, 0.15);
+      }
 
-        /* Chat area */
-        body.light .chat-wrap {
-            background: rgba(241,245,249,0.80);
-            border-color: rgba(99,102,241,0.15);
-            box-shadow: 0 10px 40px rgba(99,102,241,0.15);
-        }
-        /* Bot bubble */
-        body.light .bot .bub {
-            background: rgba(255,255,255,0.90);
-            color: #1e293b;
-            border: 1px solid rgba(99,102,241,0.14);
-            box-shadow: 0 2px 8px rgba(79,70,229,0.07);
-        }
-        body.light .bot .bub strong { color: #312e81; }
-        /* User bubble */
-        body.light .user .bub { color: #fff; }
+      /* Chat area */
+      body.light .chat-wrap {
+        background: rgba(241, 245, 249, 0.8);
+        border-color: rgba(99, 102, 241, 0.15);
+        box-shadow: 0 10px 40px rgba(99, 102, 241, 0.15);
+      }
+      /* Bot bubble */
+      body.light .bot .bub {
+        background: rgba(255, 255, 255, 0.9);
+        color: #1e293b;
+        border: 1px solid rgba(99, 102, 241, 0.14);
+        box-shadow: 0 2px 8px rgba(79, 70, 229, 0.07);
+      }
+      body.light .bot .bub strong {
+        color: #312e81;
+      }
+      /* User bubble */
+      body.light .user .bub {
+        color: #fff;
+      }
 
-        /* Input area */
-        body.light .input-wrap {
-            background: rgba(226,232,240,0.85);
-            border-top: 1px solid rgba(99,102,241,0.15);
-        }
-        body.light #inp {
-            background: rgba(255,255,255,0.90);
-            color: #0f172a;
-            border: 1px solid rgba(99,102,241,0.25);
-        }
-        body.light #inp::placeholder { color: #94a3b8; }
+      /* Input area */
+      body.light .input-wrap {
+        background: rgba(226, 232, 240, 0.85);
+        border-top: 1px solid rgba(99, 102, 241, 0.15);
+      }
+      body.light #inp {
+        background: rgba(255, 255, 255, 0.9);
+        color: #0f172a;
+        border: 1px solid rgba(99, 102, 241, 0.25);
+      }
+      body.light #inp::placeholder {
+        color: #94a3b8;
+      }
 
-        /* Stats bar */
-        body.light .stats-bar {
-            background: rgba(215,224,238,0.70);
-            border-top: 1px solid rgba(99,102,241,0.10);
-            color: #475569;
-        }
-        body.light .stat span { color: #312e81; }
+      /* Stats bar */
+      body.light .stats-bar {
+        background: rgba(215, 224, 238, 0.7);
+        border-top: 1px solid rgba(99, 102, 241, 0.1);
+        color: #475569;
+      }
+      body.light .stat span {
+        color: #312e81;
+      }
 
-        /* History panel */
-        body.light .history-panel {
-            background: rgba(255,255,255,0.65);
-            border-color: rgba(99,102,241,0.15);
-        }
-        body.light .hp-title { color: #312e81; border-bottom-color: rgba(99,102,241,0.15); }
-        body.light .hp-item {
-            background: rgba(238,242,255,0.80);
-            border: 1px solid rgba(99,102,241,0.12);
-        }
-        body.light .hp-item:hover { background: rgba(224,231,255,0.90); }
-        body.light .hp-item .hq { color: #1e293b; font-weight: 600; }
-        body.light .hp-item .hm { color: #475569; }
+      /* History panel */
+      body.light .history-panel {
+        background: rgba(255, 255, 255, 0.65);
+        border-color: rgba(99, 102, 241, 0.15);
+      }
+      body.light .hp-title {
+        color: #312e81;
+        border-bottom-color: rgba(99, 102, 241, 0.15);
+      }
+      body.light .hp-item {
+        background: rgba(238, 242, 255, 0.8);
+        border: 1px solid rgba(99, 102, 241, 0.12);
+      }
+      body.light .hp-item:hover {
+        background: rgba(224, 231, 255, 0.9);
+      }
+      body.light .hp-item .hq {
+        color: #1e293b;
+        font-weight: 600;
+      }
+      body.light .hp-item .hm {
+        color: #475569;
+      }
 
-        /* Badges & labels */
-        body.light .hbadge {
-            background: rgba(79,70,229,0.12);
-            color: #312e81;
-            border-color: rgba(79,70,229,0.25);
-        }
-        body.light .gemini-badge { color: #4f46e5; border-color: rgba(79,70,229,0.3); background: rgba(79,70,229,0.10); }
+      /* Badges & labels */
+      body.light .hbadge {
+        background: rgba(79, 70, 229, 0.12);
+        color: #312e81;
+        border-color: rgba(79, 70, 229, 0.25);
+      }
+      body.light .gemini-badge {
+        color: #4f46e5;
+        border-color: rgba(79, 70, 229, 0.3);
+        background: rgba(79, 70, 229, 0.1);
+      }
 
-        /* ---- Header buttons (override inline styles) ---- */
-        body.light header button {
-            background: rgba(255,255,255,0.70) !important;
-            border: 1px solid rgba(99,102,241,0.30) !important;
-            color: #312e81 !important;
-        }
-        body.light header button:hover {
-            background: rgba(99,102,241,0.15) !important;
-            color: #1e1b4b !important;
-        }
-        /* hbadge (FAQ count) */
-        body.light .hbadge {
-            background: rgba(79,70,229,0.12) !important;
-            color: #312e81 !important;
-            border-color: rgba(79,70,229,0.28) !important;
-            font-weight: 700;
-        }
+      /* ---- Header buttons (override inline styles) ---- */
+      body.light header button {
+        background: rgba(255, 255, 255, 0.7) !important;
+        border: 1px solid rgba(99, 102, 241, 0.3) !important;
+        color: #312e81 !important;
+      }
+      body.light header button:hover {
+        background: rgba(99, 102, 241, 0.15) !important;
+        color: #1e1b4b !important;
+      }
+      /* hbadge (FAQ count) */
+      body.light .hbadge {
+        background: rgba(79, 70, 229, 0.12) !important;
+        color: #312e81 !important;
+        border-color: rgba(79, 70, 229, 0.28) !important;
+        font-weight: 700;
+      }
 
-        /* Feedback & copy buttons */
-        body.light .fb-btn { color: #475569; border-color: rgba(148,163,184,0.4); }
-        body.light .fb-btn:hover { background: rgba(99,102,241,0.1); color: #312e81; }
-        body.light .copy-btn { color: #6366f1; }
-        body.light .ticket-tag { color: #7c3aed; }
+      /* Feedback & copy buttons */
+      body.light .fb-btn {
+        color: #475569;
+        border-color: rgba(148, 163, 184, 0.4);
+      }
+      body.light .fb-btn:hover {
+        background: rgba(99, 102, 241, 0.1);
+        color: #312e81;
+      }
+      body.light .copy-btn {
+        color: #6366f1;
+      }
+      body.light .ticket-tag {
+        color: #7c3aed;
+      }
 
-        /* Expand button */
-        body.light .expand-btn { color: #4f46e5; }
+      /* Expand button */
+      body.light .expand-btn {
+        color: #4f46e5;
+      }
 
-        /* Sys message */
-        body.light div[style*="text-align:center"] { color: #64748b !important; }
+      /* Sys message */
+      body.light div[style*="text-align:center"] {
+        color: #64748b !important;
+      }
 
-        /* Scrollbar */
-        body.light .messages::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.25); }
-        body.light .sidebar::-webkit-scrollbar-thumb  { background: rgba(99,102,241,0.2); }
+      /* Scrollbar */
+      body.light .messages::-webkit-scrollbar-thumb {
+        background: rgba(99, 102, 241, 0.25);
+      }
+      body.light .sidebar::-webkit-scrollbar-thumb {
+        background: rgba(99, 102, 241, 0.2);
+      }
 
-        /* Clear chat button in light mode */
-        body.light .clear-btn {
-            background: rgba(255,255,255,0.55);
-            border-color: rgba(99,102,241,0.25);
-            color: #475569;
-        }
-        body.light .clear-btn:hover {
-            background: rgba(239,68,68,0.10);
-            border-color: rgba(239,68,68,0.35);
-            color: #b91c1c;
-        }
+      /* Clear chat button in light mode */
+      body.light .clear-btn {
+        background: rgba(255, 255, 255, 0.55);
+        border-color: rgba(99, 102, 241, 0.25);
+        color: #475569;
+      }
+      body.light .clear-btn:hover {
+        background: rgba(239, 68, 68, 0.1);
+        border-color: rgba(239, 68, 68, 0.35);
+        color: #b91c1c;
+      }
 
-        /* ---- Sidebar Search ---- */
-        .sidebar-search { margin-bottom: 15px; }
-        .sidebar-search input {
-            width: 100%; background: rgba(255,255,255,0.05);
-            border: 1px solid var(--glass-border); color: #e2e8f0;
-            padding: 8px 12px; border-radius: 8px; font-size: 0.8rem;
-            outline: none; transition: 0.3s; font-family: 'Outfit', sans-serif;
-        }
-        .sidebar-search input:focus { border-color: var(--primary); box-shadow: 0 0 10px var(--primary-glow); }
-        .sidebar-search input::placeholder { color: var(--text-dim); }
-        body.light .sidebar-search input { background: rgba(255,255,255,0.7); border-color: rgba(99,102,241,0.25); color: #0f172a; }
+      /* ---- Sidebar Search ---- */
+      .sidebar-search {
+        margin-bottom: 15px;
+      }
+      .sidebar-search input {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--glass-border);
+        color: #e2e8f0;
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-size: 0.8rem;
+        outline: none;
+        transition: 0.3s;
+        font-family: "Outfit", sans-serif;
+      }
+      .sidebar-search input:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 10px var(--primary-glow);
+      }
+      .sidebar-search input::placeholder {
+        color: var(--text-dim);
+      }
+      body.light .sidebar-search input {
+        background: rgba(255, 255, 255, 0.7);
+        border-color: rgba(99, 102, 241, 0.25);
+        color: #0f172a;
+      }
 
-        /* ---- Quick Reply Chips ---- */
-        .quick-chips-wrap { padding-left: 52px; margin-top: 4px; display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
-        .chip-btn {
-            background: rgba(99,102,241,0.15); border: 1px solid rgba(99,102,241,0.3);
-            color: #a5b4fc; padding: 6px 14px; border-radius: 20px;
-            font-size: 0.75rem; cursor: pointer; transition: 0.2s; font-family: 'Outfit', sans-serif;
-        }
-        .chip-btn:hover { background: rgba(99,102,241,0.3); color: #fff; transform: translateY(-1px); }
-        body.light .chip-btn { background: rgba(99,102,241,0.08); color: #4f46e5; border-color: rgba(99,102,241,0.25); }
-        body.light .chip-btn:hover { background: rgba(99,102,241,0.18); color: #312e81; }
+      /* ---- Quick Reply Chips ---- */
+      .quick-chips-wrap {
+        padding-left: 52px;
+        margin-top: 4px;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 8px;
+      }
+      .chip-btn {
+        background: rgba(99, 102, 241, 0.15);
+        border: 1px solid rgba(99, 102, 241, 0.3);
+        color: #a5b4fc;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        cursor: pointer;
+        transition: 0.2s;
+        font-family: "Outfit", sans-serif;
+      }
+      .chip-btn:hover {
+        background: rgba(99, 102, 241, 0.3);
+        color: #fff;
+        transform: translateY(-1px);
+      }
+      body.light .chip-btn {
+        background: rgba(99, 102, 241, 0.08);
+        color: #4f46e5;
+        border-color: rgba(99, 102, 241, 0.25);
+      }
+      body.light .chip-btn:hover {
+        background: rgba(99, 102, 241, 0.18);
+        color: #312e81;
+      }
 
-        /* ---- Gemini AI Config panel ---- */
-        body.light .api-config {
-            background: rgba(238,242,255,0.92) !important;
-            border-bottom: 1px solid rgba(99,102,241,0.20) !important;
-        }
-        body.light .api-config label {
-            color: #312e81 !important;
-            font-weight: 600;
-        }
-        body.light .api-config input {
-            background: rgba(255,255,255,0.95) !important;
-            border: 1px solid rgba(99,102,241,0.30) !important;
-            color: #0f172a !important;
-        }
-        body.light .api-config input::placeholder {
-            color: #94a3b8 !important;
-        }
+      /* ---- Gemini AI Config panel ---- */
+      body.light .api-config {
+        background: rgba(238, 242, 255, 0.92) !important;
+        border-bottom: 1px solid rgba(99, 102, 241, 0.2) !important;
+      }
+      body.light .api-config label {
+        color: #312e81 !important;
+        font-weight: 600;
+      }
+      body.light .api-config input {
+        background: rgba(255, 255, 255, 0.95) !important;
+        border: 1px solid rgba(99, 102, 241, 0.3) !important;
+        color: #0f172a !important;
+      }
+      body.light .api-config input::placeholder {
+        color: #94a3b8 !important;
+      }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Outfit', sans-serif;
-            background: radial-gradient(circle at top right, #1e1b4b, #05070a, #0c0a09);
-            color: var(--text-main);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            position: relative;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body::before, body::after {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            background: var(--primary);
-            filter: blur(150px);
-            opacity: 0.15;
-            z-index: -1;
-        }
-        body::before { top: -100px; right: -100px; }
-        body::after { bottom: -100px; left: -100px; background: var(--secondary); }
+      body {
+        font-family: "Outfit", sans-serif;
+        background: radial-gradient(
+          circle at top right,
+          #1e1b4b,
+          #05070a,
+          #0c0a09
+        );
+        color: var(--text-main);
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+      }
 
-        header {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border);
-            padding: 16px 30px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            z-index: 100;
-        }
+      body::before,
+      body::after {
+        content: "";
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+        background: var(--primary);
+        filter: blur(150px);
+        opacity: 0.15;
+        z-index: -1;
+      }
+      body::before {
+        top: -100px;
+        right: -100px;
+      }
+      body::after {
+        bottom: -100px;
+        left: -100px;
+        background: var(--secondary);
+      }
 
-        .logo-container {
-            position: relative;
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            box-shadow: 0 0 20px var(--primary-glow);
-        }
+      header {
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--glass-border);
+        padding: 16px 30px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        z-index: 100;
+      }
 
-        .hinfo { flex: 1; }
-        .hinfo h1 { 
-            font-size: 1.25rem; 
-            font-weight: 700; 
-            letter-spacing: -0.02em;
-            background: linear-gradient(to right, #fff, var(--text-dim));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .hinfo p { font-size: 0.75rem; color: var(--text-dim); margin-top: 2px; }
+      .logo-container {
+        position: relative;
+        width: 45px;
+        height: 45px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        box-shadow: 0 0 20px var(--primary-glow);
+      }
 
-        .hbadge {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--glass-border);
-            color: var(--accent);
-            padding: 4px 14px;
-            border-radius: 100px;
-            font-size: 0.7rem;
-            font-weight: 600;
-        }
+      .hinfo {
+        flex: 1;
+      }
+      .hinfo h1 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        background: linear-gradient(to right, #fff, var(--text-dim));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .hinfo p {
+        font-size: 0.75rem;
+        color: var(--text-dim);
+        margin-top: 2px;
+      }
 
-        .gemini-badge {
-            background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(99, 102, 241, 0.2));
-            border: 1px solid rgba(124, 58, 237, 0.4);
-            color: #c084fc;
-            padding: 4px 14px;
-            border-radius: 100px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            margin-left: 10px;
-            box-shadow: 0 0 10px rgba(124, 58, 237, 0.2);
-        }
+      .hbadge {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--glass-border);
+        color: var(--accent);
+        padding: 4px 14px;
+        border-radius: 100px;
+        font-size: 0.7rem;
+        font-weight: 600;
+      }
 
-        .api-config {
-            background: rgba(0,0,0,0.4);
-            padding: 0 30px;
-            display: flex;
-            gap: 12px;
-            align-items: center;
-            border-bottom: 1px solid var(--glass-border);
-            overflow: hidden;
-            max-height: 0;
-            transition: max-height 0.35s ease, padding 0.35s ease;
-        }
-        .api-config.open {
-            max-height: 60px;
-            padding: 10px 30px;
-        }
-        .api-config label { font-size: 0.75rem; color: var(--text-dim); }
-        .api-config input {
-            flex: 1;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--glass-border);
-            color: #fff;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            outline: none;
-            transition: 0.3s;
-        }
-        .api-config input:focus { border-color: var(--primary); box-shadow: 0 0 10px var(--primary-glow); }
-        .api-config button {
-            background: var(--primary);
-            color: #fff;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .api-config button:hover { transform: translateY(-1px); box-shadow: 0 5px 15px var(--primary-glow); }
+      .gemini-badge {
+        background: linear-gradient(
+          135deg,
+          rgba(124, 58, 237, 0.2),
+          rgba(99, 102, 241, 0.2)
+        );
+        border: 1px solid rgba(124, 58, 237, 0.4);
+        color: #c084fc;
+        padding: 4px 14px;
+        border-radius: 100px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        margin-left: 10px;
+        box-shadow: 0 0 10px rgba(124, 58, 237, 0.2);
+      }
 
-        .main { display: flex; flex: 1; overflow: hidden; padding: 20px; gap: 20px; }
+      .api-config {
+        background: rgba(0, 0, 0, 0.4);
+        padding: 0 30px;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        border-bottom: 1px solid var(--glass-border);
+        overflow: hidden;
+        max-height: 0;
+        transition:
+          max-height 0.35s ease,
+          padding 0.35s ease;
+      }
+      .api-config.open {
+        max-height: 60px;
+        padding: 10px 30px;
+      }
+      .api-config label {
+        font-size: 0.75rem;
+        color: var(--text-dim);
+      }
+      .api-config input {
+        flex: 1;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--glass-border);
+        color: #fff;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 0.8rem;
+        outline: none;
+        transition: 0.3s;
+      }
+      .api-config input:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 10px var(--primary-glow);
+      }
+      .api-config button {
+        background: var(--primary);
+        color: #fff;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 8px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .api-config button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 5px 15px var(--primary-glow);
+      }
 
+      .main {
+        display: flex;
+        flex: 1;
+        overflow: hidden;
+        padding: 20px;
+        gap: 20px;
+      }
+
+      .sidebar {
+        width: 210px;
+        background: var(--glass-bg);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        padding: 14px 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        overflow-y: auto;
+      }
+      .sidebar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .sidebar::-webkit-scrollbar-thumb {
+        background: var(--glass-border);
+        border-radius: 10px;
+      }
+
+      .stitle {
+        font-size: 0.65rem;
+        color: var(--text-dim);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        margin-bottom: 6px;
+        padding: 0 8px;
+      }
+      .qbtn {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid transparent;
+        border-left: 3px solid transparent;
+        color: var(--text-dim);
+        padding: 10px 12px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 0.82rem;
+        font-family: "Outfit", sans-serif;
+        font-weight: 500;
+        text-align: left;
+        transition: all 0.25s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        line-height: 1.3;
+        width: 100%;
+      }
+      .qbtn:hover {
+        background: rgba(99, 102, 241, 0.12);
+        border-color: rgba(99, 102, 241, 0.25);
+        border-left-color: var(--primary);
+        color: #fff;
+        transform: translateX(4px);
+        box-shadow: 0 2px 12px rgba(99, 102, 241, 0.15);
+      }
+      .qbtn:active {
+        transform: translateX(2px) scale(0.98);
+      }
+
+      .chat-wrap {
+        flex: 1;
+        background: var(--glass-bg);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--glass-border);
+        border-radius: 24px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      .messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .messages::-webkit-scrollbar {
+        width: 5px;
+      }
+      .messages::-webkit-scrollbar-thumb {
+        background: var(--glass-border);
+        border-radius: 10px;
+      }
+
+      .msg {
+        display: flex;
+        gap: 14px;
+        max-width: 80%;
+        animation: slideUp 0.4s ease-out;
+      }
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .msg.user {
+        align-self: flex-end;
+        flex-direction: row-reverse;
+      }
+
+      .av {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        flex-shrink: 0;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+      .bot .av {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+      }
+      .user .av {
+        background: linear-gradient(135deg, #10b981, #3b82f6);
+      }
+
+      .bub {
+        padding: 14px 18px;
+        border-radius: 18px;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        position: relative;
+        word-break: break-word;
+      }
+      .bub strong {
+        color: #a5b4fc;
+        font-weight: 700;
+      }
+      .bub em {
+        color: #93c5fd;
+        font-style: italic;
+      }
+      .bot .bub {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--glass-border);
+        border-top-left-radius: 4px;
+        color: #e2e8f0;
+      }
+      .user .bub {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-top-right-radius: 4px;
+        color: #fff;
+        box-shadow: 0 5px 20px rgba(99, 102, 241, 0.2);
+      }
+
+      .msg-footer {
+        display: flex;
+        gap: 8px;
+        margin-top: 6px;
+        padding-left: 52px;
+        align-items: center;
+      }
+      .copy-btn {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--glass-border);
+        color: var(--text-dim);
+        padding: 4px 10px;
+        border-radius: 100px;
+        cursor: pointer;
+        font-size: 0.68rem;
+        transition: all 0.2s;
+        margin-left: auto;
+      }
+      .copy-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+      }
+      .fb-btn {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--glass-border);
+        color: var(--text-dim);
+        padding: 5px 14px;
+        border-radius: 100px;
+        cursor: pointer;
+        font-size: 0.72rem;
+        transition: all 0.25s ease;
+        user-select: none;
+      }
+      .fb-btn:hover:not(:disabled) {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        transform: scale(1.05);
+      }
+      .fb-btn:disabled {
+        cursor: default;
+        opacity: 0.7;
+      }
+      .fb-btn.active-good {
+        background: rgba(22, 163, 74, 0.25);
+        border-color: #16a34a;
+        color: #4ade80;
+        box-shadow: 0 0 10px rgba(22, 163, 74, 0.2);
+      }
+      .fb-btn.active-bad {
+        background: rgba(220, 38, 38, 0.25);
+        border-color: #dc2626;
+        color: #f87171;
+        box-shadow: 0 0 10px rgba(220, 38, 38, 0.2);
+      }
+
+      .ticket-tag {
+        font-size: 0.7rem;
+        color: var(--text-dim);
+        margin-left: 10px;
+        align-self: center;
+      }
+
+      .input-wrap {
+        padding: 20px 25px;
+        background: rgba(0, 0, 0, 0.2);
+        border-top: 1px solid var(--glass-border);
+        display: flex;
+        gap: 15px;
+        align-items: center;
+      }
+      .input-container {
+        flex: 1;
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+      .input-container input {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--glass-border);
+        color: #fff;
+        padding: 15px 20px;
+        border-radius: 16px;
+        font-size: 1rem;
+        outline: none;
+        transition: 0.3s;
+        font-family: "Inter", sans-serif;
+      }
+      .input-container input:focus {
+        border-color: var(--primary);
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
+      }
+      .input-container input:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        background: rgba(0, 0, 0, 0.2);
+      }
+
+      .send-btn {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border: none;
+        color: #fff;
+        width: 50px;
+        height: 50px;
+        border-radius: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        transition: 0.3s;
+        box-shadow: 0 5px 15px var(--primary-glow);
+        opacity: 0.5;
+        pointer-events: none;
+      }
+      .send-btn.active {
+        opacity: 1;
+        pointer-events: auto;
+        animation: pulse-glow 2s infinite;
+      }
+      @keyframes pulse-glow {
+        0% {
+          box-shadow: 0 5px 15px var(--primary-glow);
+        }
+        50% {
+          box-shadow: 0 5px 25px var(--primary);
+        }
+        100% {
+          box-shadow: 0 5px 15px var(--primary-glow);
+        }
+      }
+      .send-btn:hover {
+        transform: scale(1.05) rotate(-10deg);
+        box-shadow: 0 8px 25px var(--primary-glow);
+        animation: none;
+      }
+
+      .stats-bar {
+        padding: 10px 25px;
+        display: flex;
+        gap: 20px;
+        font-size: 0.75rem;
+        color: var(--text-dim);
+        background: rgba(0, 0, 0, 0.1);
+      }
+      .stat span {
+        color: var(--accent);
+        font-weight: 700;
+        margin-left: 3px;
+      }
+
+      .history-panel {
+        width: 300px;
+        background: var(--glass-bg);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .hp-title {
+        padding: 18px 20px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        border-bottom: 1px solid var(--glass-border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .hp-list {
+        flex: 1;
+        overflow-y: auto;
+        padding: 15px;
+      }
+      .hp-item {
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 14px;
+        padding: 12px;
+        margin-bottom: 12px;
+        border: 1px solid transparent;
+        transition: 0.3s;
+        cursor: pointer;
+      }
+      .hp-item:hover {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: var(--glass-border);
+      }
+      .hp-item .hn {
+        font-size: 0.7rem;
+        color: var(--accent);
+        margin-bottom: 5px;
+        font-weight: 600;
+      }
+      .hp-item .hq {
+        font-size: 0.85rem;
+        color: #f1f5f9;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .hp-item .hr {
+        font-size: 0.7rem;
+        color: var(--text-dim);
+        margin-top: 5px;
+      }
+
+      .typing-dots span {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        background: var(--text-dim);
+        border-radius: 50%;
+        margin: 0 2px;
+        animation: dot 1.4s infinite;
+      }
+      .typing-dots span:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .typing-dots span:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      @keyframes dot {
+        0%,
+        80%,
+        100% {
+          transform: scale(1);
+          opacity: 0.3;
+        }
+        40% {
+          transform: scale(1.4);
+          opacity: 1;
+        }
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes typeCursor {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* Scroll to bottom button */
+      .scroll-btn {
+        position: absolute;
+        bottom: 90px;
+        right: 20px;
+        width: 36px;
+        height: 36px;
+        background: var(--primary);
+        border: none;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px var(--primary-glow);
+        transition: all 0.3s;
+        z-index: 10;
+      }
+      .scroll-btn.visible {
+        display: flex;
+      }
+      .scroll-btn:hover {
+        transform: scale(1.1);
+      }
+
+      /* Clear chat button */
+      .clear-btn {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--glass-border);
+        color: var(--text-dim);
+        padding: 4px 10px;
+        border-radius: 100px;
+        cursor: pointer;
+        font-size: 0.68rem;
+        transition: all 0.2s;
+      }
+      .clear-btn:hover {
+        background: rgba(239, 68, 68, 0.15);
+        border-color: rgba(239, 68, 68, 0.4);
+        color: #f87171;
+      }
+
+      /* Typing cursor */
+      .typing-cursor::after {
+        content: "▌";
+        animation: typeCursor 0.8s infinite;
+        font-size: 0.9em;
+      }
+
+      @media (max-width: 1024px) {
+        .history-panel {
+          display: none;
+        }
+      }
+      @media (max-width: 768px) {
+        .main {
+          padding: 10px;
+          flex-direction: column;
+          gap: 10px;
+        }
         .sidebar {
-            width: 210px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 14px 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            overflow-y: auto;
+          width: 100%;
+          flex-direction: row;
+          overflow-x: auto;
+          overflow-y: hidden;
+          padding: 10px;
+          border-radius: 16px;
         }
-        .sidebar::-webkit-scrollbar { width: 4px; }
-        .sidebar::-webkit-scrollbar-thumb { background: var(--glass-border); border-radius: 10px; }
-
-        .stitle {
-            font-size: 0.65rem;
-            color: var(--text-dim);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            margin-bottom: 6px;
-            padding: 0 8px;
+        .sidebar::-webkit-scrollbar {
+          height: 4px;
+        }
+        .stitle,
+        .sidebar-search {
+          display: none;
         }
         .qbtn {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid transparent;
-            border-left: 3px solid transparent;
-            color: var(--text-dim);
-            padding: 10px 12px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 0.82rem;
-            font-family: 'Outfit', sans-serif;
-            font-weight: 500;
-            text-align: left;
-            transition: all 0.25s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            line-height: 1.3;
-            width: 100%;
+          white-space: nowrap;
+          width: auto;
+          padding: 8px 12px;
         }
-        .qbtn:hover {
-            background: rgba(99, 102, 241, 0.12);
-            border-color: rgba(99, 102, 241, 0.25);
-            border-left-color: var(--primary);
-            color: #fff;
-            transform: translateX(4px);
-            box-shadow: 0 2px 12px rgba(99,102,241,0.15);
+        header {
+          padding: 12px 20px;
         }
-        .qbtn:active {
-            transform: translateX(2px) scale(0.98);
+        .hinfo h1 {
+          font-size: 1.1rem;
         }
-
-        .chat-wrap {
-            flex: 1;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        .hbadge,
+        .gemini-badge {
+          display: none;
         }
-
-        .messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .messages::-webkit-scrollbar { width: 5px; }
-        .messages::-webkit-scrollbar-thumb { background: var(--glass-border); border-radius: 10px; }
-
-        .msg { display: flex; gap: 14px; max-width: 80%; animation: slideUp 0.4s ease-out; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .msg.user { align-self: flex-end; flex-direction: row-reverse; }
-        
-        .av {
-            width: 38px;
-            height: 38px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            flex-shrink: 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        .bot .av { background: linear-gradient(135deg, var(--primary), var(--secondary)); }
-        .user .av { background: linear-gradient(135deg, #10b981, #3b82f6); }
-
-        .bub {
-            padding: 14px 18px;
-            border-radius: 18px;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            position: relative;
-            word-break: break-word;
-        }
-        .bub strong { color: #a5b4fc; font-weight: 700; }
-        .bub em { color: #93c5fd; font-style: italic; }
-        .bot .bub { 
-            background: rgba(255,255,255,0.05); 
-            border: 1px solid var(--glass-border); 
-            border-top-left-radius: 4px;
-            color: #e2e8f0;
-        }
-        .user .bub { 
-            background: linear-gradient(135deg, var(--primary), var(--secondary)); 
-            border-top-right-radius: 4px;
-            color: #fff;
-            box-shadow: 0 5px 20px rgba(99, 102, 241, 0.2);
-        }
-
-        .msg-footer { display: flex; gap: 8px; margin-top: 6px; padding-left: 52px; align-items: center; }
-        .copy-btn {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--glass-border);
-            color: var(--text-dim);
-            padding: 4px 10px;
-            border-radius: 100px;
-            cursor: pointer;
-            font-size: 0.68rem;
-            transition: all 0.2s;
-            margin-left: auto;
-        }
-        .copy-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
-        .fb-btn {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--glass-border);
-            color: var(--text-dim);
-            padding: 5px 14px;
-            border-radius: 100px;
-            cursor: pointer;
-            font-size: 0.72rem;
-            transition: all 0.25s ease;
-            user-select: none;
-        }
-        .fb-btn:hover:not(:disabled) { background: rgba(255,255,255,0.1); color: #fff; transform: scale(1.05); }
-        .fb-btn:disabled { cursor: default; opacity: 0.7; }
-        .fb-btn.active-good { background: rgba(22, 163, 74, 0.25); border-color: #16a34a; color: #4ade80; box-shadow: 0 0 10px rgba(22,163,74,0.2); }
-        .fb-btn.active-bad { background: rgba(220, 38, 38, 0.25); border-color: #dc2626; color: #f87171; box-shadow: 0 0 10px rgba(220,38,38,0.2); }
-        
-        .ticket-tag { font-size: 0.7rem; color: var(--text-dim); margin-left: 10px; align-self: center; }
-
-        .input-wrap {
-            padding: 20px 25px;
-            background: rgba(0,0,0,0.2);
-            border-top: 1px solid var(--glass-border);
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-        .input-container {
-            flex: 1;
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-        .input-container input {
-            width: 100%;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--glass-border);
-            color: #fff;
-            padding: 15px 20px;
-            border-radius: 16px;
-            font-size: 1rem;
-            outline: none;
-            transition: 0.3s;
-            font-family: 'Inter', sans-serif;
-        }
-        .input-container input:focus {
-            border-color: var(--primary);
-            background: rgba(255,255,255,0.08);
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
-        }
-        .input-container input:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            background: rgba(0,0,0,0.2);
-        }
-
-        .send-btn {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border: none;
-            color: #fff;
-            width: 50px;
-            height: 50px;
-            border-radius: 14px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            transition: 0.3s;
-            box-shadow: 0 5px 15px var(--primary-glow);
-            opacity: 0.5;
-            pointer-events: none;
-        }
-        .send-btn.active {
-            opacity: 1;
-            pointer-events: auto;
-            animation: pulse-glow 2s infinite;
-        }
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 5px 15px var(--primary-glow); }
-            50% { box-shadow: 0 5px 25px var(--primary); }
-            100% { box-shadow: 0 5px 15px var(--primary-glow); }
-        }
-        .send-btn:hover { transform: scale(1.05) rotate(-10deg); box-shadow: 0 8px 25px var(--primary-glow); animation: none; }
-
-        .stats-bar {
-            padding: 10px 25px;
-            display: flex;
-            gap: 20px;
-            font-size: 0.75rem;
-            color: var(--text-dim);
-            background: rgba(0,0,0,0.1);
-        }
-        .stat span { color: var(--accent); font-weight: 700; margin-left: 3px; }
-
-        .history-panel {
-            width: 300px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-        .hp-title {
-            padding: 18px 20px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            border-bottom: 1px solid var(--glass-border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .hp-list { flex: 1; overflow-y: auto; padding: 15px; }
-        .hp-item {
-            background: rgba(255,255,255,0.03);
-            border-radius: 14px;
-            padding: 12px;
-            margin-bottom: 12px;
-            border: 1px solid transparent;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-        .hp-item:hover { background: rgba(255,255,255,0.06); border-color: var(--glass-border); }
-        .hp-item .hn { font-size: 0.7rem; color: var(--accent); margin-bottom: 5px; font-weight: 600; }
-        .hp-item .hq { font-size: 0.85rem; color: #f1f5f9; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .hp-item .hr { font-size: 0.7rem; color: var(--text-dim); margin-top: 5px; }
-
-        .typing-dots span { display: inline-block; width: 6px; height: 6px; background: var(--text-dim); border-radius: 50%; margin: 0 2px; animation: dot 1.4s infinite; }
-        .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
-        .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes dot { 0%, 80%, 100% { transform: scale(1); opacity: 0.3; } 40% { transform: scale(1.4); opacity: 1; } }
-        @keyframes fadeInUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
-        @keyframes typeCursor { 0%,100%{opacity:1} 50%{opacity:0} }
-
-        /* Scroll to bottom button */
-        .scroll-btn {
-            position: absolute;
-            bottom: 90px;
-            right: 20px;
-            width: 36px;
-            height: 36px;
-            background: var(--primary);
-            border: none;
-            border-radius: 50%;
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px var(--primary-glow);
-            transition: all 0.3s;
-            z-index: 10;
-        }
-        .scroll-btn.visible { display: flex; }
-        .scroll-btn:hover { transform: scale(1.1); }
-
-        /* Clear chat button */
-        .clear-btn {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid var(--glass-border);
-            color: var(--text-dim);
-            padding: 4px 10px;
-            border-radius: 100px;
-            cursor: pointer;
-            font-size: 0.68rem;
-            transition: all 0.2s;
-        }
-        .clear-btn:hover { background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.4); color: #f87171; }
-
-        /* Typing cursor */
-        .typing-cursor::after { content:'▌'; animation: typeCursor 0.8s infinite; font-size: 0.9em; }
-
-        @media (max-width: 1024px) {
-            .history-panel { display: none; }
-        }
-        @media (max-width: 768px) {
-            .main { padding: 10px; flex-direction: column; gap: 10px; }
-            .sidebar { 
-                width: 100%; 
-                flex-direction: row; 
-                overflow-x: auto; 
-                overflow-y: hidden;
-                padding: 10px;
-                border-radius: 16px;
-            }
-            .sidebar::-webkit-scrollbar { height: 4px; }
-            .stitle, .sidebar-search { display: none; }
-            .qbtn { white-space: nowrap; width: auto; padding: 8px 12px; }
-            header { padding: 12px 20px; }
-            .hinfo h1 { font-size: 1.1rem; }
-            .hbadge, .gemini-badge { display: none; }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div class="logo-container">🖥️</div>
-        <div class="hinfo">
-            <h1 data-i18n="title">IT Support AI</h1>
-            <p data-i18n="subtitle">Intelligence HelpDesk System</p>
-        </div>
-        <span class="hbadge" id="faqCount" data-i18n="kbLoading">Loading Knowledge...</span>
-        <div class="gemini-badge" id="aiLabel" data-i18n="engineKeyword">Keyword Engine</div>
-        <button onclick="toggleLang()" id="langBtn" title="Switch Language" style="background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);color:var(--text-dim);padding:5px 12px;border-radius:100px;cursor:pointer;font-size:0.7rem;transition:0.2s;margin-left:8px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">🌐 EN</button>
-        <button onclick="toggleAIConfig()" title="AI Config" style="background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);color:var(--text-dim);padding:5px 12px;border-radius:100px;cursor:pointer;font-size:0.7rem;transition:0.2s;margin-left:4px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">⚙️ AI</button>
-        <button id="themeBtn" onclick="toggleTheme()" title="Toggle Dark/Light Mode" style="background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);color:var(--text-dim);padding:5px 12px;border-radius:100px;cursor:pointer;font-size:0.7rem;transition:0.2s;margin-left:4px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">🌙 Dark</button>
+      <div class="logo-container">🖥️</div>
+      <div class="hinfo">
+        <h1 data-i18n="title">IT Support AI</h1>
+        <p data-i18n="subtitle">Intelligence HelpDesk System</p>
+      </div>
+      <span class="hbadge" id="faqCount" data-i18n="kbLoading"
+        >Loading Knowledge...</span
+      >
+      <div class="gemini-badge" id="aiLabel" data-i18n="engineKeyword">
+        Keyword Engine
+      </div>
+      <button
+        onclick="toggleLang()"
+        id="langBtn"
+        title="Switch Language"
+        style="
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid var(--glass-border);
+          color: var(--text-dim);
+          padding: 5px 12px;
+          border-radius: 100px;
+          cursor: pointer;
+          font-size: 0.7rem;
+          transition: 0.2s;
+          margin-left: 8px;
+        "
+        onmouseover="this.style.color = '#fff'"
+        onmouseout="this.style.color = 'var(--text-dim)'"
+      >
+        🌐 EN
+      </button>
+      <button
+        onclick="toggleAIConfig()"
+        title="AI Config"
+        style="
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid var(--glass-border);
+          color: var(--text-dim);
+          padding: 5px 12px;
+          border-radius: 100px;
+          cursor: pointer;
+          font-size: 0.7rem;
+          transition: 0.2s;
+          margin-left: 4px;
+        "
+        onmouseover="this.style.color = '#fff'"
+        onmouseout="this.style.color = 'var(--text-dim)'"
+      >
+        ⚙️ AI
+      </button>
+      <button
+        id="themeBtn"
+        onclick="toggleTheme()"
+        title="Toggle Dark/Light Mode"
+        style="
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid var(--glass-border);
+          color: var(--text-dim);
+          padding: 5px 12px;
+          border-radius: 100px;
+          cursor: pointer;
+          font-size: 0.7rem;
+          transition: 0.2s;
+          margin-left: 4px;
+        "
+        onmouseover="this.style.color = '#fff'"
+        onmouseout="this.style.color = 'var(--text-dim)'"
+      >
+        🌙 Dark
+      </button>
     </header>
 
     <div class="api-config">
-        <label data-i18n="aiConfigTitle">🤖 Gemini AI Config:</label>
-        <input type="password" id="geminiKey" data-i18n-placeholder="aiConfigPlaceholder" placeholder="Paste Gemini API Key here to enable AI responses...">
-        <button onclick="saveKey()" data-i18n="aiConfigSave">Activate AI</button>
+      <label data-i18n="aiConfigTitle">🤖 Gemini AI Config:</label>
+      <input
+        type="password"
+        id="geminiKey"
+        data-i18n-placeholder="aiConfigPlaceholder"
+        placeholder="Paste Gemini API Key here to enable AI responses..."
+      />
+      <button onclick="saveKey()" data-i18n="aiConfigSave">Activate AI</button>
     </div>
 
     <div class="main">
-        <div class="sidebar">
-            <div class="stitle" data-i18n="quickSolutions">Quick Solutions</div>
-            <div class="sidebar-search">
-                <input type="text" id="catSearch" data-i18n-placeholder="searchPlaceholder" placeholder="🔍 Search categories..." oninput="filterCats()">
-            </div>
-            <button class="qbtn" onclick="ask('เครื่องพิมพ์พิมพ์ไม่ออก')" data-i18n="catPrinter">🖨️ เครื่องพิมพ์</button>
-            <button class="qbtn" onclick="ask('เชื่อมต่อ WiFi ไม่ได้')" data-i18n="catWifi">📶 WiFi/เน็ต</button>
-            <button class="qbtn" onclick="ask('ลืมรหัสผ่าน')" data-i18n="catPassword">🔑 ลืมรหัสผ่าน</button>
-            <button class="qbtn" onclick="ask('คอมช้ามาก')" data-i18n="catSlow">💻 คอมช้า</button>
-            <button class="qbtn" onclick="ask('ส่งอีเมลไม่ได้')" data-i18n="catEmail">📧 อีเมล</button>
-            <button class="qbtn" onclick="ask('VPN เชื่อมต่อไม่ได้')" data-i18n="catVPN">🔐 VPN</button>
-            <button class="qbtn" onclick="ask('Zoom กล้องไม่ทำงาน')" data-i18n="catVideo">📹 Video Call</button>
-            <button class="qbtn" onclick="ask('ไฟล์ถูกลบกู้คืนยังไง')" data-i18n="catFile">💾 กู้ไฟล์</button>
-            <button class="qbtn" onclick="ask('Teams เปิดไม่ขึ้น')" data-i18n="catTeams">💬 Teams</button>
-            <button class="qbtn" onclick="ask('เสียบ USB แล้วไม่ขึ้น')" data-i18n="catHardware">🔌 USB/Hardware</button>
-            <button class="qbtn" onclick="ask('Map Network Drive ทำยังไง')" data-i18n="catNetworkDrive">🗂️ Network Drive</button>
-            <button class="qbtn" onclick="ask('Office 365 activation failed')" data-i18n="catOffice">📊 Office 365</button>
-            <button class="qbtn" onclick="ask('C Drive เต็ม')" data-i18n="catWindows">🪟 Windows</button>
-            <button class="qbtn" onclick="ask('ต่อ 2 จอ Dual Monitor')" data-i18n="catMonitor">🖥️ Dual Monitor</button>
-            <button class="qbtn" onclick="ask('พนักงานใหม่ต้องทำอะไร')" data-i18n="catNewEmp">👤 New Employee</button>
-            <button class="qbtn" onclick="ask('ติดตั้งโปรแกรมใหม่')" data-i18n="catSoftware">📦 ลงโปรแกรม</button>
+      <div class="sidebar">
+        <div class="stitle" data-i18n="quickSolutions">Quick Solutions</div>
+        <div class="sidebar-search">
+          <input
+            type="text"
+            id="catSearch"
+            data-i18n-placeholder="searchPlaceholder"
+            placeholder="🔍 Search categories..."
+            oninput="filterCats()"
+          />
+        </div>
+        <button
+          class="qbtn"
+          onclick="ask('เครื่องพิมพ์พิมพ์ไม่ออก')"
+          data-i18n="catPrinter"
+        >
+          🖨️ เครื่องพิมพ์
+        </button>
+        <button
+          class="qbtn"
+          onclick="ask('เชื่อมต่อ WiFi ไม่ได้')"
+          data-i18n="catWifi"
+        >
+          📶 WiFi/เน็ต
+        </button>
+        <button
+          class="qbtn"
+          onclick="ask('ลืมรหัสผ่าน')"
+          data-i18n="catPassword"
+        >
+          🔑 ลืมรหัสผ่าน
+        </button>
+        <button class="qbtn" onclick="ask('คอมช้ามาก')" data-i18n="catSlow">
+          💻 คอมช้า
+        </button>
+        <button
+          class="qbtn"
+          onclick="ask('ส่งอีเมลไม่ได้')"
+          data-i18n="catEmail"
+        >
+          📧 อีเมล
+        </button>
+        <button
+          class="qbtn"
+          onclick="ask('VPN เชื่อมต่อไม่ได้')"
+          data-i18n="catVPN"
+        >
+          🔐 VPN
+        </button>
+        <button
+          class="qbtn"
+          onclick="ask('Zoom กล้องไม่ทำงาน')"
+          data-i18n="catVideo"
+        >
+          📹 Video Call
+        </button>
+        <button
+          class="qbtn"
+          onclick="ask('ไฟล์ถูกลบกู้คืนยังไง')"
+          data-i18n="catFile"
+        >
+          💾 กู้ไฟล์
+        </button>
+        <button
+          class="qbtn"
+          onclick="ask('Teams เปิดไม่ขึ้น')"
+          data-i18n="catTeams"
+        >
+          💬 Teams
+        </button>
+        <button
+          class="qbtn"
+          onclick="ask('เสียบ USB แล้วไม่ขึ้น')"
+          data-i18n="catHardware"
+        >
+          🔌 USB/Hardware
+        </button>
+        <button
+          class="qbtn"
+          onclick="ask('Map Network Drive ทำยังไง')"
+          data-i18n="catNetworkDrive"
+        >
+          🗂️ Network Drive
+        </button>
+        <button
+          class="qbtn"
+          onclick="ask('Office 365 activation failed')"
+          data-i18n="catOffice"
+        >
+          📊 Office 365
+        </button>
+        <button
+          class="qbtn"
+          onclick="ask('C Drive เต็ม')"
+          data-i18n="catWindows"
+        >
+          🪟 Windows
+        </button>
+        <button
+          class="qbtn"
+          onclick="ask('ต่อ 2 จอ Dual Monitor')"
+          data-i18n="catMonitor"
+        >
+          🖥️ Dual Monitor
+        </button>
+        <button
+          class="qbtn"
+          onclick="ask('พนักงานใหม่ต้องทำอะไร')"
+          data-i18n="catNewEmp"
+        >
+          👤 New Employee
+        </button>
+        <button
+          class="qbtn"
+          onclick="ask('ติดตั้งโปรแกรมใหม่')"
+          data-i18n="catSoftware"
+        >
+          📦 ลงโปรแกรม
+        </button>
+      </div>
+
+      <div class="chat-wrap">
+        <div class="messages" id="messages" onscroll="checkScrollBtn()">
+          <div class="msg bot" id="welcomeMsg">
+            <div class="av">🤖</div>
+            <div class="bub" id="welcomeBub"></div>
+          </div>
+        </div>
+        <button
+          class="scroll-btn"
+          id="scrollBtn"
+          onclick="scrollToBottom()"
+          title="เลื่อนลงล่าง"
+        >
+          ↓
+        </button>
+
+        <div class="input-wrap">
+          <div class="input-container">
+            <input
+              id="inp"
+              data-i18n-placeholder="chatInputPlaceholder"
+              placeholder="Type your symptoms or IT issues..."
+              onkeydown="
+                if (event.key === 'Enter') {
+                  send();
+                  document
+                    .querySelector('.send-btn')
+                    .classList.remove('active');
+                }
+              "
+              oninput="
+                document
+                  .querySelector('.send-btn')
+                  .classList.toggle('active', this.value.trim().length > 0)
+              "
+            />
+          </div>
+          <button
+            class="send-btn"
+            onclick="
+              send();
+              this.classList.remove('active');
+            "
+            title="Send Message (Enter)"
+          >
+            🚀
+          </button>
         </div>
 
-        <div class="chat-wrap">
-            <div class="messages" id="messages" onscroll="checkScrollBtn()">
-                <div class="msg bot" id="welcomeMsg">
-                    <div class="av">🤖</div>
-                    <div class="bub" id="welcomeBub"></div>
-                </div>
-            </div>
-            <button class="scroll-btn" id="scrollBtn" onclick="scrollToBottom()" title="เลื่อนลงล่าง">↓</button>
-
-            <div class="input-wrap">
-                <div class="input-container">
-                    <input id="inp" data-i18n-placeholder="chatInputPlaceholder" placeholder="Type your symptoms or IT issues..." onkeydown="if(event.key==='Enter'){send(); document.querySelector('.send-btn').classList.remove('active');}" oninput="document.querySelector('.send-btn').classList.toggle('active', this.value.trim().length > 0)">
-                </div>
-                <button class="send-btn" onclick="send(); this.classList.remove('active');" title="Send Message (Enter)">🚀</button>
-            </div>
-
-            <div class="stats-bar">
-                <div class="stat"><span data-i18n="statTickets">Tickets</span>: <span id="sTicket">0</span></div>
-                <div class="stat"><span data-i18n="statHelpful">Helpful</span>: <span id="sGood">0</span></div>
-                <div class="stat"><span data-i18n="statIssues">Issues</span>: <span id="sBad">0</span></div>
-                <button class="clear-btn" onclick="clearChat()" data-i18n="btnClear" title="Clear chat history">🗑️ Clear Chat</button>
-                <div class="stat" style="margin-left:auto"><span data-i18n="statEngine">Engine</span>: <span id="sMode">Keyword Mode</span></div>
-            </div>
+        <div class="stats-bar">
+          <div class="stat">
+            <span data-i18n="statTickets">Tickets</span>:
+            <span id="sTicket">0</span>
+          </div>
+          <div class="stat">
+            <span data-i18n="statHelpful">Helpful</span>:
+            <span id="sGood">0</span>
+          </div>
+          <div class="stat">
+            <span data-i18n="statIssues">Issues</span>: <span id="sBad">0</span>
+          </div>
+          <button
+            class="clear-btn"
+            onclick="clearChat()"
+            data-i18n="btnClear"
+            title="Clear chat history"
+          >
+            🗑️ Clear Chat
+          </button>
+          <div class="stat" style="margin-left: auto">
+            <span data-i18n="statEngine">Engine</span>:
+            <span id="sMode">Keyword Mode</span>
+          </div>
         </div>
+      </div>
 
-        <div class="history-panel">
-            <div class="hp-title">
-                <span data-i18n="histTitle">🎫 Recent Tickets</span>
-                <span style="font-size: 0.6rem; color: var(--accent); cursor: pointer;" data-i18n="histViewAll">View All</span>
-            </div>
-            <div class="hp-list" id="histList">
-                <div style="padding:40px 20px;text-align:center;color:var(--text-dim);font-size:0.8rem" data-i18n="histEmpty">
-                    No active tickets
-                </div>
-            </div>
+      <div class="history-panel">
+        <div class="hp-title">
+          <span data-i18n="histTitle">🎫 Recent Tickets</span>
+          <span
+            style="font-size: 0.6rem; color: var(--accent); cursor: pointer"
+            data-i18n="histViewAll"
+            >View All</span
+          >
         </div>
+        <div class="hp-list" id="histList">
+          <div
+            style="
+              padding: 40px 20px;
+              text-align: center;
+              color: var(--text-dim);
+              font-size: 0.8rem;
+            "
+            data-i18n="histEmpty"
+          >
+            No active tickets
+          </div>
+        </div>
+      </div>
     </div>
     <script>
-    // Load kb.js — supports both Flask (localhost) and GitHub Pages
-    (function() {
-        var isFlask = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        var src = isFlask ? '/static/kb.js' : 'kb.js';
-        var s = document.createElement('script');
+      // Load kb.js — supports both Flask (localhost) and GitHub Pages
+      (function () {
+        var isFlask =
+          window.location.hostname === "localhost" ||
+          window.location.hostname === "127.0.0.1";
+        var src = isFlask ? "/static/kb.js" : "kb.js";
+        var s = document.createElement("script");
         s.src = src;
         s.defer = true;
         document.head.appendChild(s);
-    })();
+      })();
     </script>
     <script defer>
+      let geminiKey = localStorage.getItem("geminiKey") || "";
+      let ticketNum = 1000 + Math.floor(Math.random() * 1000);
+      let savedStats = JSON.parse(
+        localStorage.getItem("itbot_stats") || '{"tickets":0,"good":0,"bad":0}',
+      );
+      let stats = savedStats;
+      let history = JSON.parse(localStorage.getItem("itbot_history") || "[]");
 
-let geminiKey = localStorage.getItem('geminiKey') || '';
-let ticketNum = 1000 + Math.floor(Math.random()*1000);
-let savedStats = JSON.parse(localStorage.getItem('itbot_stats') || '{"tickets":0,"good":0,"bad":0}');
-let stats = savedStats;
-let history = JSON.parse(localStorage.getItem('itbot_history') || '[]');
+      const translations = {
+        en: {
+          title: "IT Support AI",
+          subtitle: "Intelligence HelpDesk System",
+          kbLoading: "Loading Knowledge...",
+          engineKeyword: "Keyword Engine",
+          engineGemini: "Gemini AI",
+          btnAi: "⚙️ AI",
+          btnThemeDark: "🌙 Dark",
+          btnThemeLight: "☀️ Light",
+          btnLang: "🌐 EN",
+          aiConfigTitle: "🤖 Gemini AI Config:",
+          aiConfigPlaceholder:
+            "Paste Gemini API Key here to enable AI responses...",
+          aiConfigSave: "Activate AI",
+          quickSolutions: "Quick Solutions",
+          searchPlaceholder: "🔍 Search categories...",
+          chatInputPlaceholder: "Type your symptoms or IT issues...",
+          statTickets: "Tickets",
+          statHelpful: "Helpful",
+          statIssues: "Issues",
+          statEngine: "Engine",
+          btnClear: "🗑️ Clear Chat",
+          histTitle: "🎫 Recent Tickets",
+          histViewAll: "View All",
+          histEmpty: "No active tickets",
+          welcomeTitle:
+            "Hello! 👋 I am <strong>IT Support AI</strong> ready to assist you.",
+          welcomeStats:
+            "📊 Current DB: <strong>{faq} FAQs</strong> in <strong>{cat} Categories</strong>",
+          welcomeCats: "📂 Main Categories: ",
+          welcomeAction:
+            "💡 Type your problem or choose from the menu on the left.",
+          confirmClear: "Are you sure you want to clear chat history?",
+          sysAiEnabled:
+            "✅ Gemini AI is now enabled! Real AI will now respond.",
+          sysAiDisabled: "ℹ️ Gemini AI disabled. Back to Keyword Mode.",
+          btnGood: "👍 Helpful",
+          btnBad: "👎 Not Match",
+          btnCopy: "📋 Copy",
+          btnCopied: "✅ Copied",
+          chipSolved: "✅ Solved",
+          chipNotSolved: "❌ Not working",
+          chipContact: "📞 Contact IT",
+          closingMsg:
+            "Happy to help! 💙 If you have more questions, feel free to ask anytime.\n\n*(System has recorded and closed this Ticket)*",
+          escalationMsg:
+            "I couldn't find a matching solution in the database. Please contact IT Support:\n📞 Call: ext. 1234\n📧 Email: it-support@company.com\n🕐 Hours: Mon-Fri 8:30-17:30",
+          catPrinter: "🖨️ Printer",
+          catWifi: "📶 WiFi/Net",
+          catPassword: "🔑 Password",
+          catSlow: "💻 Slow PC",
+          catEmail: "📧 Email",
+          catVPN: "🔐 VPN",
+          catVideo: "📹 Video Call",
+          catFile: "💾 Recover File",
+          catTeams: "💬 Teams",
+          catHardware: "🔌 Hardware",
+          catNetworkDrive: "🗂️ Network Drive",
+          catOffice: "📊 Office 365",
+          catWindows: "🪟 Windows",
+          catMonitor: "🖥️ Dual Monitor",
+          catNewEmp: "👤 New Employee",
+          catSoftware: "📦 Software",
+          sysError: "⚠️ System Error: ",
+        },
+        th: {
+          title: "IT Support AI",
+          subtitle: "ระบบช่วยเหลือไอทีอัจฉริยะ",
+          kbLoading: "กำลังโหลดข้อมูล...",
+          engineKeyword: "Keyword Engine",
+          engineGemini: "Gemini AI",
+          btnAi: "⚙️ AI",
+          btnThemeDark: "🌙 มืด",
+          btnThemeLight: "☀️ สว่าง",
+          btnLang: "🌐 TH",
+          aiConfigTitle: "🤖 ตั้งค่า Gemini AI:",
+          aiConfigPlaceholder:
+            "วาง API Key ของ Gemini ตรงนี้ เพื่อใช้ AI ช่วยตอบ...",
+          aiConfigSave: "เปิดใช้งาน AI",
+          quickSolutions: "วิธีแก้ปัญหาด่วน",
+          searchPlaceholder: "🔍 ค้นหาหมวดหมู่...",
+          chatInputPlaceholder: "พิมพ์อาการเสีย หรือปัญหาไอทีที่พบ...",
+          statTickets: "Ticket ทั้งหมด",
+          statHelpful: "แก้ได้",
+          statIssues: "แก้ไม่ได้",
+          statEngine: "ระบบ",
+          btnClear: "🗑️ ล้างแชท",
+          histTitle: "🎫 Ticket ล่าสุด",
+          histViewAll: "ดูทั้งหมด",
+          histEmpty: "ยังไม่มีรายการ",
+          welcomeTitle:
+            "สวัสดีครับ! 👋 ผม <strong>IT Support AI</strong> ยินดีให้บริการครับ",
+          welcomeStats:
+            "📊 ฐานข้อมูลปัจจุบัน: <strong>{faq} คำถาม</strong> ใน <strong>{cat} หมวด</strong>",
+          welcomeCats: "📂 หมวดหมู่หลัก: ",
+          welcomeAction:
+            "💡 พิมพ์ปัญหาของคุณ หรือเลือกจากเมนูด้านซ้ายได้เลยครับ",
+          confirmClear: "คุณแน่ใจหรือไม่ว่าต้องการล้างประวัติการสนทนาทั้งหมด?",
+          sysAiEnabled:
+            "✅ เปิดใช้งาน Gemini AI แล้ว! ระบบจะใช้ AI ในการตอบคำถาม",
+          sysAiDisabled: "ℹ️ ปิดการใช้งาน Gemini AI กลับสู่โหมด Keyword",
+          btnGood: "👍 แก้ได้",
+          btnBad: "👎 ไม่ตรง",
+          btnCopy: "📋 คัดลอก",
+          btnCopied: "✅ คัดลอกแล้ว",
+          chipSolved: "✅ แก้ไขได้แล้ว",
+          chipNotSolved: "❌ ยังทำไม่ได้",
+          chipContact: "📞 ติดต่อไอที",
+          closingMsg:
+            "ยินดีให้บริการครับ! 💙 หากมีปัญหาเพิ่มเติมสามารถสอบถามเข้ามาได้ตลอดเวลาครับ\n\n*(ระบบได้ทำการบันทึกและปิด Ticket นี้แล้ว)*",
+          escalationMsg:
+            "ไม่พบคำตอบที่ตรงกับปัญหาของคุณ กรุณาติดต่อ IT Support:\n📞 โทร: ext. 1234\n📧 อีเมล: it-support@company.com\n🕐 เวลา: จันทร์-ศุกร์ 8:30-17:30",
+          catPrinter: "🖨️ เครื่องพิมพ์",
+          catWifi: "📶 WiFi/เน็ต",
+          catPassword: "🔑 ลืมรหัสผ่าน",
+          catSlow: "💻 คอมช้า",
+          catEmail: "📧 อีเมล",
+          catVPN: "🔐 VPN",
+          catVideo: "📹 Video Call",
+          catFile: "💾 กู้ไฟล์",
+          catTeams: "💬 Teams",
+          catHardware: "🔌 Hardware",
+          catNetworkDrive: "🗂️ Network Drive",
+          catOffice: "📊 Office 365",
+          catWindows: "🪟 Windows",
+          catMonitor: "🖥️ Dual Monitor",
+          catNewEmp: "👤 พนักงานใหม่",
+          catSoftware: "📦 ลงโปรแกรม",
+          sysError: "⚠️ ระบบขัดข้อง: ",
+        },
+      };
 
-const translations = {
-  en: {
-    title: "IT Support AI",
-    subtitle: "Intelligence HelpDesk System",
-    kbLoading: "Loading Knowledge...",
-    engineKeyword: "Keyword Engine",
-    engineGemini: "Gemini AI",
-    btnAi: "⚙️ AI",
-    btnThemeDark: "🌙 Dark",
-    btnThemeLight: "☀️ Light",
-    btnLang: "🌐 EN",
-    aiConfigTitle: "🤖 Gemini AI Config:",
-    aiConfigPlaceholder: "Paste Gemini API Key here to enable AI responses...",
-    aiConfigSave: "Activate AI",
-    quickSolutions: "Quick Solutions",
-    searchPlaceholder: "🔍 Search categories...",
-    chatInputPlaceholder: "Type your symptoms or IT issues...",
-    statTickets: "Tickets",
-    statHelpful: "Helpful",
-    statIssues: "Issues",
-    statEngine: "Engine",
-    btnClear: "🗑️ Clear Chat",
-    histTitle: "🎫 Recent Tickets",
-    histViewAll: "View All",
-    histEmpty: "No active tickets",
-    welcomeTitle: "Hello! 👋 I am <strong>IT Support AI</strong> ready to assist you.",
-    welcomeStats: "📊 Current DB: <strong>{faq} FAQs</strong> in <strong>{cat} Categories</strong>",
-    welcomeCats: "📂 Main Categories: ",
-    welcomeAction: "💡 Type your problem or choose from the menu on the left.",
-    confirmClear: "Are you sure you want to clear chat history?",
-    sysAiEnabled: "✅ Gemini AI is now enabled! Real AI will now respond.",
-    sysAiDisabled: "ℹ️ Gemini AI disabled. Back to Keyword Mode.",
-    btnGood: "👍 Helpful",
-    btnBad: "👎 Not Match",
-    btnCopy: "📋 Copy",
-    btnCopied: "✅ Copied",
-    chipSolved: "✅ Solved",
-    chipNotSolved: "❌ Not working",
-    chipContact: "📞 Contact IT",
-    closingMsg: "Happy to help! 💙 If you have more questions, feel free to ask anytime.\n\n*(System has recorded and closed this Ticket)*",
-    escalationMsg: "I couldn't find a matching solution in the database. Please contact IT Support:\n📞 Call: ext. 1234\n📧 Email: it-support@company.com\n🕐 Hours: Mon-Fri 8:30-17:30",
-    catPrinter: "🖨️ Printer",
-    catWifi: "📶 WiFi/Net",
-    catPassword: "🔑 Password",
-    catSlow: "💻 Slow PC",
-    catEmail: "📧 Email",
-    catVPN: "🔐 VPN",
-    catVideo: "📹 Video Call",
-    catFile: "💾 Recover File",
-    catTeams: "💬 Teams",
-    catHardware: "🔌 Hardware",
-    catNetworkDrive: "🗂️ Network Drive",
-    catOffice: "📊 Office 365",
-    catWindows: "🪟 Windows",
-    catMonitor: "🖥️ Dual Monitor",
-    catNewEmp: "👤 New Employee",
-    catSoftware: "📦 Software",
-    sysError: "⚠️ System Error: "
-  },
-  th: {
-    title: "IT Support AI",
-    subtitle: "ระบบช่วยเหลือไอทีอัจฉริยะ",
-    kbLoading: "กำลังโหลดข้อมูล...",
-    engineKeyword: "Keyword Engine",
-    engineGemini: "Gemini AI",
-    btnAi: "⚙️ AI",
-    btnThemeDark: "🌙 มืด",
-    btnThemeLight: "☀️ สว่าง",
-    btnLang: "🌐 TH",
-    aiConfigTitle: "🤖 ตั้งค่า Gemini AI:",
-    aiConfigPlaceholder: "วาง API Key ของ Gemini ตรงนี้ เพื่อใช้ AI ช่วยตอบ...",
-    aiConfigSave: "เปิดใช้งาน AI",
-    quickSolutions: "วิธีแก้ปัญหาด่วน",
-    searchPlaceholder: "🔍 ค้นหาหมวดหมู่...",
-    chatInputPlaceholder: "พิมพ์อาการเสีย หรือปัญหาไอทีที่พบ...",
-    statTickets: "Ticket ทั้งหมด",
-    statHelpful: "แก้ได้",
-    statIssues: "แก้ไม่ได้",
-    statEngine: "ระบบ",
-    btnClear: "🗑️ ล้างแชท",
-    histTitle: "🎫 Ticket ล่าสุด",
-    histViewAll: "ดูทั้งหมด",
-    histEmpty: "ยังไม่มีรายการ",
-    welcomeTitle: "สวัสดีครับ! 👋 ผม <strong>IT Support AI</strong> ยินดีให้บริการครับ",
-    welcomeStats: "📊 ฐานข้อมูลปัจจุบัน: <strong>{faq} คำถาม</strong> ใน <strong>{cat} หมวด</strong>",
-    welcomeCats: "📂 หมวดหมู่หลัก: ",
-    welcomeAction: "💡 พิมพ์ปัญหาของคุณ หรือเลือกจากเมนูด้านซ้ายได้เลยครับ",
-    confirmClear: "คุณแน่ใจหรือไม่ว่าต้องการล้างประวัติการสนทนาทั้งหมด?",
-    sysAiEnabled: "✅ เปิดใช้งาน Gemini AI แล้ว! ระบบจะใช้ AI ในการตอบคำถาม",
-    sysAiDisabled: "ℹ️ ปิดการใช้งาน Gemini AI กลับสู่โหมด Keyword",
-    btnGood: "👍 แก้ได้",
-    btnBad: "👎 ไม่ตรง",
-    btnCopy: "📋 คัดลอก",
-    btnCopied: "✅ คัดลอกแล้ว",
-    chipSolved: "✅ แก้ไขได้แล้ว",
-    chipNotSolved: "❌ ยังทำไม่ได้",
-    chipContact: "📞 ติดต่อไอที",
-    closingMsg: "ยินดีให้บริการครับ! 💙 หากมีปัญหาเพิ่มเติมสามารถสอบถามเข้ามาได้ตลอดเวลาครับ\n\n*(ระบบได้ทำการบันทึกและปิด Ticket นี้แล้ว)*",
-    escalationMsg: "ไม่พบคำตอบที่ตรงกับปัญหาของคุณ กรุณาติดต่อ IT Support:\n📞 โทร: ext. 1234\n📧 อีเมล: it-support@company.com\n🕐 เวลา: จันทร์-ศุกร์ 8:30-17:30",
-    catPrinter: "🖨️ เครื่องพิมพ์",
-    catWifi: "📶 WiFi/เน็ต",
-    catPassword: "🔑 ลืมรหัสผ่าน",
-    catSlow: "💻 คอมช้า",
-    catEmail: "📧 อีเมล",
-    catVPN: "🔐 VPN",
-    catVideo: "📹 Video Call",
-    catFile: "💾 กู้ไฟล์",
-    catTeams: "💬 Teams",
-    catHardware: "🔌 Hardware",
-    catNetworkDrive: "🗂️ Network Drive",
-    catOffice: "📊 Office 365",
-    catWindows: "🪟 Windows",
-    catMonitor: "🖥️ Dual Monitor",
-    catNewEmp: "👤 พนักงานใหม่",
-    catSoftware: "📦 ลงโปรแกรม",
-    sysError: "⚠️ ระบบขัดข้อง: "
-  }
-};
+      let currentLang = localStorage.getItem("itbot_lang") || "en";
 
-let currentLang = localStorage.getItem('itbot_lang') || 'en';
+      function applyTranslations() {
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          if (translations[currentLang][key]) {
+            el.innerHTML = translations[currentLang][key];
+          }
+        });
+        document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+          const key = el.getAttribute("data-i18n-placeholder");
+          if (translations[currentLang][key]) {
+            el.placeholder = translations[currentLang][key];
+          }
+        });
 
-function applyTranslations() {
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (translations[currentLang][key]) {
-      el.innerHTML = translations[currentLang][key];
-    }
-  });
-  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-    const key = el.getAttribute('data-i18n-placeholder');
-    if (translations[currentLang][key]) {
-      el.placeholder = translations[currentLang][key];
-    }
-  });
-  
-  // Update buttons with specific logic
-  const theme = document.body.classList.contains('light') ? 'light' : 'dark';
-  document.getElementById('themeBtn').textContent = theme === 'light' ? translations[currentLang].btnThemeLight : translations[currentLang].btnThemeDark;
-  document.getElementById('langBtn').textContent = translations[currentLang].btnLang;
-  
-  // Refresh UI if KB is already loaded
-  if (window.KB) renderUI();
-}
+        // Update buttons with specific logic
+        const theme = document.body.classList.contains("light")
+          ? "light"
+          : "dark";
+        document.getElementById("themeBtn").textContent =
+          theme === "light"
+            ? translations[currentLang].btnThemeLight
+            : translations[currentLang].btnThemeDark;
+        document.getElementById("langBtn").textContent =
+          translations[currentLang].btnLang;
 
-function toggleLang() {
-  currentLang = currentLang === 'en' ? 'th' : 'en';
-  localStorage.setItem('itbot_lang', currentLang);
-  document.documentElement.lang = currentLang;
-  applyTranslations();
-}
+        // Refresh UI if KB is already loaded
+        if (window.KB) renderUI();
+      }
 
-// Restore stats display
-document.getElementById('sTicket').textContent = stats.tickets;
-document.getElementById('sGood').textContent   = stats.good;
-document.getElementById('sBad').textContent    = stats.bad;
-if(history.length) renderHistory();
+      function toggleLang() {
+        currentLang = currentLang === "en" ? "th" : "en";
+        localStorage.setItem("itbot_lang", currentLang);
+        document.documentElement.lang = currentLang;
+        applyTranslations();
+      }
 
-// Lang init
-applyTranslations();
+      // Restore stats display
+      document.getElementById("sTicket").textContent = stats.tickets;
+      document.getElementById("sGood").textContent = stats.good;
+      document.getElementById("sBad").textContent = stats.bad;
+      if (history.length) renderHistory();
 
-// Theme init
-(function(){
-  const saved = localStorage.getItem('itbot_theme') || 'dark';
-  if(saved === 'light'){
-    document.body.classList.add('light');
-    document.getElementById('themeBtn').textContent = '☀️ Light';
-  }
-})();
+      // Lang init
+      applyTranslations();
 
-function toggleTheme(){
-  const isLight = document.body.classList.toggle('light');
-  localStorage.setItem('itbot_theme', isLight ? 'light' : 'dark');
-  applyTranslations();
-}
+      // Theme init
+      (function () {
+        const saved = localStorage.getItem("itbot_theme") || "dark";
+        if (saved === "light") {
+          document.body.classList.add("light");
+          document.getElementById("themeBtn").textContent = "☀️ Light";
+        }
+      })();
 
-if(geminiKey){ 
-  document.getElementById('geminiKey').value=geminiKey; 
-  setAIMode(true); 
-}
+      function toggleTheme() {
+        const isLight = document.body.classList.toggle("light");
+        localStorage.setItem("itbot_theme", isLight ? "light" : "dark");
+        applyTranslations();
+      }
 
-function saveKey(){
-  geminiKey = document.getElementById('geminiKey').value.trim();
-  if(geminiKey){ 
-    localStorage.setItem('geminiKey',geminiKey); 
-    setAIMode(true); 
-    addSys(translations[currentLang].sysAiEnabled); 
-  } else { 
-    localStorage.removeItem('geminiKey'); 
-    setAIMode(false); 
-    addSys(translations[currentLang].sysAiDisabled); 
-  }
-}
+      if (geminiKey) {
+        document.getElementById("geminiKey").value = geminiKey;
+        setAIMode(true);
+      }
 
-function setAIMode(on){
-  document.getElementById('aiLabel').textContent = on ? translations[currentLang].engineGemini : translations[currentLang].engineKeyword;
-  document.getElementById('aiLabel').style.background = on ? '#7c3aed22' : '#1e40af22';
-  document.getElementById('aiLabel').style.borderColor = on ? '#7c3aed55' : '#1e40af55';
-  document.getElementById('aiLabel').style.color = on ? '#a78bfa' : '#60a5fa';
-  document.getElementById('sMode').textContent = on ? (currentLang === 'th' ? 'Gemini AI Mode' : 'Gemini AI Mode') : (currentLang === 'th' ? 'Keyword Mode' : 'Keyword Mode');
-}
+      function saveKey() {
+        geminiKey = document.getElementById("geminiKey").value.trim();
+        if (geminiKey) {
+          localStorage.setItem("geminiKey", geminiKey);
+          setAIMode(true);
+          addSys(translations[currentLang].sysAiEnabled);
+        } else {
+          localStorage.removeItem("geminiKey");
+          setAIMode(false);
+          addSys(translations[currentLang].sysAiDisabled);
+        }
+      }
 
-function scoreKB(input){
-  const u=input.toLowerCase(); let best=null,top=0;
-  for(const cat of window.KB.categories){
-    for(const faq of cat.faqs){
-      let s=0;
-      for(const kw of cat.keywords) if(u.includes(kw.toLowerCase())) s+=3;
-      for(const w of u.split(' ')) if(faq.question.toLowerCase().includes(w)&&w.length>1) s+=1;
-      if(s>top){top=s;best={faq,cat:cat.name};}
-    }
-  }
-  return top>=1?best:null;
-}
+      function setAIMode(on) {
+        document.getElementById("aiLabel").textContent = on
+          ? translations[currentLang].engineGemini
+          : translations[currentLang].engineKeyword;
+        document.getElementById("aiLabel").style.background = on
+          ? "#7c3aed22"
+          : "#1e40af22";
+        document.getElementById("aiLabel").style.borderColor = on
+          ? "#7c3aed55"
+          : "#1e40af55";
+        document.getElementById("aiLabel").style.color = on
+          ? "#a78bfa"
+          : "#60a5fa";
+        document.getElementById("sMode").textContent = on
+          ? currentLang === "th"
+            ? "Gemini AI Mode"
+            : "Gemini AI Mode"
+          : currentLang === "th"
+            ? "Keyword Mode"
+            : "Keyword Mode";
+      }
 
-async function callGemini(userInput){
-  const top3=[]; const u=userInput.toLowerCase();
-  for(const cat of window.KB.categories){
-    for(const faq of cat.faqs){
-      let s=0;
-      for(const kw of cat.keywords) if(u.includes(kw.toLowerCase())) s+=3;
-      if(s>0) top3.push(faq);
-      if(top3.length>=3) break;
-    }
-    if(top3.length>=3) break;
-  }
-  const ctx = top3.map(f=>`Q: ${f.question}\nA: ${f.answer}`).join('\n\n');
-  
-  const langPrompt = currentLang === 'en' 
-    ? 'STRICTLY respond in English. Do not use Thai in the answer.' 
-    : 'ตอบเป็นภาษาไทย สั้น ชัดเจน เป็นกันเอง และสุภาพ';
-    
-  const prompt = `You are a Corporate IT Support AI. ${langPrompt} Use numbered lists for steps.
+      function scoreKB(input) {
+        const u = input.toLowerCase();
+        let best = null,
+          top = 0;
+        for (const cat of window.KB.categories) {
+          for (const faq of cat.faqs) {
+            let s = 0;
+            for (const kw of cat.keywords)
+              if (u.includes(kw.toLowerCase())) s += 3;
+            for (const w of u.split(" "))
+              if (faq.question.toLowerCase().includes(w) && w.length > 1)
+                s += 1;
+            if (s > top) {
+              top = s;
+              best = { faq, cat: cat.name };
+            }
+          }
+        }
+        return top >= 1 ? best : null;
+      }
+
+      async function callGemini(userInput) {
+        const top3 = [];
+        const u = userInput.toLowerCase();
+        for (const cat of window.KB.categories) {
+          for (const faq of cat.faqs) {
+            let s = 0;
+            for (const kw of cat.keywords)
+              if (u.includes(kw.toLowerCase())) s += 3;
+            if (s > 0) top3.push(faq);
+            if (top3.length >= 3) break;
+          }
+          if (top3.length >= 3) break;
+        }
+        const ctx = top3
+          .map((f) => `Q: ${f.question}\nA: ${f.answer}`)
+          .join("\n\n");
+
+        const langPrompt =
+          currentLang === "en"
+            ? "STRICTLY respond in English. Do not use Thai in the answer."
+            : "ตอบเป็นภาษาไทย สั้น ชัดเจน เป็นกันเอง และสุภาพ";
+
+        const prompt = `You are a Corporate IT Support AI. ${langPrompt} Use numbered lists for steps.
 If no info is found, say: Please contact IT Support ext.1234
 
 Context (This is from our Thai KB, please translate the relevant parts to English for your response):
@@ -1005,453 +1604,615 @@ ${ctx}
 User Question: ${userInput}
 
 Answer:`;
-  
-  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiKey}`,{
-    method:'POST', headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({contents:[{parts:[{text:prompt}]}]})
-  });
-  if(!res.ok) throw new Error('API Error '+res.status);
-  const d = await res.json();
-  return d.candidates[0].content.parts[0].text;
-}
 
-function addSys(text){
-  const w=document.getElementById('messages');
-  const d=document.createElement('div');
-  d.style.cssText='text-align:center;font-size:.72rem;color:#475569;padding:4px';
-  d.textContent=text; w.appendChild(d); w.scrollTop=w.scrollHeight;
-}
+        const res = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiKey}`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] }),
+          },
+        );
+        if (!res.ok) throw new Error("API Error " + res.status);
+        const d = await res.json();
+        return d.candidates[0].content.parts[0].text;
+      }
 
-function formatMarkdown(text) {
-  let html = text.replace(/</g, '&lt;');
-  // Code Blocks
-  html = html.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
-  // Inline Code
-  html = html.replace(/`([^`]+)`/g, '<code style="background:rgba(0,0,0,0.2);padding:2px 4px;border-radius:4px;color:#a78bfa;">$1</code>');
-  // Bold
-  html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-  // Italic
-  html = html.replace(/\*([^*\n]+)\*/g, '<em>$1</em>');
-  // Links
-  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" style="color:var(--accent);text-decoration:underline;">$1</a>');
-  
-  // Handle newlines and lists
-  let lines = html.split('\n');
-  let inUl = false, inOl = false;
-  let parsed = [];
-  
-  for(let i=0; i<lines.length; i++) {
-    let line = lines[i];
-    let ulMatch = line.match(/^[-*]\s+(.*)/);
-    let olMatch = line.match(/^\d+\.\s+(.*)/);
-    
-    if (ulMatch) {
-      if (inOl) { parsed.push('</ol>'); inOl = false; }
-      if (!inUl) { parsed.push('<ul style="margin-top:5px; margin-bottom:5px; padding-left:20px;">'); inUl = true; }
-      parsed.push(`<li>${ulMatch[1]}</li>`);
-    } else if (olMatch) {
-      if (inUl) { parsed.push('</ul>'); inUl = false; }
-      if (!inOl) { parsed.push('<ol style="margin-top:5px; margin-bottom:5px; padding-left:20px;">'); inOl = true; }
-      parsed.push(`<li>${olMatch[1]}</li>`);
-    } else {
-      if (inUl) { parsed.push('</ul>'); inUl = false; }
-      if (inOl) { parsed.push('</ol>'); inOl = false; }
-      parsed.push(line);
-    }
-  }
-  if (inUl) parsed.push('</ul>');
-  if (inOl) parsed.push('</ol>');
-  
-  html = parsed.join('<br>');
-  // Clean up <br> around lists and inside pre
-  html = html.replace(/<\/ul><br>/g, '</ul>').replace(/<\/ol><br>/g, '</ol>').replace(/<ul><br>/g, '<ul>').replace(/<ol><br>/g, '<ol>');
-  html = html.replace(/<pre><code>([\s\S]*?)<\/code><\/pre>/g, (m, c) => `<pre style="background:rgba(0,0,0,0.3);padding:10px;border-radius:8px;overflow-x:auto;margin:5px 0;"><code>${c.replace(/<br>/g, '\n')}</code></pre>`);
-  
-  return html;
-}
+      function addSys(text) {
+        const w = document.getElementById("messages");
+        const d = document.createElement("div");
+        d.style.cssText =
+          "text-align:center;font-size:.72rem;color:#475569;padding:4px";
+        d.textContent = text;
+        w.appendChild(d);
+        w.scrollTop = w.scrollHeight;
+      }
 
-function disableInput(disabled) {
-  const inp = document.getElementById('inp');
-  const btn = document.querySelector('.send-btn');
-  if(inp) inp.disabled = disabled;
-  if(btn) btn.disabled = disabled;
-  if(!disabled && inp) inp.focus();
-}
+      function formatMarkdown(text) {
+        let html = text.replace(/</g, "&lt;");
+        // Code Blocks
+        html = html.replace(/```([\s\S]*?)```/g, "<pre><code>$1</code></pre>");
+        // Inline Code
+        html = html.replace(
+          /`([^`]+)`/g,
+          '<code style="background:rgba(0,0,0,0.2);padding:2px 4px;border-radius:4px;color:#a78bfa;">$1</code>',
+        );
+        // Bold
+        html = html.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+        // Italic
+        html = html.replace(/\*([^*\n]+)\*/g, "<em>$1</em>");
+        // Links
+        html = html.replace(
+          /\[([^\]]+)\]\(([^)]+)\)/g,
+          '<a href="$2" target="_blank" style="color:var(--accent);text-decoration:underline;">$1</a>',
+        );
 
-// Scroll-to-bottom helpers
-function scrollToBottom(){
-  const w=document.getElementById('messages');
-  w.scrollTop=w.scrollHeight;
-}
-function checkScrollBtn(){
-  const w=document.getElementById('messages');
-  const btn=document.getElementById('scrollBtn');
-  if(!btn) return;
-  const distFromBottom = w.scrollHeight - w.scrollTop - w.clientHeight;
-  if(distFromBottom > 120) btn.classList.add('visible');
-  else btn.classList.remove('visible');
-}
+        // Handle newlines and lists
+        let lines = html.split("\n");
+        let inUl = false,
+          inOl = false;
+        let parsed = [];
 
-// Clear chat
-function clearChat(){
-  if(!confirm(translations[currentLang].confirmClear)) return;
-  const w=document.getElementById('messages');
-  // Remove all messages except welcome
-  const msgs = w.querySelectorAll('.msg:not(#welcomeMsg), .msg-footer, .quick-chips-wrap, div[style*="text-align:center"]');
-  msgs.forEach(m => m.remove());
-  history = [];
-  stats = {tickets:0, good:0, bad:0};
-  document.getElementById('sTicket').textContent = 0;
-  document.getElementById('sGood').textContent = 0;
-  document.getElementById('sBad').textContent = 0;
-  localStorage.removeItem('itbot_stats');
-  localStorage.removeItem('itbot_history');
-  document.getElementById('scrollBtn')?.classList.remove('visible');
-}
+        for (let i = 0; i < lines.length; i++) {
+          let line = lines[i];
+          let ulMatch = line.match(/^[-*]\s+(.*)/);
+          let olMatch = line.match(/^\d+\.\s+(.*)/);
 
-// Typewriter animation for bot messages
-function typeWrite(el, html, speed=12) {
-  const tmp = document.createElement('div');
-  tmp.innerHTML = html;
-  const plainText = tmp.textContent || '';
-  const fullHTML = html;
-  let i = 0;
-  el.classList.add('typing-cursor');
-  const interval = setInterval(() => {
-    i += 2; // 2 chars per tick for speed
-    if(i >= plainText.length) {
-      clearInterval(interval);
-      el.classList.remove('typing-cursor');
-      el.innerHTML = fullHTML;
-      const w=document.getElementById('messages');
-      w.scrollTop=w.scrollHeight;
-      checkScrollBtn();
-      disableInput(false);
-    } else {
-      // Show partial plain text during typing
-      el.textContent = plainText.slice(0, i);
-      const w=document.getElementById('messages');
-      w.scrollTop=w.scrollHeight;
-    }
-  }, speed);
-}
+          if (ulMatch) {
+            if (inOl) {
+              parsed.push("</ol>");
+              inOl = false;
+            }
+            if (!inUl) {
+              parsed.push(
+                '<ul style="margin-top:5px; margin-bottom:5px; padding-left:20px;">',
+              );
+              inUl = true;
+            }
+            parsed.push(`<li>${ulMatch[1]}</li>`);
+          } else if (olMatch) {
+            if (inUl) {
+              parsed.push("</ul>");
+              inUl = false;
+            }
+            if (!inOl) {
+              parsed.push(
+                '<ol style="margin-top:5px; margin-bottom:5px; padding-left:20px;">',
+              );
+              inOl = true;
+            }
+            parsed.push(`<li>${olMatch[1]}</li>`);
+          } else {
+            if (inUl) {
+              parsed.push("</ul>");
+              inUl = false;
+            }
+            if (inOl) {
+              parsed.push("</ol>");
+              inOl = false;
+            }
+            parsed.push(line);
+          }
+        }
+        if (inUl) parsed.push("</ul>");
+        if (inOl) parsed.push("</ol>");
 
-function addMsg(text, role){
-  const w=document.getElementById('messages');
-  const d=document.createElement('div');
-  d.className='msg '+role;
-  const bub = document.createElement('div');
-  bub.className='bub';
-  let avIcon = role==='bot'?'🤖':(role==='admin'?'👨‍💻':'👤');
-  d.innerHTML=`<div class="av">${avIcon}</div>`;
-  d.appendChild(bub);
-  w.appendChild(d);
-  if(role==='bot' || role==='admin'){
-    typeWrite(bub, formatMarkdown(text));
-  } else {
-    bub.innerHTML = formatMarkdown(text);
-    w.scrollTop=w.scrollHeight;
-  }
-  return d;
-}
+        html = parsed.join("<br>");
+        // Clean up <br> around lists and inside pre
+        html = html
+          .replace(/<\/ul><br>/g, "</ul>")
+          .replace(/<\/ol><br>/g, "</ol>")
+          .replace(/<ul><br>/g, "<ul>")
+          .replace(/<ol><br>/g, "<ol>");
+        html = html.replace(
+          /<pre><code>([\s\S]*?)<\/code><\/pre>/g,
+          (m, c) =>
+            `<pre style="background:rgba(0,0,0,0.3);padding:10px;border-radius:8px;overflow-x:auto;margin:5px 0;"><code>${c.replace(/<br>/g, "\n")}</code></pre>`,
+        );
 
-function addFeedback(tNum, botText){
-  const w=document.getElementById('messages');
-  const d=document.createElement('div');
-  d.className='msg-footer';
-  d.innerHTML=`<button class="fb-btn" id="g${tNum}" onclick="feedback('${tNum}',1)">${translations[currentLang].btnGood}</button><button class="fb-btn" id="b${tNum}" onclick="feedback('${tNum}',-1)">${translations[currentLang].btnBad}</button><span class="ticket-tag">#${tNum}</span><button class="copy-btn" onclick="copyAnswer('${tNum}')" id="cp${tNum}">${translations[currentLang].btnCopy}</button>`;
-  
-  const chips = document.createElement('div');
-  chips.className = 'quick-chips-wrap';
-  chips.innerHTML = `<button class="chip-btn" onclick="ask('${translations[currentLang].chipSolved}', this)">${translations[currentLang].chipSolved}</button>
+        return html;
+      }
+
+      function disableInput(disabled) {
+        const inp = document.getElementById("inp");
+        const btn = document.querySelector(".send-btn");
+        if (inp) inp.disabled = disabled;
+        if (btn) btn.disabled = disabled;
+        if (!disabled && inp) inp.focus();
+      }
+
+      // Scroll-to-bottom helpers
+      function scrollToBottom() {
+        const w = document.getElementById("messages");
+        w.scrollTop = w.scrollHeight;
+      }
+      function checkScrollBtn() {
+        const w = document.getElementById("messages");
+        const btn = document.getElementById("scrollBtn");
+        if (!btn) return;
+        const distFromBottom = w.scrollHeight - w.scrollTop - w.clientHeight;
+        if (distFromBottom > 120) btn.classList.add("visible");
+        else btn.classList.remove("visible");
+      }
+
+      // Clear chat
+      function clearChat() {
+        if (!confirm(translations[currentLang].confirmClear)) return;
+        const w = document.getElementById("messages");
+        // Remove all messages except welcome
+        const msgs = w.querySelectorAll(
+          '.msg:not(#welcomeMsg), .msg-footer, .quick-chips-wrap, div[style*="text-align:center"]',
+        );
+        msgs.forEach((m) => m.remove());
+        history = [];
+        stats = { tickets: 0, good: 0, bad: 0 };
+        document.getElementById("sTicket").textContent = 0;
+        document.getElementById("sGood").textContent = 0;
+        document.getElementById("sBad").textContent = 0;
+        localStorage.removeItem("itbot_stats");
+        localStorage.removeItem("itbot_history");
+        document.getElementById("scrollBtn")?.classList.remove("visible");
+      }
+
+      // Typewriter animation for bot messages
+      function typeWrite(el, html, speed = 12) {
+        const tmp = document.createElement("div");
+        tmp.innerHTML = html;
+        const plainText = tmp.textContent || "";
+        const fullHTML = html;
+        let i = 0;
+        el.classList.add("typing-cursor");
+        const interval = setInterval(() => {
+          i += 2; // 2 chars per tick for speed
+          if (i >= plainText.length) {
+            clearInterval(interval);
+            el.classList.remove("typing-cursor");
+            el.innerHTML = fullHTML;
+            const w = document.getElementById("messages");
+            w.scrollTop = w.scrollHeight;
+            checkScrollBtn();
+            disableInput(false);
+          } else {
+            // Show partial plain text during typing
+            el.textContent = plainText.slice(0, i);
+            const w = document.getElementById("messages");
+            w.scrollTop = w.scrollHeight;
+          }
+        }, speed);
+      }
+
+      function addMsg(text, role) {
+        const w = document.getElementById("messages");
+        const d = document.createElement("div");
+        d.className = "msg " + role;
+        const bub = document.createElement("div");
+        bub.className = "bub";
+        let avIcon = role === "bot" ? "🤖" : role === "admin" ? "👨‍💻" : "👤";
+        d.innerHTML = `<div class="av">${avIcon}</div>`;
+        d.appendChild(bub);
+        w.appendChild(d);
+        if (role === "bot" || role === "admin") {
+          typeWrite(bub, formatMarkdown(text));
+        } else {
+          bub.innerHTML = formatMarkdown(text);
+          w.scrollTop = w.scrollHeight;
+        }
+        return d;
+      }
+
+      function addFeedback(tNum, botText) {
+        const w = document.getElementById("messages");
+        const d = document.createElement("div");
+        d.className = "msg-footer";
+        d.innerHTML = `<button class="fb-btn" id="g${tNum}" onclick="feedback('${tNum}',1)">${translations[currentLang].btnGood}</button><button class="fb-btn" id="b${tNum}" onclick="feedback('${tNum}',-1)">${translations[currentLang].btnBad}</button><span class="ticket-tag">#${tNum}</span><button class="copy-btn" onclick="copyAnswer('${tNum}')" id="cp${tNum}">${translations[currentLang].btnCopy}</button>`;
+
+        const chips = document.createElement("div");
+        chips.className = "quick-chips-wrap";
+        chips.innerHTML = `<button class="chip-btn" onclick="ask('${translations[currentLang].chipSolved}', this)">${translations[currentLang].chipSolved}</button>
                      <button class="chip-btn" onclick="ask('${translations[currentLang].chipNotSolved}', this)">${translations[currentLang].chipNotSolved}</button>
                      <button class="chip-btn" onclick="ask('${translations[currentLang].chipContact}', this)">${translations[currentLang].chipContact}</button>`;
 
-  // store text for copy
-  if(botText) window['_answer_'+tNum] = botText;
-  w.appendChild(d); 
-  w.appendChild(chips);
-  w.scrollTop=w.scrollHeight;
-}
+        // store text for copy
+        if (botText) window["_answer_" + tNum] = botText;
+        w.appendChild(d);
+        w.appendChild(chips);
+        w.scrollTop = w.scrollHeight;
+      }
 
-function copyAnswer(tNum){
-  const text = window['_answer_'+tNum] || '';
-  navigator.clipboard.writeText(text).then(()=>{
-    const btn = document.getElementById('cp'+tNum);
-    if(btn){ btn.textContent=translations[currentLang].btnCopied; btn.style.color='#4ade80'; setTimeout(()=>{btn.textContent=translations[currentLang].btnCopy; btn.style.color='';},2000); }
-  });
-}
-
-function toggleAIConfig(){
-  const el = document.querySelector('.api-config');
-  el.classList.toggle('open');
-  if(el.classList.contains('open')){
-    setTimeout(()=>document.getElementById('geminiKey').focus(), 350);
-  }
-}
-
-function feedback(tNum,val){
-  const g=document.getElementById('g'+tNum), b=document.getElementById('b'+tNum);
-  if(!g||!b||g.disabled) return; // prevent double click
-  g.disabled=true; b.disabled=true;
-  g.className='fb-btn'+(val===1?' active-good':'');
-  b.className='fb-btn'+(val===-1?' active-bad':'');
-  // Micro-animation on active button
-  const activeBtn = val===1?g:b;
-  activeBtn.style.transform='scale(1.15)';
-  setTimeout(()=>activeBtn.style.transform='scale(1)',250);
-  if(val===1){stats.good++;document.getElementById('sGood').textContent=stats.good;}
-  else{stats.bad++;document.getElementById('sBad').textContent=stats.bad;}
-  const h=history.find(x=>x.ticket==tNum);
-  if(h) h.feedback=val>0?'👍':'👎';
-  renderHistory();
-  // Save to localStorage
-  localStorage.setItem('itbot_stats', JSON.stringify(stats));
-  localStorage.setItem('itbot_history', JSON.stringify(history.slice(-20)));
-}
-
-function filterCats() {
-  const query = document.getElementById('catSearch').value.toLowerCase();
-  const btns = document.querySelectorAll('.sidebar .qbtn');
-  btns.forEach(btn => {
-    const text = (btn.textContent || btn.innerText).toLowerCase();
-    if(text.includes(query)) {
-      btn.style.display = "";
-    } else {
-      btn.style.display = "none";
-    }
-  });
-}
-
-function addTyping(role='bot'){
-  document.getElementById('typing')?.remove();
-  const w=document.getElementById('messages');
-  const d=document.createElement('div');
-  d.className='msg ' + role; d.id='typing';
-  let icon = role==='admin' ? '👨‍💻' : '🤖';
-  d.innerHTML=`<div class="av">${icon}</div><div class="bub"><div class="typing-dots"><span></span><span></span><span></span></div></div>`;
-  w.appendChild(d); w.scrollTop=w.scrollHeight;
-}
-
-function renderHistory(){
-  const el=document.getElementById('histList');
-  if(!history.length){el.innerHTML=`<div style="padding:20px;text-align:center;color:#475569;font-size:.78rem">${translations[currentLang].histEmpty}</div>`;return;}
-  el.innerHTML=[...history].reverse().map(h=>`<div class="hp-item"><div class="hn">#${h.ticket} • ${h.time} ${h.feedback||''}</div><div class="hq">${h.question}</div><div class="hr">${h.mode}</div></div>`).join('');
-}
-
-function ask(q, btnEl){
-  if(btnEl){
-    btnEl.parentNode.style.opacity = '0.5';
-    btnEl.parentNode.style.pointerEvents = 'none';
-  }
-  const inp=document.getElementById('inp');
-  inp.value=q;
-  send();
-}
-
-async function send(){
-  const inp=document.getElementById('inp');
-  const text=inp.value.trim(); if(!text) return;
-  disableInput(true);
-  inp.value=''; addMsg(text,'user');
-  const tNum=++ticketNum; stats.tickets++;
-  document.getElementById('sTicket').textContent=stats.tickets;
-  addTyping();
-  const now=new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
-  let reply='', mode='Keyword';
-  
-  const lowerText = text.toLowerCase();
-  const isClosing = lowerText.includes('ขอบคุณ') || lowerText.includes('แก้ไขได้แล้ว') || lowerText.includes('เรียบร้อย') || lowerText.includes('โอเค') ||
-                    lowerText.includes('thanks') || lowerText.includes('thank you') || lowerText.includes('solved') || lowerText.includes('it works') || lowerText.includes('ok');
-
-  if (isClosing) {
-    reply = translations[currentLang].closingMsg;
-    mode = 'System';
-  } else {
-    try {
-      if (window.location.protocol !== 'file:' && !window.location.hostname.includes('github.io')) {
-        try {
-          const res = await fetch('/api/chat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message: text })
-          });
-          if (res.ok) {
-            const data = await res.json();
-            reply = data.response;
-            mode = data.engine || 'RAG Server';
+      function copyAnswer(tNum) {
+        const text = window["_answer_" + tNum] || "";
+        navigator.clipboard.writeText(text).then(() => {
+          const btn = document.getElementById("cp" + tNum);
+          if (btn) {
+            btn.textContent = translations[currentLang].btnCopied;
+            btn.style.color = "#4ade80";
+            setTimeout(() => {
+              btn.textContent = translations[currentLang].btnCopy;
+              btn.style.color = "";
+            }, 2000);
           }
-        } catch (e) {
-          console.log('Backend fallback', e);
+        });
+      }
+
+      function toggleAIConfig() {
+        const el = document.querySelector(".api-config");
+        el.classList.toggle("open");
+        if (el.classList.contains("open")) {
+          setTimeout(() => document.getElementById("geminiKey").focus(), 350);
         }
       }
 
-      if (!reply && geminiKey) {
-        mode = 'Gemini AI';
-        reply = await callGemini(text);
-      } 
-      
-      if (!reply) {
-        await new Promise(r=>setTimeout(r,700+Math.random()*500));
-        const m = scoreKB(text);
-        if (m) {
-          reply = `📋 **${m.faq.question}**\n\n${m.faq.answer}`;
-          // If in English mode but Keyword result is Thai, try translating if API key exists
-          if (currentLang === 'en' && geminiKey) {
-            try {
-              const transPrompt = `Translate this IT Support FAQ to professional English:\n\n${reply}`;
-              const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiKey}`,{
-                method:'POST', headers:{'Content-Type':'application/json'},
-                body: JSON.stringify({contents:[{parts:[{text:transPrompt}]}]})
-              });
-              if(res.ok){
-                const d = await res.json();
-                reply = d.candidates[0].content.parts[0].text;
-                mode = 'Keyword (Translated)';
-              }
-            } catch(e) { console.error('Translation error', e); }
-          } else if (currentLang === 'en') {
-             // Disclaimer if no API key for translation
-             reply = `*(Note: Knowledge Base is only in Thai for Keyword Mode)*\n\n` + reply;
-          }
+      function feedback(tNum, val) {
+        const g = document.getElementById("g" + tNum),
+          b = document.getElementById("b" + tNum);
+        if (!g || !b || g.disabled) return; // prevent double click
+        g.disabled = true;
+        b.disabled = true;
+        g.className = "fb-btn" + (val === 1 ? " active-good" : "");
+        b.className = "fb-btn" + (val === -1 ? " active-bad" : "");
+        // Micro-animation on active button
+        const activeBtn = val === 1 ? g : b;
+        activeBtn.style.transform = "scale(1.15)";
+        setTimeout(() => (activeBtn.style.transform = "scale(1)"), 250);
+        if (val === 1) {
+          stats.good++;
+          document.getElementById("sGood").textContent = stats.good;
         } else {
-          reply = translations[currentLang].escalationMsg;
+          stats.bad++;
+          document.getElementById("sBad").textContent = stats.bad;
         }
-        mode = 'Keyword';
+        const h = history.find((x) => x.ticket == tNum);
+        if (h) h.feedback = val > 0 ? "👍" : "👎";
+        renderHistory();
+        // Save to localStorage
+        localStorage.setItem("itbot_stats", JSON.stringify(stats));
+        localStorage.setItem(
+          "itbot_history",
+          JSON.stringify(history.slice(-20)),
+        );
       }
-    } catch(e){
-      reply = translations[currentLang].sysError + e.message;
-      mode = 'Error';
-    }
-  }
-  
-  document.getElementById('typing')?.remove();
-  addMsg(reply,'bot');
-  addFeedback(tNum, reply);
-  history.push({ticket:tNum,question:text,time:now,mode,feedback:''});
-  renderHistory();
-  // Save to localStorage
-  stats.tickets = parseInt(document.getElementById('sTicket').textContent);
-  localStorage.setItem('itbot_stats', JSON.stringify(stats));
-  localStorage.setItem('itbot_history', JSON.stringify(history.slice(-20)));
 
-  // Sync to HelpDesk Pro Dashboard via LocalStorage
-  let hdTickets = JSON.parse(localStorage.getItem('helpdesk_tickets') || '[]');
-  
-  let lastTicket = hdTickets.length > 0 ? hdTickets[hdTickets.length - 1] : null;
-  let newStatus = isClosing ? 'closed' : 'open';
+      function filterCats() {
+        const query = document.getElementById("catSearch").value.toLowerCase();
+        const btns = document.querySelectorAll(".sidebar .qbtn");
+        btns.forEach((btn) => {
+          const text = (btn.textContent || btn.innerText).toLowerCase();
+          if (text.includes(query)) {
+            btn.style.display = "";
+          } else {
+            btn.style.display = "none";
+          }
+        });
+      }
 
-  if (lastTicket && (lastTicket.status === 'open' || lastTicket.status === 'progress')) {
-    // Append to existing active ticket
-    lastTicket.messages.push({ role: 'user', text: text });
-    lastTicket.messages.push({ role: 'bot', text: reply });
-    if (isClosing) lastTicket.status = 'closed';
-    else lastTicket.status = 'open'; // Switch back to open if admin was progressing
-  } else {
-    // Create new ticket
-    let priority = (text.includes('ไม่') || text.includes('ด่วน') || text.includes('พัง') || text.includes('ลืม')) ? 'critical' : 'medium';
-    let category = 'General';
-    if(text.toLowerCase().includes('ปริ้น') || text.toLowerCase().includes('พิมพ์')) category = 'Hardware';
-    if(text.toLowerCase().includes('เน็ต') || text.toLowerCase().includes('vpn') || text.toLowerCase().includes('wifi')) category = 'Network';
-    if(text.toLowerCase().includes('รหัส') || text.toLowerCase().includes('password')) category = 'Security';
-    
-    hdTickets.push({
-      id: `INC-${tNum}`,
-      time: now,
-      title: text,
-      priority: priority,
-      status: newStatus,
-      category: category,
-      messages: [
-        { role: 'user', text: text },
-        { role: 'bot', text: reply }
-      ]
-    });
-  }
-  
-  // Keep only latest 50 tickets
-  if(hdTickets.length > 50) hdTickets = hdTickets.slice(-50);
-  localStorage.setItem('helpdesk_tickets', JSON.stringify(hdTickets));
-}
+      function addTyping(role = "bot") {
+        document.getElementById("typing")?.remove();
+        const w = document.getElementById("messages");
+        const d = document.createElement("div");
+        d.className = "msg " + role;
+        d.id = "typing";
+        let icon = role === "admin" ? "👨‍💻" : "🤖";
+        d.innerHTML = `<div class="av">${icon}</div><div class="bub"><div class="typing-dots"><span></span><span></span><span></span></div></div>`;
+        w.appendChild(d);
+        w.scrollTop = w.scrollHeight;
+      }
 
-// Listen for Admin replies and typing from Dashboard
-window.addEventListener('storage', (e) => {
-  if (e.key === 'helpdesk_tickets') {
-    const oldData = JSON.parse(e.oldValue || '[]');
-    const newData = JSON.parse(e.newValue || '[]');
-    if (newData.length > 0 && oldData.length > 0) {
-      const latestNew = newData[newData.length - 1];
-      const latestOld = oldData[oldData.length - 1];
-      if (latestNew.id === latestOld.id && latestNew.messages.length > latestOld.messages.length) {
-        const newMsg = latestNew.messages[latestNew.messages.length - 1];
-        if (newMsg.role === 'admin') {
-          document.getElementById('typing')?.remove();
-          addMsg(newMsg.text, 'admin');
+      function renderHistory() {
+        const el = document.getElementById("histList");
+        if (!history.length) {
+          el.innerHTML = `<div style="padding:20px;text-align:center;color:#475569;font-size:.78rem">${translations[currentLang].histEmpty}</div>`;
+          return;
+        }
+        el.innerHTML = [...history]
+          .reverse()
+          .map(
+            (h) =>
+              `<div class="hp-item"><div class="hn">#${h.ticket} • ${h.time} ${h.feedback || ""}</div><div class="hq">${h.question}</div><div class="hr">${h.mode}</div></div>`,
+          )
+          .join("");
+      }
+
+      function ask(q, btnEl) {
+        if (btnEl) {
+          btnEl.parentNode.style.opacity = "0.5";
+          btnEl.parentNode.style.pointerEvents = "none";
+        }
+        const inp = document.getElementById("inp");
+        inp.value = q;
+        send();
+      }
+
+      async function send() {
+        const inp = document.getElementById("inp");
+        const text = inp.value.trim();
+        if (!text) return;
+        disableInput(true);
+        inp.value = "";
+        addMsg(text, "user");
+        const tNum = ++ticketNum;
+        stats.tickets++;
+        document.getElementById("sTicket").textContent = stats.tickets;
+        addTyping();
+        const now = new Date().toLocaleTimeString("th-TH", {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+        let reply = "",
+          mode = "Keyword";
+
+        const lowerText = text.toLowerCase();
+        const isClosing =
+          lowerText.includes("ขอบคุณ") ||
+          lowerText.includes("แก้ไขได้แล้ว") ||
+          lowerText.includes("เรียบร้อย") ||
+          lowerText.includes("โอเค") ||
+          lowerText.includes("thanks") ||
+          lowerText.includes("thank you") ||
+          lowerText.includes("solved") ||
+          lowerText.includes("it works") ||
+          lowerText.includes("ok");
+
+        if (isClosing) {
+          reply = translations[currentLang].closingMsg;
+          mode = "System";
+        } else {
+          try {
+            if (
+              window.location.protocol !== "file:" &&
+              !window.location.hostname.includes("github.io")
+            ) {
+              try {
+                const res = await fetch("/api/chat", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ message: text }),
+                });
+                if (res.ok) {
+                  const data = await res.json();
+                  reply = data.response;
+                  mode = data.engine || "RAG Server";
+                }
+              } catch (e) {
+                console.log("Backend fallback", e);
+              }
+            }
+
+            if (!reply && geminiKey) {
+              mode = "Gemini AI";
+              reply = await callGemini(text);
+            }
+
+            if (!reply) {
+              await new Promise((r) =>
+                setTimeout(r, 700 + Math.random() * 500),
+              );
+              const m = scoreKB(text);
+              if (m) {
+                reply = `📋 **${m.faq.question}**\n\n${m.faq.answer}`;
+                // If in English mode but Keyword result is Thai, try translating if API key exists
+                if (currentLang === "en" && geminiKey) {
+                  try {
+                    const transPrompt = `Translate this IT Support FAQ to professional English:\n\n${reply}`;
+                    const res = await fetch(
+                      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiKey}`,
+                      {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                          contents: [{ parts: [{ text: transPrompt }] }],
+                        }),
+                      },
+                    );
+                    if (res.ok) {
+                      const d = await res.json();
+                      reply = d.candidates[0].content.parts[0].text;
+                      mode = "Keyword (Translated)";
+                    }
+                  } catch (e) {
+                    console.error("Translation error", e);
+                  }
+                } else if (currentLang === "en") {
+                  // Disclaimer if no API key for translation
+                  reply =
+                    `*(Note: Knowledge Base is only in Thai for Keyword Mode)*\n\n` +
+                    reply;
+                }
+              } else {
+                reply = translations[currentLang].escalationMsg;
+              }
+              mode = "Keyword";
+            }
+          } catch (e) {
+            reply = translations[currentLang].sysError + e.message;
+            mode = "Error";
+          }
+        }
+
+        document.getElementById("typing")?.remove();
+        addMsg(reply, "bot");
+        addFeedback(tNum, reply);
+        history.push({
+          ticket: tNum,
+          question: text,
+          time: now,
+          mode,
+          feedback: "",
+        });
+        renderHistory();
+        // Save to localStorage
+        stats.tickets = parseInt(
+          document.getElementById("sTicket").textContent,
+        );
+        localStorage.setItem("itbot_stats", JSON.stringify(stats));
+        localStorage.setItem(
+          "itbot_history",
+          JSON.stringify(history.slice(-20)),
+        );
+
+        // Sync to HelpDesk Pro Dashboard via LocalStorage
+        let hdTickets = JSON.parse(
+          localStorage.getItem("helpdesk_tickets") || "[]",
+        );
+
+        let lastTicket =
+          hdTickets.length > 0 ? hdTickets[hdTickets.length - 1] : null;
+        let newStatus = isClosing ? "closed" : "open";
+
+        if (
+          lastTicket &&
+          (lastTicket.status === "open" || lastTicket.status === "progress")
+        ) {
+          // Append to existing active ticket
+          lastTicket.messages.push({ role: "user", text: text });
+          lastTicket.messages.push({ role: "bot", text: reply });
+          if (isClosing) lastTicket.status = "closed";
+          else lastTicket.status = "open"; // Switch back to open if admin was progressing
+        } else {
+          // Create new ticket
+          let priority =
+            text.includes("ไม่") ||
+            text.includes("ด่วน") ||
+            text.includes("พัง") ||
+            text.includes("ลืม")
+              ? "critical"
+              : "medium";
+          let category = "General";
+          if (
+            text.toLowerCase().includes("ปริ้น") ||
+            text.toLowerCase().includes("พิมพ์")
+          )
+            category = "Hardware";
+          if (
+            text.toLowerCase().includes("เน็ต") ||
+            text.toLowerCase().includes("vpn") ||
+            text.toLowerCase().includes("wifi")
+          )
+            category = "Network";
+          if (
+            text.toLowerCase().includes("รหัส") ||
+            text.toLowerCase().includes("password")
+          )
+            category = "Security";
+
+          hdTickets.push({
+            id: `INC-${tNum}`,
+            time: now,
+            title: text,
+            priority: priority,
+            status: newStatus,
+            category: category,
+            messages: [
+              { role: "user", text: text },
+              { role: "bot", text: reply },
+            ],
+          });
+        }
+
+        // Keep only latest 50 tickets
+        if (hdTickets.length > 50) hdTickets = hdTickets.slice(-50);
+        localStorage.setItem("helpdesk_tickets", JSON.stringify(hdTickets));
+      }
+
+      // Listen for Admin replies and typing from Dashboard
+      window.addEventListener("storage", (e) => {
+        if (e.key === "helpdesk_tickets") {
+          const oldData = JSON.parse(e.oldValue || "[]");
+          const newData = JSON.parse(e.newValue || "[]");
+          if (newData.length > 0 && oldData.length > 0) {
+            const latestNew = newData[newData.length - 1];
+            const latestOld = oldData[oldData.length - 1];
+            if (
+              latestNew.id === latestOld.id &&
+              latestNew.messages.length > latestOld.messages.length
+            ) {
+              const newMsg = latestNew.messages[latestNew.messages.length - 1];
+              if (newMsg.role === "admin") {
+                document.getElementById("typing")?.remove();
+                addMsg(newMsg.text, "admin");
+              }
+            }
+          }
+        }
+
+        if (e.key === "admin_typing") {
+          const data = JSON.parse(e.newValue || "{}");
+          if (data.typing) {
+            addTyping("admin");
+          } else {
+            document.getElementById("typing")?.remove();
+          }
+        }
+      });
+
+      document.getElementById("inp").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") send();
+      });
+
+      function initUI() {
+        const maxTries = 20;
+        let tries = 0;
+
+        const checkKB = setInterval(() => {
+          tries++;
+          if (window.KB) {
+            clearInterval(checkKB);
+            console.log("KB loaded successfully after", tries, "tries");
+            renderUI();
+          } else if (tries >= maxTries) {
+            clearInterval(checkKB);
+            console.error("KB failed to load after maximum retries");
+            const faqEl = document.getElementById("faqCount");
+            if (faqEl) faqEl.textContent = "Error: No KB Found";
+          }
+        }, 100);
+
+        if (window.innerWidth > 768) {
+          document.getElementById("inp").focus();
         }
       }
-    }
-  }
-  
-  if (e.key === 'admin_typing') {
-    const data = JSON.parse(e.newValue || '{}');
-    if (data.typing) {
-      addTyping('admin');
-    } else {
-      document.getElementById('typing')?.remove();
-    }
-  }
-});
 
-document.getElementById('inp').addEventListener('keydown',e=>{if(e.key==='Enter')send();});
+      function renderUI() {
+        try {
+          const totalFaq = window.KB.categories.reduce(
+            (sum, cat) => sum + cat.faqs.length,
+            0,
+          );
+          const totalCat = window.KB.categories.length;
 
-function initUI() {
-  const maxTries = 20;
-  let tries = 0;
-  
-  const checkKB = setInterval(() => {
-    tries++;
-    if (window.KB) {
-      clearInterval(checkKB);
-      console.log('KB loaded successfully after', tries, 'tries');
-      renderUI();
-    } else if (tries >= maxTries) {
-      clearInterval(checkKB);
-      console.error('KB failed to load after maximum retries');
-      const faqEl = document.getElementById('faqCount');
-      if (faqEl) faqEl.textContent = 'Error: No KB Found';
-    }
-  }, 100);
+          const faqEl = document.getElementById("faqCount");
+          if (faqEl) {
+            faqEl.textContent =
+              totalFaq +
+              " FAQ | " +
+              totalCat +
+              (currentLang === "th" ? " หมวด" : " Cats");
+          }
 
-  if (window.innerWidth > 768) {
-    document.getElementById('inp').focus();
-  }
-}
+          const topCats = window.KB.categories
+            .slice(0, 5)
+            .map((c) => c.name)
+            .join(", ");
+          const wb = document.getElementById("welcomeBub");
+          if (wb) {
+            wb.innerHTML =
+              translations[currentLang].welcomeTitle +
+              "<br><br>" +
+              translations[currentLang].welcomeStats
+                .replace("{faq}", totalFaq)
+                .replace("{cat}", totalCat) +
+              "<br>" +
+              translations[currentLang].welcomeCats +
+              topCats +
+              "<br><br>" +
+              translations[currentLang].welcomeAction;
+          }
+        } catch (err) {
+          console.error("Render UI error:", err);
+        }
+      }
 
-function renderUI() {
-  try {
-    const totalFaq = window.KB.categories.reduce((sum, cat) => sum + cat.faqs.length, 0);
-    const totalCat = window.KB.categories.length;
-    
-    const faqEl = document.getElementById('faqCount');
-    if (faqEl) {
-      faqEl.textContent = totalFaq + ' FAQ | ' + totalCat + (currentLang === 'th' ? ' หมวด' : ' Cats');
-    }
-    
-    const topCats = window.KB.categories.slice(0, 5).map(c => c.name).join(', ');
-    const wb = document.getElementById('welcomeBub');
-    if (wb) {
-      wb.innerHTML = translations[currentLang].welcomeTitle + '<br><br>'
-        + translations[currentLang].welcomeStats.replace('{faq}', totalFaq).replace('{cat}', totalCat) + '<br>'
-        + translations[currentLang].welcomeCats + topCats + '<br><br>'
-        + translations[currentLang].welcomeAction;
-    }
-  } catch (err) {
-    console.error('Render UI error:', err);
-  }
-}
-
-// Start initialization
-initUI();
-</script>
-</body>
+      // Start initialization
+      initUI();
+    </script>
+  </body>
 </html>
