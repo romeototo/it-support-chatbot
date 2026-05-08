@@ -73,39 +73,38 @@ Deploy:    GitHub Pages (Frontend) / Local Flask (Full Stack)
 
 ### 1. Hybrid Search Engine (Chatbot)
 
-```
-User Question
-      │
-      ▼
-┌─────────────────────┐
-│  Keyword Matching   │ ← High speed & accuracy for exact matches (Score ≥ 3)
-└──────────┬──────────┘
-           │ Not Found
-           ▼
-┌─────────────────────┐
-│  RAG Vector Search  │ ← ChromaDB Semantic Search (sentence-transformers)
-└──────────┬──────────┘
-           │ Not Found / Low Confidence
-           ▼
-┌─────────────────────┐
-│  Gemini AI (LLM)    │ ← Google Gemini 2.0 Flash (If API Key is provided)
-└──────────┬──────────┘
-           │ Not Found
-           ▼
-┌─────────────────────┐
-│  Escalation Message │ ← Automatically open Ticket and handoff to Admin
-└─────────────────────┘
+```mermaid
+graph TD
+    classDef keyword fill:#22c55e,stroke:#fff,stroke-width:2px,color:#fff
+    classDef rag fill:#6366f1,stroke:#fff,stroke-width:2px,color:#fff
+    classDef ai fill:#8B5CF6,stroke:#fff,stroke-width:2px,color:#fff
+    classDef escalate fill:#ef4444,stroke:#fff,stroke-width:2px,color:#fff
+    classDef user fill:#3b82f6,stroke:#fff,stroke-width:2px,color:#fff
+
+    A((User Question)):::user --> B{Keyword Matching}:::keyword
+    B -->|"Score ≥ 3 ✅"| C[Return Answer]:::keyword
+    B -->|"Not Found"| D{RAG Vector Search}:::rag
+    D -->|"High Confidence ✅"| E[Return Semantic Match]:::rag
+    D -->|"Low Confidence"| F{Gemini AI LLM}:::ai
+    F -->|"Generated ✅"| G[Return AI Response]:::ai
+    F -->|"Cannot Resolve"| H[Escalate to Admin]:::escalate
+    H --> I[Auto-Create Ticket]:::escalate
 ```
 
 ### 2. Real-Time Hybrid Sync (Admin Dashboard)
 
 A **Serverless** implementation running entirely on GitHub Pages using Web Storage API (`localStorage` + `storage event`) to mock real-time database capabilities.
 
-```
-[ User Chatbot ] ──(Save to LocalStorage)──> [ Admin Dashboard ]
-       ▲                                            │
-       │                                            ▼
-   (Event Triggered) ◄──(Reply & Sync Status)───────┘
+```mermaid
+graph LR
+    classDef user fill:#3b82f6,stroke:#fff,stroke-width:2px,color:#fff
+    classDef admin fill:#6366f1,stroke:#fff,stroke-width:2px,color:#fff
+    classDef storage fill:#f59e0b,stroke:#fff,stroke-width:2px,color:#fff
+
+    A["👤 User Chatbot"]:::user -->|"Save Ticket"| B[("💾 LocalStorage")]:::storage
+    B -->|"Storage Event"| C["👨‍💼 Admin Dashboard"]:::admin
+    C -->|"Reply & Update Status"| B
+    B -->|"Event Triggered"| A
 ```
 
 - ⚡ Live Typing Indicator Synchronization
