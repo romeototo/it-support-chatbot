@@ -26,6 +26,19 @@
 
 ---
 
+## Project Snapshot
+
+| Item | Details |
+| ---- | ------- |
+| **Role** | AI helpdesk and admin dashboard for recurring IT support questions |
+| **Live demo** | [User chatbot](https://romeototo.github.io/it-support-chatbot/) · [Admin dashboard](https://romeototo.github.io/it-support-chatbot/dashboard.html) |
+| **Stack** | Python, Flask, JavaScript, ChromaDB, Gemini API |
+| **Impact** | 222 FAQs across 50 IT categories with ticket handoff and local real-time sync |
+| **Status** | Active flagship AI automation project |
+| **Portfolio case study** | [IT Support AI Chatbot](https://romeototo.github.io/portfolio-website/case-studies/it-support-chatbot/) |
+
+---
+
 ## 💼 Business Value & Impact
 
 - **Cost Reduction (Zero Server Cost):** The Hybrid Sync architecture utilizes the Web Storage API, enabling real-time communications completely serverless on GitHub Pages, cutting infrastructure costs by 100%.
