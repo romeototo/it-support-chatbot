@@ -26,6 +26,19 @@
 
 ---
 
+## Project Snapshot
+
+| รายการ | รายละเอียด |
+| ------ | ----------- |
+| **บทบาท** | AI helpdesk และ admin dashboard สำหรับคำถาม IT ซ้ำ ๆ |
+| **Live demo** | [User chatbot](https://romeototo.github.io/it-support-chatbot/) · [Admin dashboard](https://romeototo.github.io/it-support-chatbot/dashboard.html) |
+| **Stack** | Python, Flask, JavaScript, ChromaDB, Gemini API |
+| **Impact** | 222 FAQs ใน 50 หมวด พร้อม ticket handoff และ local real-time sync |
+| **สถานะ** | Active flagship AI automation project |
+| **Portfolio case study** | [IT Support AI Chatbot](https://romeototo.github.io/portfolio-website/case-studies/it-support-chatbot/) |
+
+---
+
 ## 💼 Business Value & Impact
 
 - **Cost Reduction (Zero Server Cost):** โหมด Hybrid Sync สื่อสารผ่าน Web Storage API ทำให้สามารถทำงานบน GitHub Pages ได้โดยไม่ต้องเสียค่าเช่า Server ประหยัดงบประมาณ IT 100%
