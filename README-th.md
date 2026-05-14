@@ -5,6 +5,8 @@
 
 <img src="screenshot.png" alt="IT Support AI Chatbot" width="49%"> <img src="screenshot-dashboard.png" alt="Admin Dashboard" width="49%">
 
+[![Release](https://img.shields.io/github/v/release/romeototo/it-support-chatbot?style=for-the-badge)](https://github.com/romeototo/it-support-chatbot/releases)
+[![KB Validated](https://img.shields.io/github/actions/workflow/status/romeototo/it-support-chatbot/validate-kb.yml?style=for-the-badge&label=KB_Check)](https://github.com/romeototo/it-support-chatbot/actions)
 [![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-GitHub_Pages-6366f1?style=for-the-badge)](https://romeototo.github.io/it-support-chatbot/)
 [![Python](https://img.shields.io/badge/Python-3.10+-3776ab?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![Flask](https://img.shields.io/badge/Flask-2.x-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com)
