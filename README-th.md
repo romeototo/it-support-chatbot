@@ -16,7 +16,7 @@
 [![License](https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge)](LICENSE)
 
 **ระบบ IT HelpDesk อัจฉริยะ พร้อม Hybrid AI Search Engine, Premium Glassmorphism UI**  
-**ฐานข้อมูล 222 FAQ / 50 หมวดหมู่ ภาษาไทย ครอบคลุมทุกปัญหา IT ในองค์กร**
+**ฐานข้อมูล 202 FAQ / 45 หมวดหมู่ ภาษาไทย ครอบคลุมทุกปัญหา IT ในองค์กร**
 
 ### 🌐 Live Demo & Portfolio Showcase
 
@@ -35,7 +35,7 @@
 | **บทบาท** | AI helpdesk และ admin dashboard สำหรับคำถาม IT ซ้ำ ๆ |
 | **Live demo** | [User chatbot](https://romeototo.github.io/it-support-chatbot/) · [Admin dashboard](https://romeototo.github.io/it-support-chatbot/dashboard.html) |
 | **Stack** | Python, Flask, JavaScript, ChromaDB, Gemini API |
-| **Impact** | 222 FAQs ใน 50 หมวด พร้อม ticket handoff และ local real-time sync |
+| **Impact** | 202 FAQs ใน 45 หมวด พร้อม ticket handoff และ local real-time sync |
 | **สถานะ** | Active flagship AI automation project |
 | **Portfolio case study** | [IT Support AI Chatbot](https://romeototo.github.io/portfolio-website/case-studies/it-support-chatbot/) |
 
@@ -44,7 +44,7 @@
 ## 💼 Business Value & Impact
 
 - **Cost Reduction (Zero Server Cost):** โหมด Hybrid Sync สื่อสารผ่าน Web Storage API ทำให้สามารถทำงานบน GitHub Pages ได้โดยไม่ต้องเสียค่าเช่า Server ประหยัดงบประมาณ IT 100%
-- **Time Efficiency:** บอทช่วยตอบคำถามพื้นฐาน (Tier 1) กว่า 222 อาการ ทำให้เจ้าหน้าที่ IT มีเวลาไปโฟกัสกับปัญหาที่ซับซ้อนขึ้น
+- **Time Efficiency:** บอทช่วยตอบคำถามพื้นฐาน (Tier 1) กว่า 202 อาการ ทำให้เจ้าหน้าที่ IT มีเวลาไปโฟกัสกับปัญหาที่ซับซ้อนขึ้น
 - **Seamless Handoff:** หากบอทแก้ปัญหาไม่ได้ ระบบจะเปิด Ticket และซิงค์ข้อมูลไปที่ Admin ทันที ผู้ใช้ไม่ต้องอธิบายปัญหาซ้ำ
 
 ---
@@ -60,7 +60,7 @@
 | 🔍 **Search & Filter**          | ค้นหา Ticket ID/Keyword และกรองสถานะ (Open/Closed) ได้ทันที      |
 | ⚡ **Canned Responses**         | ปุ่มตอบกลับด่วนสำหรับ Admin ลดเวลาในการพิมพ์                     |
 | 🔍 **Hybrid Search Engine**     | Keyword Matching → RAG (ChromaDB) → Gemini AI — 3 ชั้นความแม่นยำ |
-| 📚 **222 FAQ / 50 หมวดหมู่**    | ครอบคลุมทุกปัญหา IT ในองค์กร ภาษาไทย 100%                        |
+| 📚 **202 FAQ / 45 หมวดหมู่**    | ครอบคลุมทุกปัญหา IT ในองค์กร ภาษาไทย 100%                        |
 | 🤖 **Gemini AI Integration**    | ใส่ API Key เพื่อเปิดโหมด AI ตอบแบบ Natural Language             |
 | 💎 **Premium Glassmorphism UI** | Dark Mode + Light Mode สลับได้ พร้อม Micro-animations            |
 | ⌨️ **Typewriter Animation**     | บอทพิมพ์คำตอบทีละตัวอักษร เหมือน ChatGPT                         |
@@ -169,19 +169,21 @@ python web_app.py
 it-support-chatbot/
 ├── index.html           # Frontend Chatbot (Glassmorphism UI)
 ├── dashboard.html       # Admin Dashboard (HelpDesk Pro + Chart.js)
-├── kb.js                # Knowledge Base 222 FAQ สำหรับ GitHub Pages (Static)
+├── kb.js                # Knowledge Base 202 FAQ สำหรับ GitHub Pages (Static)
 ├── knowledge_base.json  # Knowledge Base สำหรับ Flask Backend
 ├── requirements.txt     # Python dependencies
 ├── web_app.py           # Flask Server + REST API Routes สำหรับทำ Full-Stack
 ├── chatbot.py           # Hybrid Search Engine (Keyword + RAG + Gemini)
 ├── rag_engine.py        # ChromaDB Vector Search Engine
 ├── init_rag.py          # Script สำหรับ Ingest FAQ เข้า Vector DB
+├── add_faq.py           # เครื่องมือเพิ่ม FAQ แบบ Batch (sync kb.js + JSON)
+├── guide.html           # คู่มือการใช้งาน (ภาษาไทย)
 └── screenshot.png       # Demo Screenshot
 ```
 
 ---
 
-## 📊 Knowledge Base Coverage (222 FAQs / 50 Categories)
+## 📊 Knowledge Base Coverage (202 FAQs / 45 Categories)
 
 | หมวดหมู่             | ตัวอย่างปัญหา                                      |
 | -------------------- | -------------------------------------------------- |
@@ -199,7 +201,21 @@ it-support-chatbot/
 | 📈 Power BI          | Dashboard, Report, Permissions                     |
 | ☁️ Azure AD          | SSO, Conditional Access, Entra ID                  |
 | 🌐 Google Workspace  | Gmail, Google Docs, Google Meet                    |
-| + 36 หมวดอื่นๆ       | Active Directory, Backup, IP Phone, Projector, ... |
+| + 31 หมวดอื่นๆ       | Active Directory, Backup, IP Phone, Projector, ... |
+
+---
+
+## 🆕 อัปเดตล่าสุด
+
+- 🐛 **แก้บัก:** กด Enter ส่ง Ticket ซ้ำ 2 ครั้ง
+- 🐛 **แก้บัก:** ระบบปิด Ticket ผิดเมื่อพิมพ์คำที่มี "ok" เช่น "booking"
+- 🐛 **แก้บัก:** Terminal chatbot แสดงผล tuple แทนข้อความปกติ
+- 🔒 **ความปลอดภัย:** ป้องกัน XSS ใน Admin Dashboard ด้วย `escapeHtml()`
+- 🔒 **ความปลอดภัย:** Progress bar ใช้ค่าคงที่ตาม status (ไม่ random อีกต่อไป)
+- 🎨 **UX:** เพิ่ม SEO meta tags + ตั้ง `lang="th"` เป็นค่าเริ่มต้น
+- ⌨️ **UX:** กด Escape ปิดหน้าต่าง AI Config ได้
+- 💬 **UX:** ข้อความ error Gemini API ชัดเจนขึ้น (400/403/429)
+- 🔄 **Sync:** `add_faq.py` sync ทั้ง `kb.js` และ `knowledge_base.json` อัตโนมัติ
 
 ---
 
@@ -207,7 +223,7 @@ it-support-chatbot/
 
 1. Fork repo นี้
 2. สร้าง Branch ใหม่: `git checkout -b feature/add-faqs`
-3. เพิ่ม FAQ ใน `knowledge_base.json` และ `kb.js`
+3. เพิ่ม FAQ ด้วย `add_faq.py` (sync ทั้ง `kb.js` และ `knowledge_base.json` อัตโนมัติ)
 4. รัน `python init_rag.py` เพื่อ Update Vector DB
 5. Pull Request มาได้เลย!
 

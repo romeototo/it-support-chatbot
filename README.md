@@ -16,7 +16,7 @@
 [![License](https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge)](LICENSE)
 
 **Intelligent IT HelpDesk System with Hybrid AI Search Engine & Premium Glassmorphism UI**  
-**Pre-loaded with 222 FAQs across 50 IT categories covering enterprise-grade issues**
+**Pre-loaded with 202 FAQs across 45 IT categories covering enterprise-grade issues**
 
 ### 🌐 Live Demo & Portfolio Showcase
 
@@ -35,7 +35,7 @@
 | **Role** | AI helpdesk and admin dashboard for recurring IT support questions |
 | **Live demo** | [User chatbot](https://romeototo.github.io/it-support-chatbot/) · [Admin dashboard](https://romeototo.github.io/it-support-chatbot/dashboard.html) |
 | **Stack** | Python, Flask, JavaScript, ChromaDB, Gemini API |
-| **Impact** | 222 FAQs across 50 IT categories with ticket handoff and local real-time sync |
+| **Impact** | 202 FAQs across 45 IT categories with ticket handoff and local real-time sync |
 | **Status** | Active flagship AI automation project |
 | **Portfolio case study** | [IT Support AI Chatbot](https://romeototo.github.io/portfolio-website/case-studies/it-support-chatbot/) |
 
@@ -44,7 +44,7 @@
 ## 💼 Business Value & Impact
 
 - **Cost Reduction (Zero Server Cost):** The Hybrid Sync architecture utilizes the Web Storage API, enabling real-time communications completely serverless on GitHub Pages, cutting infrastructure costs by 100%.
-- **Time Efficiency:** The AI agent autonomously resolves over 222 common Tier 1 issues, freeing up IT staff to focus on highly complex critical tasks.
+- **Time Efficiency:** The AI agent autonomously resolves over 202 common Tier 1 issues, freeing up IT staff to focus on highly complex critical tasks.
 - **Seamless Handoff:** If the AI cannot resolve the issue, it automatically opens a ticket and synchronizes context to the Admin Dashboard, preventing user frustration from repeating their problem.
 
 ---
@@ -60,7 +60,7 @@
 | 🔍 **Search & Filter**          | Instant Ticket ID / Keyword search and dynamic state filtering (Open/Closed).      |
 | ⚡ **Canned Responses**         | One-click quick replies for Admins to drastically reduce response time.            |
 | 🔍 **Hybrid Search Engine**     | 3-layer precision: Keyword Matching → RAG (ChromaDB) → Gemini AI LLM.              |
-| 📚 **222 FAQ / 50 Categories**  | Comprehensive built-in enterprise IT knowledge base.                               |
+| 📚 **202 FAQ / 45 Categories**  | Comprehensive built-in enterprise IT knowledge base.                               |
 | 🤖 **Gemini AI Integration**    | Toggle on LLM capabilities via API Key for Natural Language Generation.            |
 | 💎 **Premium Glassmorphism UI** | Sleek Dark/Light mode toggle with micro-interactions and smooth animations.        |
 | ⌨️ **Typewriter Animation**     | Engaging character-by-character typing effect for bot responses.                   |
@@ -168,15 +168,31 @@ python web_app.py
 it-support-chatbot/
 ├── index.html           # Frontend Chatbot (Glassmorphism UI)
 ├── dashboard.html       # Admin Dashboard (HelpDesk Pro + Chart.js)
-├── kb.js                # Knowledge Base 222 FAQ for GitHub Pages (Static JS)
+├── kb.js                # Knowledge Base 202 FAQ for GitHub Pages (Static JS)
 ├── knowledge_base.json  # Knowledge Base for Flask Backend
 ├── requirements.txt     # Python dependencies
 ├── web_app.py           # Flask Server + REST API Routes for Full-Stack mode
 ├── chatbot.py           # Hybrid Search Engine Core (Keyword + RAG + Gemini)
 ├── rag_engine.py        # ChromaDB Vector Search Engine logic
 ├── init_rag.py          # Script to ingest JSON FAQ into Vector DB
+├── add_faq.py           # Batch FAQ addition tool (syncs kb.js + JSON)
+├── guide.html           # User guide document (Thai)
 └── screenshot.png       # Demo Screenshots
 ```
+
+---
+
+## 🆕 What's New (Latest Update)
+
+- 🐛 **Fixed:** Duplicate Enter handler causing double ticket creation
+- 🐛 **Fixed:** isClosing false positive (e.g. "booking" was detected as "ok")
+- 🐛 **Fixed:** Terminal chatbot displaying raw tuple instead of clean output
+- 🔒 **Security:** XSS protection added to Admin Dashboard with `escapeHtml()`
+- 🔒 **Security:** Dashboard progress bar now uses status-based width (no more random flicker)
+- 🎨 **UX:** Added SEO meta tags and `lang="th"` default
+- ⌨️ **UX:** Escape key shortcut to close AI Config panel
+- 💬 **UX:** Gemini API error messages are now specific (400/403/429)
+- 🔄 **Sync:** `add_faq.py` now syncs both `kb.js` and `knowledge_base.json`
 
 ---
 
@@ -184,7 +200,7 @@ it-support-chatbot/
 
 1. Fork this repository
 2. Create a new branch: `git checkout -b feature/add-faqs`
-3. Add new FAQs to `knowledge_base.json` and `kb.js`
+3. Add new FAQs using `add_faq.py` (auto-syncs both `kb.js` and `knowledge_base.json`)
 4. Run `python init_rag.py` to update the Vector DB
 5. Submit a Pull Request!
 
