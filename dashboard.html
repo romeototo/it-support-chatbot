@@ -887,6 +887,13 @@
     </div>
 
     <script>
+      // HTML escaping to prevent XSS
+      function escapeHtml(str) {
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+      }
+
       let activeTicketId = null;
       let currentFilter = "all";
 
@@ -972,15 +979,16 @@
                   : "var(--accent-green)";
             let chipClass = `chip-${t.priority}`;
             let activeClass = t.id === activeTicketId ? "active" : "";
+            let progressWidth = t.status === "closed" ? 100 : t.status === "progress" ? 60 : 30;
             return `
-            <div class="ticket-item ${activeClass}" onclick="openTicket('${t.id}')">
-                <div class="t-head"><span>${t.id}</span><span>${t.time}</span></div>
-                <div class="t-title">${t.title}</div>
+            <div class="ticket-item ${activeClass}" onclick="openTicket('${escapeHtml(t.id)}')">
+                <div class="t-head"><span>${escapeHtml(t.id)}</span><span>${escapeHtml(t.time)}</span></div>
+                <div class="t-title">${escapeHtml(t.title)}</div>
                 <div class="t-tags">
-                    <span class="chip ${chipClass}">${t.priority}</span>
+                    <span class="chip ${chipClass}">${escapeHtml(t.priority)}</span>
                     <span class="chip chip-${t.status === "open" ? "open" : t.status === "progress" ? "progress" : "low"}">${t.status === "open" ? "เปิดอยู่" : t.status === "progress" ? "กำลังดำเนินการ" : "ปิดแล้ว"}</span>
                 </div>
-                <div class="progress-bar"><div class="progress-fill" style="width: ${Math.random() * 60 + 20}%; background: ${priorityColor};"></div></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: ${progressWidth}%; background: ${priorityColor};"></div></div>
             </div>`;
           })
           .join("");
@@ -1071,16 +1079,16 @@
         const tvHeader = document.getElementById("tvHeader");
         let chipClass = `chip-${t.priority}`;
         tvHeader.innerHTML = `
-            <div class="tv-id">${t.id}</div>
-            <div class="tv-title">${t.title}</div>
+            <div class="tv-id">${escapeHtml(t.id)}</div>
+            <div class="tv-title">${escapeHtml(t.title)}</div>
             <div class="t-tags" style="margin-bottom:15px">
-                <span class="chip ${chipClass}">${t.priority}</span>
+                <span class="chip ${chipClass}">${escapeHtml(t.priority)}</span>
                 <span class="chip chip-${t.status === "open" ? "open" : t.status === "progress" ? "progress" : "low"}">${t.status === "open" ? "เปิดอยู่" : t.status === "progress" ? "กำลังดำเนินการ" : "ปิดแล้ว"}</span>
             </div>
             <div class="tv-meta">
                 <div class="meta-group"><span class="meta-label">ผู้แจ้ง</span><span class="meta-val">ผู้ใช้งานทั่วไป</span></div>
-                <div class="meta-group"><span class="meta-label">หมวดหมู่</span><span class="meta-val">${t.category}</span></div>
-                <div class="meta-group"><span class="meta-label">สร้างเมื่อ</span><span class="meta-val">${t.time}</span></div>
+                <div class="meta-group"><span class="meta-label">หมวดหมู่</span><span class="meta-val">${escapeHtml(t.category)}</span></div>
+                <div class="meta-group"><span class="meta-label">สร้างเมื่อ</span><span class="meta-val">${escapeHtml(t.time)}</span></div>
             </div>
         `;
 
@@ -1101,7 +1109,7 @@
                 <div class="msg-av" style="${isAdmin ? "background:var(--accent-blue);color:#fff;" : ""}">${avText}</div>
                 <div class="msg-content">
                     <div class="msg-box" style="background:${bg}; border-color:${borderColor}">
-                        ${m.text.replace(/\n/g, "<br>")}
+                        ${escapeHtml(m.text).replace(/\n/g, "<br>")}
                     </div>
                     ${isAdmin ? '<div class="msg-footer-text">IT Support · ตอนนี้</div>' : isBot ? '<div class="msg-footer-text">Smart Engine · อัตโนมัติ</div>' : ""}
                 </div>

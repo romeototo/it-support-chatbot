@@ -189,8 +189,8 @@ def main():
             print()
             continue
 
-        response = get_response(user_input, kb)
-        print(f"\nBot: {response}\n")
+        response, engine = get_response(user_input, kb)
+        print(f"\nBot [{engine}]: {response}\n")
 
 if __name__ == "__main__":
     main()

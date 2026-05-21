@@ -76,4 +76,9 @@ print(f"Total FAQs: {total_faqs}")
 with open('kb.js', 'w', encoding='utf-8') as f:
     f.write('window.KB = ' + json.dumps(kb, ensure_ascii=False) + ';\n')
 
+# Sync to knowledge_base.json for backend (chatbot.py / RAG engine)
+with open('knowledge_base.json', 'w', encoding='utf-8') as f:
+    json.dump(kb, f, ensure_ascii=False, indent=2)
+
 print("kb.js updated successfully!")
+print("knowledge_base.json synced successfully!")

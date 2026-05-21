@@ -1,8 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="th">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="IT Support AI — ระบบช่วยเหลือไอทีอัจฉริยะ แก้ปัญหา IT ได้ทันทีด้วย AI พร้อม Knowledge Base กว่า 70 FAQ" />
+    <meta name="theme-color" content="#6366f1" />
     <title>IT Support AI | Premium Intelligent HelpDesk</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap"
@@ -1613,7 +1615,13 @@ Answer:`;
             body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] }),
           },
         );
-        if (!res.ok) throw new Error("API Error " + res.status);
+        if (!res.ok) {
+          const errBody = await res.text().catch(() => "");
+          if (res.status === 400) throw new Error("API Key ไม่ถูกต้อง — กรุณาตรวจสอบ Gemini API Key อีกครั้ง");
+          if (res.status === 429) throw new Error("เรียก API บ่อยเกินไป — กรุณารอสักครู่แล้วลองใหม่");
+          if (res.status === 403) throw new Error("API Key ไม่มีสิทธิ์ใช้งาน — ตรวจสอบว่าเปิดใช้ Gemini API แล้ว");
+          throw new Error("API Error " + res.status + (errBody ? ": " + errBody.slice(0, 100) : ""));
+        }
         const d = await res.json();
         return d.candidates[0].content.parts[0].text;
       }
@@ -1950,7 +1958,7 @@ Answer:`;
           lowerText.includes("thank you") ||
           lowerText.includes("solved") ||
           lowerText.includes("it works") ||
-          lowerText.includes("ok");
+          /\bok\b/.test(lowerText);
 
         if (isClosing) {
           reply = translations[currentLang].closingMsg;
@@ -2144,8 +2152,14 @@ Answer:`;
         }
       });
 
-      document.getElementById("inp").addEventListener("keydown", (e) => {
-        if (e.key === "Enter") send();
+      // Escape key to close AI Config panel
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          const apiConfig = document.querySelector(".api-config");
+          if (apiConfig && apiConfig.classList.contains("open")) {
+            apiConfig.classList.remove("open");
+          }
+        }
       });
 
       function initUI() {
