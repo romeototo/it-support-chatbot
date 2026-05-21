@@ -3,8 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="IT Support AI — ระบบช่วยเหลือไอทีอัจฉริยะ แก้ปัญหา IT ได้ทันทีด้วย AI พร้อม Knowledge Base กว่า 70 FAQ" />
+    <meta name="description" content="IT Support AI — ระบบช่วยเหลือไอทีอัจฉริยะ แก้ปัญหา IT ได้ทันทีด้วย AI พร้อม Knowledge Base กว่า 200 FAQ ใน 45 หมวดหมู่" />
     <meta name="theme-color" content="#6366f1" />
+    <!-- Open Graph / Social Preview -->
+    <meta property="og:title" content="IT Support AI — Premium Intelligent HelpDesk" />
+    <meta property="og:description" content="ระบบช่วยเหลือไอทีอัจฉริยะ แก้ปัญหา IT ได้ทันทีด้วย AI พร้อม Knowledge Base กว่า 200 FAQ" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://romeototo.github.io/it-support-chatbot/" />
+    <meta property="og:image" content="https://romeototo.github.io/it-support-chatbot/screenshot.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="IT Support AI — Premium Intelligent HelpDesk" />
+    <meta name="twitter:description" content="ระบบช่วยเหลือไอทีอัจฉริยะ แก้ปัญหา IT ได้ทันทีด้วย AI" />
+    <meta name="twitter:image" content="https://romeototo.github.io/it-support-chatbot/screenshot.png" />
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>" />
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json" />
     <title>IT Support AI | Premium Intelligent HelpDesk</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap"
@@ -314,6 +328,21 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+      }
+
+      /* Timestamp under messages */
+      .msg-time {
+        font-size: 0.6rem;
+        color: var(--text-dim);
+        opacity: 0.6;
+        margin-top: 4px;
+        padding-left: 4px;
+      }
+      .user .msg-time { text-align: right; padding-right: 4px; }
+
+      /* Dashboard link responsive */
+      @media (max-width: 600px) {
+        .dashboard-link-header { display: none !important; }
       }
 
       body {
@@ -1026,6 +1055,7 @@
       <button
         onclick="toggleAIConfig()"
         title="AI Config"
+        aria-label="ตั้งค่า Gemini AI"
         style="
           background: rgba(255, 255, 255, 0.05);
           border: 1px solid var(--glass-border);
@@ -1042,10 +1072,36 @@
       >
         ⚙️ AI
       </button>
+      <a
+        href="dashboard.html"
+        target="_blank"
+        title="Open Admin Dashboard"
+        aria-label="เปิด Admin Dashboard"
+        class="dashboard-link-header"
+        style="
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid var(--glass-border);
+          color: var(--text-dim);
+          padding: 5px 12px;
+          border-radius: 100px;
+          cursor: pointer;
+          font-size: 0.7rem;
+          transition: 0.2s;
+          margin-left: 4px;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+        "
+        onmouseover="this.style.color = '#fff'"
+        onmouseout="this.style.color = 'var(--text-dim)'"
+      >
+        📊 Dashboard
+      </a>
       <button
         id="themeBtn"
         onclick="toggleTheme()"
         title="Toggle Dark/Light Mode"
+        aria-label="สลับโหมดมืด/สว่าง"
         style="
           background: rgba(255, 255, 255, 0.05);
           border: 1px solid var(--glass-border);
@@ -1219,6 +1275,7 @@
               id="inp"
               data-i18n-placeholder="chatInputPlaceholder"
               placeholder="Type your symptoms or IT issues..."
+              aria-label="พิมพ์อาการหรือปัญหา IT ของคุณ"
               onkeydown="
                 if (event.key === 'Enter') {
                   send();
@@ -1241,6 +1298,7 @@
               this.classList.remove('active');
             "
             title="Send Message (Enter)"
+            aria-label="ส่งข้อความ"
           >
             🚀
           </button>
@@ -1546,11 +1604,9 @@
           ? "#a78bfa"
           : "#60a5fa";
         document.getElementById("sMode").textContent = on
-          ? currentLang === "th"
-            ? "Gemini AI Mode"
-            : "Gemini AI Mode"
+          ? "Gemini AI Mode"
           : currentLang === "th"
-            ? "Keyword Mode"
+            ? "โหมด Keyword"
             : "Keyword Mode";
       }
 
@@ -1759,6 +1815,7 @@ Answer:`;
         document.getElementById("sBad").textContent = 0;
         localStorage.removeItem("itbot_stats");
         localStorage.removeItem("itbot_history");
+        localStorage.removeItem("itbot_chat");
         document.getElementById("scrollBtn")?.classList.remove("visible");
       }
 
@@ -1798,6 +1855,16 @@ Answer:`;
         let avIcon = role === "bot" ? "🤖" : role === "admin" ? "👨‍💻" : "👤";
         d.innerHTML = `<div class="av">${avIcon}</div>`;
         d.appendChild(bub);
+        // Timestamp
+        const ts = document.createElement("div");
+        ts.className = "msg-time";
+        ts.textContent = new Date().toLocaleTimeString("th-TH", { hour: "2-digit", minute: "2-digit" });
+        const wrapper = document.createElement("div");
+        wrapper.style.flex = "1";
+        wrapper.appendChild(bub);
+        wrapper.appendChild(ts);
+        d.innerHTML = `<div class="av">${avIcon}</div>`;
+        d.appendChild(wrapper);
         w.appendChild(d);
         if (role === "bot" || role === "admin") {
           typeWrite(bub, formatMarkdown(text));
@@ -1805,7 +1872,56 @@ Answer:`;
           bub.innerHTML = formatMarkdown(text);
           w.scrollTop = w.scrollHeight;
         }
+        // Save to chat persistence
+        saveChatMessages();
         return d;
+      }
+
+      // Chat persistence functions
+      function saveChatMessages() {
+        const msgs = document.getElementById("messages");
+        const items = msgs.querySelectorAll(".msg:not(#welcomeMsg)");
+        const chatData = [];
+        items.forEach(m => {
+          const bub = m.querySelector(".bub");
+          const time = m.querySelector(".msg-time");
+          if (bub) {
+            chatData.push({
+              role: m.classList.contains("user") ? "user" : m.classList.contains("admin") ? "admin" : "bot",
+              html: bub.innerHTML,
+              time: time ? time.textContent : ""
+            });
+          }
+        });
+        localStorage.setItem("itbot_chat", JSON.stringify(chatData.slice(-50)));
+      }
+
+      function restoreChat() {
+        const saved = localStorage.getItem("itbot_chat");
+        if (!saved) return;
+        try {
+          const chatData = JSON.parse(saved);
+          const w = document.getElementById("messages");
+          chatData.forEach(msg => {
+            const d = document.createElement("div");
+            d.className = "msg " + msg.role;
+            let avIcon = msg.role === "bot" ? "🤖" : msg.role === "admin" ? "👨‍💻" : "👤";
+            const bub = document.createElement("div");
+            bub.className = "bub";
+            bub.innerHTML = msg.html;
+            const ts = document.createElement("div");
+            ts.className = "msg-time";
+            ts.textContent = msg.time;
+            const wrapper = document.createElement("div");
+            wrapper.style.flex = "1";
+            wrapper.appendChild(bub);
+            wrapper.appendChild(ts);
+            d.innerHTML = `<div class="av">${avIcon}</div>`;
+            d.appendChild(wrapper);
+            w.appendChild(d);
+          });
+          w.scrollTop = w.scrollHeight;
+        } catch(e) { console.error("Restore chat error:", e); }
       }
 
       function addFeedback(tNum, botText) {
@@ -2137,6 +2253,13 @@ Answer:`;
               if (newMsg.role === "admin") {
                 document.getElementById("typing")?.remove();
                 addMsg(newMsg.text, "admin");
+                // Browser notification for admin reply
+                if (Notification.permission === "granted" && document.hidden) {
+                  new Notification("👨‍💻 IT Support ตอบกลับ", {
+                    body: newMsg.text.slice(0, 100),
+                    icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>"
+                  });
+                }
               }
             }
           }
@@ -2165,6 +2288,19 @@ Answer:`;
       function initUI() {
         const maxTries = 20;
         let tries = 0;
+
+        // Request notification permission
+        if ("Notification" in window && Notification.permission === "default") {
+          Notification.requestPermission();
+        }
+
+        // Register PWA Service Worker
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker.register("sw.js").catch(() => {});
+        }
+
+        // Restore chat messages
+        restoreChat();
 
         const checkKB = setInterval(() => {
           tries++;

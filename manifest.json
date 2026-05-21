@@ -1,0 +1,19 @@
+{
+  "name": "IT Support AI — Premium Intelligent HelpDesk",
+  "short_name": "IT Support AI",
+  "description": "ระบบช่วยเหลือไอทีอัจฉริยะ แก้ปัญหา IT ได้ทันทีด้วย AI พร้อม Knowledge Base กว่า 200 FAQ",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#05070a",
+  "theme_color": "#6366f1",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["utilities", "productivity"]
+}

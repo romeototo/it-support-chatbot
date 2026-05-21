@@ -3,6 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="IT Support AI — Admin Dashboard สำหรับจัดการ Ticket IT และตอบกลับผู้ใช้แบบ Real-time พร้อม Analytics" />
+    <meta name="theme-color" content="#18181b" />
+    <!-- Open Graph -->
+    <meta property="og:title" content="IT Support AI — Admin Dashboard" />
+    <meta property="og:description" content="HelpDesk Pro Dashboard สำหรับจัดการ Ticket และตอบกลับผู้ใช้แบบ Real-time" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://romeototo.github.io/it-support-chatbot/dashboard.html" />
+    <meta name="twitter:card" content="summary" />
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>" />
     <title>HelpDesk Pro | Admin Dashboard</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
@@ -679,6 +689,19 @@
           <h2>Ticket queue</h2>
           <button
             class="btn-new"
+            onclick="exportCSV()"
+            style="
+              background: transparent;
+              border: 1px solid var(--accent-blue);
+              color: var(--accent-blue);
+              font-size: 0.75rem;
+            "
+            title="Export Tickets เป็น CSV"
+          >
+            📥 Export
+          </button>
+          <button
+            class="btn-new"
             onclick="clearData()"
             style="
               background: transparent;
@@ -927,6 +950,21 @@
         }
       }
 
+      function exportCSV() {
+        const tickets = getTickets();
+        if (!tickets.length) { alert('ไม่มี Ticket ให้ Export'); return; }
+        let csv = '\uFEFFID,Title,Status,Priority,Category,Time,Messages\n';
+        tickets.forEach(t => {
+          const msgs = t.messages.map(m => m.role + ': ' + m.text.replace(/[\n,"]/g, ' ')).join(' | ');
+          csv += `"${t.id}","${t.title}","${t.status}","${t.priority}","${t.category}","${t.time}","${msgs}"\n`;
+        });
+        const blob = new Blob([csv], {type: 'text/csv;charset=utf-8;'});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'tickets_export_' + new Date().toISOString().slice(0,10) + '.csv';
+        a.click();
+      }
+
       function renderQueue() {
         const queueList = document.getElementById("queueList");
         const tickets = getTickets();
@@ -1057,6 +1095,11 @@
             <div style="display:flex; justify-content:space-between; color:var(--text-main)"><span style="display:flex; align-items:center; gap:8px"><div style="width:12px;height:12px;border-radius:50%;background:#ef4444"></div>Network (อินเทอร์เน็ต, VPN)</span><b>${catCount.Network}</b></div>
             <div style="display:flex; justify-content:space-between; color:var(--text-main)"><span style="display:flex; align-items:center; gap:8px"><div style="width:12px;height:12px;border-radius:50%;background:#3b82f6"></div>Security (รหัสผ่าน, สิทธิ์เข้าถึง)</span><b>${catCount.Security}</b></div>
             <div style="display:flex; justify-content:space-between; color:var(--text-main)"><span style="display:flex; align-items:center; gap:8px"><div style="width:12px;height:12px;border-radius:50%;background:#22c55e"></div>General (คำถามทั่วไป)</span><b>${catCount.General}</b></div>
+            <hr style="border-color:var(--border); margin: 12px 0">
+            <div style="display:flex; justify-content:space-between; color:var(--text-main)"><span>📊 Resolution Rate</span><b>${tickets.length ? Math.round(tickets.filter(t => t.status === 'closed').length / tickets.length * 100) : 0}%</b></div>
+            <div style="display:flex; justify-content:space-between; color:var(--text-main)"><span>📝 Total Tickets</span><b>${tickets.length}</b></div>
+            <div style="display:flex; justify-content:space-between; color:var(--text-main)"><span>✅ Closed</span><b>${tickets.filter(t => t.status === 'closed').length}</b></div>
+            <div style="display:flex; justify-content:space-between; color:var(--text-main)"><span>🟡 Open</span><b>${tickets.filter(t => t.status === 'open').length}</b></div>
         `;
       }
 
