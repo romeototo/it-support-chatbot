@@ -27,3 +27,7 @@ QUICK_HANDOFF.md
 
 chroma_db/
 *_index*.html
+config.json  
+tickets.db  
+__pycache__/  
+chroma_db/ 

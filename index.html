@@ -1371,6 +1371,8 @@
     <script defer>
       let geminiKey = localStorage.getItem("geminiKey") || "";
       let ticketNum = 1000 + Math.floor(Math.random() * 1000);
+      // Session ID for conversation memory
+      const sessionId = 'web_' + Date.now() + '_' + Math.random().toString(36).substr(2,6);
       let savedStats = JSON.parse(
         localStorage.getItem("itbot_stats") || '{"tickets":0,"good":0,"bad":0}',
       );
@@ -2089,7 +2091,7 @@ Answer:`;
                 const res = await fetch("/api/chat", {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify({ message: text }),
+                  body: JSON.stringify({ message: text, session_id: sessionId }),
                 });
                 if (res.ok) {
                   const data = await res.json();
@@ -2181,6 +2183,11 @@ Answer:`;
         let lastTicket =
           hdTickets.length > 0 ? hdTickets[hdTickets.length - 1] : null;
         let newStatus = isClosing ? "closed" : "open";
+        // Determine category for API sync
+        let category = "General";
+        if (text.toLowerCase().includes("ปริ้น") || text.toLowerCase().includes("พิมพ์")) category = "Hardware";
+        if (text.toLowerCase().includes("เน็ต") || text.toLowerCase().includes("vpn") || text.toLowerCase().includes("wifi")) category = "Network";
+        if (text.toLowerCase().includes("รหัส") || text.toLowerCase().includes("password")) category = "Security";
 
         if (
           lastTicket &&
@@ -2235,6 +2242,20 @@ Answer:`;
         // Keep only latest 50 tickets
         if (hdTickets.length > 50) hdTickets = hdTickets.slice(-50);
         localStorage.setItem("helpdesk_tickets", JSON.stringify(hdTickets));
+
+        // Also sync to backend API (non-blocking)
+        if (!window.location.hostname.includes("github.io") && window.location.protocol !== "file:") {
+          fetch("/api/tickets/new", {
+            method: "POST",
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify({
+              user_name: "Web User",
+              message: text,
+              bot_response: reply,
+              category: category
+            })
+          }).catch(() => {});
+        }
       }
 
       // Listen for Admin replies and typing from Dashboard

@@ -920,7 +920,28 @@
       let activeTicketId = null;
       let currentFilter = "all";
 
-      function getTickets() {
+      // API-aware ticket fetching (fallback to localStorage for static mode)
+      let _useAPI = true;
+      async function getTickets() {
+        if (_useAPI) {
+          try {
+            const r = await fetch('/api/tickets?limit=100');
+            if (r.ok) {
+              const d = await r.json();
+              // Normalize API tickets to match dashboard format
+              return d.tickets.map(t => ({
+                id: t.ticket_id,
+                time: new Date(t.created_at).toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'}),
+                title: t.user_message,
+                priority: t.priority || 'normal',
+                status: t.status === 'replied' ? 'progress' : t.status,
+                category: t.category || 'General',
+                messages: [{role:'user',text:t.user_message},{role:'bot',text:t.bot_response||''}],
+                admin_reply: t.admin_reply
+              }));
+            }
+          } catch(e) { _useAPI = false; }
+        }
         return JSON.parse(localStorage.getItem("helpdesk_tickets") || "[]");
       }
 
@@ -937,7 +958,7 @@
         renderQueue();
       }
 
-      function clearData() {
+      async function clearData() {
         if (
           confirm(
             "คุณต้องการล้างข้อมูล Ticket ทั้งหมดใช่หรือไม่? (สำหรับการเริ่มทดสอบ Demo ใหม่)",
@@ -950,8 +971,8 @@
         }
       }
 
-      function exportCSV() {
-        const tickets = getTickets();
+      async function exportCSV() {
+        const tickets = await getTickets();
         if (!tickets.length) { alert('ไม่มี Ticket ให้ Export'); return; }
         let csv = '\uFEFFID,Title,Status,Priority,Category,Time,Messages\n';
         tickets.forEach(t => {
@@ -965,9 +986,9 @@
         a.click();
       }
 
-      function renderQueue() {
+      async function renderQueue() {
         const queueList = document.getElementById("queueList");
-        const tickets = getTickets();
+        const tickets = await getTickets();
 
         let openCount = tickets.filter(
           (t) => t.status === "open" || t.status === "progress",
@@ -1032,11 +1053,11 @@
           .join("");
       }
 
-      function renderAnalytics() {
+      async function renderAnalytics() {
         const tvHeader = document.getElementById("tvHeader");
 
         // Calculate for chart based on current data
-        const tickets = getTickets();
+        const tickets = await getTickets();
         const catCount = { Hardware: 0, Network: 0, Security: 0, General: 0 };
         tickets.forEach((t) => {
           if (catCount[t.category] !== undefined) catCount[t.category]++;
@@ -1109,13 +1130,13 @@
         renderTicketDetail();
       }
 
-      function renderTicketDetail() {
+      async function renderTicketDetail() {
         if (!activeTicketId) {
           renderAnalytics();
           return;
         }
 
-        const tickets = getTickets();
+        const tickets = await getTickets();
         const t = tickets.find((x) => x.id === activeTicketId);
         if (!t) return;
 
@@ -1132,6 +1153,9 @@
                 <div class="meta-group"><span class="meta-label">ผู้แจ้ง</span><span class="meta-val">ผู้ใช้งานทั่วไป</span></div>
                 <div class="meta-group"><span class="meta-label">หมวดหมู่</span><span class="meta-val">${escapeHtml(t.category)}</span></div>
                 <div class="meta-group"><span class="meta-label">สร้างเมื่อ</span><span class="meta-val">${escapeHtml(t.time)}</span></div>
+            </div>
+            <div style="display:flex; gap:8px; margin-top:12px;">
+              ${t.status !== 'closed' ? '<button onclick="closeTicket()" style="padding:6px 16px;border-radius:6px;border:1px solid var(--accent-red);background:transparent;color:var(--accent-red);cursor:pointer;font-size:0.8rem;">🔒 ปิด Ticket</button>' : '<button onclick="reopenTicket()" style="padding:6px 16px;border-radius:6px;border:1px solid var(--accent-green);background:transparent;color:var(--accent-green);cursor:pointer;font-size:0.8rem;">🔓 เปิดใหม่</button>'}
             </div>
         `;
 
@@ -1183,12 +1207,30 @@
         sendAdminReply();
       }
 
-      function sendAdminReply() {
+      async function sendAdminReply() {
         const inp = document.getElementById("adminInput");
         const text = inp.value.trim();
         if (!text || !activeTicketId) return;
 
-        let tickets = getTickets();
+        // Try API first
+        if (_useAPI) {
+          try {
+            const r = await fetch(`/api/tickets/${activeTicketId}/reply`, {
+              method: 'POST',
+              headers: {'Content-Type':'application/json'},
+              body: JSON.stringify({reply: text})
+            });
+            if (r.ok) {
+              inp.value = "";
+              renderTicketDetail();
+              renderQueue();
+              localStorage.setItem("admin_typing", JSON.stringify({ticketId: activeTicketId, typing: false}));
+              return;
+            }
+          } catch(e) { /* fallback to localStorage */ }
+        }
+
+        let tickets = await getTickets();
         let idx = tickets.findIndex((x) => x.id === activeTicketId);
         if (idx > -1) {
           tickets[idx].messages.push({ role: "admin", text: text });
@@ -1238,9 +1280,119 @@
         }
       });
 
+      // Close ticket via API
+      async function closeTicket() {
+        if (!activeTicketId || !_useAPI) return;
+        try {
+          const r = await fetch(`/api/tickets/${activeTicketId}/close`, {method:'POST'});
+          if (r.ok) { renderTicketDetail(); renderQueue(); }
+        } catch(e) { console.error('Close failed', e); }
+      }
+
+      // Reopen ticket via API
+      async function reopenTicket() {
+        if (!activeTicketId || !_useAPI) return;
+        try {
+          const r = await fetch(`/api/tickets/${activeTicketId}/reopen`, {method:'POST'});
+          if (r.ok) { renderTicketDetail(); renderQueue(); }
+        } catch(e) { console.error('Reopen failed', e); }
+      }
+
+      // Auto-refresh every 10 seconds
+      setInterval(() => {
+        renderQueue();
+        if (activeTicketId) renderTicketDetail();
+        else renderAnalytics();
+      }, 10000);
+
       // Init
       renderQueue();
       renderAnalytics();
+    </script>
+
+    <!-- LOGIN OVERLAY -->
+    <div id="loginOverlay" style="
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--bg-base);
+      display: flex; align-items: center; justify-content: center;
+    ">
+      <div style="
+        background: var(--bg-panel); border: 1px solid var(--border);
+        border-radius: 16px; padding: 40px; width: 380px; text-align: center;
+      ">
+        <div style="font-size: 2.5rem; margin-bottom: 12px;">🔐</div>
+        <h2 style="margin-bottom: 4px; font-size: 1.3rem;">HelpDesk Pro</h2>
+        <p style="color: var(--text-dim); font-size: 0.85rem; margin-bottom: 24px;">กรุณาเข้าสู่ระบบเพื่อจัดการ Ticket</p>
+        <div style="text-align: left; margin-bottom: 16px;">
+          <label style="font-size: 0.8rem; color: var(--text-dim); display: block; margin-bottom: 4px;">Username</label>
+          <input id="loginUser" type="text" placeholder="admin" style="
+            width: 100%; padding: 10px 14px; border-radius: 8px;
+            border: 1px solid var(--border); background: var(--bg-base);
+            color: var(--text-main); font-size: 0.9rem; outline: none;
+          ">
+        </div>
+        <div style="text-align: left; margin-bottom: 20px;">
+          <label style="font-size: 0.8rem; color: var(--text-dim); display: block; margin-bottom: 4px;">Password</label>
+          <input id="loginPass" type="password" placeholder="••••••••" style="
+            width: 100%; padding: 10px 14px; border-radius: 8px;
+            border: 1px solid var(--border); background: var(--bg-base);
+            color: var(--text-main); font-size: 0.9rem; outline: none;
+          ">
+        </div>
+        <div id="loginError" style="color: var(--accent-red); font-size: 0.8rem; margin-bottom: 12px; display: none;"></div>
+        <button id="loginBtn" style="
+          width: 100%; padding: 12px; border-radius: 8px; border: none;
+          background: var(--accent-blue); color: #fff; font-weight: 600;
+          font-size: 0.95rem; cursor: pointer; transition: 0.2s;
+        ">เข้าสู่ระบบ</button>
+      </div>
+    </div>
+    <script>
+      // Check if already logged in via API
+      (async function checkAuth() {
+        try {
+          const r = await fetch('/api/admin/status');
+          if (r.ok) {
+            const d = await r.json();
+            if (d.logged_in) {
+              document.getElementById('loginOverlay').style.display = 'none';
+              return;
+            }
+          }
+        } catch(e) { /* static mode — no backend */ }
+        // If on GitHub Pages (no backend), hide login
+        if (window.location.hostname.includes('github.io') || window.location.protocol === 'file:') {
+          document.getElementById('loginOverlay').style.display = 'none';
+        }
+      })();
+
+      document.getElementById('loginBtn').addEventListener('click', doLogin);
+      document.getElementById('loginPass').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+
+      async function doLogin() {
+        const user = document.getElementById('loginUser').value.trim();
+        const pass = document.getElementById('loginPass').value;
+        const errEl = document.getElementById('loginError');
+        errEl.style.display = 'none';
+        try {
+          const r = await fetch('/api/admin/login', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({username: user, password: pass})
+          });
+          if (r.ok) {
+            document.getElementById('loginOverlay').style.display = 'none';
+            renderQueue(); renderAnalytics();
+          } else {
+            const d = await r.json();
+            errEl.textContent = d.message || 'เข้าสู่ระบบไม่สำเร็จ';
+            errEl.style.display = 'block';
+          }
+        } catch(e) {
+          errEl.textContent = 'ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้';
+          errEl.style.display = 'block';
+        }
+      }
     </script>
   </body>
 </html>
