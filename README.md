@@ -1,92 +1,88 @@
-# 🤖 IT Support AI — Premium Intelligent HelpDesk
+# IT Support Chatbot
+
+> **Open-source AI helpdesk chatbot with FAQ automation, ticket handoff, admin workflow, and AI-powered IT support responses.**
 
 <div align="center">
-<i>👉 <a href="README-th.md">🇹🇭 อ่านรายละเอียดภาษาไทย</a></i><br><br>
 
-<img src="screenshot.png" alt="IT Support AI Chatbot" width="49%"> <img src="screenshot-dashboard.png" alt="Admin Dashboard" width="49%">
+<img src="screenshot.png" alt="IT Support Chatbot — User Interface" width="49%"> <img src="screenshot-dashboard.png" alt="Admin Dashboard" width="49%">
 
 [![Release](https://img.shields.io/github/v/release/romeototo/it-support-chatbot?style=for-the-badge)](https://github.com/romeototo/it-support-chatbot/releases)
 [![KB Validated](https://img.shields.io/github/actions/workflow/status/romeototo/it-support-chatbot/validate-kb.yml?style=for-the-badge&label=KB_Check)](https://github.com/romeototo/it-support-chatbot/actions)
-[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-GitHub_Pages-6366f1?style=for-the-badge)](https://romeototo.github.io/it-support-chatbot/)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-GitHub_Pages-6366f1?style=for-the-badge)](https://romeototo.github.io/it-support-chatbot/)
 [![Python](https://img.shields.io/badge/Python-3.10+-3776ab?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![Flask](https://img.shields.io/badge/Flask-2.x-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com)
 [![ChromaDB](https://img.shields.io/badge/ChromaDB-RAG-ff6b35?style=for-the-badge)](https://www.trychroma.com)
 [![Gemini AI](https://img.shields.io/badge/Gemini_AI-Optional-4285f4?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev)
-[![Chart.js](https://img.shields.io/badge/Chart.js-Analytics-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white)](https://www.chartjs.org/)
-[![License](https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge)](LICENSE)
 
-**Intelligent IT HelpDesk System with Hybrid AI Search Engine & Premium Glassmorphism UI**  
-**Pre-loaded with 202 FAQs across 45 IT categories covering enterprise-grade issues**
-
-### 🌐 Live Demo & Portfolio Showcase
-
-- **[User Chatbot Interface](https://romeototo.github.io/it-support-chatbot/)** — The user-facing chatbot for reporting issues and receiving preliminary automated support.
-- **[Admin Dashboard (HelpDesk Pro)](https://romeototo.github.io/it-support-chatbot/dashboard.html)** — The backend portal for IT staff to manage tickets and reply to users.
-  _(**Pro Tip:** Open both windows side-by-side to experience the **Real-Time Hybrid Sync** in action!)_
+**[User Chatbot](https://romeototo.github.io/it-support-chatbot/)** · **[Admin Dashboard](https://romeototo.github.io/it-support-chatbot/dashboard.html)** · **[Report a Bug](https://github.com/romeototo/it-support-chatbot/issues/new?template=bug_report.md)** · **[Request a Feature](https://github.com/romeototo/it-support-chatbot/issues/new?template=feature_request.md)**
 
 </div>
 
 ---
 
-## Project Snapshot
+## Overview
 
-| Item | Details |
-| ---- | ------- |
-| **Role** | AI helpdesk and admin dashboard for recurring IT support questions |
-| **Live demo** | [User chatbot](https://romeototo.github.io/it-support-chatbot/) · [Admin dashboard](https://romeototo.github.io/it-support-chatbot/dashboard.html) |
-| **Stack** | Python, Flask, JavaScript, ChromaDB, Gemini API |
-| **Impact** | 202 FAQs across 45 IT categories with ticket handoff and local real-time sync |
-| **Status** | Active flagship AI automation project |
-| **Portfolio case study** | [IT Support AI Chatbot](https://romeototo.github.io/portfolio-website/case-studies/it-support-chatbot/) |
+**IT Support Chatbot** is an open-source reference implementation of a lightweight AI helpdesk system. It is designed for small IT teams, helpdesk learners, and automation builders who want a working example of an AI-powered support workflow — without enterprise overhead.
 
----
+The project runs either as a fully static site on GitHub Pages (zero backend required) or as a full-stack Flask application with ChromaDB vector search and optional Gemini AI integration.
 
-## 💼 Business Value & Impact
+This repository is intended to help:
 
-- **Cost Reduction (Zero Server Cost):** The Hybrid Sync architecture utilizes the Web Storage API, enabling real-time communications completely serverless on GitHub Pages, cutting infrastructure costs by 100%.
-- **Time Efficiency:** The AI agent autonomously resolves over 202 common Tier 1 issues, freeing up IT staff to focus on highly complex critical tasks.
-- **Seamless Handoff:** If the AI cannot resolve the issue, it automatically opens a ticket and synchronizes context to the Admin Dashboard, preventing user frustration from repeating their problem.
+- **Small IT teams** looking to automate first-level support without expensive SaaS platforms
+- **Helpdesk learners** studying how ticket workflows and AI search pipelines are built
+- **Automation builders** who need a reference for hybrid keyword + vector + LLM search
+- **Developers** building lightweight AI support tools with Python and vanilla JavaScript
 
 ---
 
-## ✨ Features
+## Why This Project Matters
 
-| Feature                         | Description                                                                        |
-| ------------------------------- | ---------------------------------------------------------------------------------- |
-| 👨‍💻 **Admin Dashboard**          | Enterprise-grade HelpDesk Pro portal for ticket management and queues.             |
-| ⚡ **Real-Time Hybrid Sync**    | Cross-tab data synchronization between User and Admin via LocalStorage.            |
-| ⌨️ **Admin Typing Indicator**   | Real-time "Admin is typing..." status synchronized to the user's view.             |
-| 📊 **Live Analytics**           | Automated issue categorization and real-time Resolution Rate metrics via Chart.js. |
-| 🔍 **Search & Filter**          | Instant Ticket ID / Keyword search and dynamic state filtering (Open/Closed).      |
-| ⚡ **Canned Responses**         | One-click quick replies for Admins to drastically reduce response time.            |
-| 🔍 **Hybrid Search Engine**     | 3-layer precision: Keyword Matching → RAG (ChromaDB) → Gemini AI LLM.              |
-| 📚 **202 FAQ / 45 Categories**  | Comprehensive built-in enterprise IT knowledge base.                               |
-| 🤖 **Gemini AI Integration**    | Toggle on LLM capabilities via API Key for Natural Language Generation.            |
-| 💎 **Premium Glassmorphism UI** | Sleek Dark/Light mode toggle with micro-interactions and smooth animations.        |
-| ⌨️ **Typewriter Animation**     | Engaging character-by-character typing effect for bot responses.                   |
-| 📖 **Smart Collapse**           | Long answers are automatically collapsed with a "Read More" expansion button.      |
-| 📋 **Copy to Clipboard**        | Single-click action to copy technical instructions.                                |
-| 👍👎 **Feedback System**        | Answer quality rating system locally persisted in the browser.                     |
-| 🎫 **Ticket History**           | Persistent real-time chat history that survives browser refreshes.                 |
-| 🌐 **Dual Deploy Mode**         | Fully functional as a static site (GitHub Pages) or Full-Stack App (Flask).        |
+Most AI helpdesk tools are either overly complex enterprise systems or overly simplified tutorials. This project fills the gap: a functional, self-hostable, open-source chatbot that covers the full support workflow — from FAQ matching to ticket creation to admin reply — with no proprietary lock-in.
+
+Key design decisions:
+- **No database server required** for the static deployment — tickets sync across tabs via `localStorage`
+- **Three-layer search** (keyword → vector → LLM) degrades gracefully when AI is unavailable
+- **Gemini AI is optional** — the system works without it by falling back to RAG and keyword search
+- **All data stays local** — no external analytics or telemetry
 
 ---
 
-## 🏗️ Tech Stack
+## Features
 
-```
-Frontend:  HTML5 + Vanilla CSS (Glassmorphism) + JavaScript (ES6+)
-Backend:   Python 3.11 + Flask + ChromaDB (Vector DB)
-AI Engine: Hybrid (Keyword Match → RAG → Gemini 2.0 Flash API)
-Fonts:     Google Fonts — Outfit
-Deploy:    GitHub Pages (Frontend) / Local Flask (Full Stack)
-```
+| Feature | Description |
+| ------- | ----------- |
+| 🔍 **Hybrid Search Engine** | Three-layer precision: Keyword Matching → ChromaDB RAG → Gemini AI LLM |
+| 📚 **FAQ Knowledge Base** | 202 pre-loaded FAQs across 45 IT categories (easily extensible) |
+| 🎫 **Ticket Handoff** | Auto-creates a support ticket when AI cannot resolve the issue |
+| 👨‍💼 **Admin Dashboard** | HelpDesk portal for ticket management, status updates, and canned responses |
+| ⚡ **Real-Time Sync** | Cross-tab synchronization between user and admin via Web Storage API |
+| ⌨️ **Typing Indicator** | "Admin is typing…" status synchronized in real time |
+| 📊 **Live Analytics** | Issue categorization and resolution rate metrics via Chart.js |
+| 🤖 **Gemini AI Toggle** | Activate LLM responses with an API key from Google AI Studio |
+| 💎 **Glassmorphism UI** | Dark/light mode toggle with micro-interactions |
+| 🌐 **Dual Deploy Mode** | Works as a static site (GitHub Pages) or full-stack Flask app |
+| 🔒 **XSS Protection** | Admin dashboard sanitizes all user input before rendering |
+| 📋 **Copy to Clipboard** | One-click copy for technical instructions |
+| 👍👎 **Feedback System** | Answer quality rating persisted locally in the browser |
 
 ---
 
-## 🧠 System Architecture
+## Use Cases
 
-### 1. Hybrid Search Engine (Chatbot)
+| Scenario | How This Project Helps |
+| -------- | ---------------------- |
+| Internal IT helpdesk for a small company | Deploy on GitHub Pages; point staff to the chatbot URL |
+| Learning how RAG search pipelines work | Read `chatbot.py`, `rag_engine.py`, and `init_rag.py` |
+| Prototyping a ticket handoff flow | Extend `web_app.py` REST routes and `dashboard.html` |
+| Building a LINE / Slack bot backend | Use `line_webhook_template.py` as a starting point |
+| Teaching AI + helpdesk integration | Fork and adapt the knowledge base for any domain |
+
+---
+
+## Architecture
+
+### Hybrid Search Engine
 
 ```mermaid
 graph TD
@@ -106,9 +102,9 @@ graph TD
     H --> I[Auto-Create Ticket]:::escalate
 ```
 
-### 2. Real-Time Hybrid Sync (Admin Dashboard)
+### Real-Time Sync (Serverless)
 
-A **Serverless** implementation running entirely on GitHub Pages using Web Storage API (`localStorage` + `storage event`) to mock real-time database capabilities.
+The static deployment uses the browser's `localStorage` + `storage` event API to synchronize tickets across the user chatbot and admin dashboard without any backend server.
 
 ```mermaid
 graph LR
@@ -122,96 +118,194 @@ graph LR
     B -->|"Event Triggered"| A
 ```
 
-- ⚡ Live Typing Indicator Synchronization
-- ⚡ Automated Ticket Status (Open/Closed) Updates
-- 📊 Real-time data pipeline for Analytics and Chart rendering
+### Tech Stack
+
+```
+Frontend:  HTML5 + Vanilla CSS (Glassmorphism) + JavaScript (ES6+)
+Backend:   Python 3.10+ + Flask + ChromaDB (Vector DB)
+AI Engine: Hybrid (Keyword Match → RAG → Gemini 2.0 Flash)
+Deploy:    GitHub Pages (static) / Local Flask (full-stack)
+```
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Option A — GitHub Pages (Zero Setup)
 
-👉 Try it live at **[https://romeototo.github.io/it-support-chatbot/](https://romeototo.github.io/it-support-chatbot/)**
+Try the live demo at **[https://romeototo.github.io/it-support-chatbot/](https://romeototo.github.io/it-support-chatbot/)**
 
-### Option B — Local Full Stack (With RAG Backend)
+Open both the [user chatbot](https://romeototo.github.io/it-support-chatbot/) and the [admin dashboard](https://romeototo.github.io/it-support-chatbot/dashboard.html) side-by-side to see real-time ticket sync in action.
+
+### Option B — Local Full-Stack (With RAG Backend)
 
 ```bash
-# 1. Clone repository
+# 1. Clone the repository
 git clone https://github.com/romeototo/it-support-chatbot.git
 cd it-support-chatbot
 
-# 2. Install dependencies
+# 2. Install Python dependencies
 pip install -r requirements.txt
 
-# 3. Initialize Vector Database from FAQ JSON
+# 3. Initialize the vector database
 python init_rag.py
 
-# 4. Start Flask Server
+# 4. Start the Flask server
 python web_app.py
 
-# 5. Open in Browser
-# Navigate to http://localhost:5000
+# 5. Open http://localhost:5000 in your browser
 ```
 
-### Option C — Activate Gemini AI Mode
+### Option C — Enable Gemini AI
 
-1. Obtain a free API Key from [Google AI Studio](https://aistudio.google.com).
-2. Click the ⚙️ AI settings icon in the top right corner of the Chatbot UI.
-3. Paste the API Key and click **Activate AI**.
+1. Get a free API key from [Google AI Studio](https://aistudio.google.com)
+2. Click the ⚙️ settings icon in the chatbot UI
+3. Paste your API key and click **Activate AI**
+
+The chatbot will then use Gemini as a fallback when FAQ and RAG search return low-confidence results.
 
 ---
 
-## 📂 Project Structure
+## Configuration
+
+The file `config.json` controls basic runtime settings:
+
+```json
+{
+  "rag_enabled": true,
+  "gemini_enabled": false
+}
+```
+
+| Key | Default | Description |
+| --- | ------- | ----------- |
+| `rag_enabled` | `true` | Enable ChromaDB vector search as the second search layer |
+| `gemini_enabled` | `false` | Enable Gemini AI as the third search layer (requires API key at runtime) |
+
+To add or update FAQ entries, use the provided script which keeps both `kb.js` (static) and `knowledge_base.json` (backend) in sync:
+
+```bash
+python add_faq.py
+```
+
+---
+
+## Project Structure
 
 ```
 it-support-chatbot/
-├── index.html           # Frontend Chatbot (Glassmorphism UI)
-├── dashboard.html       # Admin Dashboard (HelpDesk Pro + Chart.js)
-├── kb.js                # Knowledge Base 202 FAQ for GitHub Pages (Static JS)
-├── knowledge_base.json  # Knowledge Base for Flask Backend
-├── requirements.txt     # Python dependencies
-├── web_app.py           # Flask Server + REST API Routes for Full-Stack mode
-├── chatbot.py           # Hybrid Search Engine Core (Keyword + RAG + Gemini)
-├── rag_engine.py        # ChromaDB Vector Search Engine logic
-├── init_rag.py          # Script to ingest JSON FAQ into Vector DB
-├── add_faq.py           # Batch FAQ addition tool (syncs kb.js + JSON)
-├── guide.html           # User guide document (Thai)
-└── screenshot.png       # Demo Screenshots
+├── index.html               # User-facing chatbot (static, glassmorphism UI)
+├── dashboard.html           # Admin dashboard (HelpDesk Pro + Chart.js)
+├── kb.js                    # Knowledge base — 202 FAQs for GitHub Pages static mode
+├── knowledge_base.json      # Knowledge base — FAQ data for Flask backend
+├── web_app.py               # Flask server + REST API routes
+├── chatbot.py               # Hybrid search engine core (keyword + RAG + Gemini)
+├── rag_engine.py            # ChromaDB vector search engine
+├── init_rag.py              # Script to ingest knowledge_base.json into ChromaDB
+├── add_faq.py               # Batch FAQ management tool (syncs kb.js + JSON)
+├── line_webhook_template.py # Starter template for LINE Messaging API webhook
+├── requirements.txt         # Python dependencies
+├── config.json              # Runtime configuration flags
+├── guide.html               # User guide
+└── .github/
+    ├── workflows/
+    │   ├── validate-kb.yml  # CI: validates knowledge base structure
+    │   └── python-lint.yml  # CI: Python code linting
+    └── ISSUE_TEMPLATE/
+        ├── bug_report.md
+        └── feature_request.md
 ```
 
 ---
 
-## 🆕 What's New (Latest Update)
+## Example Workflow
 
-- 🐛 **Fixed:** Duplicate Enter handler causing double ticket creation
-- 🐛 **Fixed:** isClosing false positive (e.g. "booking" was detected as "ok")
-- 🐛 **Fixed:** Terminal chatbot displaying raw tuple instead of clean output
-- 🔒 **Security:** XSS protection added to Admin Dashboard with `escapeHtml()`
-- 🔒 **Security:** Dashboard progress bar now uses status-based width (no more random flicker)
-- 🎨 **UX:** Added SEO meta tags and `lang="th"` default
-- ⌨️ **UX:** Escape key shortcut to close AI Config panel
-- 💬 **UX:** Gemini API error messages are now specific (400/403/429)
-- 🔄 **Sync:** `add_faq.py` now syncs both `kb.js` and `knowledge_base.json`
+A typical end-to-end interaction:
 
----
-
-## 🤝 Contributing
-
-1. Fork this repository
-2. Create a new branch: `git checkout -b feature/add-faqs`
-3. Add new FAQs using `add_faq.py` (auto-syncs both `kb.js` and `knowledge_base.json`)
-4. Run `python init_rag.py` to update the Vector DB
-5. Submit a Pull Request!
+1. **User** types: `"I can't connect to the VPN"`
+2. **Keyword matching** scans for known keywords — no strong match found
+3. **RAG search** queries ChromaDB — returns a semantically close FAQ with confidence 0.72 (below threshold)
+4. **Gemini AI** generates a contextual response based on the closest FAQ
+5. **User** is not satisfied → clicks "Escalate to IT"
+6. **Ticket is created** and appears instantly in the admin dashboard
+7. **Admin** types a reply → user sees "Admin is typing…" in real time
+8. **Admin** closes the ticket → resolution metrics update on the analytics chart
 
 ---
 
-## 📄 License
+## Screenshots / Demo
 
-MIT License — Free for personal and commercial use.
+| User Chatbot | Admin Dashboard |
+| ------------ | --------------- |
+| ![User Chatbot](screenshot.png) | ![Admin Dashboard](screenshot-dashboard.png) |
+
+**Live demo:** [https://romeototo.github.io/it-support-chatbot/](https://romeototo.github.io/it-support-chatbot/)
 
 ---
+
+## How AI Coding Tools Help Maintain This Project
+
+This project uses AI coding tools (including OpenAI Codex) to help with ongoing maintenance tasks:
+
+- **Issue triage** — Summarizing and categorizing incoming bug reports and feature requests
+- **Code review** — Identifying logic gaps in the hybrid search fallback chain
+- **Documentation generation** — Keeping README, CONTRIBUTING, and inline comments up to date as the codebase evolves
+- **Test-case creation** — Writing unit tests for `chatbot.py` search scoring and `rag_engine.py` retrieval logic
+- **Support-response quality checks** — Reviewing FAQ answers in `knowledge_base.json` for accuracy and completeness
+- **Safer refactoring** — Suggesting incremental changes to the Flask routes and frontend sync logic without breaking the static deployment
+
+AI tools help a solo maintainer sustain the quality of an open-source project at a pace that would otherwise require a full team.
+
+---
+
+## Roadmap
+
+| Milestone | Status |
+| --------- | ------ |
+| Static deployment (GitHub Pages) | ✅ Done |
+| Flask full-stack backend | ✅ Done |
+| ChromaDB RAG integration | ✅ Done |
+| Gemini AI optional layer | ✅ Done |
+| Admin dashboard with real-time sync | ✅ Done |
+| LINE Messaging API webhook template | ✅ Done |
+| Unit tests for search engine core | 🔲 Planned |
+| Docker / Compose deployment | 🔲 Planned |
+| Multi-language FAQ support | 🔲 Planned |
+| Webhook integration examples (Slack, Teams) | 🔲 Planned |
+| Persistent backend with PostgreSQL option | 🔲 Planned |
+
+---
+
+## Contributing
+
+Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before submitting a pull request.
+
+For bug reports, use the [bug report template](https://github.com/romeototo/it-support-chatbot/issues/new?template=bug_report.md).  
+For feature requests, use the [feature request template](https://github.com/romeototo/it-support-chatbot/issues/new?template=feature_request.md).
+
+---
+
+## Security
+
+If you discover a security vulnerability, please follow the responsible disclosure process described in [SECURITY.md](SECURITY.md). Do not open a public issue for security reports.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for full terms.
+
+Free for personal and commercial use.
+
+---
+
+## Maintainer
+
+**Romeo T.**  
+GitHub: [@romeototo](https://github.com/romeototo)
 
 <div align="center">
-  Made with ❤️ by <a href="https://github.com/romeototo">Romeo</a> | Powered by Python · ChromaDB · Gemini AI
+
+Made with care · Python · ChromaDB · Gemini AI
+
 </div>

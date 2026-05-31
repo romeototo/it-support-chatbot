@@ -1,29 +1,41 @@
 ---
 name: 🐛 Bug Report
-about: Report a bug or unexpected behavior
+about: Report a bug or unexpected behavior in the chatbot, admin dashboard, or backend
 title: "[Bug] "
 labels: bug
 assignees: romeototo
 ---
 
-## 🐛 Bug Description
-A clear description of the bug.
+## Description
 
-## 📋 Steps to Reproduce
+<!-- A clear and concise description of what the bug is. -->
+
+## Steps to Reproduce
+
 1. Go to '...'
-2. Click on '...'
-3. See error
+2. Type '...' in the chatbot
+3. Click '...'
+4. See error
 
-## ✅ Expected Behavior
-What should have happened.
+## Expected Behavior
 
-## ❌ Actual Behavior
-What actually happened.
+<!-- What should have happened? -->
 
-## 🖥️ Environment
-- **Browser:** (e.g. Chrome 125)
-- **Mode:** GitHub Pages / Flask Backend
-- **AI Mode:** Gemini ON / OFF
+## Actual Behavior
 
-## 📸 Screenshots
-If applicable, add screenshots.
+<!-- What actually happened? Include any error messages or console output. -->
+
+## Environment
+
+- **Browser and version:** (e.g., Chrome 125, Firefox 126)
+- **Deployment mode:** GitHub Pages (static) / Flask (local)
+- **Gemini AI mode:** Enabled / Disabled
+- **Operating system:** (e.g., Windows 11, macOS 14)
+
+## Screenshots or Console Output
+
+<!-- If applicable, paste console errors or attach screenshots. -->
+
+## Additional Context
+
+<!-- Any other context that might help reproduce or fix the issue. -->

@@ -1,22 +1,36 @@
 ---
 name: ✨ Feature Request
-about: Suggest a new feature or improvement
+about: Suggest a new feature, improvement, or addition to the knowledge base
 title: "[Feature] "
 labels: enhancement
 assignees: romeototo
 ---
 
-## ✨ Feature Description
-A clear description of the feature you'd like.
+## Problem or Use Case
 
-## 🎯 Use Case
-Why is this feature needed? What problem does it solve?
+<!-- What problem are you trying to solve? Who would benefit from this feature? -->
+<!-- Example: "As a small IT team admin, I need X because Y" -->
 
-## 💡 Proposed Solution
-How you think this could be implemented.
+## Proposed Solution
 
-## 🔄 Alternatives Considered
-Any alternative solutions you've considered.
+<!-- Describe what you'd like to see. Be as specific as possible. -->
 
-## 📸 Mockups / References
-If applicable, add mockups or reference links.
+## Alternatives Considered
+
+<!-- Have you considered any other approaches? Why do you prefer your proposed solution? -->
+
+## Scope
+
+<!-- Check all that apply -->
+
+- [ ] Frontend chatbot UI (`index.html`)
+- [ ] Admin dashboard UI (`dashboard.html`)
+- [ ] Search engine / AI logic (`chatbot.py`, `rag_engine.py`)
+- [ ] Flask backend (`web_app.py`)
+- [ ] Knowledge base / FAQ content (`knowledge_base.json`)
+- [ ] Documentation
+- [ ] Other (please specify)
+
+## Additional Context
+
+<!-- Mockups, links, reference implementations, or anything else that helps explain the request. -->
