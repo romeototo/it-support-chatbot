@@ -23,28 +23,36 @@
 
 ## Overview
 
-**IT Support Chatbot** is an open-source reference implementation of a lightweight AI helpdesk system. It is designed for small IT teams, helpdesk learners, and automation builders who want a working example of an AI-powered support workflow — without enterprise overhead.
+**IT Support Chatbot** is an open-source AI helpdesk reference implementation designed for small IT teams, helpdesk learners, and automation builders. It demonstrates a complete support workflow — from FAQ matching to ticket creation to admin reply — using a three-layer hybrid search engine (keyword → vector → LLM).
 
-The project runs either as a fully static site on GitHub Pages (zero backend required) or as a full-stack Flask application with ChromaDB vector search and optional Gemini AI integration.
+The project runs either as a fully static demo on GitHub Pages (zero backend required) or as a full-stack Flask application with ChromaDB vector search and optional Gemini AI integration.
 
-This repository is intended to help:
+---
+
+## Who This Is For
+
+This project is intended to help:
 
 - **Small IT teams** looking to automate first-level support without expensive SaaS platforms
-- **Helpdesk learners** studying how ticket workflows and AI search pipelines are built
-- **Automation builders** who need a reference for hybrid keyword + vector + LLM search
+- **Helpdesk learners** studying how ticket workflows and AI search pipelines are built in practice
+- **Automation builders** who need a working reference for hybrid keyword + vector + LLM search
 - **Developers** building lightweight AI support tools with Python and vanilla JavaScript
+- **Students and educators** who want a real-world example of RAG applied to a practical domain
+
+This is a **reference implementation and demo project**. It is not a production-ready SaaS product and does not claim enterprise-grade reliability, SLA guarantees, or active community adoption.
 
 ---
 
 ## Why This Project Matters
 
-Most AI helpdesk tools are either overly complex enterprise systems or overly simplified tutorials. This project fills the gap: a functional, self-hostable, open-source chatbot that covers the full support workflow — from FAQ matching to ticket creation to admin reply — with no proprietary lock-in.
+Most AI helpdesk tools are either overly complex enterprise systems or overly simplified tutorials. This project fills the gap: a functional, self-hostable, open-source chatbot that covers the full support workflow with no proprietary lock-in.
 
 Key design decisions:
-- **No database server required** for the static deployment — tickets sync across tabs via `localStorage`
+
+- **No database server required** for the static deployment — the demo can run with minimal hosting cost using GitHub Pages; tickets sync across tabs via `localStorage`
 - **Three-layer search** (keyword → vector → LLM) degrades gracefully when AI is unavailable
 - **Gemini AI is optional** — the system works without it by falling back to RAG and keyword search
-- **All data stays local** — no external analytics or telemetry
+- **All data stays local** — no external analytics, telemetry, or third-party data collection
 
 ---
 
@@ -52,9 +60,9 @@ Key design decisions:
 
 | Feature | Description |
 | ------- | ----------- |
-| 🔍 **Hybrid Search Engine** | Three-layer precision: Keyword Matching → ChromaDB RAG → Gemini AI LLM |
-| 📚 **FAQ Knowledge Base** | 202 pre-loaded FAQs across 45 IT categories (easily extensible) |
-| 🎫 **Ticket Handoff** | Auto-creates a support ticket when AI cannot resolve the issue |
+| 🔍 **Hybrid Search Engine** | Three-layer search: Keyword Matching → ChromaDB RAG → Gemini AI LLM |
+| 📚 **FAQ Knowledge Base** | Includes a built-in knowledge base with 202 FAQ entries across 45 IT categories |
+| 🎫 **Ticket Handoff** | Auto-creates a support ticket when the search engine cannot resolve the issue |
 | 👨‍💼 **Admin Dashboard** | HelpDesk portal for ticket management, status updates, and canned responses |
 | ⚡ **Real-Time Sync** | Cross-tab synchronization between user and admin via Web Storage API |
 | ⌨️ **Typing Indicator** | "Admin is typing…" status synchronized in real time |
@@ -72,7 +80,7 @@ Key design decisions:
 
 | Scenario | How This Project Helps |
 | -------- | ---------------------- |
-| Internal IT helpdesk for a small company | Deploy on GitHub Pages; point staff to the chatbot URL |
+| Internal IT helpdesk demo for a small company | Deploy on GitHub Pages; point staff to the chatbot URL |
 | Learning how RAG search pipelines work | Read `chatbot.py`, `rag_engine.py`, and `init_rag.py` |
 | Prototyping a ticket handoff flow | Extend `web_app.py` REST routes and `dashboard.html` |
 | Building a LINE / Slack bot backend | Use `line_webhook_template.py` as a starting point |
@@ -102,9 +110,9 @@ graph TD
     H --> I[Auto-Create Ticket]:::escalate
 ```
 
-### Real-Time Sync (Serverless)
+### Real-Time Sync (Serverless Demo)
 
-The static deployment uses the browser's `localStorage` + `storage` event API to synchronize tickets across the user chatbot and admin dashboard without any backend server.
+The static deployment uses the browser's `localStorage` + `storage` event API to synchronize tickets across the user chatbot and admin dashboard without any backend server. This is designed for demo purposes.
 
 ```mermaid
 graph LR
@@ -124,18 +132,20 @@ graph LR
 Frontend:  HTML5 + Vanilla CSS (Glassmorphism) + JavaScript (ES6+)
 Backend:   Python 3.10+ + Flask + ChromaDB (Vector DB)
 AI Engine: Hybrid (Keyword Match → RAG → Gemini 2.0 Flash)
-Deploy:    GitHub Pages (static) / Local Flask (full-stack)
+Deploy:    GitHub Pages (static demo) / Local Flask (full-stack)
 ```
 
 ---
 
 ## Quick Start
 
-### Option A — GitHub Pages (Zero Setup)
+### Option A — GitHub Pages Demo (Zero Setup)
 
 Try the live demo at **[https://romeototo.github.io/it-support-chatbot/](https://romeototo.github.io/it-support-chatbot/)**
 
 Open both the [user chatbot](https://romeototo.github.io/it-support-chatbot/) and the [admin dashboard](https://romeototo.github.io/it-support-chatbot/dashboard.html) side-by-side to see real-time ticket sync in action.
+
+> **Note:** The GitHub Pages demo uses `localStorage` for ticket persistence. Tickets are scoped to the browser tab and are not shared across devices or users.
 
 ### Option B — Local Full-Stack (With RAG Backend)
 
@@ -195,7 +205,7 @@ python add_faq.py
 ```
 it-support-chatbot/
 ├── index.html               # User-facing chatbot (static, glassmorphism UI)
-├── dashboard.html           # Admin dashboard (HelpDesk Pro + Chart.js)
+├── dashboard.html           # Admin dashboard (ticket management + Chart.js)
 ├── kb.js                    # Knowledge base — 202 FAQs for GitHub Pages static mode
 ├── knowledge_base.json      # Knowledge base — FAQ data for Flask backend
 ├── web_app.py               # Flask server + REST API routes
@@ -245,16 +255,14 @@ A typical end-to-end interaction:
 
 ## How AI Coding Tools Help Maintain This Project
 
-This project uses AI coding tools (including OpenAI Codex) to help with ongoing maintenance tasks:
+This project uses AI coding tools (including OpenAI Codex) to help a solo maintainer sustain quality at a pace that would otherwise require a full team:
 
 - **Issue triage** — Summarizing and categorizing incoming bug reports and feature requests
 - **Code review** — Identifying logic gaps in the hybrid search fallback chain
-- **Documentation generation** — Keeping README, CONTRIBUTING, and inline comments up to date as the codebase evolves
+- **Documentation generation** — Keeping README, CONTRIBUTING, and inline comments accurate as the codebase evolves
 - **Test-case creation** — Writing unit tests for `chatbot.py` search scoring and `rag_engine.py` retrieval logic
 - **Support-response quality checks** — Reviewing FAQ answers in `knowledge_base.json` for accuracy and completeness
-- **Safer refactoring** — Suggesting incremental changes to the Flask routes and frontend sync logic without breaking the static deployment
-
-AI tools help a solo maintainer sustain the quality of an open-source project at a pace that would otherwise require a full team.
+- **Safer refactoring** — Suggesting incremental changes to Flask routes and frontend sync logic without breaking the static deployment
 
 ---
 
@@ -276,6 +284,20 @@ AI tools help a solo maintainer sustain the quality of an open-source project at
 
 ---
 
+## Limitations
+
+This project is a reference implementation and demo. Be aware of the following constraints before using it in a real environment:
+
+- **No authentication** — The admin dashboard has no login system. Anyone with the URL can access it. Do not expose it publicly without adding authentication.
+- **localStorage is not a database** — The static GitHub Pages demo stores tickets in the browser. Data is lost if the browser cache is cleared, and is not shared across devices.
+- **SQLite in Flask mode** — The Flask backend uses a local SQLite file (`tickets.db`). It is not designed for concurrent multi-user production loads.
+- **No unit tests yet** — The search engine logic in `chatbot.py` and `rag_engine.py` does not have automated test coverage at this time. This is on the roadmap.
+- **Gemini API dependency** — The LLM layer requires a Google AI Studio API key. Rate limits and model availability are outside the control of this project.
+- **Knowledge base is in Thai** — The built-in FAQ entries are written in Thai. Using the chatbot in other languages requires translating or replacing `knowledge_base.json` and `kb.js`.
+- **No production deployment** — This project has not been validated in a production environment. Use it as a learning reference and starting point, not as a drop-in solution.
+
+---
+
 ## Contributing
 
 Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before submitting a pull request.
@@ -288,6 +310,13 @@ For feature requests, use the [feature request template](https://github.com/rome
 ## Security
 
 If you discover a security vulnerability, please follow the responsible disclosure process described in [SECURITY.md](SECURITY.md). Do not open a public issue for security reports.
+
+Key security notes for this project:
+
+- The static demo stores all data in the browser's `localStorage` — no server-side data is collected
+- The Flask backend stores tickets locally in `tickets.db` — there is no cloud sync or external data transfer
+- XSS protection is applied in the admin dashboard via `escapeHtml()` on all user-supplied content
+- No analytics, tracking, or telemetry is built into this project
 
 ---
 
