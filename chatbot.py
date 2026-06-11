@@ -11,6 +11,7 @@ import sys
 from pathlib import Path
 from rag_engine import RAGEngine
 import os
+import time
 import urllib.request
 import urllib.error
 from collections import defaultdict
@@ -33,13 +34,27 @@ LLM_API_KEY = os.getenv("LLM_API_KEY") or os.getenv("GOOGLE_API_KEY") or ""
 rag_engine = RAGEngine(api_key=LLM_API_KEY)
 
 # ============================================================
-# CONVERSATION MEMORY (per session)
+# CONVERSATION MEMORY (per session, with TTL)
 # ============================================================
 conversation_history = defaultdict(list)  # session_id -> [(role, content)]
+_session_timestamps = {}  # session_id -> last_active_timestamp
 MAX_HISTORY = 5
+SESSION_TTL = 1800  # 30 minutes in seconds
+
+def _cleanup_expired_sessions():
+    """Remove sessions that haven't been active within SESSION_TTL."""
+    now = time.time()
+    expired = [sid for sid, ts in _session_timestamps.items() if now - ts > SESSION_TTL]
+    for sid in expired:
+        conversation_history.pop(sid, None)
+        _session_timestamps.pop(sid, None)
+    if expired:
+        logger.info(f"Cleaned up {len(expired)} expired conversation sessions")
 
 def add_to_history(session_id, role, content):
-    """Add message to conversation history."""
+    """Add message to conversation history with TTL tracking."""
+    _cleanup_expired_sessions()
+    _session_timestamps[session_id] = time.time()
     history = conversation_history[session_id]
     history.append((role, content))
     if len(history) > MAX_HISTORY * 2:

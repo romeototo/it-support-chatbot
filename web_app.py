@@ -19,6 +19,8 @@ from flask import (
     Flask, request, jsonify, send_file,
     session, redirect, url_for, abort
 )
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 from chatbot import load_kb, get_response, conversation_history
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s] %(message)s')
@@ -29,6 +31,19 @@ logger = logging.getLogger(__name__)
 # ============================================================
 app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET_KEY") or secrets.token_hex(32)
+
+# Session cookie security
+app.config['SESSION_COOKIE_HTTPONLY'] = True
+app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
+app.config['SESSION_COOKIE_SECURE'] = os.environ.get('FLASK_ENV') == 'production'
+
+# Rate limiter
+limiter = Limiter(
+    app=app,
+    key_func=get_remote_address,
+    default_limits=["200 per minute"],
+    storage_uri="memory://"
+)
 
 # Admin credentials: read from config.json or ENV vars
 _config_path = os.path.join(os.path.dirname(__file__), "config.json")
@@ -157,6 +172,7 @@ def serve_sw():
 # ADMIN AUTH ROUTES
 # ============================================================
 @app.route("/api/admin/login", methods=["POST"])
+@limiter.limit("10 per minute")
 def admin_login():
     """Admin login endpoint."""
     data = request.json or {}
@@ -184,6 +200,7 @@ def admin_status():
 # CHAT API
 # ============================================================
 @app.route("/api/chat", methods=["POST"])
+@limiter.limit("30 per minute")
 def chat():
     """RAG Chat API with session tracking."""
     data = request.json
@@ -249,6 +266,7 @@ def get_tickets():
     return jsonify({"tickets": tickets, "total": total})
 
 @app.route("/api/tickets/new", methods=["POST"])
+@limiter.limit("20 per minute")
 def new_ticket():
     """Create a new support ticket."""
     data = request.json
@@ -459,7 +477,7 @@ def health():
         "tickets_counts": ticket_count,
         "db_available": os.path.exists(DB_PATH),
         "llm_enabled": bool(os.getenv("GOOGLE_API_KEY")),
-        "version": "2.0.0"
+        "version": "2.1.0"
     })
 
 # ============================================================

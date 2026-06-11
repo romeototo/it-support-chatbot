@@ -609,12 +609,293 @@
       ::-webkit-scrollbar-thumb:hover {
         background: #71717a;
       }
+
+      /* ============================================
+         HAMBURGER MENU TOGGLE (hidden by default)
+         ============================================ */
+      .hamburger-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--text-main);
+        font-size: 1.4rem;
+        cursor: pointer;
+        padding: 4px;
+        line-height: 1;
+      }
+
+      /* ============================================
+         RESPONSIVE — Tablets & Mobile (≤768px)
+         ============================================ */
+      @media (max-width: 768px) {
+        /* Body: allow scrolling on mobile */
+        body {
+          height: auto;
+          min-height: 100vh;
+          overflow: auto;
+        }
+
+        /* Top Navigation */
+        .topbar {
+          flex-wrap: wrap;
+          padding: 10px 16px;
+          gap: 10px;
+        }
+        .nav-left {
+          gap: 12px;
+          width: 100%;
+          justify-content: space-between;
+        }
+        .hamburger-btn {
+          display: block;
+          order: -1;
+        }
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          width: 100%;
+          gap: 0;
+          background: #121214;
+          border-top: 1px solid var(--border);
+          padding-top: 8px;
+        }
+        .nav-links.open {
+          display: flex;
+        }
+        .nav-links a {
+          padding: 10px 0;
+          border-bottom: 1px solid var(--border);
+        }
+        .nav-links a.active {
+          border-bottom-color: var(--accent-blue);
+        }
+        .nav-right {
+          width: 100%;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+        .badge-green {
+          font-size: 0.7rem;
+          padding: 3px 8px;
+        }
+
+        /* Alert Banner */
+        .alert-banner {
+          font-size: 0.78rem;
+          padding: 8px 16px;
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+
+        /* Metrics: 2 columns */
+        .metrics-row {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .metric-card {
+          padding: 16px;
+        }
+        .metric-card:nth-child(2) {
+          border-right: none;
+        }
+        .metric-value {
+          font-size: 1.5rem;
+        }
+
+        /* Dashboard: stack vertically */
+        .dashboard-container {
+          flex-direction: column;
+          overflow: visible;
+        }
+
+        /* Ticket Queue: full width, limited height */
+        .ticket-queue {
+          width: 100%;
+          border-right: none;
+          border-bottom: 1px solid var(--border);
+          max-height: 50vh;
+        }
+        .queue-header {
+          padding: 12px 16px;
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+
+        /* Ticket View: full width */
+        .ticket-view {
+          min-height: 60vh;
+        }
+        .tv-header {
+          padding: 16px;
+        }
+        .tv-title {
+          font-size: 1.1rem;
+        }
+        .tv-meta {
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+
+        /* SLA bar */
+        .sla-container {
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+
+        /* Chat */
+        .chat-timeline {
+          padding: 16px;
+          gap: 16px;
+        }
+        .msg-row {
+          max-width: 100%;
+          gap: 10px;
+        }
+
+        /* Action chips: wrap */
+        .action-chips {
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+        .btn-chip {
+          font-size: 0.78rem;
+          padding: 6px 12px;
+        }
+
+        /* Canned responses: wrap */
+        #cannedResponses {
+          flex-wrap: wrap !important;
+          white-space: normal !important;
+          gap: 6px !important;
+          padding: 10px 12px !important;
+        }
+
+        /* Input area: full width */
+        .input-area {
+          padding: 12px 16px;
+        }
+        .input-box {
+          padding: 10px;
+        }
+        .input-box input {
+          font-size: 0.85rem;
+        }
+        .input-hint {
+          flex-direction: column;
+          gap: 4px;
+          font-size: 0.65rem;
+        }
+
+        /* Analytics chart container */
+        #tvHeader [style*="display: flex"][style*="gap: 40px"],
+        #tvHeader div[style*="gap: 40px"] {
+          flex-direction: column !important;
+          gap: 20px !important;
+        }
+        #tvHeader div[style*="width: 250px"] {
+          width: 200px !important;
+          height: 200px !important;
+          margin: 0 auto;
+        }
+
+        /* Login Modal */
+        #loginOverlay > div {
+          width: 90% !important;
+          max-width: 380px !important;
+          padding: 28px 20px !important;
+          margin: 0 16px;
+        }
+      }
+
+      /* ============================================
+         RESPONSIVE — Extra small screens (≤480px)
+         ============================================ */
+      @media (max-width: 480px) {
+        /* Metrics: single column */
+        .metrics-row {
+          grid-template-columns: 1fr;
+        }
+        .metric-card {
+          border-right: none;
+          padding: 14px 16px;
+        }
+        .metric-value {
+          font-size: 1.3rem;
+        }
+
+        /* Logo */
+        .logo {
+          font-size: 0.95rem;
+        }
+
+        /* Ticket queue: shorter on very small screens */
+        .ticket-queue {
+          max-height: 40vh;
+        }
+        .ticket-item {
+          padding: 12px;
+        }
+
+        /* Ticket detail meta: single column */
+        .tv-meta {
+          grid-template-columns: 1fr;
+          gap: 10px;
+        }
+        .tv-title {
+          font-size: 1rem;
+        }
+
+        /* Chat messages */
+        .msg-av {
+          width: 28px;
+          height: 28px;
+          font-size: 0.7rem;
+        }
+        .msg-box {
+          padding: 12px;
+          font-size: 0.82rem;
+        }
+
+        /* Chips smaller */
+        .chip {
+          font-size: 0.65rem;
+          padding: 2px 6px;
+        }
+
+        /* Filter buttons stack */
+        .queue-header .btn-new {
+          font-size: 0.7rem !important;
+          padding: 5px 8px;
+        }
+
+        /* Analytics chart even smaller */
+        #tvHeader div[style*="width: 250px"],
+        #tvHeader div[style*="width: 200px"] {
+          width: 160px !important;
+          height: 160px !important;
+        }
+        #tvHeader h2 {
+          font-size: 1.2rem !important;
+        }
+
+        /* Login Modal: tighter padding */
+        #loginOverlay > div {
+          padding: 20px 16px !important;
+        }
+        #loginOverlay h2 {
+          font-size: 1.1rem !important;
+        }
+        #loginOverlay div[style*="font-size: 2.5rem"] {
+          font-size: 2rem !important;
+        }
+      }
     </style>
   </head>
   <body>
     <!-- Top Navigation -->
     <nav class="topbar">
       <div class="nav-left">
+        <button class="hamburger-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="เปิดเมนู">☰</button>
         <div class="logo">
           <svg
             width="18"
