@@ -1202,7 +1202,10 @@
       let currentFilter = "all";
 
       // API-aware ticket fetching (fallback to localStorage for static mode)
-      let _useAPI = true;
+      const HAS_BACKEND =
+        window.location.protocol !== "file:" &&
+        !window.location.hostname.includes("github.io");
+      let _useAPI = HAS_BACKEND;
       async function getTickets() {
         if (_useAPI) {
           try {
@@ -1221,6 +1224,7 @@
                 admin_reply: t.admin_reply
               }));
             }
+            _useAPI = false;
           } catch(e) { _useAPI = false; }
         }
         return JSON.parse(localStorage.getItem("helpdesk_tickets") || "[]");
@@ -1493,7 +1497,7 @@
         const text = inp.value.trim();
         if (!text || !activeTicketId) return;
 
-        // Try API first
+        // Try API first when a backend is available.
         if (_useAPI) {
           try {
             const r = await fetch(`/api/tickets/${activeTicketId}/reply`, {
@@ -1508,7 +1512,8 @@
               localStorage.setItem("admin_typing", JSON.stringify({ticketId: activeTicketId, typing: false}));
               return;
             }
-          } catch(e) { /* fallback to localStorage */ }
+            _useAPI = false;
+          } catch(e) { _useAPI = false; }
         }
 
         let tickets = await getTickets();
@@ -1563,20 +1568,40 @@
 
       // Close ticket via API
       async function closeTicket() {
-        if (!activeTicketId || !_useAPI) return;
-        try {
-          const r = await fetch(`/api/tickets/${activeTicketId}/close`, {method:'POST'});
-          if (r.ok) { renderTicketDetail(); renderQueue(); }
-        } catch(e) { console.error('Close failed', e); }
+        if (!activeTicketId) return;
+        if (_useAPI) {
+          try {
+            const r = await fetch(`/api/tickets/${activeTicketId}/close`, {method:'POST'});
+            if (r.ok) { renderTicketDetail(); renderQueue(); return; }
+            _useAPI = false;
+          } catch(e) { _useAPI = false; }
+        }
+        const tickets = await getTickets();
+        const t = tickets.find((x) => x.id === activeTicketId);
+        if (!t) return;
+        t.status = "closed";
+        saveTickets(tickets);
+        renderTicketDetail();
+        renderQueue();
       }
 
       // Reopen ticket via API
       async function reopenTicket() {
-        if (!activeTicketId || !_useAPI) return;
-        try {
-          const r = await fetch(`/api/tickets/${activeTicketId}/reopen`, {method:'POST'});
-          if (r.ok) { renderTicketDetail(); renderQueue(); }
-        } catch(e) { console.error('Reopen failed', e); }
+        if (!activeTicketId) return;
+        if (_useAPI) {
+          try {
+            const r = await fetch(`/api/tickets/${activeTicketId}/reopen`, {method:'POST'});
+            if (r.ok) { renderTicketDetail(); renderQueue(); return; }
+            _useAPI = false;
+          } catch(e) { _useAPI = false; }
+        }
+        const tickets = await getTickets();
+        const t = tickets.find((x) => x.id === activeTicketId);
+        if (!t) return;
+        t.status = "open";
+        saveTickets(tickets);
+        renderTicketDetail();
+        renderQueue();
       }
 
       // Auto-refresh every 10 seconds
@@ -1631,6 +1656,10 @@
     <script>
       // Check if already logged in via API
       (async function checkAuth() {
+        if (!HAS_BACKEND) {
+          document.getElementById('loginOverlay').style.display = 'none';
+          return;
+        }
         try {
           const r = await fetch('/api/admin/status');
           if (r.ok) {
@@ -1639,10 +1668,13 @@
               document.getElementById('loginOverlay').style.display = 'none';
               return;
             }
+          } else {
+            _useAPI = false;
+            document.getElementById('loginOverlay').style.display = 'none';
+            return;
           }
-        } catch(e) { /* static mode — no backend */ }
-        // If on GitHub Pages (no backend), hide login
-        if (window.location.hostname.includes('github.io') || window.location.protocol === 'file:') {
+        } catch(e) {
+          _useAPI = false;
           document.getElementById('loginOverlay').style.display = 'none';
         }
       })();
@@ -1655,6 +1687,11 @@
         const pass = document.getElementById('loginPass').value;
         const errEl = document.getElementById('loginError');
         errEl.style.display = 'none';
+        if (!HAS_BACKEND) {
+          document.getElementById('loginOverlay').style.display = 'none';
+          renderQueue(); renderAnalytics();
+          return;
+        }
         try {
           const r = await fetch('/api/admin/login', {
             method: 'POST',

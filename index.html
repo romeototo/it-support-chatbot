@@ -1868,6 +1868,47 @@
           max-width: 96% !important;
         }
       }
+
+      /* Final mobile/admin polish */
+      .api-config {
+        position: relative;
+        z-index: 90;
+      }
+      .api-config.open {
+        max-height: 96px;
+      }
+      @media (max-width: 768px) {
+        .dashboard-link-header {
+          display: inline-flex !important;
+          order: 4;
+          margin-left: 0 !important;
+          padding: 5px 10px !important;
+        }
+        .api-config {
+          display: grid !important;
+          grid-template-columns: 1fr auto;
+          gap: 8px !important;
+          padding-left: 12px !important;
+          padding-right: 12px !important;
+        }
+        .api-config.open {
+          max-height: 140px !important;
+          padding-top: 10px !important;
+          padding-bottom: 10px !important;
+        }
+        .api-config label {
+          grid-column: 1 / -1;
+          line-height: 1.2;
+        }
+        .api-config input {
+          min-width: 0;
+          width: 100%;
+        }
+        .api-config button {
+          padding: 8px 12px !important;
+          white-space: nowrap;
+        }
+      }
     </style>
   </head>
   <body>
@@ -2809,6 +2850,29 @@ Answer:`;
         return html;
       }
 
+      function formatFaqAnswer(answer) {
+        const raw = String(answer || "")
+          .replace(/\r\n/g, "\n")
+          .replace(/(\S)(\d+\.)/g, "$1\n$2 ")
+          .replace(/(^|\n)(\d+\.)(?=\S)/g, "$1$2 ");
+
+        if (/\n\s*\d+\.\s+/.test(raw)) return raw;
+
+        const normalized = raw
+          .replace(/([.!?])([A-Z][a-z])/g, "$1\n$2")
+          .replace(/(ไหม|ครับ|ค่ะ|แล้ว)(Restart|Reset|Update|Login|Sign in|Check)/g, "$1\n$2")
+          .replace(/(ก่อน|Client|Location|Password|ชั่วคราว|แล้ว|ได้ไหม\))(?=(Restart|เปลี่ยน|ตรวจ Username|ลองปิด|ติดต่อ IT|ติดต่อไอที|เปิด|ปิด|เช็ค|ตรวจสอบ))/g, "$1\n")
+          .replace(/(?<!\n)(Restart VPN Client|เปลี่ยน Server Location|ตรวจ Username\/Password|ลองปิด Firewall\/Antivirus ชั่วคราว|ติดต่อ IT|ติดต่อไอที)/g, "\n$1")
+          .split("\n")
+          .map((line) => line.trim())
+          .filter(Boolean);
+
+        if (normalized.length <= 1) return answer;
+        return normalized
+          .map((line) => (/^([-*]|\d+\.)\s/.test(line) ? line : `- ${line}`))
+          .join("\n");
+      }
+
       function encodeAskHref(question) {
         return encodeURIComponent(question).replace(/[()]/g, (char) =>
           `%${char.charCodeAt(0).toString(16).toUpperCase()}`,
@@ -3260,7 +3324,7 @@ Answer:`;
               if (m) {
                 matchScore = m.score;
                 matchCat = m.cat;
-                let baseReply = `📋 **${m.faq.question}**\n\n${m.faq.answer}`;
+                let baseReply = `📋 **${m.faq.question}**\n\n${formatFaqAnswer(m.faq.answer)}`;
                 // If in English mode but Keyword result is Thai, try translating if API key exists
                 if (currentLang === "en" && geminiKey) {
                   try {
