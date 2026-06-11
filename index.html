@@ -2809,6 +2809,12 @@ Answer:`;
         return html;
       }
 
+      function encodeAskHref(question) {
+        return encodeURIComponent(question).replace(/[()]/g, (char) =>
+          `%${char.charCodeAt(0).toString(16).toUpperCase()}`,
+        );
+      }
+
       function disableInput(disabled) {
         const inp = document.getElementById("inp");
         const btn = document.querySelector(".send-btn");
@@ -3291,7 +3297,7 @@ Answer:`;
                   const titleText = currentLang === "en" ? "📌 **Related Questions:**" : "📌 **คำถามที่เกี่ยวข้อง:**";
                   const relatedLinks = m.related.map(q => {
                     const cleanQ = q.replace(/\[/g, '(').replace(/\]/g, ')');
-                    return `* [${cleanQ}](ask:${encodeURIComponent(q)})`;
+                    return `* [${cleanQ}](ask:${encodeAskHref(q)})`;
                   }).join('\n');
                   reply += `\n\n${titleText}\n${relatedLinks}`;
                 }
