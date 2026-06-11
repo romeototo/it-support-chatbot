@@ -9,6 +9,8 @@ from chromadb.utils import embedding_functions
 import json
 import os
 from pathlib import Path
+import logging
+logger = logging.getLogger(__name__)
 
 class RAGEngine:
     """
@@ -41,8 +43,12 @@ class RAGEngine:
 
     def ingest_json(self, json_path):
         """Read knowledge_base.json and add to vector db"""
-        with open(json_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
+        try:
+            with open(json_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError) as e:
+            logger.error(f"Failed to load knowledge base: {e}")
+            return 0
             
         documents = []
         metadatas = []
@@ -110,10 +116,10 @@ if __name__ == "__main__":
     engine = RAGEngine()
     kb_path = Path(__file__).parent / "knowledge_base.json"
     count = engine.ingest_json(kb_path)
-    print(f"Ingested {count} documents.")
+    logger.info(f"Ingested {count} documents.")
     
     test_query = "ลืมรหัสผ่านทำไง"
-    print(f"\nQuery: {test_query}")
+    logger.info(f"\nQuery: {test_query}")
     matches = engine.query(test_query)
     for m in matches:
-        print(f"- [{m['category']}] {m['question']} (Score: {m['score']:.2f})")
+        logger.info(f"- [{m['category']}] {m['question']} (Score: {m['score']:.2f})")

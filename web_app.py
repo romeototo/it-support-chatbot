@@ -8,8 +8,11 @@ import os
 import json
 import sqlite3
 import hashlib
+import hmac
 import secrets
 import time
+import logging
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from functools import wraps
 from flask import (
@@ -18,6 +21,9 @@ from flask import (
 )
 from chatbot import load_kb, get_response, conversation_history
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s] %(message)s')
+logger = logging.getLogger(__name__)
+
 # ============================================================
 # APP CONFIG
 # ============================================================
@@ -25,18 +31,17 @@ app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET_KEY") or secrets.token_hex(32)
 
 # Admin credentials: read from config.json or ENV vars
-import json as _json
 _config_path = os.path.join(os.path.dirname(__file__), "config.json")
 _config = {}
 if os.path.exists(_config_path):
     with open(_config_path, "r") as _f:
-        _config = _json.load(_f)
+        _config = json.load(_f)
 
 ADMIN_USER = os.getenv("ADMIN_USER") or _config.get("admin_user", "admin")
 ADMIN_PASS = os.getenv("ADMIN_PASS") or _config.get("admin_pass", "changeme")
 
 if ADMIN_PASS == "changeme":
-    print("[WARNING] Using default password! Set ADMIN_PASS env var or update config.json")
+    logger.warning("Using default password! Set ADMIN_PASS env var or update config.json")
 
 DB_PATH = os.path.join(os.path.dirname(__file__), "tickets.db")
 
@@ -46,57 +51,60 @@ kb = load_kb()
 # ============================================================
 # DATABASE SETUP
 # ============================================================
+@contextmanager
 def get_db():
-    """Get database connection with row_factory."""
+    """Get database connection with row_factory as context manager."""
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA journal_mode=WAL")
     conn.execute("PRAGMA foreign_keys=ON")
-    return conn
+    try:
+        yield conn
+    finally:
+        conn.close()
 
 def init_db():
     """Initialize database tables."""
-    conn = get_db()
-    conn.executescript("""
-        CREATE TABLE IF NOT EXISTS tickets (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            ticket_id TEXT UNIQUE NOT NULL,
-            user_name TEXT DEFAULT 'Anonymous',
-            user_message TEXT NOT NULL,
-            bot_response TEXT,
-            category TEXT DEFAULT 'General',
-            status TEXT DEFAULT 'open',
-            priority TEXT DEFAULT 'normal',
-            admin_reply TEXT,
-            admin_user TEXT,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            closed_at TIMESTAMP
-        );
+    with get_db() as conn:
+        conn.executescript("""
+            CREATE TABLE IF NOT EXISTS tickets (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                ticket_id TEXT UNIQUE NOT NULL,
+                user_name TEXT DEFAULT 'Anonymous',
+                user_message TEXT NOT NULL,
+                bot_response TEXT,
+                category TEXT DEFAULT 'General',
+                status TEXT DEFAULT 'open',
+                priority TEXT DEFAULT 'normal',
+                admin_reply TEXT,
+                admin_user TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                closed_at TIMESTAMP
+            );
 
-        CREATE TABLE IF NOT EXISTS ticket_messages (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            ticket_id TEXT NOT NULL,
-            sender TEXT NOT NULL,
-            message TEXT NOT NULL,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (ticket_id) REFERENCES tickets(ticket_id)
-        );
+            CREATE TABLE IF NOT EXISTS ticket_messages (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                ticket_id TEXT NOT NULL,
+                sender TEXT NOT NULL,
+                message TEXT NOT NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (ticket_id) REFERENCES tickets(ticket_id)
+            );
 
-        CREATE TABLE IF NOT EXISTS feedback (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            ticket_id TEXT,
-            rating INTEGER,
-            comment TEXT,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        );
+            CREATE TABLE IF NOT EXISTS feedback (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                ticket_id TEXT,
+                rating INTEGER,
+                comment TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );
 
-        CREATE INDEX IF NOT EXISTS idx_tickets_status ON tickets(status);
-        CREATE INDEX IF NOT EXISTS idx_tickets_created ON tickets(created_at);
-        CREATE INDEX IF NOT EXISTS idx_messages_ticket ON ticket_messages(ticket_id);
-    """)
-    conn.commit()
-    conn.close()
+            CREATE INDEX IF NOT EXISTS idx_tickets_status ON tickets(status);
+            CREATE INDEX IF NOT EXISTS idx_tickets_created ON tickets(created_at);
+            CREATE INDEX IF NOT EXISTS idx_messages_ticket ON ticket_messages(ticket_id);
+        """)
+        conn.commit()
 
 def generate_ticket_id():
     """Generate unique ticket ID like TKT-20260527-A1B2."""
@@ -155,7 +163,7 @@ def admin_login():
     username = data.get("username", "")
     password = data.get("password", "")
 
-    if username == ADMIN_USER and password == ADMIN_PASS:
+    if hmac.compare_digest(username, ADMIN_USER) and hmac.compare_digest(password, ADMIN_PASS):
         session["admin_logged_in"] = True
         session["admin_user"] = username
         return jsonify({"status": "ok", "message": "เข้าสู่ระบบสำเร็จ"})
@@ -179,11 +187,17 @@ def admin_status():
 def chat():
     """RAG Chat API with session tracking."""
     data = request.json
+    if not data:
+        return jsonify({"error": "Invalid request"}), 400
+
     user_input = data.get("message", "").strip()
     session_id = data.get("session_id", request.remote_addr)
 
     if not user_input:
         return jsonify({"response": "กรุณาพิมพ์คำถาม"})
+
+    if len(user_input) > 2000:
+        return jsonify({"error": "Message too long"}), 400
 
     response, engine_name = get_response(user_input, kb, session_id)
     return jsonify({
@@ -201,34 +215,35 @@ def get_tickets():
     """Fetch all tickets with optional filters."""
     status = request.args.get("status")
     search = request.args.get("search", "").strip()
-    limit = int(request.args.get("limit", 50))
-    offset = int(request.args.get("offset", 0))
+    try:
+        limit = int(request.args.get("limit", 50))
+        offset = int(request.args.get("offset", 0))
+    except (ValueError, TypeError):
+        limit, offset = 50, 0
 
-    conn = get_db()
-    query = "SELECT * FROM tickets WHERE 1=1"
-    params = []
+    with get_db() as conn:
+        query = "SELECT * FROM tickets WHERE 1=1"
+        params = []
 
-    if status and status != "all":
-        query += " AND status = ?"
-        params.append(status)
+        if status and status != "all":
+            query += " AND status = ?"
+            params.append(status)
 
-    if search:
-        query += " AND (ticket_id LIKE ? OR user_message LIKE ? OR user_name LIKE ?)"
-        search_term = f"%{search}%"
-        params.extend([search_term, search_term, search_term])
+        if search:
+            query += " AND (ticket_id LIKE ? OR user_message LIKE ? OR user_name LIKE ?)"
+            search_term = f"%{search}%"
+            params.extend([search_term, search_term, search_term])
 
-    query += " ORDER BY created_at DESC LIMIT ? OFFSET ?"
-    params.extend([limit, offset])
+        query += " ORDER BY created_at DESC LIMIT ? OFFSET ?"
+        params.extend([limit, offset])
 
-    rows = conn.execute(query, params).fetchall()
-    total = conn.execute(
-        "SELECT COUNT(*) FROM tickets WHERE 1=1" +
-        (" AND status = ?" if status and status != "all" else "") +
-        (" AND (ticket_id LIKE ? OR user_message LIKE ? OR user_name LIKE ?)" if search else ""),
-        [p for p in params if p not in [limit, offset]]
-    ).fetchone()[0]
-
-    conn.close()
+        rows = conn.execute(query, params).fetchall()
+        total = conn.execute(
+            "SELECT COUNT(*) FROM tickets WHERE 1=1" +
+            (" AND status = ?" if status and status != "all" else "") +
+            (" AND (ticket_id LIKE ? OR user_message LIKE ? OR user_name LIKE ?)" if search else ""),
+            [p for p in params if p not in [limit, offset]]
+        ).fetchone()[0]
 
     tickets = [dict(row) for row in rows]
     return jsonify({"tickets": tickets, "total": total})
@@ -237,28 +252,33 @@ def get_tickets():
 def new_ticket():
     """Create a new support ticket."""
     data = request.json
+    if not data:
+        return jsonify({"error": "Invalid request"}), 400
+
+    if len(data.get("message", "")) > 5000:
+        return jsonify({"error": "Message too long"}), 400
+
     ticket_id = generate_ticket_id()
 
-    conn = get_db()
-    conn.execute("""
-        INSERT INTO tickets (ticket_id, user_name, user_message, bot_response, category, status)
-        VALUES (?, ?, ?, ?, ?, 'open')
-    """, (
-        ticket_id,
-        data.get("user_name", "Anonymous"),
-        data.get("message", ""),
-        data.get("bot_response", ""),
-        data.get("category", "General")
-    ))
+    with get_db() as conn:
+        conn.execute("""
+            INSERT INTO tickets (ticket_id, user_name, user_message, bot_response, category, status)
+            VALUES (?, ?, ?, ?, ?, 'open')
+        """, (
+            ticket_id,
+            data.get("user_name", "Anonymous"),
+            data.get("message", ""),
+            data.get("bot_response", ""),
+            data.get("category", "General")
+        ))
 
-    # Also add first message to thread
-    conn.execute("""
-        INSERT INTO ticket_messages (ticket_id, sender, message)
-        VALUES (?, 'user', ?)
-    """, (ticket_id, data.get("message", "")))
+        # Also add first message to thread
+        conn.execute("""
+            INSERT INTO ticket_messages (ticket_id, sender, message)
+            VALUES (?, 'user', ?)
+        """, (ticket_id, data.get("message", "")))
 
-    conn.commit()
-    conn.close()
+        conn.commit()
 
     return jsonify({
         "status": "success",
@@ -270,21 +290,18 @@ def new_ticket():
 @admin_required
 def get_ticket(ticket_id):
     """Get single ticket with messages."""
-    conn = get_db()
-    ticket = conn.execute(
-        "SELECT * FROM tickets WHERE ticket_id = ?", (ticket_id,)
-    ).fetchone()
+    with get_db() as conn:
+        ticket = conn.execute(
+            "SELECT * FROM tickets WHERE ticket_id = ?", (ticket_id,)
+        ).fetchone()
 
-    if not ticket:
-        conn.close()
-        return jsonify({"error": "Ticket not found"}), 404
+        if not ticket:
+            return jsonify({"error": "Ticket not found"}), 404
 
-    messages = conn.execute(
-        "SELECT * FROM ticket_messages WHERE ticket_id = ? ORDER BY created_at",
-        (ticket_id,)
-    ).fetchall()
-
-    conn.close()
+        messages = conn.execute(
+            "SELECT * FROM ticket_messages WHERE ticket_id = ? ORDER BY created_at",
+            (ticket_id,)
+        ).fetchall()
 
     return jsonify({
         "ticket": dict(ticket),
@@ -302,24 +319,26 @@ def reply_ticket(ticket_id):
     if not reply_text:
         return jsonify({"error": "Reply cannot be empty"}), 400
 
-    conn = get_db()
+    with get_db() as conn:
+        ticket = conn.execute("SELECT 1 FROM tickets WHERE ticket_id = ?", (ticket_id,)).fetchone()
+        if not ticket:
+            return jsonify({"error": "Ticket not found"}), 404
 
-    # Update ticket
-    conn.execute("""
-        UPDATE tickets
-        SET admin_reply = ?, admin_user = ?, status = 'replied',
-            updated_at = CURRENT_TIMESTAMP
-        WHERE ticket_id = ?
-    """, (reply_text, admin_user, ticket_id))
+        # Update ticket
+        conn.execute("""
+            UPDATE tickets
+            SET admin_reply = ?, admin_user = ?, status = 'replied',
+                updated_at = CURRENT_TIMESTAMP
+            WHERE ticket_id = ?
+        """, (reply_text, admin_user, ticket_id))
 
-    # Add message to thread
-    conn.execute("""
-        INSERT INTO ticket_messages (ticket_id, sender, message)
-        VALUES (?, 'admin', ?)
-    """, (ticket_id, reply_text))
+        # Add message to thread
+        conn.execute("""
+            INSERT INTO ticket_messages (ticket_id, sender, message)
+            VALUES (?, 'admin', ?)
+        """, (ticket_id, reply_text))
 
-    conn.commit()
-    conn.close()
+        conn.commit()
 
     return jsonify({"status": "success", "message": "ตอบกลับเรียบร้อยแล้ว"})
 
@@ -327,30 +346,36 @@ def reply_ticket(ticket_id):
 @admin_required
 def close_ticket(ticket_id):
     """Close a ticket."""
-    conn = get_db()
-    conn.execute("""
-        UPDATE tickets
-        SET status = 'closed', closed_at = CURRENT_TIMESTAMP,
-            updated_at = CURRENT_TIMESTAMP
-        WHERE ticket_id = ?
-    """, (ticket_id,))
-    conn.commit()
-    conn.close()
+    with get_db() as conn:
+        ticket = conn.execute("SELECT 1 FROM tickets WHERE ticket_id = ?", (ticket_id,)).fetchone()
+        if not ticket:
+            return jsonify({"error": "Ticket not found"}), 404
+
+        conn.execute("""
+            UPDATE tickets
+            SET status = 'closed', closed_at = CURRENT_TIMESTAMP,
+                updated_at = CURRENT_TIMESTAMP
+            WHERE ticket_id = ?
+        """, (ticket_id,))
+        conn.commit()
     return jsonify({"status": "success"})
 
 @app.route("/api/tickets/<ticket_id>/reopen", methods=["POST"])
 @admin_required
 def reopen_ticket(ticket_id):
     """Reopen a closed ticket."""
-    conn = get_db()
-    conn.execute("""
-        UPDATE tickets
-        SET status = 'open', closed_at = NULL,
-            updated_at = CURRENT_TIMESTAMP
-        WHERE ticket_id = ?
-    """, (ticket_id,))
-    conn.commit()
-    conn.close()
+    with get_db() as conn:
+        ticket = conn.execute("SELECT 1 FROM tickets WHERE ticket_id = ?", (ticket_id,)).fetchone()
+        if not ticket:
+            return jsonify({"error": "Ticket not found"}), 404
+
+        conn.execute("""
+            UPDATE tickets
+            SET status = 'open', closed_at = NULL,
+                updated_at = CURRENT_TIMESTAMP
+            WHERE ticket_id = ?
+        """, (ticket_id,))
+        conn.commit()
     return jsonify({"status": "success"})
 
 # ============================================================
@@ -360,33 +385,30 @@ def reopen_ticket(ticket_id):
 @admin_required
 def analytics():
     """Get ticket analytics for dashboard charts."""
-    conn = get_db()
+    with get_db() as conn:
+        # Status counts
+        status_counts = {}
+        for row in conn.execute("SELECT status, COUNT(*) as cnt FROM tickets GROUP BY status"):
+            status_counts[row["status"]] = row["cnt"]
 
-    # Status counts
-    status_counts = {}
-    for row in conn.execute("SELECT status, COUNT(*) as cnt FROM tickets GROUP BY status"):
-        status_counts[row["status"]] = row["cnt"]
+        # Category distribution
+        category_counts = {}
+        for row in conn.execute("SELECT category, COUNT(*) as cnt FROM tickets GROUP BY category ORDER BY cnt DESC"):
+            category_counts[row["category"]] = row["cnt"]
 
-    # Category distribution
-    category_counts = {}
-    for row in conn.execute("SELECT category, COUNT(*) as cnt FROM tickets GROUP BY category ORDER BY cnt DESC"):
-        category_counts[row["category"]] = row["cnt"]
+        # Daily ticket count (last 7 days)
+        daily = conn.execute("""
+            SELECT DATE(created_at) as day, COUNT(*) as cnt
+            FROM tickets
+            WHERE created_at >= datetime('now', '-7 days')
+            GROUP BY DATE(created_at)
+            ORDER BY day
+        """).fetchall()
 
-    # Daily ticket count (last 7 days)
-    daily = conn.execute("""
-        SELECT DATE(created_at) as day, COUNT(*) as cnt
-        FROM tickets
-        WHERE created_at >= datetime('now', '-7 days')
-        GROUP BY DATE(created_at)
-        ORDER BY day
-    """).fetchall()
-
-    # Response rate
-    total = conn.execute("SELECT COUNT(*) FROM tickets").fetchone()[0]
-    replied = conn.execute("SELECT COUNT(*) FROM tickets WHERE admin_reply IS NOT NULL").fetchone()[0]
-    response_rate = (replied / total * 100) if total > 0 else 0
-
-    conn.close()
+        # Response rate
+        total = conn.execute("SELECT COUNT(*) FROM tickets").fetchone()[0]
+        replied = conn.execute("SELECT COUNT(*) FROM tickets WHERE admin_reply IS NOT NULL").fetchone()[0]
+        response_rate = (replied / total * 100) if total > 0 else 0
 
     return jsonify({
         "status_counts": status_counts,
@@ -400,13 +422,24 @@ def analytics():
 def submit_feedback():
     """Submit user feedback."""
     data = request.json
-    conn = get_db()
-    conn.execute("""
-        INSERT INTO feedback (ticket_id, rating, comment)
-        VALUES (?, ?, ?)
-    """, (data.get("ticket_id"), data.get("rating"), data.get("comment")))
-    conn.commit()
-    conn.close()
+    if not data:
+        return jsonify({"error": "Invalid request"}), 400
+
+    rating = data.get("rating")
+    if rating is not None:
+        try:
+            rating = int(rating)
+            if rating < 1 or rating > 5:
+                return jsonify({"error": "Rating must be 1-5"}), 400
+        except (ValueError, TypeError):
+            return jsonify({"error": "Invalid rating"}), 400
+
+    with get_db() as conn:
+        conn.execute("""
+            INSERT INTO feedback (ticket_id, rating, comment)
+            VALUES (?, ?, ?)
+        """, (data.get("ticket_id"), rating, data.get("comment")))
+        conn.commit()
     return jsonify({"status": "success"})
 
 # ============================================================
@@ -415,17 +448,16 @@ def submit_feedback():
 @app.route("/api/health")
 def health():
     """System health check."""
-    conn = get_db()
-    ticket_count = conn.execute("SELECT COUNT(*) FROM tickets").fetchone()[0]
+    with get_db() as conn:
+        ticket_count = conn.execute("SELECT COUNT(*) FROM tickets").fetchone()[0]
     faq_count = sum(len(c["faqs"]) for c in kb["categories"])
-    conn.close()
 
     return jsonify({
         "status": "ok",
         "faqs_count": faq_count,
         "categories_count": len(kb["categories"]),
-        "tickets_count": ticket_count,
-        "db_path": DB_PATH,
+        "tickets_counts": ticket_count,
+        "db_available": os.path.exists(DB_PATH),
         "llm_enabled": bool(os.getenv("GOOGLE_API_KEY")),
         "version": "2.0.0"
     })
@@ -434,10 +466,10 @@ def health():
 # MAIN
 # ============================================================
 if __name__ == "__main__":
-    print("------------------------------------------")
-    print("  IT Support Chatbot - Enhanced Edition")
-    print("  URL: http://localhost:5000")
-    print("  Admin: http://localhost:5000/dashboard")
-    print(f"  DB: {DB_PATH}")
-    print("------------------------------------------")
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    logger.info("------------------------------------------")
+    logger.info("  IT Support Chatbot - Enhanced Edition")
+    logger.info("  URL: http://localhost:5000")
+    logger.info("  Admin: http://localhost:5000/dashboard")
+    logger.info("  DB: %s", DB_PATH)
+    logger.info("------------------------------------------")
+    app.run(host="0.0.0.0", port=5000, debug=os.environ.get("FLASK_DEBUG", "false").lower() == "true")

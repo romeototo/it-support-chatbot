@@ -1369,6 +1369,38 @@
       })();
     </script>
     <script defer>
+      // Security: HTML sanitization helpers
+      function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      }
+
+      function sanitizeHTML(html) {
+        const temp = document.createElement('div');
+        temp.innerHTML = html;
+        const dangerous = temp.querySelectorAll('script,iframe,object,embed,form,input,link,meta');
+        dangerous.forEach(el => el.remove());
+        temp.querySelectorAll('*').forEach(el => {
+          for (const attr of [...el.attributes]) {
+            if (attr.name.startsWith('on') || (attr.name === 'href' && attr.value.startsWith('javascript:'))) {
+              el.removeAttribute(attr.name);
+            }
+          }
+        });
+        return temp.innerHTML;
+      }
+
+      const answerStore = new Map();
+
+      function detectCategory(text) {
+        const t = text.toLowerCase();
+        if (t.includes("ปริ้น") || t.includes("พิมพ์")) return "Hardware";
+        if (t.includes("เน็ต") || t.includes("vpn") || t.includes("wifi")) return "Network";
+        if (t.includes("รหัส") || t.includes("password")) return "Security";
+        return "General";
+      }
+
       let geminiKey = localStorage.getItem("geminiKey") || "";
       let ticketNum = 1000 + Math.floor(Math.random() * 1000);
       // Session ID for conversation memory
@@ -1666,10 +1698,10 @@ User Question: ${userInput}
 Answer:`;
 
         const res = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiKey}`,
+          `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent`,
           {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json", "x-goog-api-key": geminiKey },
             body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] }),
           },
         );
@@ -1910,7 +1942,7 @@ Answer:`;
             let avIcon = msg.role === "bot" ? "🤖" : msg.role === "admin" ? "👨‍💻" : "👤";
             const bub = document.createElement("div");
             bub.className = "bub";
-            bub.innerHTML = msg.html;
+            bub.innerHTML = sanitizeHTML(msg.html);
             const ts = document.createElement("div");
             ts.className = "msg-time";
             ts.textContent = msg.time;
@@ -1939,14 +1971,14 @@ Answer:`;
                      <button class="chip-btn" onclick="ask('${translations[currentLang].chipContact}', this)">${translations[currentLang].chipContact}</button>`;
 
         // store text for copy
-        if (botText) window["_answer_" + tNum] = botText;
+        if (botText) answerStore.set(tNum, botText);
         w.appendChild(d);
         w.appendChild(chips);
         w.scrollTop = w.scrollHeight;
       }
 
       function copyAnswer(tNum) {
-        const text = window["_answer_" + tNum] || "";
+        const text = answerStore.get(tNum) || "";
         navigator.clipboard.writeText(text).then(() => {
           const btn = document.getElementById("cp" + tNum);
           if (btn) {
@@ -2033,7 +2065,7 @@ Answer:`;
           .reverse()
           .map(
             (h) =>
-              `<div class="hp-item"><div class="hn">#${h.ticket} • ${h.time} ${h.feedback || ""}</div><div class="hq">${h.question}</div><div class="hr">${h.mode}</div></div>`,
+              `<div class="hp-item"><div class="hn">#${escapeHtml(String(h.ticket))} • ${escapeHtml(h.time)} ${escapeHtml(h.feedback || "")}</div><div class="hq">${escapeHtml(h.question)}</div><div class="hr">${escapeHtml(h.mode)}</div></div>`,
           )
           .join("");
       }
@@ -2120,10 +2152,10 @@ Answer:`;
                   try {
                     const transPrompt = `Translate this IT Support FAQ to professional English:\n\n${reply}`;
                     const res = await fetch(
-                      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiKey}`,
+                      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent`,
                       {
                         method: "POST",
-                        headers: { "Content-Type": "application/json" },
+                        headers: { "Content-Type": "application/json", "x-goog-api-key": geminiKey },
                         body: JSON.stringify({
                           contents: [{ parts: [{ text: transPrompt }] }],
                         }),
@@ -2184,10 +2216,7 @@ Answer:`;
           hdTickets.length > 0 ? hdTickets[hdTickets.length - 1] : null;
         let newStatus = isClosing ? "closed" : "open";
         // Determine category for API sync
-        let category = "General";
-        if (text.toLowerCase().includes("ปริ้น") || text.toLowerCase().includes("พิมพ์")) category = "Hardware";
-        if (text.toLowerCase().includes("เน็ต") || text.toLowerCase().includes("vpn") || text.toLowerCase().includes("wifi")) category = "Network";
-        if (text.toLowerCase().includes("รหัส") || text.toLowerCase().includes("password")) category = "Security";
+        let category = detectCategory(text);
 
         if (
           lastTicket &&
@@ -2207,23 +2236,7 @@ Answer:`;
             text.includes("ลืม")
               ? "critical"
               : "medium";
-          let category = "General";
-          if (
-            text.toLowerCase().includes("ปริ้น") ||
-            text.toLowerCase().includes("พิมพ์")
-          )
-            category = "Hardware";
-          if (
-            text.toLowerCase().includes("เน็ต") ||
-            text.toLowerCase().includes("vpn") ||
-            text.toLowerCase().includes("wifi")
-          )
-            category = "Network";
-          if (
-            text.toLowerCase().includes("รหัส") ||
-            text.toLowerCase().includes("password")
-          )
-            category = "Security";
+          let category = detectCategory(text);
 
           hdTickets.push({
             id: `INC-${tNum}`,

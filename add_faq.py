@@ -1,4 +1,5 @@
-import json, re
+"""Batch script to add new FAQ categories to the knowledge base."""
+import json
 
 with open('kb.js', 'r', encoding='utf-8-sig') as f:
     raw = f.read()

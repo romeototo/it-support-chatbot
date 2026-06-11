@@ -14,20 +14,24 @@ venv/
 .DS_Store
 Thumbs.db
 
-add_faqs.py
+# Build/script files
 build_index.py
-
 create_guide.py
 pin_repo.py
+
+# Images (except screenshots/branding)
 *.png
 !screenshot.png
+!screenshot-dashboard.png
+!social_preview.png
+!chatbot_qr.png
 
+# Docs
 HANDOFF.md
 QUICK_HANDOFF.md
 
+# Data/Runtime
 chroma_db/
 *_index*.html
-config.json  
-tickets.db  
-__pycache__/  
-chroma_db/ 
+config.json
+tickets.db

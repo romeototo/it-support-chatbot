@@ -11,19 +11,23 @@ import sys
 from pathlib import Path
 from rag_engine import RAGEngine
 import os
+import urllib.request
+import urllib.error
 from collections import defaultdict
+import logging
+logger = logging.getLogger(__name__)
 
 # ============================================================
 # CONFIG
 # ============================================================
 KB_FILE = Path(__file__).parent / "knowledge_base.json"
 
-USE_LLM = False
+USE_LLM = os.environ.get("USE_LLM", "false").lower() == "true"
 
 # LLM Config (Xiaomi Token Plan)
 LLM_API_URL = "https://token-plan-sgp.xiaomimimo.com/v1/chat/completions"
 LLM_MODEL = "mimo-v2.5"
-LLM_API_KEY = os.getenv("GOOGLE_API_KEY") or ""
+LLM_API_KEY = os.getenv("LLM_API_KEY") or os.getenv("GOOGLE_API_KEY") or ""
 
 # Initialize RAG Engine
 rag_engine = RAGEngine(api_key=LLM_API_KEY)
@@ -53,8 +57,16 @@ def get_history_context(session_id):
 # LOAD KNOWLEDGE BASE
 # ============================================================
 def load_kb():
-    with open(KB_FILE, "r", encoding="utf-8") as f:
-        return json.load(f)
+    """Load knowledge base from JSON file."""
+    try:
+        with open(KB_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        logger.error(f"Knowledge base file not found: {KB_FILE}")
+        return {"categories": [], "escalation": {"message": "กรุณาติดต่อ IT Support", "hotline": "ext.1234"}}
+    except json.JSONDecodeError as e:
+        logger.error(f"Invalid JSON in knowledge base: {e}")
+        return {"categories": [], "escalation": {"message": "กรุณาติดต่อ IT Support", "hotline": "ext.1234"}}
 
 # ============================================================
 # THAI-OPTIMIZED KEYWORD MATCHING
@@ -182,8 +194,7 @@ def llm_answer(user_input, context_faqs, session_id="default"):
     if not USE_LLM or not LLM_API_KEY:
         return None
 
-    import urllib.request
-    import urllib.error
+
 
     context = "\n\n".join([
         f"Q: {faq['question']}\nA: {faq['answer']}"
@@ -223,7 +234,7 @@ FAQ Context:
             result = json.loads(resp.read().decode())
             return result["choices"][0]["message"]["content"]
     except Exception as e:
-        print(f"[LLM Error: {e}]")
+        logger.error(f"LLM Error: {e}")
         return None
 
 # ============================================================
@@ -247,7 +258,7 @@ def get_response(user_input, kb, session_id="default"):
     try:
         matches = rag_engine.query(user_input, n_results=3)
     except Exception as e:
-        print(f"[RAG Error: {e}]")
+        logger.error(f"RAG Error: {e}")
         matches = []
 
     if not matches:

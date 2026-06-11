@@ -1,25 +1,30 @@
-from rag_engine import RAGEngine
+"""Initialize RAG database from knowledge base."""
 import os
+import logging
 from pathlib import Path
+from rag_engine import RAGEngine
 
-def init():
-    print("Initializing RAG Database...")
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s] %(message)s')
+
+def initialize_rag_database():
+    """Ingest knowledge base into ChromaDB vector database."""
+    logger.info("Initializing RAG Database...")
     
-    # Check for API Key (Optional)
     api_key = os.getenv("GOOGLE_API_KEY") or ""
     if not api_key:
-        print("Warning: GOOGLE_API_KEY not found. Using local embedding model.")
+        logger.warning("GOOGLE_API_KEY not found. Using local embedding model.")
     
     engine = RAGEngine(api_key=api_key)
     
     kb_path = Path(__file__).parent / "knowledge_base.json"
     if not kb_path.exists():
-        print(f"Error: {kb_path} not found!")
+        logger.error(f"Knowledge base not found: {kb_path}")
         return
         
     count = engine.ingest_json(kb_path)
-    print(f"Successfully ingested {count} FAQs into ChromaDB.")
-    print("📁 Database location: ./chroma_db")
+    logger.info(f"Successfully ingested {count} FAQs into ChromaDB.")
+    logger.info("Database location: ./chroma_db")
 
 if __name__ == "__main__":
-    init()
+    initialize_rag_database()
