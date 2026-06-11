@@ -979,6 +979,54 @@
         font-size: 0.9em;
       }
 
+      /* Related Questions Chips */
+      .bub ul:has(a[href^="ask:"]) {
+        list-style-type: none !important;
+        padding-left: 0 !important;
+        margin-top: 12px !important;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .bub li:has(a[href^="ask:"]) {
+        margin: 0 !important;
+        padding: 0 !important;
+        list-style: none !important;
+      }
+      a[href^="ask:"] {
+        display: inline-block;
+        background: rgba(99, 102, 241, 0.12);
+        border: 1px solid rgba(99, 102, 241, 0.25);
+        color: #818cf8 !important;
+        padding: 6px 14px;
+        border-radius: 20px;
+        margin: 2px 0;
+        text-decoration: none !important;
+        font-size: 0.75rem;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        font-weight: 500;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      a[href^="ask:"]:hover {
+        background: #6366f1;
+        border-color: #6366f1;
+        color: white !important;
+        transform: translateY(-1.5px);
+        box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3);
+      }
+      body.light a[href^="ask:"] {
+        background: rgba(99, 102, 241, 0.06);
+        border-color: rgba(99, 102, 241, 0.18);
+        color: #4f46e5 !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      }
+      body.light a[href^="ask:"]:hover {
+        background: #4f46e5;
+        border-color: #4f46e5;
+        color: white !important;
+        box-shadow: 0 4px 8px rgba(79, 70, 229, 0.25);
+      }
+
       @media (max-width: 1024px) {
         .history-panel {
           display: none;
@@ -1648,25 +1696,111 @@
             : "Keyword Mode";
       }
 
+      // Sørensen-Dice bigram similarity helper for fuzzy matching
+      function getBigrams(str) {
+        const bigrams = new Set();
+        for (let i = 0; i < str.length - 1; i++) {
+          bigrams.add(str.slice(i, i + 2));
+        }
+        return bigrams;
+      }
+
+      function getSimilarity(s1, s2) {
+        s1 = s1.toLowerCase().replace(/[^a-z0-9ก-๙]/g, "");
+        s2 = s2.toLowerCase().replace(/[^a-z0-9ก-๙]/g, "");
+        if (s1 === s2) return 1.0;
+        if (s1.length < 2 || s2.length < 2) return s1.includes(s2) || s2.includes(s1) ? 0.5 : 0.0;
+        
+        const b1 = getBigrams(s1);
+        const b2 = getBigrams(s2);
+        let intersection = 0;
+        for (const val of b1) {
+          if (b2.has(val)) intersection++;
+        }
+        return (2.0 * intersection) / (b1.size + b2.size);
+      }
+
       function scoreKB(input) {
-        const u = input.toLowerCase();
-        let best = null,
-          top = 0;
+        const query = input.trim().toLowerCase();
+        if (!query) return null;
+
+        const queryWords = query.split(/[\s,.\-?\/]+/).filter(w => w.length > 1);
+        const results = [];
+
         for (const cat of window.KB.categories) {
+          // Category keyword matching (exact + fuzzy)
+          let kwBoost = 0;
+          for (const kw of cat.keywords) {
+            const lkw = kw.toLowerCase();
+            if (query.includes(lkw)) {
+              kwBoost += 3.0;
+            } else {
+              const sim = getSimilarity(query, lkw);
+              if (sim > 0.6) {
+                kwBoost += sim * 2.0;
+              }
+            }
+          }
+
           for (const faq of cat.faqs) {
-            let s = 0;
-            for (const kw of cat.keywords)
-              if (u.includes(kw.toLowerCase())) s += 3;
-            for (const w of u.split(" "))
-              if (faq.question.toLowerCase().includes(w) && w.length > 1)
-                s += 1;
-            if (s > top) {
-              top = s;
-              best = { faq, cat: cat.name };
+            let score = kwBoost;
+            const faqQ = faq.question.toLowerCase();
+            const faqWords = faqQ.split(/[\s,.\-?\/]+/).filter(w => w.length > 1);
+
+            // 1. Word level matching (exact + fuzzy matching of words)
+            for (const qw of queryWords) {
+              if (faqQ.includes(qw)) {
+                score += 1.5;
+              } else {
+                let maxWordSim = 0;
+                for (const fw of faqWords) {
+                  const sim = getSimilarity(qw, fw);
+                  if (sim > maxWordSim) maxWordSim = sim;
+                }
+                if (maxWordSim > 0.65) {
+                  score += maxWordSim * 1.0;
+                }
+              }
+            }
+
+            // 2. Full question similarity boost
+            const fullSim = getSimilarity(query, faqQ);
+            if (fullSim > 0.4) {
+              score += fullSim * 4.0;
+            }
+
+            if (score >= 1.5) {
+              results.push({
+                faq,
+                cat: cat.name,
+                score: score
+              });
             }
           }
         }
-        return top >= 1 ? best : null;
+
+        results.sort((a, b) => b.score - a.score);
+
+        if (results.length === 0) return null;
+
+        const best = results[0];
+        
+        // Collect related questions (score >= 1.2, unique, not best)
+        const related = [];
+        const seenQuestions = new Set([best.faq.question]);
+        for (let i = 1; i < results.length && related.length < 3; i++) {
+          const item = results[i];
+          if (!seenQuestions.has(item.faq.question) && item.score >= 1.2) {
+            related.push(item.faq.question);
+            seenQuestions.add(item.faq.question);
+          }
+        }
+
+        return {
+          faq: best.faq,
+          cat: best.cat,
+          related: related
+        };
       }
 
       async function callGemini(userInput) {
@@ -2150,11 +2284,11 @@ Answer:`;
               );
               const m = scoreKB(text);
               if (m) {
-                reply = `📋 **${m.faq.question}**\n\n${m.faq.answer}`;
+                let baseReply = `📋 **${m.faq.question}**\n\n${m.faq.answer}`;
                 // If in English mode but Keyword result is Thai, try translating if API key exists
                 if (currentLang === "en" && geminiKey) {
                   try {
-                    const transPrompt = `Translate this IT Support FAQ to professional English:\n\n${reply}`;
+                    const transPrompt = `Translate this IT Support FAQ to professional English:\n\n${baseReply}`;
                     const res = await fetch(
                       `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent`,
                       {
@@ -2167,7 +2301,7 @@ Answer:`;
                     );
                     if (res.ok) {
                       const d = await res.json();
-                      reply = d.candidates[0].content.parts[0].text;
+                      baseReply = d.candidates[0].content.parts[0].text;
                       mode = "Keyword (Translated)";
                     }
                   } catch (e) {
@@ -2175,9 +2309,21 @@ Answer:`;
                   }
                 } else if (currentLang === "en") {
                   // Disclaimer if no API key for translation
-                  reply =
+                  baseReply =
                     `*(Note: Knowledge Base is only in Thai for Keyword Mode)*\n\n` +
-                    reply;
+                    baseReply;
+                }
+
+                reply = baseReply;
+
+                // Append related questions links after translation
+                if (m.related && m.related.length > 0) {
+                  const titleText = currentLang === "en" ? "📌 **Related Questions:**" : "📌 **คำถามที่เกี่ยวข้อง:**";
+                  const relatedLinks = m.related.map(q => {
+                    const cleanQ = q.replace(/\[/g, '(').replace(/\]/g, ')');
+                    return `* [${cleanQ}](ask:${encodeURIComponent(q)})`;
+                  }).join('\n');
+                  reply += `\n\n${titleText}\n${relatedLinks}`;
                 }
               } else {
                 reply = translations[currentLang].escalationMsg;
@@ -2326,6 +2472,22 @@ Answer:`;
       function initUI() {
         const maxTries = 20;
         let tries = 0;
+
+        // Delegated click handler for related questions
+        const messagesContainer = document.getElementById("messages");
+        if (messagesContainer) {
+          messagesContainer.addEventListener("click", (e) => {
+            const link = e.target.closest("a");
+            if (link) {
+              const href = link.getAttribute("href") || "";
+              if (href.startsWith("ask:")) {
+                e.preventDefault();
+                const q = decodeURIComponent(href.slice(4));
+                ask(q);
+              }
+            }
+          });
+        }
 
         // Request notification permission
         if ("Notification" in window && Notification.permission === "default") {
