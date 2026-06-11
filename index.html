@@ -2019,7 +2019,7 @@
       </button>
     </header>
 
-    <div class="api-config">
+    <form class="api-config" onsubmit="event.preventDefault(); saveKey();">
       <label data-i18n="aiConfigTitle">🤖 Gemini AI Config:</label>
       <input
         type="password"
@@ -2027,8 +2027,8 @@
         data-i18n-placeholder="aiConfigPlaceholder"
         placeholder="Paste Gemini API Key here to enable AI responses..."
       />
-      <button onclick="saveKey()" data-i18n="aiConfigSave">Activate AI</button>
-    </div>
+      <button type="submit" data-i18n="aiConfigSave">Activate AI</button>
+    </form>
 
     <div class="main">
       <div class="sidebar">

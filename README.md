@@ -176,6 +176,21 @@ The chatbot will then use Gemini as a fallback when FAQ and RAG search return lo
 
 ---
 
+## Development & Tests
+
+Install test tooling separately from runtime dependencies:
+
+```bash
+pip install -r requirements-dev.txt
+pytest -q
+```
+
+The test suite covers the Python search engine helpers plus static frontend regressions, including the related-question link formatting bug for questions such as `เจอจอฟ้า (BSOD) ทำยังไง?`.
+
+GitHub Actions runs `pytest` on changes to Python, HTML, JavaScript, knowledge-base, dependency, and workflow files.
+
+---
+
 ## Configuration
 
 The file `config.json` controls basic runtime settings:
@@ -276,7 +291,8 @@ This project uses AI coding tools (including OpenAI Codex) to help a solo mainta
 | Gemini AI optional layer | ✅ Done |
 | Admin dashboard with real-time sync | ✅ Done |
 | LINE Messaging API webhook template | ✅ Done |
-| Unit tests for search engine core | 🔲 Planned |
+| Unit tests for search engine core | ✅ Done |
+| Static frontend regression tests | ✅ Done |
 | Docker / Compose deployment | 🔲 Planned |
 | Multi-language FAQ support | 🔲 Planned |
 | Webhook integration examples (Slack, Teams) | 🔲 Planned |
@@ -291,7 +307,7 @@ This project is a reference implementation and demo. Be aware of the following c
 - **No authentication** — The admin dashboard has no login system. Anyone with the URL can access it. Do not expose it publicly without adding authentication.
 - **localStorage is not a database** — The static GitHub Pages demo stores tickets in the browser. Data is lost if the browser cache is cleared, and is not shared across devices.
 - **SQLite in Flask mode** — The Flask backend uses a local SQLite file (`tickets.db`). It is not designed for concurrent multi-user production loads.
-- **No unit tests yet** — The search engine logic in `chatbot.py` and `rag_engine.py` does not have automated test coverage at this time. This is on the roadmap.
+- **Limited automated coverage** — Unit and static frontend regression tests exist, but the project does not yet include full browser end-to-end tests for every UI workflow.
 - **Gemini API dependency** — The LLM layer requires a Google AI Studio API key. Rate limits and model availability are outside the control of this project.
 - **Knowledge base is in Thai** — The built-in FAQ entries are written in Thai. Using the chatbot in other languages requires translating or replacing `knowledge_base.json` and `kb.js`.
 - **No production deployment** — This project has not been validated in a production environment. Use it as a learning reference and starting point, not as a drop-in solution.
