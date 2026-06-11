@@ -2778,9 +2778,14 @@ Answer:`;
         html = html.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
         // Italic
         html = html.replace(/\*([^*\n]+)\*/g, "<em>$1</em>");
+        // Internal related-question links can contain parentheses in the label.
+        html = html.replace(
+          /\[([^\]]+)\]\(ask:([^)]+)\)/g,
+          '<a href="ask:$2" target="_blank" style="color:var(--accent);text-decoration:underline;">$1</a>',
+        );
         // Links
         html = html.replace(
-          /\[([^\]]+)\]\(([^)]+)\)/g,
+          /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g,
           '<a href="$2" target="_blank" style="color:var(--accent);text-decoration:underline;">$1</a>',
         );
 
