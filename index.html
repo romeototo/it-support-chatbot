@@ -39,6 +39,17 @@
         --glass-border: rgba(255, 255, 255, 0.125);
         --text-main: #f8fafc;
         --text-dim: #94a3b8;
+
+        /* Premium color scheme variables */
+        --deep-navy:    #1E1B3A;
+        --brand-purple: #7C6EE8;
+        --soft-lilac:   #F0EEFF;
+        --secure-green: #13B57A;
+        --surface-bg:   #F5F4F9;
+        --urgent-coral: #FF6B4A;
+        --border-light: #E2E0EF;
+        --text-dark:    #2D2B3D;
+        --text-muted:   #9896B0;
       }
 
       /* ===================== LIGHT MODE ===================== */
@@ -1069,14 +1080,437 @@
           display: none;
         }
       }
+
+      /* ===================== PREMIUM OVERRIDES ===================== */
+      /* Header Style Overrides */
+      header {
+        background: var(--deep-navy) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+      }
+      header h1 {
+        color: #ffffff !important;
+        background: none !important;
+        -webkit-text-fill-color: initial !important;
+      }
+      header p {
+        color: #A5B4FC !important;
+      }
+      header button, header a.dashboard-link-header {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        color: #B2B0C2 !important;
+      }
+      header button:hover, header a.dashboard-link-header:hover {
+        background: rgba(255, 255, 255, 0.15) !important;
+        color: #ffffff !important;
+      }
+
+      /* Logo Container Override */
+      .logo-container {
+        width: 28px !important;
+        height: 28px !important;
+        background: var(--brand-purple) !important;
+        border-radius: 7px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-shadow: 0 0 10px rgba(124, 110, 232, 0.4) !important;
+        font-size: 0 !important; /* hide emoji text */
+      }
+
+      /* On-Premise Badge */
+      .onpremise-badge {
+        background: rgba(19, 181, 122, 0.15) !important;
+        border: 1px solid rgba(19, 181, 122, 0.3) !important;
+        color: #13B57A !important;
+        padding: 4px 12px;
+        border-radius: 100px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-left: auto;
+      }
+
+      /* Light Mode Chat Area Background */
+      body.light .chat-wrap {
+        background: var(--surface-bg) !important;
+        border-color: var(--border-light) !important;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04) !important;
+      }
+
+      /* Chat Bubbles Override */
+      .user .bub {
+        background: var(--brand-purple) !important;
+        color: #ffffff !important;
+        border-radius: 16px 16px 4px 16px !important;
+        box-shadow: 0 4px 15px rgba(124, 110, 232, 0.15) !important;
+        border: none !important;
+      }
+      .bot .bub {
+        border-radius: 4px 16px 16px 16px !important;
+      }
+      body.light .bot .bub {
+        background: #ffffff !important;
+        color: var(--text-dark) !important;
+        border: 0.5px solid var(--border-light) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+      }
+      body.light .bot .bub strong {
+        color: #1E1B3A !important;
+      }
+      body.light .bot .bub em {
+        color: var(--brand-purple) !important;
+      }
+
+      /* Bot Avatar Circle */
+      .bot .av {
+        width: 28px !important;
+        height: 28px !important;
+        background: var(--deep-navy) !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+      }
+      .msg {
+        gap: 10px !important;
+      }
+
+      /* Footer Bar & Info Badges */
+      .msg-footer {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 6px;
+        padding-left: 38px;
+        flex-wrap: wrap;
+      }
+      .msg-footer-time {
+        font-size: 0.68rem;
+        color: var(--text-muted);
+        margin-right: 4px;
+      }
+      .score-badge {
+        font-size: 0.68rem;
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: 100px;
+        background: rgba(19, 181, 122, 0.15) !important;
+        color: #13B57A !important;
+        border: 0.5px solid rgba(19, 181, 122, 0.3) !important;
+      }
+      .category-badge {
+        font-size: 0.68rem;
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: 100px;
+        background: var(--soft-lilac) !important;
+        color: var(--brand-purple) !important;
+        border: 0.5px solid rgba(124, 110, 232, 0.2) !important;
+      }
+      
+      /* Rating button group */
+      .feedback-group {
+        display: inline-flex;
+        border: 1px solid var(--border-light);
+        border-radius: 6px;
+        overflow: hidden;
+        background: #ffffff;
+        margin-left: 4px;
+      }
+      body.light .feedback-group {
+        border-color: #E2E0EF !important;
+        background: #ffffff !important;
+      }
+      .feedback-group .fb-btn {
+        background: transparent !important;
+        border: none !important;
+        color: var(--text-dark) !important;
+        padding: 3px 8px !important;
+        cursor: pointer;
+        font-size: 0.72rem !important;
+        transition: all 0.2s ease !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+      }
+      .feedback-group .fb-btn:first-child {
+        border-right: 1px solid var(--border-light) !important;
+      }
+      body.light .feedback-group .fb-btn:first-child {
+        border-right-color: #E2E0EF !important;
+      }
+      .feedback-group .fb-btn:hover:not(:disabled) {
+        background: var(--soft-lilac) !important;
+      }
+      .feedback-group .fb-btn.active-good {
+        background: #D1FAE5 !important;
+        color: #065F46 !important;
+      }
+      .feedback-group .fb-btn.active-bad {
+        background: #FEE2E2 !important;
+        color: #991B1B !important;
+      }
+
+      /* Copy Button & Ticket Tag */
+      .copy-btn {
+        background: #ffffff !important;
+        border: 1px solid var(--border-light) !important;
+        color: var(--brand-purple) !important;
+        padding: 3px 10px !important;
+        border-radius: 6px !important;
+        cursor: pointer;
+        font-size: 0.68rem !important;
+        font-weight: 600 !important;
+        transition: all 0.2s ease !important;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.02) !important;
+      }
+      body.light .copy-btn {
+        background: #ffffff !important;
+        border-color: #E2E0EF !important;
+        color: #7C6EE8 !important;
+      }
+      .copy-btn:hover {
+        background: var(--soft-lilac) !important;
+        border-color: var(--brand-purple) !important;
+        color: #312E81 !important;
+      }
+      .ticket-tag {
+        font-size: 0.68rem;
+        color: var(--text-muted);
+        margin-left: auto !important;
+        font-weight: 500;
+        align-self: center;
+      }
+
+      /* Premium Quick Solutions (Sidebar/Chips) */
+      body.light .qbtn, body.light .chip-btn {
+        background: #ffffff !important;
+        border: 1px solid #D4CFFF !important;
+        color: #534AB7 !important;
+        box-shadow: 0 2px 6px rgba(124, 110, 232, 0.06) !important;
+        font-weight: 600 !important;
+        transition: all 0.2s ease !important;
+      }
+      body.light .qbtn:hover, body.light .chip-btn:hover {
+        background: #F0EEFF !important;
+        border-color: #7C6EE8 !important;
+        color: #312E81 !important;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 10px rgba(124, 110, 232, 0.12) !important;
+      }
+      body.light .qbtn-urgent, body.light .chip-urgent {
+        background: #ffffff !important;
+        border: 1px solid #FFD4C8 !important;
+        color: #B54A2D !important;
+        box-shadow: 0 2px 6px rgba(255, 107, 74, 0.06) !important;
+      }
+      body.light .qbtn-urgent:hover, body.light .chip-urgent:hover {
+        background: #FFF0ED !important;
+        border-color: #FF6B4A !important;
+        color: #8C2210 !important;
+        box-shadow: 0 4px 10px rgba(255, 107, 74, 0.12) !important;
+      }
+
+      /* Input Area Overrides */
+      .input-panel {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        background: transparent;
+      }
+      .input-wrap {
+        padding: 15px 25px 5px 25px !important;
+        background: transparent !important;
+        border: none !important;
+        display: flex;
+        align-items: center;
+        width: 100%;
+      }
+      .input-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+      }
+      .input-container input {
+        width: 100%;
+        padding: 12px 48px 12px 16px !important;
+        border-radius: 12px !important;
+        font-size: 0.95rem !important;
+        outline: none;
+        transition: 0.3s;
+      }
+      body.light .input-container input {
+        background: #ffffff !important;
+        border: 1px solid var(--border-light) !important;
+        color: var(--text-dark) !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03) !important;
+      }
+      body.light .input-container input:focus {
+        border-color: var(--brand-purple) !important;
+        box-shadow: 0 4px 15px rgba(124, 110, 232, 0.12) !important;
+      }
+      .send-btn {
+        position: absolute;
+        right: 8px;
+        width: 32px !important;
+        height: 32px !important;
+        border-radius: 8px !important;
+        background: var(--brand-purple) !important;
+        border: none !important;
+        color: #ffffff !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px !important;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        box-shadow: none !important;
+        opacity: 0.5;
+        pointer-events: none;
+      }
+      .send-btn.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .send-btn:hover {
+        transform: scale(1.05) !important;
+        background: #6253D9 !important;
+      }
+      .input-footer {
+        padding: 0 25px 12px 25px;
+        text-align: center;
+      }
+      .input-footer .secure-text {
+        font-size: 0.68rem;
+        color: var(--text-muted);
+        font-weight: 500;
+      }
+      body.light .input-footer .secure-text {
+        color: #13B57A !important;
+      }
+
+      /* Desktop Sidebar Quick Solutions Wrap */
+      #chipsContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        width: 100%;
+      }
+      #moreChips {
+        display: none;
+        flex-direction: column;
+        gap: 6px;
+        width: 100%;
+      }
+      #moreChips.expanded {
+        display: flex;
+      }
+      .toggle-chips-btn {
+        background: transparent;
+        border: none;
+        color: var(--brand-purple);
+        cursor: pointer;
+        font-size: 0.8rem;
+        padding: 8px 10px;
+        font-weight: 600;
+        text-align: left;
+        outline: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        transition: 0.2s;
+        width: 100%;
+      }
+      body.light .toggle-chips-btn {
+        color: #7C6EE8 !important;
+      }
+      .toggle-chips-btn:hover {
+        color: var(--primary);
+      }
+
+      /* Mobile styling overrides */
+      @media (max-width: 768px) {
+        .sidebar {
+          width: 100% !important;
+          padding: 8px 12px !important;
+          border-radius: 16px !important;
+          overflow: hidden !important;
+          display: block !important;
+        }
+        #chipsContainer {
+          flex-direction: row !important;
+          overflow-x: auto !important;
+          overflow-y: hidden !important;
+          white-space: nowrap !important;
+          align-items: center !important;
+          gap: 8px !important;
+          width: 100% !important;
+          padding-bottom: 4px;
+        }
+        #chipsContainer::-webkit-scrollbar {
+          height: 3px;
+        }
+        #moreChips {
+          display: none;
+          flex-direction: row !important;
+          gap: 8px !important;
+        }
+        #moreChips.expanded {
+          display: flex !important;
+        }
+        .toggle-chips-btn {
+          padding: 6px 12px !important;
+          background: rgba(124, 110, 232, 0.1) !important;
+          border: 1px dashed var(--brand-purple) !important;
+          border-radius: 20px !important;
+          white-space: nowrap !important;
+          text-align: center !important;
+          width: auto !important;
+        }
+        body.light .toggle-chips-btn {
+          background: rgba(124, 110, 232, 0.08) !important;
+          border-color: #7C6EE8 !important;
+        }
+        .qbtn {
+          width: auto !important;
+        }
+        .messages {
+          padding: 12px !important;
+          gap: 12px !important;
+        }
+        .msg {
+          max-width: 90% !important;
+        }
+        .msg-footer {
+          padding-left: 0px !important;
+        }
+        .quick-chips-wrap {
+          padding-left: 0px !important;
+        }
+      }
     </style>
   </head>
   <body>
     <header>
-      <div class="logo-container">🖥️</div>
+      <div class="logo-container">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+          <line x1="8" y1="21" x2="16" y2="21"></line>
+          <line x1="12" y1="17" x2="12" y2="21"></line>
+        </svg>
+      </div>
       <div class="hinfo">
-        <h1 data-i18n="title">IT Support AI</h1>
-        <p data-i18n="subtitle">Intelligence HelpDesk System</p>
+        <h1 data-i18n="title">IT HelpDesk</h1>
+        <p data-i18n="subtitle">Smart Search</p>
       </div>
       <span class="hbadge" id="faqCount" data-i18n="kbLoading"
         >Loading Knowledge...</span
@@ -1084,6 +1518,7 @@
       <div class="gemini-badge" id="aiLabel" data-i18n="engineKeyword">
         Keyword Engine
       </div>
+      <span class="onpremise-badge">🟢 On-Premise</span>
       <button
         onclick="toggleLang()"
         id="langBtn"
@@ -1195,120 +1630,135 @@
             oninput="filterCats()"
           />
         </div>
-        <button
-          class="qbtn"
-          onclick="ask('เครื่องพิมพ์พิมพ์ไม่ออก')"
-          data-i18n="catPrinter"
-        >
-          🖨️ เครื่องพิมพ์
-        </button>
-        <button
-          class="qbtn"
-          onclick="ask('เชื่อมต่อ WiFi ไม่ได้')"
-          data-i18n="catWifi"
-        >
-          📶 WiFi/เน็ต
-        </button>
-        <button
-          class="qbtn"
-          onclick="ask('ลืมรหัสผ่าน')"
-          data-i18n="catPassword"
-        >
-          🔑 ลืมรหัสผ่าน
-        </button>
-        <button class="qbtn" onclick="ask('คอมช้ามาก')" data-i18n="catSlow">
-          💻 คอมช้า
-        </button>
-        <button
-          class="qbtn"
-          onclick="ask('ส่งอีเมลไม่ได้')"
-          data-i18n="catEmail"
-        >
-          📧 อีเมล
-        </button>
-        <button
-          class="qbtn"
-          onclick="ask('VPN เชื่อมต่อไม่ได้')"
-          data-i18n="catVPN"
-        >
-          🔐 VPN
-        </button>
-        <button
-          class="qbtn"
-          onclick="ask('Zoom กล้องไม่ทำงาน')"
-          data-i18n="catVideo"
-        >
-          📹 Video Call
-        </button>
-        <button
-          class="qbtn"
-          onclick="ask('ไฟล์ถูกลบกู้คืนยังไง')"
-          data-i18n="catFile"
-        >
-          💾 กู้ไฟล์
-        </button>
-        <button
-          class="qbtn"
-          onclick="ask('Teams เปิดไม่ขึ้น')"
-          data-i18n="catTeams"
-        >
-          💬 Teams
-        </button>
-        <button
-          class="qbtn"
-          onclick="ask('เสียบ USB แล้วไม่ขึ้น')"
-          data-i18n="catHardware"
-        >
-          🔌 USB/Hardware
-        </button>
-        <button
-          class="qbtn"
-          onclick="ask('Map Network Drive ทำยังไง')"
-          data-i18n="catNetworkDrive"
-        >
-          🗂️ Network Drive
-        </button>
-        <button
-          class="qbtn"
-          onclick="ask('Office 365 activation failed')"
-          data-i18n="catOffice"
-        >
-          📊 Office 365
-        </button>
-        <button
-          class="qbtn"
-          onclick="ask('C Drive เต็ม')"
-          data-i18n="catWindows"
-        >
-          🪟 Windows
-        </button>
-        <button
-          class="qbtn"
-          onclick="ask('ต่อ 2 จอ Dual Monitor')"
-          data-i18n="catMonitor"
-        >
-          🖥️ Dual Monitor
-        </button>
-        <button
-          class="qbtn"
-          onclick="ask('พนักงานใหม่ต้องทำอะไร')"
-          data-i18n="catNewEmp"
-        >
-          👤 New Employee
-        </button>
-        <button
-          class="qbtn"
-          onclick="ask('ติดตั้งโปรแกรมใหม่')"
-          data-i18n="catSoftware"
-        >
-          📦 ลงโปรแกรม
-        </button>
+        <div id="chipsContainer">
+          <button
+            class="qbtn"
+            onclick="ask('เครื่องพิมพ์พิมพ์ไม่ออก')"
+            data-i18n="catPrinter"
+          >
+            🖨️ เครื่องพิมพ์
+          </button>
+          <button
+            class="qbtn"
+            onclick="ask('เชื่อมต่อ WiFi ไม่ได้')"
+            data-i18n="catWifi"
+          >
+            📶 WiFi/เน็ต
+          </button>
+          <button
+            class="qbtn"
+            onclick="ask('ลืมรหัสผ่าน')"
+            data-i18n="catPassword"
+          >
+            🔑 ลืมรหัสผ่าน
+          </button>
+          <button class="qbtn" onclick="ask('คอมช้ามาก')" data-i18n="catSlow">
+            💻 คอมช้า
+          </button>
+          <button
+            class="qbtn"
+            onclick="ask('ส่งอีเมลไม่ได้')"
+            data-i18n="catEmail"
+          >
+            📧 อีเมล
+          </button>
+          <button
+            class="qbtn qbtn-urgent"
+            onclick="ask('VPN เชื่อมต่อไม่ได้')"
+            data-i18n="catVPN"
+          >
+            🔐 VPN
+          </button>
+
+          <div id="moreChips">
+            <button
+              class="qbtn"
+              onclick="ask('Zoom กล้องไม่ทำงาน')"
+              data-i18n="catVideo"
+            >
+              📹 Video Call
+            </button>
+            <button
+              class="qbtn"
+              onclick="ask('ไฟล์ถูกลบกู้คืนยังไง')"
+              data-i18n="catFile"
+            >
+              💾 กู้ไฟล์
+            </button>
+            <button
+              class="qbtn"
+              onclick="ask('Teams เปิดไม่ขึ้น')"
+              data-i18n="catTeams"
+            >
+              💬 Teams
+            </button>
+            <button
+              class="qbtn"
+              onclick="ask('เสียบ USB แล้วไม่ขึ้น')"
+              data-i18n="catHardware"
+            >
+              🔌 USB/Hardware
+            </button>
+            <button
+              class="qbtn"
+              onclick="ask('Map Network Drive ทำยังไง')"
+              data-i18n="catNetworkDrive"
+            >
+              🗂️ Network Drive
+            </button>
+            <button
+              class="qbtn"
+              onclick="ask('Office 365 activation failed')"
+              data-i18n="catOffice"
+            >
+              📊 Office 365
+            </button>
+            <button
+              class="qbtn"
+              onclick="ask('C Drive เต็ม')"
+              data-i18n="catWindows"
+            >
+              🪟 Windows
+            </button>
+            <button
+              class="qbtn"
+              onclick="ask('ต่อ 2 จอ Dual Monitor')"
+              data-i18n="catMonitor"
+            >
+              🖥️ Dual Monitor
+            </button>
+            <button
+              class="qbtn"
+              onclick="ask('พนักงานใหม่ต้องทำอะไร')"
+              data-i18n="catNewEmp"
+            >
+              👤 พนักงานใหม่
+            </button>
+            <button
+              class="qbtn"
+              onclick="ask('ติดตั้งโปรแกรมใหม่')"
+              data-i18n="catSoftware"
+            >
+              📦 ลงโปรแกรม
+            </button>
+          </div>
+          
+          <button id="toggleChipsBtn" class="toggle-chips-btn" onclick="toggleMoreChips()">
+            <span class="btn-text">ดูทั้งหมด ▾</span>
+          </button>
+        </div>
       </div>
 
       <div class="chat-wrap">
         <div class="messages" id="messages" onscroll="checkScrollBtn()">
           <div class="msg bot" id="welcomeMsg">
-            <div class="av">🤖</div>
+            <div class="av">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C6EE8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </div>
             <div class="bub" id="welcomeBub"></div>
           </div>
         </div>
@@ -1321,39 +1771,44 @@
           ↓
         </button>
 
-        <div class="input-wrap">
-          <div class="input-container">
-            <input
-              id="inp"
-              data-i18n-placeholder="chatInputPlaceholder"
-              placeholder="Type your symptoms or IT issues..."
-              aria-label="พิมพ์อาการหรือปัญหา IT ของคุณ"
-              onkeydown="
-                if (event.key === 'Enter') {
-                  send();
+        <div class="input-panel">
+          <div class="input-wrap">
+            <div class="input-container">
+              <input
+                id="inp"
+                data-i18n-placeholder="chatInputPlaceholder"
+                placeholder="Type your symptoms or IT issues..."
+                aria-label="พิมพ์อาการหรือปัญหา IT ของคุณ"
+                onkeydown="
+                  if (event.key === 'Enter') {
+                    send();
+                    document
+                      .querySelector('.send-btn')
+                      .classList.remove('active');
+                  }
+                "
+                oninput="
                   document
                     .querySelector('.send-btn')
-                    .classList.remove('active');
-                }
-              "
-              oninput="
-                document
-                  .querySelector('.send-btn')
-                  .classList.toggle('active', this.value.trim().length > 0)
-              "
-            />
+                    .classList.toggle('active', this.value.trim().length > 0)
+                "
+              />
+              <button
+                class="send-btn"
+                onclick="
+                  send();
+                  this.classList.remove('active');
+                "
+                title="Send Message (Enter)"
+                aria-label="ส่งข้อความ"
+              >
+                🚀
+              </button>
+            </div>
           </div>
-          <button
-            class="send-btn"
-            onclick="
-              send();
-              this.classList.remove('active');
-            "
-            title="Send Message (Enter)"
-            aria-label="ส่งข้อความ"
-          >
-            🚀
-          </button>
+          <div class="input-footer">
+            <span class="secure-text">🔒 256-bit SSL Encryption | On-Premise Secure Chatbot Engine</span>
+          </div>
         </div>
 
         <div class="stats-bar">
@@ -1489,6 +1944,7 @@
           histTitle: "🎫 Recent Tickets",
           histViewAll: "View All",
           histEmpty: "No active tickets",
+          welcomeMsg: "Hello! I can help you solve IT problems immediately. Type your question or choose a Quick Solution from above. 👋",
           welcomeTitle:
             "Hello! 👋 I am <strong>IT Support AI</strong> ready to assist you.",
           welcomeStats:
@@ -1554,6 +2010,7 @@
           histTitle: "🎫 Ticket ล่าสุด",
           histViewAll: "ดูทั้งหมด",
           histEmpty: "ยังไม่มีรายการ",
+          welcomeMsg: "สวัสดีครับ! ผมช่วยแก้ปัญหา IT ได้ทันที พิมพ์คำถาม หรือเลือก Quick Solution ด้านบนได้เลยครับ 👋",
           welcomeTitle:
             "สวัสดีครับ! 👋 ผม <strong>IT Support AI</strong> ยินดีให้บริการครับ",
           welcomeStats:
@@ -1622,6 +2079,19 @@
             : translations[currentLang].btnThemeDark;
         document.getElementById("langBtn").textContent =
           translations[currentLang].btnLang;
+
+        // Update toggle chips text
+        const moreChips = document.getElementById("moreChips");
+        const toggleBtn = document.getElementById("toggleChipsBtn");
+        if (moreChips && toggleBtn) {
+          const isExpanded = moreChips.classList.contains("expanded");
+          const btnText = toggleBtn.querySelector(".btn-text") || toggleBtn;
+          if (currentLang === "th") {
+            btnText.textContent = isExpanded ? "ย่อ ▲" : "ดูทั้งหมด ▾";
+          } else {
+            btnText.textContent = isExpanded ? "Collapse ▲" : "View All ▾";
+          }
+        }
 
         // Refresh UI if KB is already loaded
         if (window.KB) renderUI();
@@ -1799,6 +2269,7 @@
         return {
           faq: best.faq,
           cat: best.cat,
+          score: best.score,
           related: related
         };
       }
@@ -2024,17 +2495,30 @@ Answer:`;
         d.className = "msg " + role;
         const bub = document.createElement("div");
         bub.className = "bub";
-        let avIcon = role === "bot" ? "🤖" : role === "admin" ? "👨‍💻" : "👤";
-        d.innerHTML = `<div class="av">${avIcon}</div>`;
-        d.appendChild(bub);
-        // Timestamp
+        
+        let avIcon = "👤";
+        if (role === "bot") {
+          avIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C6EE8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>`;
+        } else if (role === "admin") {
+          avIcon = "👨‍💻";
+        }
+        
+        // Timestamp - but only for non-bot (user/admin) messages, bot gets it in footer
         const ts = document.createElement("div");
         ts.className = "msg-time";
         ts.textContent = new Date().toLocaleTimeString("th-TH", { hour: "2-digit", minute: "2-digit" });
+        
         const wrapper = document.createElement("div");
         wrapper.style.flex = "1";
         wrapper.appendChild(bub);
-        wrapper.appendChild(ts);
+        if (role !== "bot") {
+          wrapper.appendChild(ts);
+        }
+        
         d.innerHTML = `<div class="av">${avIcon}</div>`;
         d.appendChild(wrapper);
         w.appendChild(d);
@@ -2077,7 +2561,16 @@ Answer:`;
           chatData.forEach(msg => {
             const d = document.createElement("div");
             d.className = "msg " + msg.role;
-            let avIcon = msg.role === "bot" ? "🤖" : msg.role === "admin" ? "👨‍💻" : "👤";
+            let avIcon = "👤";
+            if (msg.role === "bot") {
+              avIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C6EE8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>`;
+            } else if (msg.role === "admin") {
+              avIcon = "👨‍💻";
+            }
             const bub = document.createElement("div");
             bub.className = "bub";
             bub.innerHTML = sanitizeHTML(msg.html);
@@ -2087,7 +2580,9 @@ Answer:`;
             const wrapper = document.createElement("div");
             wrapper.style.flex = "1";
             wrapper.appendChild(bub);
-            wrapper.appendChild(ts);
+            if (msg.role !== "bot") {
+              wrapper.appendChild(ts);
+            }
             d.innerHTML = `<div class="av">${avIcon}</div>`;
             d.appendChild(wrapper);
             w.appendChild(d);
@@ -2096,17 +2591,43 @@ Answer:`;
         } catch(e) { console.error("Restore chat error:", e); }
       }
 
-      function addFeedback(tNum, botText) {
+      function addFeedback(tNum, botText, score = null, category = null) {
         const w = document.getElementById("messages");
         const d = document.createElement("div");
         d.className = "msg-footer";
-        d.innerHTML = `<button class="fb-btn" id="g${tNum}" onclick="feedback('${tNum}',1)">${translations[currentLang].btnGood}</button><button class="fb-btn" id="b${tNum}" onclick="feedback('${tNum}',-1)">${translations[currentLang].btnBad}</button><span class="ticket-tag">#${tNum}</span><button class="copy-btn" onclick="copyAnswer('${tNum}')" id="cp${tNum}">${translations[currentLang].btnCopy}</button>`;
+
+        const timeStr = new Date().toLocaleTimeString("th-TH", { hour: "2-digit", minute: "2-digit" });
+        
+        let scoreBadge = "";
+        if (score !== null) {
+          const pct = Math.round(Math.min(Math.max((score / 5.0) * 100, 30), 100));
+          scoreBadge = `<span class="score-badge">🎯 ${pct}% match</span>`;
+        }
+        
+        let catBadge = "";
+        if (category) {
+          catBadge = `<span class="category-badge">${category}</span>`;
+        }
+
+        d.innerHTML = `
+          <span class="msg-footer-time">${timeStr}</span>
+          ${scoreBadge}
+          ${catBadge}
+          <div class="feedback-group">
+            <button class="fb-btn" id="g${tNum}" onclick="feedback('${tNum}',1)">👍</button>
+            <button class="fb-btn" id="b${tNum}" onclick="feedback('${tNum}',-1)">👎</button>
+          </div>
+          <span class="ticket-tag">#${tNum}</span>
+          <button class="copy-btn" onclick="copyAnswer('${tNum}')" id="cp${tNum}">${translations[currentLang].btnCopy}</button>
+        `;
 
         const chips = document.createElement("div");
         chips.className = "quick-chips-wrap";
-        chips.innerHTML = `<button class="chip-btn" onclick="ask('${translations[currentLang].chipSolved}', this)">${translations[currentLang].chipSolved}</button>
-                     <button class="chip-btn" onclick="ask('${translations[currentLang].chipNotSolved}', this)">${translations[currentLang].chipNotSolved}</button>
-                     <button class="chip-btn" onclick="ask('${translations[currentLang].chipContact}', this)">${translations[currentLang].chipContact}</button>`;
+        chips.innerHTML = `
+          <button class="chip-btn" onclick="ask('${translations[currentLang].chipSolved}', this)">${translations[currentLang].chipSolved}</button>
+          <button class="chip-btn" onclick="ask('${translations[currentLang].chipNotSolved}', this)">${translations[currentLang].chipNotSolved}</button>
+          <button class="chip-btn" onclick="ask('${translations[currentLang].chipContact}', this)">${translations[currentLang].chipContact}</button>
+        `;
 
         // store text for copy
         if (botText) answerStore.set(tNum, botText);
@@ -2187,7 +2708,16 @@ Answer:`;
         const d = document.createElement("div");
         d.className = "msg " + role;
         d.id = "typing";
-        let icon = role === "admin" ? "👨‍💻" : "🤖";
+        let icon = "🤖";
+        if (role === "bot") {
+          icon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C6EE8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>`;
+        } else if (role === "admin") {
+          icon = "👨‍💻";
+        }
         d.innerHTML = `<div class="av">${icon}</div><div class="bub"><div class="typing-dots"><span></span><span></span><span></span></div></div>`;
         w.appendChild(d);
         w.scrollTop = w.scrollHeight;
@@ -2228,6 +2758,8 @@ Answer:`;
         const tNum = ++ticketNum;
         stats.tickets++;
         document.getElementById("sTicket").textContent = stats.tickets;
+        
+        const startTime = Date.now();
         addTyping();
         const now = new Date().toLocaleTimeString("th-TH", {
           hour: "2-digit",
@@ -2235,6 +2767,9 @@ Answer:`;
         });
         let reply = "",
           mode = "Keyword";
+
+        let matchScore = null;
+        let matchCat = null;
 
         const lowerText = text.toLowerCase();
         const isClosing =
@@ -2279,11 +2814,10 @@ Answer:`;
             }
 
             if (!reply) {
-              await new Promise((r) =>
-                setTimeout(r, 700 + Math.random() * 500),
-              );
               const m = scoreKB(text);
               if (m) {
+                matchScore = m.score;
+                matchCat = m.cat;
                 let baseReply = `📋 **${m.faq.question}**\n\n${m.faq.answer}`;
                 // If in English mode but Keyword result is Thai, try translating if API key exists
                 if (currentLang === "en" && geminiKey) {
@@ -2336,9 +2870,20 @@ Answer:`;
           }
         }
 
+        if (!matchCat) {
+          matchCat = detectCategory(text);
+        }
+
+        // Typing delay logic: at least 450ms
+        const elapsedTime = Date.now() - startTime;
+        const minDelay = 450;
+        if (elapsedTime < minDelay) {
+          await new Promise((r) => setTimeout(r, minDelay - elapsedTime));
+        }
+
         document.getElementById("typing")?.remove();
         addMsg(reply, "bot");
-        addFeedback(tNum, reply);
+        addFeedback(tNum, reply, matchScore, matchCat);
         history.push({
           ticket: tNum,
           question: text,
@@ -2544,20 +3089,25 @@ Answer:`;
             .join(", ");
           const wb = document.getElementById("welcomeBub");
           if (wb) {
-            wb.innerHTML =
-              translations[currentLang].welcomeTitle +
-              "<br><br>" +
-              translations[currentLang].welcomeStats
-                .replace("{faq}", totalFaq)
-                .replace("{cat}", totalCat) +
-              "<br>" +
-              translations[currentLang].welcomeCats +
-              topCats +
-              "<br><br>" +
-              translations[currentLang].welcomeAction;
+            wb.innerHTML = translations[currentLang].welcomeMsg;
           }
         } catch (err) {
           console.error("Render UI error:", err);
+        }
+      }
+
+      function toggleMoreChips() {
+        const moreChips = document.getElementById("moreChips");
+        const btn = document.getElementById("toggleChipsBtn");
+        if (!moreChips || !btn) return;
+        
+        const isExpanded = moreChips.classList.toggle("expanded");
+        const btnText = btn.querySelector(".btn-text") || btn;
+        
+        if (currentLang === "th") {
+          btnText.textContent = isExpanded ? "ย่อ ▲" : "ดูทั้งหมด ▾";
+        } else {
+          btnText.textContent = isExpanded ? "Collapse ▲" : "View All ▾";
         }
       }
 
