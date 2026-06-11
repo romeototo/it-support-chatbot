@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="IT Support AI — ระบบช่วยเหลือไอทีอัจฉริยะ แก้ปัญหา IT ได้ทันทีด้วย AI พร้อม Knowledge Base กว่า 200 FAQ ใน 45 หมวดหมู่" />
-    <meta name="theme-color" content="#6366f1" />
+    <meta name="theme-color" content="#1E1B3A" />
     <!-- Open Graph / Social Preview -->
     <meta property="og:title" content="IT Support AI — Premium Intelligent HelpDesk" />
     <meta property="og:description" content="ระบบช่วยเหลือไอทีอัจฉริยะ แก้ปัญหา IT ได้ทันทีด้วย AI พร้อม Knowledge Base กว่า 200 FAQ" />
@@ -20,7 +20,7 @@
     <link rel="icon" href="icon-512.png" sizes="512x512" />
     <link rel="apple-touch-icon" href="icon-192.png" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>" type="image/svg+xml" />
-    <meta name="theme-color" content="#6366f1" />
+    <meta name="theme-color" content="#1E1B3A" />
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json" />
     <title>IT Support AI | Premium Intelligent HelpDesk</title>
@@ -1497,6 +1497,377 @@
           padding-left: 0px !important;
         }
       }
+
+      /* ===================== REQUESTED DESIGN SYSTEM FINAL PASS ===================== */
+      body {
+        background: #0F0D1F !important;
+      }
+      body.light {
+        background: var(--surface-bg) !important;
+      }
+      header {
+        background: var(--deep-navy) !important;
+        padding: 14px 24px !important;
+        gap: 12px !important;
+        min-height: 60px;
+      }
+      body:not(.light) header {
+        background: #0F0D1F !important;
+      }
+      .logo-container {
+        width: 28px !important;
+        height: 28px !important;
+        min-width: 28px !important;
+        border-radius: 7px !important;
+        background: var(--brand-purple) !important;
+        box-shadow: none !important;
+      }
+      .logo-container svg {
+        width: 16px;
+        height: 16px;
+      }
+      .hinfo {
+        flex: 0 1 auto;
+        min-width: 128px;
+      }
+      .hinfo h1 {
+        font-size: 1.1rem !important;
+        line-height: 1.15;
+        letter-spacing: 0 !important;
+      }
+      .hinfo p {
+        color: #C8C4EA !important;
+      }
+      .onpremise-badge {
+        margin-left: auto !important;
+        background: rgba(19, 181, 122, 0.18) !important;
+        border: 0.5px solid rgba(19, 181, 122, 0.4) !important;
+        color: var(--secure-green) !important;
+        padding: 4px 10px !important;
+      }
+      .main {
+        background: var(--surface-bg);
+      }
+      body:not(.light) .main {
+        background: #1A1828;
+      }
+      .chat-wrap {
+        background: var(--surface-bg) !important;
+        border-color: var(--border-light) !important;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.65), 0 12px 32px rgba(30,27,58,0.08) !important;
+      }
+      body:not(.light) .chat-wrap {
+        background: #1A1828 !important;
+        border-color: rgba(226, 224, 239, 0.12) !important;
+        box-shadow: 0 12px 32px rgba(0,0,0,0.22) !important;
+      }
+      .messages {
+        background: transparent;
+      }
+      .bot .av {
+        width: 28px !important;
+        height: 28px !important;
+        border-radius: 8px !important;
+        background: var(--deep-navy) !important;
+        box-shadow: none !important;
+      }
+      .user .av {
+        display: none !important;
+      }
+      .bot .bub {
+        background: #ffffff !important;
+        border: 0.5px solid var(--border-light) !important;
+        border-radius: 4px 16px 16px 16px !important;
+        color: var(--text-dark) !important;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.05) !important;
+      }
+      body:not(.light) .bot .bub {
+        background: var(--deep-navy) !important;
+        border-color: rgba(226, 224, 239, 0.18) !important;
+        color: #E8E6F0 !important;
+      }
+      .user .bub {
+        background: var(--brand-purple) !important;
+        color: #ffffff !important;
+        border: none !important;
+        border-radius: 16px 16px 4px 16px !important;
+        box-shadow: 0 4px 12px rgba(124,110,232,0.18) !important;
+      }
+      .bot .bub strong {
+        color: var(--deep-navy) !important;
+      }
+      body:not(.light) .bot .bub strong {
+        color: #ffffff !important;
+      }
+      .bot-copy-btn {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 24px;
+        height: 24px;
+        border-radius: 6px;
+        border: 0.5px solid var(--border-light);
+        background: rgba(255,255,255,0.92);
+        color: var(--brand-purple);
+        cursor: pointer;
+        font-size: 12px;
+        line-height: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      body:not(.light) .bot-copy-btn {
+        background: rgba(255,255,255,0.06);
+        border-color: rgba(226,224,239,0.2);
+        color: #C8C4EA;
+      }
+      .bot .bub.has-copy {
+        padding-right: 42px;
+      }
+      .msg-footer {
+        padding-left: 38px !important;
+        margin-top: -12px !important;
+      }
+      .msg-footer-time {
+        color: var(--text-muted) !important;
+        font-size: 0.68rem !important;
+      }
+      .score-badge {
+        background: #E8F5F0 !important;
+        color: #0F7A52 !important;
+        border: none !important;
+      }
+      .category-badge {
+        background: var(--soft-lilac) !important;
+        color: #6B5FD1 !important;
+        border: none !important;
+      }
+      .feedback-group {
+        border: 0.5px solid var(--border-light) !important;
+        border-radius: 6px !important;
+      }
+      .msg-time {
+        color: var(--text-muted) !important;
+        font-size: 10px !important;
+        text-align: right !important;
+        margin-top: 4px !important;
+      }
+      .qbtn,
+      .chip-btn {
+        background: #ffffff !important;
+        border: 0.5px solid #D4CFFF !important;
+        border-radius: 999px !important;
+        color: #534AB7 !important;
+        font-size: 12px !important;
+        font-weight: 500 !important;
+        box-shadow: none !important;
+      }
+      body:not(.light) .qbtn,
+      body:not(.light) .chip-btn {
+        background: rgba(255,255,255,0.06) !important;
+        color: #C8C4EA !important;
+        border-color: rgba(212,207,255,0.26) !important;
+      }
+      .qbtn-urgent,
+      .chip-urgent {
+        border-color: #FFD4C8 !important;
+        color: #B54A2D !important;
+      }
+      .input-wrap {
+        padding: 12px 25px 6px !important;
+      }
+      .input-container {
+        background: #ffffff !important;
+        border: 0.5px solid var(--border-light) !important;
+        border-radius: 12px !important;
+        padding: 12px 14px !important;
+        box-shadow: 0 2px 8px rgba(124,110,232,0.08) !important;
+      }
+      body:not(.light) .input-container {
+        background: var(--deep-navy) !important;
+        border-color: rgba(226,224,239,0.16) !important;
+      }
+      .input-container textarea {
+        width: 100%;
+        min-height: 24px;
+        max-height: 96px;
+        resize: none;
+        background: transparent !important;
+        border: none !important;
+        color: var(--text-dark) !important;
+        padding: 0 42px 0 0 !important;
+        border-radius: 0 !important;
+        outline: none;
+        font: 0.95rem/1.5 "Inter", sans-serif;
+        overflow-y: auto;
+      }
+      body:not(.light) .input-container textarea {
+        color: #E8E6F0 !important;
+      }
+      .input-container textarea::placeholder {
+        color: var(--text-muted) !important;
+      }
+      .send-btn {
+        right: 10px !important;
+        background: var(--brand-purple) !important;
+      }
+      .input-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 0 25px 12px !important;
+        text-align: left !important;
+      }
+      .input-footer .secure-text {
+        color: #0F7A52 !important;
+        font-size: 11px !important;
+      }
+      .input-footer .engine-text {
+        color: var(--text-muted) !important;
+        font-size: 11px !important;
+        font-weight: 500;
+      }
+      .stats-bar {
+        display: flex !important;
+        align-items: center;
+        gap: 8px !important;
+        padding: 8px 25px 14px !important;
+        background: transparent !important;
+      }
+      .stat:not(.engine-stat) {
+        background: #ffffff;
+        border: 0.5px solid var(--border-light);
+        border-radius: 8px;
+        padding: 6px 12px;
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-areas: "icon num" "icon label";
+        column-gap: 7px;
+        align-items: center;
+        min-width: 104px;
+      }
+      body:not(.light) .stat:not(.engine-stat) {
+        background: var(--deep-navy);
+        border-color: rgba(226,224,239,0.16);
+      }
+      .stat-icon {
+        grid-area: icon;
+        font-size: 16px;
+      }
+      .stat-num {
+        grid-area: num;
+        color: var(--text-dark) !important;
+        font-size: 18px !important;
+        font-weight: 600 !important;
+        line-height: 1;
+        margin: 0 !important;
+      }
+      body:not(.light) .stat-num {
+        color: #E8E6F0 !important;
+      }
+      .stat-label {
+        grid-area: label;
+        color: var(--text-muted) !important;
+        font-size: 10px;
+        font-weight: 500 !important;
+        margin: 0 !important;
+      }
+      .engine-stat {
+        color: var(--text-muted) !important;
+        font-size: 11px !important;
+      }
+      .empty-tickets {
+        padding: 34px 18px;
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 0.78rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+      .empty-icon {
+        width: 24px;
+        height: 24px;
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--brand-purple);
+        background: var(--soft-lilac);
+      }
+      #welcomeMsg {
+        display: none;
+      }
+      #welcomeMsg.active {
+        display: flex;
+      }
+      @media (max-width: 768px) {
+        header {
+          padding: 10px 12px !important;
+          gap: 8px !important;
+          flex-wrap: wrap;
+        }
+        body::before,
+        body::after {
+          display: none !important;
+        }
+        .hinfo {
+          flex: 1 1 130px;
+        }
+        .onpremise-badge {
+          margin-left: 0 !important;
+          order: 3;
+        }
+        .main {
+          padding: 10px !important;
+        }
+        .sidebar {
+          overflow: visible !important;
+        }
+        #chipsContainer {
+          flex-wrap: wrap !important;
+          overflow: visible !important;
+          white-space: normal !important;
+        }
+        #moreChips {
+          flex-wrap: wrap !important;
+        }
+        .qbtn {
+          white-space: normal !important;
+        }
+        .chat-wrap {
+          min-height: 0;
+        }
+        .input-wrap {
+          padding: 10px 10px 6px !important;
+        }
+        .input-container {
+          padding: 10px 12px !important;
+          min-width: 0;
+        }
+        .input-footer {
+          padding: 0 10px 10px !important;
+          flex-wrap: wrap;
+        }
+        .stats-bar {
+          padding: 8px 10px 12px !important;
+          display: grid !important;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        .stat:not(.engine-stat) {
+          min-width: 0;
+          padding: 6px 8px;
+        }
+        .engine-stat,
+        .clear-btn {
+          display: none !important;
+        }
+        .msg {
+          max-width: 96% !important;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1518,7 +1889,7 @@
       <div class="gemini-badge" id="aiLabel" data-i18n="engineKeyword">
         Keyword Engine
       </div>
-      <span class="onpremise-badge">🟢 On-Premise</span>
+      <span class="onpremise-badge">● On-Premise</span>
       <button
         onclick="toggleLang()"
         id="langBtn"
@@ -1774,13 +2145,15 @@
         <div class="input-panel">
           <div class="input-wrap">
             <div class="input-container">
-              <input
+              <textarea
                 id="inp"
                 data-i18n-placeholder="chatInputPlaceholder"
                 placeholder="Type your symptoms or IT issues..."
                 aria-label="พิมพ์อาการหรือปัญหา IT ของคุณ"
+                rows="1"
                 onkeydown="
-                  if (event.key === 'Enter') {
+                  if (event.key === 'Enter' && !event.shiftKey) {
+                    event.preventDefault();
                     send();
                     document
                       .querySelector('.send-btn')
@@ -1792,7 +2165,7 @@
                     .querySelector('.send-btn')
                     .classList.toggle('active', this.value.trim().length > 0)
                 "
-              />
+              ></textarea>
               <button
                 class="send-btn"
                 onclick="
@@ -1807,21 +2180,26 @@
             </div>
           </div>
           <div class="input-footer">
-            <span class="secure-text">🔒 256-bit SSL Encryption | On-Premise Secure Chatbot Engine</span>
+            <span class="secure-text">🔒 On-premise · ไม่มีข้อมูลออกนอก</span>
+            <span class="engine-text">Keyword Engine · 200+ FAQ</span>
           </div>
         </div>
 
         <div class="stats-bar">
           <div class="stat">
-            <span data-i18n="statTickets">Tickets</span>:
-            <span id="sTicket">0</span>
+            <span class="stat-icon">🎫</span>
+            <span id="sTicket" class="stat-num">0</span>
+            <span class="stat-label" data-i18n="statTickets">Tickets</span>
           </div>
           <div class="stat">
-            <span data-i18n="statHelpful">Helpful</span>:
-            <span id="sGood">0</span>
+            <span class="stat-icon">👍</span>
+            <span id="sGood" class="stat-num">0</span>
+            <span class="stat-label" data-i18n="statHelpful">Helpful</span>
           </div>
           <div class="stat">
-            <span data-i18n="statIssues">Issues</span>: <span id="sBad">0</span>
+            <span class="stat-icon">⚠️</span>
+            <span id="sBad" class="stat-num">0</span>
+            <span class="stat-label" data-i18n="statIssues">Issues</span>
           </div>
           <button
             class="clear-btn"
@@ -1831,7 +2209,7 @@
           >
             🗑️ Clear Chat
           </button>
-          <div class="stat" style="margin-left: auto">
+          <div class="stat engine-stat" style="margin-left: auto">
             <span data-i18n="statEngine">Engine</span>:
             <span id="sMode">Keyword Mode</span>
           </div>
@@ -1848,16 +2226,9 @@
           >
         </div>
         <div class="hp-list" id="histList">
-          <div
-            style="
-              padding: 40px 20px;
-              text-align: center;
-              color: var(--text-dim);
-              font-size: 0.8rem;
-            "
-            data-i18n="histEmpty"
-          >
-            No active tickets
+          <div class="empty-tickets" data-i18n="histEmpty">
+            <span class="empty-icon">＋</span>
+            <span>ยังไม่มี ticket · เริ่มพิมพ์คำถามได้เลย</span>
           </div>
         </div>
       </div>
@@ -1872,7 +2243,25 @@
         var s = document.createElement("script");
         s.src = src;
         s.defer = true;
+        s.onerror = function () {
+          if (src !== "kb.js") {
+            var fallback = document.createElement("script");
+            fallback.src = "kb.js";
+            fallback.defer = true;
+            document.head.appendChild(fallback);
+          }
+        };
         document.head.appendChild(s);
+        if (src !== "kb.js") {
+          setTimeout(function () {
+            if (!window.KB) {
+              var fallback = document.createElement("script");
+              fallback.src = "kb.js";
+              fallback.defer = true;
+              document.head.appendChild(fallback);
+            }
+          }, 250);
+        }
       })();
     </script>
     <script defer>
@@ -1920,8 +2309,8 @@
 
       const translations = {
         en: {
-          title: "IT Support AI",
-          subtitle: "Intelligence HelpDesk System",
+          title: "IT HelpDesk",
+          subtitle: "IT HelpDesk · Smart Search",
           kbLoading: "Loading Knowledge...",
           engineKeyword: "Keyword Engine",
           engineGemini: "Gemini AI",
@@ -1935,7 +2324,7 @@
           aiConfigSave: "Activate AI",
           quickSolutions: "Quick Solutions",
           searchPlaceholder: "🔍 Search categories...",
-          chatInputPlaceholder: "Type your symptoms or IT issues...",
+          chatInputPlaceholder: "พิมพ์ปัญหา IT ของคุณ... เช่น VPN ต่อไม่ได้",
           statTickets: "Tickets",
           statHelpful: "Helpful",
           statIssues: "Issues",
@@ -1943,8 +2332,8 @@
           btnClear: "🗑️ Clear Chat",
           histTitle: "🎫 Recent Tickets",
           histViewAll: "View All",
-          histEmpty: "No active tickets",
-          welcomeMsg: "Hello! I can help you solve IT problems immediately. Type your question or choose a Quick Solution from above. 👋",
+          histEmpty: '<span class="empty-icon">＋</span><span>No ticket yet · Start typing your question</span>',
+          welcomeMsg: "Hello! I can help you solve IT problems immediately.\nType your question or choose a Quick Solution above. 👋",
           welcomeTitle:
             "Hello! 👋 I am <strong>IT Support AI</strong> ready to assist you.",
           welcomeStats:
@@ -1986,8 +2375,8 @@
           sysError: "⚠️ System Error: ",
         },
         th: {
-          title: "IT Support AI",
-          subtitle: "ระบบช่วยเหลือไอทีอัจฉริยะ",
+          title: "IT HelpDesk",
+          subtitle: "IT HelpDesk · Smart Search",
           kbLoading: "กำลังโหลดข้อมูล...",
           engineKeyword: "Keyword Engine",
           engineGemini: "Gemini AI",
@@ -2001,7 +2390,7 @@
           aiConfigSave: "เปิดใช้งาน AI",
           quickSolutions: "วิธีแก้ปัญหาด่วน",
           searchPlaceholder: "🔍 ค้นหาหมวดหมู่...",
-          chatInputPlaceholder: "พิมพ์อาการเสีย หรือปัญหาไอทีที่พบ...",
+          chatInputPlaceholder: "พิมพ์ปัญหา IT ของคุณ... เช่น VPN ต่อไม่ได้",
           statTickets: "Ticket ทั้งหมด",
           statHelpful: "แก้ได้",
           statIssues: "แก้ไม่ได้",
@@ -2009,8 +2398,8 @@
           btnClear: "🗑️ ล้างแชท",
           histTitle: "🎫 Ticket ล่าสุด",
           histViewAll: "ดูทั้งหมด",
-          histEmpty: "ยังไม่มีรายการ",
-          welcomeMsg: "สวัสดีครับ! ผมช่วยแก้ปัญหา IT ได้ทันที พิมพ์คำถาม หรือเลือก Quick Solution ด้านบนได้เลยครับ 👋",
+          histEmpty: '<span class="empty-icon">＋</span><span>ยังไม่มี ticket · เริ่มพิมพ์คำถามได้เลย</span>',
+          welcomeMsg: "สวัสดีครับ! ผมช่วยแก้ปัญหา IT ได้ทันที\nพิมพ์คำถามหรือเลือก Quick Solution ด้านบนได้เลยครับ 👋",
           welcomeTitle:
             "สวัสดีครับ! 👋 ผม <strong>IT Support AI</strong> ยินดีให้บริการครับ",
           welcomeStats:
@@ -2053,7 +2442,7 @@
         },
       };
 
-      let currentLang = localStorage.getItem("itbot_lang") || "en";
+      let currentLang = localStorage.getItem("itbot_lang") || "th";
 
       function applyTranslations() {
         document.querySelectorAll("[data-i18n]").forEach((el) => {
@@ -2332,7 +2721,7 @@ Answer:`;
           "text-align:center;font-size:.72rem;color:#475569;padding:4px";
         d.textContent = text;
         w.appendChild(d);
-        w.scrollTop = w.scrollHeight;
+        scrollToBottom();
       }
 
       function formatMarkdown(text) {
@@ -2431,7 +2820,8 @@ Answer:`;
       // Scroll-to-bottom helpers
       function scrollToBottom() {
         const w = document.getElementById("messages");
-        w.scrollTop = w.scrollHeight;
+        if (!w) return;
+        w.scrollTo({ top: w.scrollHeight, behavior: "smooth" });
       }
       function checkScrollBtn() {
         const w = document.getElementById("messages");
@@ -2460,10 +2850,12 @@ Answer:`;
         localStorage.removeItem("itbot_history");
         localStorage.removeItem("itbot_chat");
         document.getElementById("scrollBtn")?.classList.remove("visible");
+        renderHistory();
+        showWelcomeMessage(true);
       }
 
       // Typewriter animation for bot messages
-      function typeWrite(el, html, speed = 12) {
+      function typeWrite(el, html, speed = 12, onDone = null) {
         const tmp = document.createElement("div");
         tmp.innerHTML = html;
         const plainText = tmp.textContent || "";
@@ -2476,20 +2868,19 @@ Answer:`;
             clearInterval(interval);
             el.classList.remove("typing-cursor");
             el.innerHTML = fullHTML;
-            const w = document.getElementById("messages");
-            w.scrollTop = w.scrollHeight;
+            scrollToBottom();
             checkScrollBtn();
             disableInput(false);
+            if (typeof onDone === "function") onDone();
           } else {
             // Show partial plain text during typing
             el.textContent = plainText.slice(0, i);
-            const w = document.getElementById("messages");
-            w.scrollTop = w.scrollHeight;
+            scrollToBottom();
           }
         }, speed);
       }
 
-      function addMsg(text, role) {
+      function addMsg(text, role, onTyped = null) {
         const w = document.getElementById("messages");
         const d = document.createElement("div");
         d.className = "msg " + role;
@@ -2523,14 +2914,32 @@ Answer:`;
         d.appendChild(wrapper);
         w.appendChild(d);
         if (role === "bot" || role === "admin") {
-          typeWrite(bub, formatMarkdown(text));
+          typeWrite(bub, formatMarkdown(text), 12, () => {
+            if (typeof onTyped === "function") onTyped();
+            saveChatMessages();
+          });
         } else {
           bub.innerHTML = formatMarkdown(text);
-          w.scrollTop = w.scrollHeight;
+          scrollToBottom();
+          saveChatMessages();
         }
-        // Save to chat persistence
-        saveChatMessages();
         return d;
+      }
+
+      function addBotCopyButton(msgEl, tNum, text) {
+        const bub = msgEl?.querySelector(".bub");
+        if (!bub) return;
+        bub.classList.add("has-copy");
+        if (text) answerStore.set(tNum, text);
+        const btn = document.createElement("button");
+        btn.className = "bot-copy-btn";
+        btn.type = "button";
+        btn.id = "cpBubble" + tNum;
+        btn.title = translations[currentLang].btnCopy;
+        btn.setAttribute("aria-label", translations[currentLang].btnCopy);
+        btn.textContent = "⧉";
+        btn.addEventListener("click", () => copyAnswer(tNum));
+        bub.appendChild(btn);
       }
 
       // Chat persistence functions
@@ -2542,9 +2951,11 @@ Answer:`;
           const bub = m.querySelector(".bub");
           const time = m.querySelector(".msg-time");
           if (bub) {
+            const cleanBub = bub.cloneNode(true);
+            cleanBub.querySelectorAll(".bot-copy-btn").forEach((btn) => btn.remove());
             chatData.push({
               role: m.classList.contains("user") ? "user" : m.classList.contains("admin") ? "admin" : "bot",
-              html: bub.innerHTML,
+              html: cleanBub.innerHTML,
               time: time ? time.textContent : ""
             });
           }
@@ -2558,7 +2969,7 @@ Answer:`;
         try {
           const chatData = JSON.parse(saved);
           const w = document.getElementById("messages");
-          chatData.forEach(msg => {
+          chatData.forEach((msg, index) => {
             const d = document.createElement("div");
             d.className = "msg " + msg.role;
             let avIcon = "👤";
@@ -2586,8 +2997,11 @@ Answer:`;
             d.innerHTML = `<div class="av">${avIcon}</div>`;
             d.appendChild(wrapper);
             w.appendChild(d);
+            if (msg.role === "bot") {
+              addBotCopyButton(d, "restored" + Date.now() + index, bub.textContent || "");
+            }
           });
-          w.scrollTop = w.scrollHeight;
+          scrollToBottom();
         } catch(e) { console.error("Restore chat error:", e); }
       }
 
@@ -2633,21 +3047,26 @@ Answer:`;
         if (botText) answerStore.set(tNum, botText);
         w.appendChild(d);
         w.appendChild(chips);
-        w.scrollTop = w.scrollHeight;
+        scrollToBottom();
       }
 
       function copyAnswer(tNum) {
         const text = answerStore.get(tNum) || "";
         navigator.clipboard.writeText(text).then(() => {
-          const btn = document.getElementById("cp" + tNum);
-          if (btn) {
-            btn.textContent = translations[currentLang].btnCopied;
-            btn.style.color = "#4ade80";
-            setTimeout(() => {
-              btn.textContent = translations[currentLang].btnCopy;
-              btn.style.color = "";
-            }, 2000);
-          }
+          const footerBtn = document.getElementById("cp" + tNum);
+          const bubbleBtn = document.getElementById("cpBubble" + tNum);
+          if (footerBtn) footerBtn.textContent = translations[currentLang].btnCopied;
+          if (bubbleBtn) bubbleBtn.textContent = "✓";
+          [footerBtn, bubbleBtn].forEach((btn) => {
+            if (btn) btn.style.color = "#13B57A";
+          });
+          setTimeout(() => {
+            if (footerBtn) footerBtn.textContent = translations[currentLang].btnCopy;
+            if (bubbleBtn) bubbleBtn.textContent = "⧉";
+            [footerBtn, bubbleBtn].forEach((btn) => {
+              if (btn) btn.style.color = "";
+            });
+          }, 1500);
         });
       }
 
@@ -2720,13 +3139,30 @@ Answer:`;
         }
         d.innerHTML = `<div class="av">${icon}</div><div class="bub"><div class="typing-dots"><span></span><span></span><span></span></div></div>`;
         w.appendChild(d);
-        w.scrollTop = w.scrollHeight;
+        scrollToBottom();
+      }
+
+      async function showWelcomeMessage(force = false) {
+        const welcome = document.getElementById("welcomeMsg");
+        const bub = document.getElementById("welcomeBub");
+        if (!welcome || !bub) return;
+        if (!force && welcome.classList.contains("active")) return;
+        welcome.classList.remove("active");
+        bub.innerHTML = "";
+        addTyping("bot");
+        await new Promise((r) => setTimeout(r, 420));
+        document.getElementById("typing")?.remove();
+        welcome.classList.add("active");
+        typeWrite(bub, formatMarkdown(translations[currentLang].welcomeMsg), 12, () => {
+          disableInput(false);
+          scrollToBottom();
+        });
       }
 
       function renderHistory() {
         const el = document.getElementById("histList");
         if (!history.length) {
-          el.innerHTML = `<div style="padding:20px;text-align:center;color:#475569;font-size:.78rem">${translations[currentLang].histEmpty}</div>`;
+          el.innerHTML = `<div class="empty-tickets">${translations[currentLang].histEmpty}</div>`;
           return;
         }
         el.innerHTML = [...history]
@@ -2882,7 +3318,7 @@ Answer:`;
         }
 
         document.getElementById("typing")?.remove();
-        addMsg(reply, "bot");
+        const botMsg = addMsg(reply, "bot", () => addBotCopyButton(botMsg, tNum, reply));
         addFeedback(tNum, reply, matchScore, matchCat);
         history.push({
           ticket: tNum,
@@ -3046,6 +3482,9 @@ Answer:`;
 
         // Restore chat messages
         restoreChat();
+        if (!localStorage.getItem("itbot_chat")) {
+          showWelcomeMessage();
+        }
 
         const checkKB = setInterval(() => {
           tries++;
@@ -3088,8 +3527,9 @@ Answer:`;
             .map((c) => c.name)
             .join(", ");
           const wb = document.getElementById("welcomeBub");
-          if (wb) {
-            wb.innerHTML = translations[currentLang].welcomeMsg;
+          const welcome = document.getElementById("welcomeMsg");
+          if (wb && welcome?.classList.contains("active")) {
+            wb.innerHTML = formatMarkdown(translations[currentLang].welcomeMsg);
           }
         } catch (err) {
           console.error("Render UI error:", err);
